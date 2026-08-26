@@ -1,0 +1,51 @@
+{
+  "id": "order-exception-triage",
+  "name": "Order Exception Triage",
+  "description": "Illustrative record only. Replace with a validated FED business scenario before implementation.",
+  "status": "proposed",
+  "businessOwner": {
+    "role": "Order Operations Owner",
+    "contact": "to-be-assigned"
+  },
+  "processNode": "Review of orders that cannot proceed through the normal fulfillment path.",
+  "userRoles": [
+    "Order Operations Specialist",
+    "Order Operations Manager"
+  ],
+  "decisionOrAction": "Determine the next permitted triage step for an order exception and present the evidence required for a human decision.",
+  "metrics": [
+    {
+      "name": "Exception triage cycle time",
+      "definition": "Elapsed time from exception creation to a recorded triage decision.",
+      "baseline": "to-be-measured",
+      "target": "to-be-agreed",
+      "cadence": "weekly"
+    }
+  ],
+  "ontologyReferences": [
+    {
+      "id": "Order",
+      "purpose": "Primary business object under review."
+    },
+    {
+      "id": "OrderException",
+      "purpose": "Represents the exception state and reason."
+    },
+    {
+      "id": "Customer-places-Order",
+      "purpose": "Provides customer context for triage."
+    }
+  ],
+  "sourceReferences": [
+    {
+      "id": "order-management-system",
+      "purpose": "Authoritative order and exception status source."
+    }
+  ],
+  "acceptanceCriteria": [
+    "A permitted user can retrieve an exception with the source record, freshness status, and semantic-definition version.",
+    "The result identifies missing or stale evidence instead of presenting an unsupported conclusion.",
+    "No persistent action is executed by this first read-only scenario."
+  ],
+  "notes": "This record is a contract example, not a statement of an existing FED workflow."
+}
