@@ -1,0 +1,6 @@
+interface:
+  display_name: "FED Project Work"
+  short_description: "Route governed FED project work"
+  default_prompt: "Use $fed-project-work to prepare one evidence-grounded FED scenario."
+policy:
+  allow_implicit_invocation: true
