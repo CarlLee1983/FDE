@@ -11,6 +11,12 @@
 | [FDE 企業交付架構摘要](../../FDE-Enterprise-Delivery-Architecture.zh-TW.md) | 使用者提供架構圖的繁中總覽 |
 | [HTML 閱讀版](../../site/zh-TW/index.html) | 可離線開啟的繁中閱讀入口 |
 
+## AI Agent 工作支援
+
+| 文件 | 說明 |
+| --- | --- |
+| [`fed-project-work` skill 功能說明](fed-project-work-skill.md) | Skill 的工作模式、證據護欄、使用範例與維護方式 |
+
 ## FDE 參考章節
 
 | 章節 | 主題 |
