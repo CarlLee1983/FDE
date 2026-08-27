@@ -1,0 +1,220 @@
+{
+  "caseId": "customer-refund-status-delivery-kit",
+  "overall": "passed",
+  "evidenceBoundary": {
+    "label": "Proposed synthetic",
+    "evidenceState": "proposed",
+    "enterpriseEvidence": "none",
+    "statement": "This package validates an FDE analysis-to-proposal delivery flow. It does not establish target-enterprise facts, permissions, integrations, acceptance, or value."
+  },
+  "canonicalSource": "artifacts/analysis-package.json",
+  "checks": [
+    {
+      "id": "generated-views-current",
+      "status": "passed",
+      "detail": "generated views: current"
+    },
+    {
+      "id": "evidence-state-coverage",
+      "status": "passed",
+      "detail": "ledger statuses: ['evidenced', 'missing', 'proposed', 'unverifiable']"
+    },
+    {
+      "id": "canonical-contract",
+      "status": "passed",
+      "detail": "scope, metrics, supported states, AI-fit, and authority checked"
+    },
+    {
+      "id": "consistency-claim-anchors",
+      "status": "passed",
+      "detail": "consistency claims match their canonical fields"
+    },
+    {
+      "id": "presentation-html-contract",
+      "status": "passed",
+      "detail": "slides: 10; keyboard, fullscreen, print, and canonical-source controls checked"
+    },
+    {
+      "id": "docx-structure",
+      "status": "passed",
+      "detail": "OOXML package opened and Word text extracted"
+    },
+    {
+      "id": "docx-layout-contract",
+      "status": "passed",
+      "detail": "letter page and one-inch margins: True; required styles: True; real bullet numbering: True; fixed-width tables: 5/5"
+    },
+    {
+      "id": "pptx-optional",
+      "status": "passed",
+      "detail": "PPTX output not produced; presentation.html is the required decision-deck view"
+    },
+    {
+      "id": "C1-docx",
+      "status": "passed",
+      "detail": "Evidence boundary: all fragments present"
+    },
+    {
+      "id": "C1-html",
+      "status": "passed",
+      "detail": "Evidence boundary: all fragments present"
+    },
+    {
+      "id": "C1-presentationHtml",
+      "status": "passed",
+      "detail": "Evidence boundary: all fragments present"
+    },
+    {
+      "id": "C2-docx",
+      "status": "passed",
+      "detail": "Scope: all fragments present"
+    },
+    {
+      "id": "C2-html",
+      "status": "passed",
+      "detail": "Scope: all fragments present"
+    },
+    {
+      "id": "C2-presentationHtml",
+      "status": "passed",
+      "detail": "Scope: all fragments present"
+    },
+    {
+      "id": "C3-docx",
+      "status": "passed",
+      "detail": "Baseline and target: all fragments present"
+    },
+    {
+      "id": "C3-html",
+      "status": "passed",
+      "detail": "Baseline and target: all fragments present"
+    },
+    {
+      "id": "C3-presentationHtml",
+      "status": "passed",
+      "detail": "Baseline and target: all fragments present"
+    },
+    {
+      "id": "C4-docx",
+      "status": "passed",
+      "detail": "Supported states: all fragments present"
+    },
+    {
+      "id": "C4-html",
+      "status": "passed",
+      "detail": "Supported states: all fragments present"
+    },
+    {
+      "id": "C4-presentationHtml",
+      "status": "passed",
+      "detail": "Supported states: all fragments present"
+    },
+    {
+      "id": "C5-docx",
+      "status": "passed",
+      "detail": "AI-fit: all fragments present"
+    },
+    {
+      "id": "C5-html",
+      "status": "passed",
+      "detail": "AI-fit: all fragments present"
+    },
+    {
+      "id": "C5-presentationHtml",
+      "status": "passed",
+      "detail": "AI-fit: all fragments present"
+    },
+    {
+      "id": "C6-docx",
+      "status": "passed",
+      "detail": "Authority: all fragments present"
+    },
+    {
+      "id": "C6-html",
+      "status": "passed",
+      "detail": "Authority: all fragments present"
+    },
+    {
+      "id": "C6-presentationHtml",
+      "status": "passed",
+      "detail": "Authority: all fragments present"
+    },
+    {
+      "id": "C7-docx",
+      "status": "passed",
+      "detail": "Process owner: all fragments present"
+    },
+    {
+      "id": "C7-html",
+      "status": "passed",
+      "detail": "Process owner: all fragments present"
+    },
+    {
+      "id": "C7-presentationHtml",
+      "status": "passed",
+      "detail": "Process owner: all fragments present"
+    },
+    {
+      "id": "C8-docx",
+      "status": "passed",
+      "detail": "Semantic owner: all fragments present"
+    },
+    {
+      "id": "C8-html",
+      "status": "passed",
+      "detail": "Semantic owner: all fragments present"
+    },
+    {
+      "id": "C8-presentationHtml",
+      "status": "passed",
+      "detail": "Semantic owner: all fragments present"
+    },
+    {
+      "id": "visual-qa-docx",
+      "status": "passed",
+      "detail": "supplemental-pass: No clipping, overflow, overlapping text, broken characters, or unreadable tables observed after one correction cycle."
+    },
+    {
+      "id": "visual-qa-html",
+      "status": "passed",
+      "detail": "passed: The complete desktop and mobile report rendered without page-level horizontal overflow, clipping, overlap, broken characters, or unreadable content. The two wide data tables remain intentionally horizontally scrollable on mobile. Dark-theme toggle changed the theme, button label, and computed page background."
+    },
+    {
+      "id": "visual-qa-presentationHtml",
+      "status": "passed",
+      "detail": "passed: All 10 slides fit without scrolling or horizontal overflow at both tested 16:9 desktop sizes. Mobile layouts remain horizontally contained and scroll vertically where content stacks. Arrow-key navigation updates the active slide, counter, progress, and URL hash. The fullscreen API is available. Printed output contains 10 complete 16:9 pages with no clipped slide content, overlap, broken characters, or unreadable diagrams."
+    }
+  ],
+  "visualQa": {
+    "docx": {
+      "status": "supplemental-pass",
+      "method": "Imported into Apple Pages, exported to US Letter PDF, rasterized at 120 DPI, and inspected page by page",
+      "pagesInspected": 8,
+      "result": "No clipping, overflow, overlapping text, broken characters, or unreadable tables observed after one correction cycle.",
+      "restriction": "LibreOffice was unavailable, so the packaged render_docx.py gate could not run."
+    },
+    "html": {
+      "status": "passed",
+      "method": "Google Chrome headless full-page captures at 1440 px desktop and 390 px mobile widths, inspected in page-height crops; Chrome DevTools Protocol layout and theme checks",
+      "result": "The complete desktop and mobile report rendered without page-level horizontal overflow, clipping, overlap, broken characters, or unreadable content. The two wide data tables remain intentionally horizontally scrollable on mobile. Dark-theme toggle changed the theme, button label, and computed page background.",
+      "restriction": "Local standalone-file rendering only; no hosted-environment behavior was asserted."
+    },
+    "presentationHtml": {
+      "status": "passed",
+      "method": "Google Chrome headless slide-by-slide captures at 1280x720; layout checks at 1280x720, 1024x576, and 390x844; keyboard/hash interaction checks; 10-page 16:9 PDF print render inspected as a montage",
+      "result": "All 10 slides fit without scrolling or horizontal overflow at both tested 16:9 desktop sizes. Mobile layouts remain horizontally contained and scroll vertically where content stacks. Arrow-key navigation updates the active slide, counter, progress, and URL hash. The fullscreen API is available. Printed output contains 10 complete 16:9 pages with no clipped slide content, overlap, broken characters, or unreadable diagrams.",
+      "restriction": "Validated as a local standalone file in headless Chrome; hosted delivery and an operating-system fullscreen transition were not asserted."
+    },
+    "pptx": {
+      "status": "optional-not-produced",
+      "method": "not run",
+      "result": "No PPTX exists.",
+      "restriction": "Optional derivative only; presentation.html is the required decision presentation."
+    }
+  },
+  "restrictions": [
+    "Schema and cross-format checks do not establish enterprise acceptance or authority.",
+    "PPTX is an optional derivative; presentation.html is the required decision presentation.",
+    "No authority increase follows from presentation generation or visual quality."
+  ]
+}

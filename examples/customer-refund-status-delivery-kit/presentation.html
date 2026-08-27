@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browser-native decision presentation for Customer Refund-Status Inquiry">
+  <title>Customer Refund-Status Inquiry — Decision presentation</title>
+  <style>
+    :root { color-scheme:dark; --navy:#07131f; --surface:#10263a; --panel:#16334b; --ink:#f7fbff; --muted:#a8bfd0; --line:#345068; --accent:#69d2e7; --accent2:#62a8ff; --amber:#ffd078; --red:#ff91a4; font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; }
+    * { box-sizing:border-box; } html,body { margin:0; min-height:100%; background:var(--navy); color:var(--ink); } body { overflow:hidden; } button { font:inherit; }
+    .deck { position:fixed; inset:0; background:radial-gradient(circle at 85% 0%,#153f59 0,transparent 32rem),var(--navy); }
+    .slide { position:absolute; inset:0; display:none; grid-template-rows:auto 1fr auto; gap:clamp(20px,3vh,34px); overflow:auto; padding:clamp(30px,5vh,58px) clamp(38px,7vw,110px) 88px; }
+    .slide.active { display:grid; animation:enter .28s ease-out; } @keyframes enter { from { opacity:0; transform:translateX(22px); } to { opacity:1; transform:none; } }
+    .slide-head { display:flex; align-items:center; justify-content:space-between; gap:20px; color:var(--accent); font-size:clamp(.72rem,1.2vw,.95rem); font-weight:850; letter-spacing:.13em; text-transform:uppercase; }
+    .evidence { color:var(--amber); } .content { align-self:center; width:100%; max-width:1500px; margin:auto; }
+    h1,h2,h3,p { margin-top:0; } h1 { max-width:1180px; margin-bottom:26px; font-size:clamp(3.2rem,7vw,7rem); line-height:.94; letter-spacing:-.055em; } h2 { max-width:1220px; margin-bottom:28px; font-size:clamp(2.3rem,5vw,4.9rem); line-height:1.02; letter-spacing:-.04em; } h3 { margin-bottom:9px; font-size:clamp(1rem,1.65vw,1.35rem); } p,li { color:var(--muted); font-size:clamp(.94rem,1.45vw,1.24rem); line-height:1.48; }
+    .lede { max-width:930px; font-size:clamp(1.2rem,2.2vw,1.75rem); } .decision { max-width:1180px; font-size:clamp(1.65rem,3.3vw,3rem); line-height:1.2; font-weight:760; }
+    .chips { display:flex; flex-wrap:wrap; gap:11px; margin-top:35px; } .chip { border:1px solid var(--line); border-radius:999px; background:#0c2031; padding:10px 16px; color:var(--ink); font-weight:760; }
+    .accent-box { border-left:7px solid var(--accent); border-radius:0 18px 18px 0; background:linear-gradient(120deg,#123149,#0d2233); padding:clamp(22px,3vw,40px); }
+    .grid { display:grid; gap:16px; } .grid.two { grid-template-columns:repeat(2,minmax(0,1fr)); } .grid.three { grid-template-columns:repeat(3,minmax(0,1fr)); } .grid.four { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .card,.state,.gate { border:1px solid var(--line); border-radius:18px; background:linear-gradient(145deg,var(--surface),#0c2031); padding:clamp(18px,2vw,28px); } .card small,.state small { display:block; margin-bottom:14px; color:var(--accent); font-weight:850; letter-spacing:.09em; text-transform:uppercase; } .card p,.state p { margin-bottom:14px; } .card strong,.state strong { color:var(--ink); font-size:.9rem; }
+    .flow { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; margin:34px 0 0; padding:0; list-style:none; } .flow li { position:relative; border-top:2px solid var(--line); padding:22px 8px 0 0; } .flow span,.timeline span,.action-list span { display:block; margin-bottom:8px; color:var(--accent); font-weight:850; }
+    .timeline { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:14px; margin:0; padding:0; list-style:none; } .timeline li { border-top:5px solid var(--accent2); border-radius:8px 8px 16px 16px; background:var(--surface); padding:20px; } .timeline p { font-size:clamp(.82rem,1.2vw,1.05rem); } .timeline small { color:var(--accent); }
+    .ai { max-width:1250px; } .ai h2 { color:var(--accent); } .ai p { max-width:1060px; font-size:clamp(1.1rem,2vw,1.55rem); }
+    .split { display:grid; grid-template-columns:1.2fr .8fr; gap:28px; } .compact { columns:2; gap:30px; margin:0; padding-left:20px; } .compact li { break-inside:avoid; margin-bottom:9px; }
+    .plain-list { margin:0; padding-left:22px; } .plain-list li { margin-bottom:8px; } .authority { margin-top:20px; color:var(--red); font-weight:850; }
+    .gates { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; } .gate { display:flex; gap:14px; } .gate>span { color:var(--accent); font-size:1.35rem; font-weight:900; } .gate p { margin-bottom:0; font-size:clamp(.8rem,1.15vw,1rem); }
+    .action-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 30px; margin:28px 0; padding:0; list-style:none; } .action-list li { border-bottom:1px solid var(--line); padding:10px 0 14px; }
+    footer { display:flex; justify-content:space-between; gap:24px; border-top:1px solid var(--line); padding-top:13px; color:var(--muted); font-size:clamp(.64rem,.9vw,.78rem); } footer span:last-child { text-align:right; }
+    .controls { position:fixed; z-index:30; right:22px; bottom:18px; display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:14px; background:rgba(7,19,31,.9); padding:7px; backdrop-filter:blur(14px); } .controls button { display:grid; place-items:center; min-width:38px; height:34px; border:0; border-radius:9px; background:var(--surface); color:var(--ink); cursor:pointer; } .controls button:hover,.controls button:focus-visible { outline:2px solid var(--accent); } #counter { min-width:58px; text-align:center; color:var(--muted); font-variant-numeric:tabular-nums; }
+    .progress { position:fixed; z-index:31; left:0; bottom:0; width:100%; height:4px; background:#0b1c2a; } .progress i { display:block; width:10%; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); transition:width .2s ease; }
+    .help { position:fixed; z-index:29; left:22px; bottom:23px; color:var(--muted); font-size:.75rem; }
+    @media (max-height:800px) and (min-width:801px) {
+      .slide { gap:12px; padding:24px 54px 62px; } h1 { margin-bottom:18px; } h2 { margin-bottom:18px; font-size:clamp(2.2rem,4.2vw,3.8rem); } p,li { font-size:.9rem; line-height:1.34; }
+      .card,.state,.gate { padding:15px; } .grid { gap:11px; } .card small,.state small { margin-bottom:8px; } .card p,.state p { margin-bottom:8px; }
+      .flow { gap:9px; margin-top:18px; } .flow li { padding-top:12px; } .timeline { gap:9px; } .timeline li { padding:14px; } footer { padding-top:8px; } .controls { bottom:12px; }
+      #slide-2 .decision { font-size:2rem; } #slide-2 .accent-box { padding:24px; }
+      #slide-3 .grid { margin-top:14px!important; } #slide-3 .card h3 { font-size:1rem; } #slide-3 .card p { font-size:.78rem; }
+      #slide-7 .compact li { margin-bottom:5px; font-size:.8rem; }
+      #slide-8 .lede { margin-bottom:12px; font-size:1.05rem; } #slide-8 .plain-list li { margin-bottom:3px; font-size:.78rem; } #slide-8 .authority { margin-top:9px; font-size:.78rem; }
+      #slide-9 .gate p { font-size:.75rem; } #slide-9 .authority { margin-top:9px; font-size:.76rem; }
+      #slide-10 h2 { max-width:1180px; margin-bottom:10px; font-size:2.65rem; } #slide-10 .action-list { grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; margin:12px 0; } #slide-10 .action-list li { padding:7px 0; font-size:.72rem; } #slide-10 .accent-box { padding:17px; font-size:.82rem; } #slide-10 .accent-box p { font-size:.72rem; }
+    }
+    @media (max-width:800px) { .slide { padding:26px 24px 82px; } .grid.three,.grid.four,.flow,.timeline,.gates { grid-template-columns:repeat(2,minmax(0,1fr)); } .split,.grid.two { grid-template-columns:1fr; } .content { align-self:start; } footer { display:block; } footer span { display:block; margin-top:3px; text-align:left!important; } .help { display:none; } }
+    @media print {
+      @page { size:13.333in 7.5in; margin:0; } body { overflow:visible; background:white; } .deck { position:static; }
+      .slide,.slide.active { position:relative; display:grid; width:13.333in; height:7.5in; gap:12px; overflow:hidden; padding:24px 54px 28px; break-after:page; page-break-after:always; animation:none; }
+      h1 { margin-bottom:18px; } h2 { margin-bottom:18px; font-size:3.8rem; } p,li { font-size:.9rem; line-height:1.34; } .card,.state,.gate { padding:15px; } .grid { gap:11px; } .card small,.state small { margin-bottom:8px; } .card p,.state p { margin-bottom:8px; }
+      .flow { gap:9px; margin-top:18px; } .flow li { padding-top:12px; } .timeline { gap:9px; } .timeline li { padding:14px; } footer { padding-top:8px; }
+      #slide-2 .decision { font-size:2rem; } #slide-2 .accent-box { padding:24px; } #slide-3 .grid { margin-top:14px!important; } #slide-3 .card h3 { font-size:1rem; } #slide-3 .card p { font-size:.78rem; }
+      #slide-7 .compact li { margin-bottom:5px; font-size:.8rem; } #slide-8 .lede { margin-bottom:12px; font-size:1.05rem; } #slide-8 .plain-list li { margin-bottom:3px; font-size:.78rem; } #slide-8 .authority { margin-top:9px; font-size:.78rem; }
+      #slide-9 .gate p { font-size:.75rem; } #slide-9 .authority { margin-top:9px; font-size:.76rem; } #slide-10 h2 { max-width:1180px; margin-bottom:10px; font-size:2.65rem; } #slide-10 .action-list { grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; margin:12px 0; } #slide-10 .action-list li { padding:7px 0; font-size:.72rem; } #slide-10 .accent-box { padding:17px; font-size:.82rem; } #slide-10 .accent-box p { font-size:.72rem; }
+      .controls,.progress,.help { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-live="polite">
+    <section class="slide active" id="slide-1" data-slide="1">
+      <div class="slide-head"><span>FDE operating solution</span><span class="evidence">Proposed synthetic</span></div>
+      <div class="content"><h1>Customer Refund-Status Inquiry</h1><p class="lede">A proposed read-only operating solution for faster, safer customer-service responses</p><div class="chips"><span class="chip">Refund-status inquiry only</span><span class="chip">8 minutes to 3 minutes</span><span class="chip">AI-fit: not needed for the first slice</span><span class="chip">Read-only; no write-back</span></div></div>
+      <footer><span>artifacts/analysis-package.json</span><span>C1: Proposed synthetic · C2: Refund-status inquiry only · C3: 8 minutes to 3 minutes · C5: AI-fit: not needed for the first slice · C6: Read-only; no write-back</span></footer>
+    </section>
+    <section class="slide" id="slide-2" data-slide="2">
+      <div class="slide-head"><span>Decision</span><span class="evidence">Proposed synthetic</span></div>
+      <div class="content"><h2>The next decision is a bounded shadow replay</h2><div class="accent-box"><p class="decision">Decide whether to authorize a de-identified, read-only shadow replay of the deterministic first slice.</p><p>Standardize evidence and refund-state interpretation before adding technology; a deterministic read-only summary is sufficient for the first slice, so AI is not needed.</p></div><div class="chips"><span class="chip">Customer-service operations lead · Finance refund owner</span></div></div>
+      <footer><span>artifacts/analysis-package.json</span><span>C1: Proposed synthetic · C3: 8 minutes to 3 minutes · C7: Customer-service operations lead · C8: Finance refund owner</span></footer>
+    </section>
+    <section class="slide" id="slide-3" data-slide="3">
+      <div class="slide-head"><span>Proposed diagnosis</span><span class="evidence">Not observed enterprise evidence</span></div>
+      <div class="content"><h2>The likely delays happen before anyone writes the response</h2><ol class="flow"><li><span>01</span><strong>Receive inquiry</strong></li><li><span>02</span><strong>Find order</strong></li><li><span>03</span><strong>Open payment system</strong></li><li><span>04</span><strong>Inspect refund state</strong></li><li><span>05</span><strong>Compose response</strong></li><li><span>06</span><strong>Confirm response with customer</strong></li></ol><div class="grid four" style="margin-top:28px"><article class="card"><small>proposed</small><h3>Cross-system lookup</h3><p>The representative switches context and reconstructs evidence before answering.</p></article><article class="card"><small>proposed</small><h3>Manual state interpretation</h3><p>Source-specific refund states must be translated into customer-safe language during every inquiry.</p></article><article class="card"><small>proposed</small><h3>Exceptions are discovered late</h3><p>Missing, conflicting, stale, prohibited, or unauthorized cases consume handling time before escalation.</p></article><article class="card"><small>proposed</small><h3>Prose composition is not the primary delay</h3><p>Automating language first would leave the evidence and semantic bottlenecks intact.</p></article></div></div>
+      <footer><span>artifacts/analysis-package.json</span><span>C1: Proposed synthetic · C2: Refund-status inquiry only</span></footer>
+    </section>
+    <section class="slide" id="slide-4" data-slide="4">
+      <div class="slide-head"><span>Target workflow</span><span class="evidence">Process before technology</span></div>
+      <div class="content"><h2>Standardize evidence before human confirmation</h2><ol class="timeline"><li><span>01</span><div><h3>Retrieve</h3><p>Resolve permitted order and payment evidence with source identity and retrieval time.</p><small>Deterministic software</small></div></li><li><span>02</span><div><h3>Control</h3><p>Evaluate record presence, consistency, freshness, dispute status, and access.</p><small>Deterministic software</small></div></li><li><span>03</span><div><h3>Normalize</h3><p>Map only one of the three supported states using finance-owned versioned rules.</p><small>Deterministic software</small></div></li><li><span>04</span><div><h3>Confirm</h3><p>Review the evidence-bearing summary and confirm or reject the response template.</p><small>Customer-service representative</small></div></li><li><span>05</span><div><h3>Escalate</h3><p>Resolve every abstained, disputed, failed, rejected, stale, conflicting, missing, or unauthorized case.</p><small>Finance refund owner</small></div></li></ol><p class="authority">An explicit abstention with a finance escalation reason.</p></div>
+      <footer><span>artifacts/analysis-package.json</span><span>C2: Refund-status inquiry only · C6: Read-only; no write-back · C7: Customer-service operations lead · C8: Finance refund owner</span></footer>
+    </section>
+    <section class="slide" id="slide-5" data-slide="5">
+      <div class="slide-head"><span>Intervention selection</span><span class="evidence">Simplest sufficient choice</span></div>
+      <div class="content"><h2>Stable work stays deterministic; accountable judgment stays human</h2><div class="grid four"><article class="card"><small>Evidence spread across systems</small><h3>Read-only evidence aggregation</h3><p>Retrieval and provenance assembly are stable and testable.</p><strong>Deterministic software</strong></article><article class="card"><small>Source-specific refund states</small><h3>Versioned deterministic mapping</h3><p>The supported state set is closed and identical inputs must produce identical outcomes.</p><strong>Deterministic software with finance policy ownership</strong></article><article class="card"><small>Unsafe or ambiguous cases</small><h3>Abstention and finance escalation</h3><p>The first slice must not infer policy or conceal missing evidence.</p><strong>Deterministic routing plus human judgment</strong></article><article class="card"><small>Customer response</small><h3>Response template for human confirmation</h3><p>A template is sufficient; direct automation would exceed the proposed authority.</p><strong>Customer-service representative</strong></article></div></div>
+      <footer><span>artifacts/analysis-package.json</span><span>C5: AI-fit: not needed for the first slice · C6: Read-only; no write-back</span></footer>
+    </section>
+    <section class="slide" id="slide-6" data-slide="6">
+      <div class="slide-head"><span>AI decision</span><span class="evidence">Proposed synthetic</span></div>
+      <div class="content ai"><h2>AI-fit: not needed for the first slice</h2><p>Retrieval, state mapping, access checks, exception rules, and response templates are deterministic. Adding AI would not remove the diagnosed bottleneck.</p><p>Evaluate AI later only for measurable language or wording value after the deterministic shadow baseline is accepted; AI may not map states, fill missing evidence, answer customers directly, or authorize an action.</p></div>
+      <footer><span>artifacts/analysis-package.json</span><span>C1: Proposed synthetic · C5: AI-fit: not needed for the first slice</span></footer>
+    </section>
+    <section class="slide" id="slide-7" data-slide="7">
+      <div class="slide-head"><span>Semantic contract</span><span class="evidence">Version refund-status-semantics@0.1.0-proposed</span></div>
+      <div class="content"><h2>Only three refund states are supported</h2><div class="grid three"><article class="state"><small>SUPPORTED</small><h3>Refund not initiated</h3><p>No refund initiation is evidenced for the order.</p><strong>Present read-only summary for human confirmation.</strong></article><article class="state"><small>SUPPORTED</small><h3>Refund processing</h3><p>Refund initiation is evidenced and completion is not yet evidenced.</p><strong>Present read-only summary for human confirmation.</strong></article><article class="state"><small>SUPPORTED</small><h3>Refund completed</h3><p>Refund completion is evidenced by the permitted payment source.</p><strong>Present read-only summary for human confirmation.</strong></article></div><h3 style="margin-top:24px">Everything else abstains and routes to finance</h3><ul class="compact"><li>Missing records</li><li>Conflicting states</li><li>Stale data</li><li>Failed refunds</li><li>Rejected refunds</li><li>Payment disputes</li><li>Insufficient access</li><li>Any unsupported state</li></ul></div>
+      <footer><span>artifacts/analysis-package.json</span><span>C4: Refund not initiated | Refund processing | Refund completed · C8: Finance refund owner</span></footer>
+    </section>
+    <section class="slide" id="slide-8" data-slide="8">
+      <div class="slide-head"><span>First buildable slice</span><span class="evidence">Human confirmation required</span></div>
+      <div class="content"><h2>Read-only refund summary</h2><p class="lede">A customer-service representative receives one evidence-bearing summary or a finance escalation, then confirms the response.</p><div class="split"><div class="card"><h3>Every result exposes</h3><ul class="plain-list"><li>Normalized refund status or abstention</li><li>Source evidence</li><li>Retrieval time</li><li>Semantic-definition version</li><li>Freshness status</li><li>Access decision</li><li>Response template or escalation reason</li></ul></div><div class="card"><h3>Explicitly deferred</h3><ul class="plain-list"><li>Enterprise source integration</li><li>Identity and authorization integration</li><li>Persistent telemetry</li><li>Direct customer response</li><li>AI wording assistance</li><li>Refund approval or compensation</li><li>Write-back</li></ul></div></div><p class="authority">Read-only; no write-back · Human confirmation required · Enterprise access decision: missing</p></div>
+      <footer><span>artifacts/analysis-package.json</span><span>C2: Refund-status inquiry only · C5: AI-fit: not needed for the first slice · C6: Read-only; no write-back</span></footer>
+    </section>
+    <section class="slide" id="slide-9" data-slide="9">
+      <div class="slide-head"><span>Validation gate</span><span class="evidence">Shadow before pilot</span></div>
+      <div class="content"><h2>De-identified historical shadow replay</h2><div class="gates"><article class="gate"><span>V1</span><div><h3>Supported-state mapping</h3><p>100% mapping for Refund not initiated, Refund processing, and Refund completed</p></div></article><article class="gate"><span>V2</span><div><h3>Abstention</h3><p>100% of missing, conflicting, stale, failed, rejected, disputed, unauthorized, and unsupported cases abstain</p></div></article><article class="gate"><span>V3</span><div><h3>Handling time</h3><p>Average simulated handling time &lt;= 3 minutes</p></div></article><article class="gate"><span>V4</span><div><h3>Evidence contract</h3><p>Every result exposes source evidence, retrieval time, semantic version, freshness, and access decision</p></div></article><article class="gate"><span>V5</span><div><h3>Response quality</h3><p>Incorrect refund-status responses do not increase against an accepted baseline</p></div></article><article class="gate"><span>V6</span><div><h3>Owner acceptance</h3><p>Both named owner roles accept the shadow result</p></div></article></div><p class="authority">Rollback: Remove the support view from the shadow workflow and return to the current inquiry process. No business-system compensation is required because the slice performs no write-back.</p></div>
+      <footer><span>artifacts/analysis-package.json</span><span>C3: 8 minutes to 3 minutes · C4: Refund not initiated | Refund processing | Refund completed · C6: Read-only; no write-back</span></footer>
+    </section>
+    <section class="slide" id="slide-10" data-slide="10">
+      <div class="slide-head"><span>Next accountable action</span><span class="evidence">Not a pilot authorization</span></div>
+      <div class="content"><h2>Run a process-and-semantics acceptance session, then authorize a de-identified shadow replay only if the entry criteria are met.</h2><ol class="action-list"><li><span>01</span>Observed current normal, exception, escalation, and rework paths</li><li><span>02</span>Accepted handling-time and response-quality baselines</li><li><span>03</span>Finance-owned state and exception definitions</li><li><span>04</span>Source, identity, access, freshness, privacy, and retention decisions</li><li><span>05</span>Authorized de-identified replay set</li></ol><div class="accent-box"><strong>Both owners sign an acceptance record that names the target flow, semantic version, thresholds, evidence access, and shadow boundary.</strong><p style="margin:9px 0 0">Owners: Customer-service operations lead · Finance refund owner</p></div></div>
+      <footer><span>artifacts/analysis-package.json</span><span>C1: Proposed synthetic · C6: Read-only; no write-back · C7: Customer-service operations lead · C8: Finance refund owner</span></footer>
+    </section>
+  </main>
+  <div class="help">← → / Space · Home / End · F fullscreen · P print</div>
+  <div class="controls" aria-label="Presentation controls"><button id="prev" type="button" aria-label="Previous slide">←</button><span id="counter">1 / 10</span><button id="next" type="button" aria-label="Next slide">→</button><button id="full" type="button" aria-label="Toggle fullscreen">⛶</button></div>
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+  <script>
+    const slides=[...document.querySelectorAll('.slide')]; let current=0;
+    const counter=document.getElementById('counter'); const progress=document.getElementById('progress');
+    function show(index,updateHash=true){ current=Math.max(0,Math.min(slides.length-1,index)); slides.forEach((slide,i)=>{slide.classList.toggle('active',i===current);slide.setAttribute('aria-hidden',i===current?'false':'true');}); counter.textContent=`${current+1} / ${slides.length}`; progress.style.width=`${((current+1)/slides.length)*100}%`; if(updateHash) history.replaceState(null,'',`#slide-${current+1}`); }
+    document.getElementById('prev').addEventListener('click',()=>show(current-1)); document.getElementById('next').addEventListener('click',()=>show(current+1));
+    document.getElementById('full').addEventListener('click',()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen());
+    document.addEventListener('keydown',event=>{ if(['ArrowRight','PageDown',' '].includes(event.key)){event.preventDefault();show(current+1);} if(['ArrowLeft','PageUp'].includes(event.key)){event.preventDefault();show(current-1);} if(event.key==='Home')show(0); if(event.key==='End')show(slides.length-1); if(event.key.toLowerCase()==='f')document.getElementById('full').click(); if(event.key.toLowerCase()==='p')window.print(); });
+    const initial=Number(location.hash.replace('#slide-','')); show(Number.isInteger(initial)&&initial>0?initial-1:0,false);
+  </script>
+</body>
+</html>

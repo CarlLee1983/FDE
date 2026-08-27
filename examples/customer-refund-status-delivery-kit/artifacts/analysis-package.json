@@ -1,0 +1,478 @@
+{
+  "schemaVersion": "customer-refund-proposal-kit/1.0.0",
+  "caseId": "customer-refund-status-delivery-kit",
+  "title": "Customer Refund-Status Inquiry",
+  "subtitle": "A proposed read-only operating solution for faster, safer customer-service responses",
+  "classification": {
+    "label": "Proposed synthetic",
+    "evidenceState": "proposed",
+    "enterpriseEvidence": "none",
+    "statement": "This package validates an FDE analysis-to-proposal delivery flow. It does not establish target-enterprise facts, permissions, integrations, acceptance, or value."
+  },
+  "communication": {
+    "audience": "Customer-service operations lead and finance refund owner",
+    "decision": "Decide whether to authorize a de-identified, read-only shadow replay of the deterministic first slice.",
+    "centralTakeaway": "Standardize evidence and refund-state interpretation before adding technology; a deterministic read-only summary is sufficient for the first slice, so AI is not needed."
+  },
+  "operatingOutcome": {
+    "user": "Customer-service representative",
+    "processNode": "Refund-status inquiry handling",
+    "decisionOrAction": "Confirm an evidence-bearing refund-status response or route the inquiry to finance.",
+    "baseline": {
+      "value": 8,
+      "unit": "minutes",
+      "display": "8 minutes",
+      "evidenceState": "proposed"
+    },
+    "target": {
+      "value": 3,
+      "unit": "minutes",
+      "display": "3 minutes",
+      "evidenceState": "proposed"
+    },
+    "qualityGuardrail": {
+      "display": "Incorrect refund-status responses must not increase",
+      "evidenceState": "proposed",
+      "baselineEvidence": "missing"
+    }
+  },
+  "scope": {
+    "included": [
+      "Refund-status inquiry only",
+      "Read-only order and payment evidence",
+      "Human-confirmed response template",
+      "Finance escalation for every unsupported or unsafe case"
+    ],
+    "excluded": [
+      "Refund approval",
+      "Compensation",
+      "Payment disputes",
+      "Direct AI-to-customer responses",
+      "Write-back"
+    ],
+    "evidenceState": "proposed"
+  },
+  "owners": [
+    {
+      "role": "Customer-service operations lead",
+      "responsibilities": [
+        "Own the inquiry-handling process",
+        "Accept or reject the target workflow",
+        "Own handling-time and response-quality acceptance"
+      ],
+      "evidenceState": "proposed",
+      "enterpriseContact": "missing"
+    },
+    {
+      "role": "Finance refund owner",
+      "responsibilities": [
+        "Own refund-status semantics",
+        "Own unsupported-state and exception policy",
+        "Accept or reject normalized mappings and escalation behavior"
+      ],
+      "evidenceState": "proposed",
+      "enterpriseContact": "missing"
+    }
+  ],
+  "currentProcess": {
+    "evidenceState": "proposed",
+    "normalFlow": [
+      "Receive inquiry",
+      "Find order",
+      "Open payment system",
+      "Inspect refund state",
+      "Compose response",
+      "Confirm response with customer"
+    ],
+    "exceptionFlow": [
+      "Representative detects an unclear, missing, or unsafe state",
+      "Representative gathers context again",
+      "Representative escalates to finance",
+      "Finance interprets the exception",
+      "Representative resumes response handling"
+    ],
+    "rework": [
+      "Repeat lookup when order and payment records do not align",
+      "Reinterpret source-specific payment states",
+      "Rewrite a response after finance clarification"
+    ]
+  },
+  "diagnosis": [
+    {
+      "issue": "Cross-system lookup",
+      "effect": "The representative switches context and reconstructs evidence before answering.",
+      "evidenceState": "proposed"
+    },
+    {
+      "issue": "Manual state interpretation",
+      "effect": "Source-specific refund states must be translated into customer-safe language during every inquiry.",
+      "evidenceState": "proposed"
+    },
+    {
+      "issue": "Exceptions are discovered late",
+      "effect": "Missing, conflicting, stale, prohibited, or unauthorized cases consume handling time before escalation.",
+      "evidenceState": "proposed"
+    },
+    {
+      "issue": "Prose composition is not the primary delay",
+      "effect": "Automating language first would leave the evidence and semantic bottlenecks intact.",
+      "evidenceState": "proposed"
+    }
+  ],
+  "processRedesign": [
+    {
+      "action": "Eliminate repeated lookup",
+      "change": "Assemble one permitted read-only evidence bundle before the representative interprets status."
+    },
+    {
+      "action": "Standardize meaning",
+      "change": "Publish one finance-owned semantic version for the three supported normalized states."
+    },
+    {
+      "action": "Move controls forward",
+      "change": "Check record presence, consistency, freshness, dispute status, and access before presenting a status."
+    },
+    {
+      "action": "Clarify ownership",
+      "change": "Customer service owns the normal inquiry; finance owns every unsupported or unsafe state."
+    },
+    {
+      "action": "Keep judgment human",
+      "change": "The representative confirms the response; the view never answers the customer directly."
+    }
+  ],
+  "targetProcess": {
+    "evidenceState": "proposed",
+    "steps": [
+      {
+        "name": "Retrieve",
+        "owner": "Deterministic software",
+        "description": "Resolve permitted order and payment evidence with source identity and retrieval time."
+      },
+      {
+        "name": "Control",
+        "owner": "Deterministic software",
+        "description": "Evaluate record presence, consistency, freshness, dispute status, and access."
+      },
+      {
+        "name": "Normalize",
+        "owner": "Deterministic software",
+        "description": "Map only one of the three supported states using finance-owned versioned rules."
+      },
+      {
+        "name": "Confirm",
+        "owner": "Customer-service representative",
+        "description": "Review the evidence-bearing summary and confirm or reject the response template."
+      },
+      {
+        "name": "Escalate",
+        "owner": "Finance refund owner",
+        "description": "Resolve every abstained, disputed, failed, rejected, stale, conflicting, missing, or unauthorized case."
+      }
+    ],
+    "normalOutcome": "A human-confirmed response based on a supported normalized state.",
+    "exceptionOutcome": "An explicit abstention with a finance escalation reason.",
+    "humanOverride": "A representative may reject the template and escalate, but cannot alter the normalized state or policy."
+  },
+  "semanticContract": {
+    "version": "refund-status-semantics@0.1.0-proposed",
+    "owner": "Finance refund owner",
+    "evidenceState": "proposed",
+    "supportedStates": [
+      {
+        "normalizedState": "Refund not initiated",
+        "meaning": "No refund initiation is evidenced for the order.",
+        "route": "Present read-only summary for human confirmation."
+      },
+      {
+        "normalizedState": "Refund processing",
+        "meaning": "Refund initiation is evidenced and completion is not yet evidenced.",
+        "route": "Present read-only summary for human confirmation."
+      },
+      {
+        "normalizedState": "Refund completed",
+        "meaning": "Refund completion is evidenced by the permitted payment source.",
+        "route": "Present read-only summary for human confirmation."
+      }
+    ],
+    "abstentionCases": [
+      "Missing records",
+      "Conflicting states",
+      "Stale data",
+      "Failed refunds",
+      "Rejected refunds",
+      "Payment disputes",
+      "Insufficient access",
+      "Any unsupported state"
+    ]
+  },
+  "interventions": [
+    {
+      "need": "Evidence spread across systems",
+      "selection": "Read-only evidence aggregation",
+      "owner": "Deterministic software",
+      "reason": "Retrieval and provenance assembly are stable and testable."
+    },
+    {
+      "need": "Source-specific refund states",
+      "selection": "Versioned deterministic mapping",
+      "owner": "Deterministic software with finance policy ownership",
+      "reason": "The supported state set is closed and identical inputs must produce identical outcomes."
+    },
+    {
+      "need": "Unsafe or ambiguous cases",
+      "selection": "Abstention and finance escalation",
+      "owner": "Deterministic routing plus human judgment",
+      "reason": "The first slice must not infer policy or conceal missing evidence."
+    },
+    {
+      "need": "Customer response",
+      "selection": "Response template for human confirmation",
+      "owner": "Customer-service representative",
+      "reason": "A template is sufficient; direct automation would exceed the proposed authority."
+    }
+  ],
+  "aiFit": {
+    "decision": "not needed",
+    "display": "AI-fit: not needed for the first slice",
+    "evidenceState": "proposed",
+    "rationale": "Retrieval, state mapping, access checks, exception rules, and response templates are deterministic. Adding AI would not remove the diagnosed bottleneck.",
+    "futureBoundary": "Evaluate AI later only for measurable language or wording value after the deterministic shadow baseline is accepted; AI may not map states, fill missing evidence, answer customers directly, or authorize an action."
+  },
+  "firstSlice": {
+    "name": "Read-only refund summary",
+    "userVisibleOutcome": "A customer-service representative receives one evidence-bearing summary or a finance escalation, then confirms the response.",
+    "requiredResultFields": [
+      "Normalized refund status or abstention",
+      "Source evidence",
+      "Retrieval time",
+      "Semantic-definition version",
+      "Freshness status",
+      "Access decision",
+      "Response template or escalation reason"
+    ],
+    "deferred": [
+      "Enterprise source integration",
+      "Identity and authorization integration",
+      "Persistent telemetry",
+      "Direct customer response",
+      "AI wording assistance",
+      "Refund approval or compensation",
+      "Write-back"
+    ],
+    "capabilitySeams": [
+      {
+        "seam": "Proposed order and payment read model",
+        "status": "proposed",
+        "restriction": "No enterprise source or freshness SLA is established."
+      },
+      {
+        "seam": "Refund semantic definition",
+        "status": "proposed",
+        "restriction": "Finance-owner acceptance is missing."
+      },
+      {
+        "seam": "Context and access decision",
+        "status": "proposed",
+        "restriction": "No enterprise identity or permission evidence is established."
+      },
+      {
+        "seam": "Customer-service support view",
+        "status": "proposed",
+        "restriction": "No runtime, hosting, or telemetry decision is established."
+      }
+    ]
+  },
+  "authority": {
+    "proposedApplicationForm": "Read-only customer-service support view",
+    "proposedTier": "read-only query",
+    "accessDecision": "missing",
+    "writeBack": {
+      "permitted": false,
+      "attempted": false,
+      "display": "Read-only; no write-back"
+    },
+    "customerResponse": "Human confirmation required",
+    "restriction": "The package authorizes no enterprise access, pilot, direct customer response, persistent telemetry, or system effect."
+  },
+  "validation": {
+    "method": "De-identified historical shadow replay",
+    "evidenceState": "proposed",
+    "entryCriteria": [
+      "Both owner roles accept the target flow and semantic contract",
+      "A de-identified replay set is authorized and available",
+      "Source, identity, access, freshness, and retention decisions are evidenced",
+      "An accepted handling-time and incorrect-response baseline exists"
+    ],
+    "thresholds": [
+      {
+        "id": "V1",
+        "criterion": "Supported-state mapping",
+        "threshold": "100% mapping for Refund not initiated, Refund processing, and Refund completed",
+        "failureEffect": "Blocks shadow acceptance"
+      },
+      {
+        "id": "V2",
+        "criterion": "Abstention",
+        "threshold": "100% of missing, conflicting, stale, failed, rejected, disputed, unauthorized, and unsupported cases abstain",
+        "failureEffect": "Blocks shadow acceptance"
+      },
+      {
+        "id": "V3",
+        "criterion": "Handling time",
+        "threshold": "Average simulated handling time <= 3 minutes",
+        "failureEffect": "Blocks pilot proposal"
+      },
+      {
+        "id": "V4",
+        "criterion": "Evidence contract",
+        "threshold": "Every result exposes source evidence, retrieval time, semantic version, freshness, and access decision",
+        "failureEffect": "Blocks shadow acceptance"
+      },
+      {
+        "id": "V5",
+        "criterion": "Response quality",
+        "threshold": "Incorrect refund-status responses do not increase against an accepted baseline",
+        "failureEffect": "Blocks pilot proposal"
+      },
+      {
+        "id": "V6",
+        "criterion": "Owner acceptance",
+        "threshold": "Both named owner roles accept the shadow result",
+        "failureEffect": "Blocks pilot proposal"
+      }
+    ],
+    "rollback": "Remove the support view from the shadow workflow and return to the current inquiry process. No business-system compensation is required because the slice performs no write-back."
+  },
+  "evidenceLedger": [
+    {
+      "claimId": "E1",
+      "statement": "The package and every business fact or number in it are proposed synthetic.",
+      "status": "evidenced",
+      "source": "request.md and analysis-package.json",
+      "freshness": "current repository example version",
+      "restriction": "No target-enterprise fact may be inferred."
+    },
+    {
+      "claimId": "E2",
+      "statement": "Cross-system lookup and manual state interpretation are the main delays.",
+      "status": "proposed",
+      "source": "request.md diagnosis hypothesis",
+      "freshness": "not applicable to synthetic proposal",
+      "restriction": "Requires process observation and owner/user confirmation."
+    },
+    {
+      "claimId": "E3",
+      "statement": "Average handling time can improve from 8 minutes to 3 minutes without increasing incorrect responses.",
+      "status": "unverifiable",
+      "source": "proposed synthetic baseline and target in request.md",
+      "freshness": "missing for a target enterprise",
+      "restriction": "Requires an accepted baseline and authorized shadow replay."
+    },
+    {
+      "claimId": "E4",
+      "statement": "The three normalized refund states and exception policy are accepted business definitions.",
+      "status": "missing",
+      "source": "finance-owner evidence not supplied",
+      "freshness": "missing",
+      "restriction": "Blocks G2 and any real-data implementation."
+    },
+    {
+      "claimId": "E5",
+      "statement": "Enterprise order and payment sources can be read with appropriate freshness and access decisions.",
+      "status": "missing",
+      "source": "source, identity, permission, and freshness evidence not supplied",
+      "freshness": "missing",
+      "restriction": "Blocks enterprise integration and shadow replay."
+    },
+    {
+      "claimId": "E6",
+      "statement": "The named owner roles accept the current diagnosis, target flow, semantics, thresholds, and rollout.",
+      "status": "missing",
+      "source": "no accountable acceptance record supplied",
+      "freshness": "missing",
+      "restriction": "Keeps the scenario and solution proposed."
+    },
+    {
+      "claimId": "E7",
+      "statement": "AI is unnecessary for the deterministic first-slice contract.",
+      "status": "proposed",
+      "source": "process diagnosis, intervention allocation, and closed rule set in this package",
+      "freshness": "current repository example version",
+      "restriction": "Revisit only after shadow evidence shows residual language or wording burden."
+    },
+    {
+      "claimId": "E8",
+      "statement": "Write-back or direct customer response is authorized.",
+      "status": "missing",
+      "source": "no authorization or G5 control evidence supplied",
+      "freshness": "missing",
+      "restriction": "Write-back and direct automation remain prohibited."
+    }
+  ],
+  "nextAccountableAction": {
+    "action": "Run a process-and-semantics acceptance session, then authorize a de-identified shadow replay only if the entry criteria are met.",
+    "owners": [
+      "Customer-service operations lead",
+      "Finance refund owner"
+    ],
+    "requiredInputs": [
+      "Observed current normal, exception, escalation, and rework paths",
+      "Accepted handling-time and response-quality baselines",
+      "Finance-owned state and exception definitions",
+      "Source, identity, access, freshness, privacy, and retention decisions",
+      "Authorized de-identified replay set"
+    ],
+    "completionCriterion": "Both owners sign an acceptance record that names the target flow, semantic version, thresholds, evidence access, and shadow boundary."
+  },
+  "consistencyClaims": [
+    {
+      "id": "C1",
+      "label": "Evidence boundary",
+      "display": "Proposed synthetic",
+      "requiredIn": ["docx", "html", "presentationHtml"]
+    },
+    {
+      "id": "C2",
+      "label": "Scope",
+      "display": "Refund-status inquiry only",
+      "requiredIn": ["docx", "html", "presentationHtml"]
+    },
+    {
+      "id": "C3",
+      "label": "Baseline and target",
+      "display": "8 minutes to 3 minutes",
+      "requiredIn": ["docx", "html", "presentationHtml"]
+    },
+    {
+      "id": "C4",
+      "label": "Supported states",
+      "display": "Refund not initiated | Refund processing | Refund completed",
+      "requiredIn": ["docx", "html", "presentationHtml"]
+    },
+    {
+      "id": "C5",
+      "label": "AI-fit",
+      "display": "AI-fit: not needed for the first slice",
+      "requiredIn": ["docx", "html", "presentationHtml"]
+    },
+    {
+      "id": "C6",
+      "label": "Authority",
+      "display": "Read-only; no write-back",
+      "requiredIn": ["docx", "html", "presentationHtml"]
+    },
+    {
+      "id": "C7",
+      "label": "Process owner",
+      "display": "Customer-service operations lead",
+      "requiredIn": ["docx", "html", "presentationHtml"]
+    },
+    {
+      "id": "C8",
+      "label": "Semantic owner",
+      "display": "Finance refund owner",
+      "requiredIn": ["docx", "html", "presentationHtml"]
+    }
+  ]
+}

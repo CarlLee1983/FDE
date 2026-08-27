@@ -1,0 +1,27 @@
+{
+  "docx": {
+    "status": "supplemental-pass",
+    "method": "Imported into Apple Pages, exported to US Letter PDF, rasterized at 120 DPI, and inspected page by page",
+    "pagesInspected": 8,
+    "result": "No clipping, overflow, overlapping text, broken characters, or unreadable tables observed after one correction cycle.",
+    "restriction": "LibreOffice was unavailable, so the packaged render_docx.py gate could not run."
+  },
+  "html": {
+    "status": "passed",
+    "method": "Google Chrome headless full-page captures at 1440 px desktop and 390 px mobile widths, inspected in page-height crops; Chrome DevTools Protocol layout and theme checks",
+    "result": "The complete desktop and mobile report rendered without page-level horizontal overflow, clipping, overlap, broken characters, or unreadable content. The two wide data tables remain intentionally horizontally scrollable on mobile. Dark-theme toggle changed the theme, button label, and computed page background.",
+    "restriction": "Local standalone-file rendering only; no hosted-environment behavior was asserted."
+  },
+  "presentationHtml": {
+    "status": "passed",
+    "method": "Google Chrome headless slide-by-slide captures at 1280x720; layout checks at 1280x720, 1024x576, and 390x844; keyboard/hash interaction checks; 10-page 16:9 PDF print render inspected as a montage",
+    "result": "All 10 slides fit without scrolling or horizontal overflow at both tested 16:9 desktop sizes. Mobile layouts remain horizontally contained and scroll vertically where content stacks. Arrow-key navigation updates the active slide, counter, progress, and URL hash. The fullscreen API is available. Printed output contains 10 complete 16:9 pages with no clipped slide content, overlap, broken characters, or unreadable diagrams.",
+    "restriction": "Validated as a local standalone file in headless Chrome; hosted delivery and an operating-system fullscreen transition were not asserted."
+  },
+  "pptx": {
+    "status": "optional-not-produced",
+    "method": "not run",
+    "result": "No PPTX exists.",
+    "restriction": "Optional derivative only; presentation.html is the required decision presentation."
+  }
+}

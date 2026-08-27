@@ -1,0 +1,53 @@
+{
+  "id": "customer-refund-status-delivery-kit",
+  "name": "Customer refund-status inquiry delivery kit (synthetic)",
+  "description": "Proposed synthetic scenario for a read-only refund-status support view. It validates FDE proposal delivery and never establishes enterprise access, acceptance, integration, or write-back authority.",
+  "status": "proposed",
+  "businessOwner": {
+    "role": "Customer-service operations lead",
+    "contact": "synthetic role only; target-enterprise contact missing"
+  },
+  "processNode": "Customer-service handling of a refund-status inquiry after the customer provides an order reference.",
+  "userRoles": [
+    "Customer-service representative",
+    "Customer-service operations lead",
+    "Finance refund owner"
+  ],
+  "decisionOrAction": "Present a read-only normalized refund status and response template for human confirmation, or abstain and route the inquiry to finance; never approve a refund or write back.",
+  "metrics": [
+    {
+      "name": "Average inquiry handling time",
+      "definition": "Elapsed minutes from receipt of a refund-status inquiry to a customer-service representative confirming a response or routing an exception.",
+      "baseline": "8 minutes (proposed synthetic)",
+      "target": "3 minutes (proposed synthetic)",
+      "cadence": "de-identified historical shadow replay"
+    },
+    {
+      "name": "Incorrect refund-status response rate",
+      "definition": "Share of shadow-replayed inquiries for which the confirmed response states a refund status inconsistent with the accepted finance-owned definition and source evidence.",
+      "baseline": "missing for a target enterprise",
+      "target": "must not increase from an accepted baseline (proposed)",
+      "cadence": "de-identified historical shadow replay"
+    }
+  ],
+  "ontologyReferences": [
+    {
+      "id": "refund-status-semantics@0.1.0-proposed",
+      "purpose": "Proposed synthetic definitions for the three supported normalized refund states, evidence fields, and exception routes. Finance owner acceptance is missing."
+    }
+  ],
+  "sourceReferences": [
+    {
+      "id": "proposed-order-and-payment-read-model",
+      "purpose": "Proposed read-only evidence bundle containing order identity, payment refund state, source timestamp, retrieval time, and access decision. No enterprise source or permission is established."
+    }
+  ],
+  "acceptanceCriteria": [
+    "All three supported refund states map deterministically and expose source evidence, retrieval time, semantic version, and access decision.",
+    "Every missing, conflicting, stale, failed, rejected, disputed, prohibited, or unauthorized case abstains and routes to finance.",
+    "Average simulated handling time is no more than 3 minutes and incorrect refund-status responses do not increase.",
+    "The customer-service operations lead and finance refund owner accept the shadow result before any pilot is proposed.",
+    "No direct customer response, refund approval, compensation decision, payment-dispute handling, or persistent write-back occurs."
+  ],
+  "notes": "Every scenario fact is proposed synthetic. Schema validity proves structure only and does not pass G1, G2, or any enterprise gate."
+}
