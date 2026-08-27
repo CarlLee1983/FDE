@@ -1,12 +1,12 @@
-# FED Scenario-to-Action Method
+# FDE Scenario-to-Action Method
 
-This method is the standard way to turn one business scenario into a governed FED capability. It composes established system-analysis methods into a small sequence of durable artefacts and decision gates. It is deliberately lighter than adopting every source framework end to end.
+This method is the standard way to turn one business scenario into a governed FDE capability. It composes established system-analysis methods into a small sequence of durable artefacts and decision gates. It is deliberately lighter than adopting every source framework end to end.
 
-The method uses the research in [System-Analysis Methods That Can Inform FED](docs/research/system-analysis-methods.md). That memo cites the official ISO, OMG, NIST, and SEI sources behind the method choices.
+The method uses the research in [System-Analysis Methods That Can Inform FDE](docs/research/system-analysis-methods.md). That memo cites the official ISO, OMG, NIST, and SEI sources behind the method choices.
 
 ## Design Objective
 
-Every FED capability should be able to answer these questions before it is released:
+Every FDE capability should be able to answer these questions before it is released:
 
 1. What operating outcome and decision matter?
 2. What in the current process creates avoidable delay, rework, ambiguity, or risk, and what should the target process become before technology is selected?
@@ -23,7 +23,7 @@ Frame → Map Work → Model Meaning → Specify Decision → Assure Control →
 
 | Stage | Primary question | Method basis | Persistent artefact | Exit gate |
 | --- | --- | --- | --- | --- |
-| 1. Frame | What bounded outcome should FED improve? | ISO/IEC/IEEE 29148 requirements engineering | Approved scenario record | An owner accepts scope, constraints, baseline, target, and acceptance criteria |
+| 1. Frame | What bounded outcome should an FDE improve? | ISO/IEC/IEEE 29148 requirements engineering | Approved scenario record | An owner accepts scope, constraints, baseline, target, and acceptance criteria |
 | 2. Map Work | What should be removed, simplified, standardized, or reassigned before technology is selected? | BPMN / CMMN | Validated current and target process or case models with bottlenecks, change hypothesis, and intervention candidates | The process owner and affected users accept the current diagnosis, target paths, handoffs, exception ownership, and change hypothesis |
 | 3. Model Meaning | What are the stable business facts and allowed lifecycle changes? | UML structure/state modelling; ISO/IEC 11179 registration pattern | Versioned object, link, state, metric, and source definitions | Owner, identity, definition, status, and lineage are present |
 | 4. Specify Decision | What recommendation or action is being made, from which inputs? | DMN | Named decision service and rule/test set | Test cases cover normal, boundary, and escalation outcomes |
@@ -34,9 +34,9 @@ Frame → Map Work → Model Meaning → Specify Decision → Assure Control →
 
 ### 1. Frame
 
-Begin with an approved [scenario record](schemas/fed-scenario.schema.json), not a request to “build an agent.” The record captures the operating owner, user roles, process node, decision or action, baseline, target, required sources, semantic references, and acceptance criteria.
+Begin with an approved [scenario record](schemas/fde-scenario.schema.json), not a request to “build an agent.” The record captures the operating owner, user roles, process node, decision or action, baseline, target, required sources, semantic references, and acceptance criteria.
 
-**Rule:** if there is no identifiable decision, action, or measurable outcome, it is research work—not yet an FED delivery scenario.
+**Rule:** if there is no identifiable decision, action, or measurable outcome, it is research work—not yet an FDE delivery scenario.
 
 ### 2. Map Work
 
@@ -46,7 +46,7 @@ First validate the current normal, exception, escalation, and rework paths. Iden
 
 Record the change hypothesis and baseline that would show whether the redesign helps. The process owner and affected users must accept or correct the diagnosis and target flow before capability or AI selection. When that evidence is absent, keep the target process `proposed`.
 
-Only after this process-readiness decision should the team mark candidate **FED intervention nodes**. At a selected node FED may retrieve context, provide a recommendation, request approval, or execute an already approved controlled action. Compare workflow change, data or semantic repair, deterministic software, user-interface support, AI assistance, and governed action; select the simplest sufficient intervention. Do not treat every process step as a technology or AI opportunity, and treat `no AI` as a complete decision.
+Only after this process-readiness decision should the team mark candidate **FDE intervention nodes**. At a selected node an FDE may retrieve context, provide a recommendation, request approval, or execute an already approved controlled action. Compare workflow change, data or semantic repair, deterministic software, user-interface support, AI assistance, and governed action; select the simplest sufficient intervention. Do not treat every process step as a technology or AI opportunity, and treat `no AI` as a complete decision.
 
 ### 3. Model Meaning
 
@@ -62,7 +62,7 @@ Use a stable identity, definition, owner, source, status/version, and review his
 
 ### 4. Specify Decision
 
-If FED recommends, ranks, approves, or routes something consequential, write it as a named decision service. A DMN-style decision table is particularly useful where policies must be inspected and tested.
+If an FDE solution recommends, ranks, approves, or routes something consequential, write it as a named decision service. A DMN-style decision table is particularly useful where policies must be inspected and tested.
 
 | Decision element | Required statement |
 | --- | --- |
@@ -81,7 +81,7 @@ Evaluate risk before granting access to sensitive context or allowing a persiste
 
 Capture material design trade-offs as quality scenarios before choosing implementation details. Examples include source freshness, authorization latency, explanation completeness, semantic-change impact, recovery time, and availability.
 
-**Rule:** read-only evidence must be trustworthy before FED gains write authority. Controlled actions remain named, permissioned, approved where required, auditable, idempotent, and recoverable.
+**Rule:** read-only evidence must be trustworthy before FDE delivery gains write authority. Controlled actions remain named, permissioned, approved where required, auditable, idempotent, and recoverable.
 
 ### 6. Prove and Evolve
 
@@ -99,12 +99,12 @@ The following artefacts form the minimum analysis package for a scenario.
 
 | Artefact | Created in | Maintained by | Needed before |
 | --- | --- | --- | --- |
-| Scenario record | Frame | Business owner with FED | Any delivery work |
+| Scenario record | Frame | Business owner with an FDE | Any delivery work |
 | Current and target process/case models, bottleneck evidence, change hypothesis, and intervention candidates | Map Work | Business translator / process owner | Capability or decision-support design |
 | Object, link, state, metric, and source definitions | Model Meaning | Ontology and data owners | Context retrieval |
 | Decision service and tests | Specify Decision | Policy / decision owner | Recommendation or action |
 | Risk/control and quality-scenario records | Assure Control | Security, privacy, architecture, and business owners | Release or permission increase |
-| Vertical-slice evidence and change record | Prove and Evolve | FED delivery owner | Expansion or automation |
+| Vertical-slice evidence and change record | Prove and Evolve | FDE delivery owner | Expansion or automation |
 
 ## Decision Gates
 
@@ -117,9 +117,9 @@ The following artefacts form the minimum analysis package for a scenario.
 | G5 — Action authorized | Are access, approval, audit, idempotency, and recovery controls tested? | Permit controlled write-back |
 | G6 — Value demonstrated | Does production or shadow evidence meet acceptance criteria? | Reuse assets in an adjacent scenario |
 
-## How This Fits the FED Capability Roadmap
+## How This Fits the FDE Capability Roadmap
 
-The method creates the inputs consumed by the proposed FED modules:
+The method creates the inputs consumed by the proposed FDE modules:
 
 ```text
 Scenario record
@@ -130,14 +130,14 @@ Scenario record
   → Action Execution Module
 ```
 
-The modules should use these artefacts through their interfaces rather than recreate them. This concentrates definition, validation, authorization, and traceability complexity in a few deep modules, providing leverage for all future FED capabilities.
+The modules should use these artefacts through their interfaces rather than recreate them. This concentrates definition, validation, authorization, and traceability complexity in a few deep modules, providing leverage for all future FDE capabilities.
 
 ## First Workshop Sequence
 
 | Workshop | Participants | Outcome |
 | --- | --- | --- |
-| Scenario framing | Business owner, users, FED delivery owner | Approved scenario record and baseline/target |
+| Scenario framing | Business owner, users, FDE delivery owner | Approved scenario record and baseline/target |
 | Work and meaning | Process owner, affected users, domain expert, data/ontology owner | Accepted current/target process models, bottleneck and change hypothesis, intervention candidates, minimum semantic asset set |
 | Decision and control | Decision owner, security/privacy owner, architecture owner | Decision service outline, risk/control record, quality scenarios, first-slice acceptance test |
 
-The next concrete step is to populate the scenario record with FED’s first real operating problem, then run the first two workshops. No platform-wide build should begin before G1 and G2 are satisfied.
+The next concrete step is to populate the scenario record with the project's first real FDE operating problem, then run the first two workshops. No platform-wide build should begin before G1 and G2 are satisfied.

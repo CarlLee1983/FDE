@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="用一個合成的出貨延誤案例，說明 FED 如何先診斷並優化整體流程，再選擇最簡單可落地的介入方式，最後才評估 AI 是否有增量價值。">
+  <meta name="description" content="用一個合成的出貨延誤案例，說明 FDE 如何先診斷並優化整體流程，再選擇最簡單可落地的介入方式，最後才評估 AI 是否有增量價值。">
   <title>出貨延誤範例｜從流程分析到可交付方案</title>
   <style>
     :root {
@@ -659,7 +659,7 @@
     <div class="topbar-inner">
       <a class="brand" href="#top">
         <span class="brand-mark" aria-hidden="true">•</span>
-        <span>FED 實作範例</span>
+        <span>FDE 實作範例</span>
       </a>
       <button class="plain-button" id="theme-toggle" type="button" aria-label="切換深色或淺色模式">深色模式</button>
     </div>
@@ -923,7 +923,7 @@
             <div class="next-action">
               <h3>現在要做的下一件事</h3>
               <p>
-                先由 process owner、物流使用者與 FED delivery owner 接受或修正 as-is 診斷、target flow、
+                先由 process owner、物流使用者與 FDE delivery owner 接受或修正 as-is 診斷、target flow、
                 handoff、exception 與 first-slice boundary，再建立 deterministic contracts 與唯讀工作台。
                 完成標準是團隊能在不虛構 integration、permission 或 model dependency 的前提下跑完正常與例外流程。
               </p>
@@ -949,7 +949,7 @@
               <h3>收到的需求</h3>
               <p>
                 物流協調員每天開啟一份出貨匯出檔，逐筆找出該先處理的延誤案件。
-                要求 FED 根據快照產生可解釋的優先序，讓人員決定後續動作。
+                要求 FDE 根據快照產生可解釋的優先序，讓人員決定後續動作。
               </p>
             </section>
             <section class="block">
@@ -1038,7 +1038,7 @@
                 <li>檢查 freshness、權限與欄位</li>
                 <li>計算審閱優先序</li>
                 <li>交物流人員判斷</li>
-                <li>人工處理在 FED 範圍外</li>
+                <li>人工處理在 FDE 範圍外</li>
               </ol>
             </section>
             <section class="block">
@@ -1079,7 +1079,7 @@
             <section class="block">
               <h3>介入點與權限邊界</h3>
               <p>
-                先完成上述流程重設，才把 FED 介入點放在「匯出檔已取得」與「人員開始人工排序」之間。
+                先完成上述流程重設，才把 FDE 介入點放在「匯出檔已取得」與「人員開始人工排序」之間。
                 它只讀取快照並提出建議；最後的人工作業與 ERP 更新不屬於這個能力。
               </p>
             </section>
@@ -1340,7 +1340,7 @@
             </section>
             <section class="block">
               <h3>唯讀結果不是只有一串分數</h3>
-              <p style="margin-bottom: 14px;">FED 的唯讀輸出必須把結果與可判讀它的證據一起交付：</p>
+              <p style="margin-bottom: 14px;">FDE 的唯讀輸出必須把結果與可判讀它的證據一起交付：</p>
               <div class="contract" aria-label="唯讀結果契約">
                 <div class="contract-part">結果<br>result</div>
                 <div class="contract-part">語意版本<br>1.0.0</div>
@@ -1470,7 +1470,7 @@
 
       try {
         storedTheme = new URLSearchParams(window.location.search).get("theme") ||
-          localStorage.getItem("fed-example-theme");
+          localStorage.getItem("fde-example-theme");
       } catch (error) {
         storedTheme = null;
       }
@@ -1491,7 +1491,7 @@
         var nextTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
         applyTheme(nextTheme);
         try {
-          localStorage.setItem("fed-example-theme", nextTheme);
+          localStorage.setItem("fde-example-theme", nextTheme);
         } catch (error) {
           return;
         }

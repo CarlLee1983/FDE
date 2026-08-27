@@ -1,7 +1,7 @@
 {
   "id": "order-exception-triage",
   "name": "Order Exception Triage",
-  "description": "Illustrative record only. Replace with a validated FED business scenario before implementation.",
+  "description": "Illustrative record only. Replace with a validated FDE business scenario before implementation.",
   "status": "proposed",
   "businessOwner": {
     "role": "Order Operations Owner",
@@ -47,5 +47,5 @@
     "The result identifies missing or stale evidence instead of presenting an unsupported conclusion.",
     "No persistent action is executed by this first read-only scenario."
   ],
-  "notes": "This record is a contract example, not a statement of an existing FED workflow."
+  "notes": "This record is a contract example, not a statement of an existing FDE workflow."
 }

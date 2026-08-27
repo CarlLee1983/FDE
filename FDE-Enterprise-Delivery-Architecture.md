@@ -1,10 +1,10 @@
 # Ontology-Driven FDE Enterprise Delivery Architecture
 
 > Source: the architecture diagram supplied by the user.
-> Core idea: translate enterprise knowledge into a machine-understandable semantic model with ontology, then use FDE (Forward Deployed Engineering) to deliver operating business applications on top of that model.
+> Core idea: translate enterprise knowledge into a machine-understandable semantic model with ontology, then enable an FDE (Forward Deployed Engineer) to deliver operating business applications on top of that model.
 
-> This is the executive overview. For the chapter study, see [Ontology-Driven FDE Enterprise Delivery](/Users/carl/Dev/CMG/FED/docs/fde-ontology/README.md).
-> The capability proposal derived from that study is [Capability Map and Implementation Strategy](/Users/carl/Dev/CMG/FED/docs/fde-ontology/07-capability-map-and-implementation-strategy.md).
+> This is the executive overview. For the chapter study, see [Ontology-Driven FDE Enterprise Delivery](docs/fde-ontology/README.md).
+> The capability proposal derived from that study is [Capability Map and Implementation Strategy](docs/fde-ontology/07-capability-map-and-implementation-strategy.md).
 
 ## 1. Purpose and Design Principles
 
@@ -109,4 +109,4 @@ The diagram presents a five-stage delivery method: field diagnosis, ontology mod
 
 Governed ontology assets can support semantic search and reasoning, permission mapping, multi-layer enterprise memory, and AI applications such as agents, dashboards, and workflows.
 
-The architecture treats ontology as a durable enterprise asset and applications as delivery containers that can be assembled and extended. FDE is therefore not a one-time project: it is a mechanism for turning business practice into reusable enterprise semantics and for enabling continuous operational improvement.
+The architecture treats ontology as a durable enterprise asset and applications as delivery containers that can be assembled and extended. FDE delivery is therefore not a one-time project: it is a mechanism for turning business practice into reusable enterprise semantics and for enabling continuous operational improvement.

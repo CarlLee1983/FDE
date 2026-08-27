@@ -10,7 +10,7 @@ Daily export becomes available
   → coordinator mentally compares urgency signals across records
   → coordinator discovers stale or incomplete data while triaging
   → coordinator chooses an informal review order
-  → coordinator decides follow-up outside this FED scope
+  → coordinator decides follow-up outside this FDE scope
 ```
 
 | Proposed problem | Effect to validate |
@@ -35,10 +35,10 @@ Daily demo ERP export (read-only snapshot)
   → stop the stale batch or separate incomplete records
   → deterministically rank valid shipments with a reason trace
   → Demo Logistics Coordinator decides follow-up
-  → manual ERP update remains outside this FED capability
+  → manual ERP update remains outside this FDE capability
 ```
 
-完成上述流程重設後，candidate FED intervention node 才位於「daily export 已取得、物流人員尚未開始人工排序」之間。缺少決策必要欄位或資料超過 freshness SLA 時，流程輸出 escalation，而非推測分數或執行動作。
+完成上述流程重設後，candidate FDE intervention node 才位於「daily export 已取得、物流人員尚未開始人工排序」之間。缺少決策必要欄位或資料超過 freshness SLA 時，流程輸出 escalation，而非推測分數或執行動作。
 
 ## Paths
 
@@ -63,6 +63,6 @@ Daily demo ERP export (read-only snapshot)
 | 節點 | 輸入 | 輸出 | Authority |
 | --- | --- | --- | --- |
 | Demo shipment export | synthetic snapshot | shipment records + capturedAt | read-only query |
-| FED ranking | validated fields + semantic definitions | ranked recommendation or escalation | recommendation |
+| FDE ranking | validated fields + semantic definitions | ranked recommendation or escalation | recommendation |
 | Human review | ranked list | human decision | human-owned |
 | ERP update | human decision | persistent shipment update | outside this demo; denied |

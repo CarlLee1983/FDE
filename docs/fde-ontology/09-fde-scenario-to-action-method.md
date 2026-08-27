@@ -1,14 +1,14 @@
-# 09 | FED Scenario-to-Action Method
+# 09 | FDE Scenario-to-Action Method
 
 Back to the [chapter index](README.md).
 
-The project-level [FED Scenario-to-Action Method](../../FED-Scenario-to-Action-Method.md) is the working methodology for turning a business scenario into a governed FED capability.
+The project-level [FDE Scenario-to-Action Method](../../FDE-Scenario-to-Action-Method.md) is the working methodology for turning a business scenario into a governed FDE capability.
 
 ## Why a Method Pack
 
-The FDE architecture describes layers and delivery flow but does not by itself prescribe how to analyse a problem, distinguish process from decision logic, govern semantic assets, or evaluate automation risk. FED therefore uses a lightweight method pack composed from established system-analysis methods.
+The FDE architecture describes layers and delivery flow but does not by itself prescribe how to analyse a problem, distinguish process from decision logic, govern semantic assets, or evaluate automation risk. The project therefore uses a lightweight method pack composed from established system-analysis methods.
 
-| FED concern | Method used | Result |
+| FDE concern | Method used | Result |
 | --- | --- | --- |
 | Bounded business outcome | Requirements engineering | An approved scenario and acceptance criteria |
 | Process versus exception work | BPMN / CMMN | A process or case model with a specific intervention node |
@@ -19,9 +19,9 @@ The FDE architecture describes layers and delivery flow but does not by itself p
 | Architecture trade-offs | SEI ATAM | Quality scenarios and explicit accepted risks |
 | Iterative validation | ISO/IEC/IEEE 15288 | A small vertical slice and feedback loop |
 
-Official-source research, direct links, and the limits of this synthesis are documented in [System-Analysis Methods That Can Inform FED](../research/system-analysis-methods.md).
+Official-source research, direct links, and the limits of this synthesis are documented in [System-Analysis Methods That Can Inform FDE](../research/system-analysis-methods.md).
 
-## Resulting FED Method
+## Resulting FDE Method
 
 ```text
 Frame → Map Work → Model Meaning → Specify Decision → Assure Control → Prove and Evolve
@@ -35,4 +35,4 @@ The method prevents common failure modes:
 - enabling write-back before evidence, access, and recovery are trustworthy;
 - treating a delivered capability as complete without feedback, ownership, and reuse.
 
-Use the full [method document](../../FED-Scenario-to-Action-Method.md) when preparing the first real FED scenario.
+Use the full [method document](../../FDE-Scenario-to-Action-Method.md) when preparing the first real FDE scenario.

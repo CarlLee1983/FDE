@@ -13,14 +13,14 @@ This document set decomposes the source architecture diagram into independently 
 | [05. Platform Capabilities and Application Operations](05-platform-capabilities-and-application-operations.md) | What does a platform need to run AI applications safely? | Governance, orchestration, runtime, and write-back controls |
 | [06. Operating Governance and Adoption Roadmap](06-operating-governance-and-adoption-roadmap.md) | How does one-off delivery become a continuously evolving operating model? | Governance, metrics, risks, and rollout order |
 | [07. Capability Map and Implementation Strategy](07-capability-map-and-implementation-strategy.md) | Which capabilities should be built or strengthened first? | Module seams, vertical slices, and validation criteria |
-| [08. FED Capability Enhancement Focus](08-fed-capability-enhancement-focus.md) | How is the FDE reference model applied to the FED project goal? | Capability targets, maturity sequence, and the first buildable contract |
-| [09. FED Scenario-to-Action Method](09-fed-scenario-to-action-method.md) | How should FED analyse and prepare a capability before delivery? | A lightweight composition of established system-analysis methods |
+| [08. FDE Capability Enhancement Focus](08-fde-capability-enhancement-focus.md) | How is the reference model applied to the FDE capability goal? | Capability targets, maturity sequence, and the first buildable contract |
+| [09. FDE Scenario-to-Action Method](09-fde-scenario-to-action-method.md) | How should FDE analyse and prepare a capability before delivery? | A lightweight composition of established system-analysis methods |
 
 ## Shared Terms
 
 | Term | Meaning in this document set |
 | --- | --- |
-| FDE | Forward Deployed Engineering: engineering and delivery work embedded in a concrete business setting. |
+| FDE | Forward Deployed Engineer: an engineer embedded in a concrete business setting who translates operating problems into working capabilities. |
 | Ontology | A semantic model for enterprise objects, links, actions, and their governance metadata. |
 | Single semantic source of truth | One shared definition for a business concept across data, processes, analytics, and AI applications. |
 | Business application | A dashboard, agent, or workflow, as shown in the diagram. |

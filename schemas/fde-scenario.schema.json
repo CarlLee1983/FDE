@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://fed.local/schemas/fed-scenario.schema.json",
-  "title": "FED Scenario Record",
-  "description": "A technology-neutral contract for registering a measurable FED capability scenario.",
+  "$id": "https://fde.local/schemas/fde-scenario.schema.json",
+  "title": "FDE Scenario Record",
+  "description": "A technology-neutral contract for registering a measurable FDE capability scenario.",
   "type": "object",
   "additionalProperties": false,
   "required": [

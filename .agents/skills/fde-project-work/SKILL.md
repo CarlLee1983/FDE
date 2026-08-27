@@ -1,13 +1,13 @@
 ---
-name: fed-project-work
-description: Turn an operating problem into an evidence-grounded, implementable FED operating solution, build its smallest governed slice, or assure its release gates. Use for process analysis and redesign, scenario shaping, intervention selection including AI-fit decisions, capability delivery, or evidence-based gate decisions; not for translation, static HTML/CSS, or routine Git and repository maintenance.
+name: fde-project-work
+description: Turn an operating problem into an evidence-grounded, implementable FDE operating solution, build its smallest governed slice, or assure its release gates. Use for process analysis and redesign, scenario shaping, intervention selection including AI-fit decisions, capability delivery, or evidence-based gate decisions; not for translation, static HTML/CSS, or routine Git and repository maintenance.
 ---
 
-# FED project work
+# FDE project work
 
-Use this as a thin router for FED work whose answer or implementation depends on the project's scenario-to-action method, operating-process redesign, capability delivery, or assurance gates.
+Use this as a thin router for FDE work whose answer or implementation depends on the project's scenario-to-action method, operating-process redesign, capability delivery, or assurance gates.
 
-The default outcome for an open-ended FED request is an implementable operating solution, not an inventory of documents or gates and not an AI feature by default. Scenario records, models, definitions, controls, and evidence are inputs that make the solution credible. The proposal must diagnose the current process, redesign the workflow before selecting technology, and show what the delivery team can build and verify first. Assess AI only after the target process is coherent; `no AI in the first slice` is a valid and often preferable result.
+The default outcome for an open-ended FDE request is an implementable operating solution, not an inventory of documents or gates and not an AI feature by default. Scenario records, models, definitions, controls, and evidence are inputs that make the solution credible. The proposal must diagnose the current process, redesign the workflow before selecting technology, and show what the delivery team can build and verify first. Assess AI only after the target process is coherent; `no AI in the first slice` is a valid and often preferable result.
 
 ## Grounding
 

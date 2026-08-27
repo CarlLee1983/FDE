@@ -1,29 +1,29 @@
-# 08 | FED Capability Enhancement Focus
+# 08 | FDE Capability Enhancement Focus
 
 Back to the [chapter index](README.md).
 
 ## Project Positioning
 
-FED capability enhancement is the purpose of this project. The ontology-driven FDE architecture remains a reference model: it helps identify what FED can build and strengthen, but it is not assumed to be FED’s existing implementation or complete product definition.
+FDE capability enhancement is the purpose of this project. The ontology-driven FDE architecture remains a reference model: it helps identify what an FDE can build and strengthen, but it is not assumed to be the project's existing implementation or complete product definition.
 
-The practical question is not “How do we recreate the diagram?” It is “Which capabilities would let FED deliver trusted, governed, and reusable outcomes in a real business scenario?”
+The practical question is not “How do we recreate the diagram?” It is “Which capabilities would let an FDE deliver trusted, governed, and reusable outcomes in a real business scenario?”
 
 ## Capability Priorities
 
 | Priority | Capability | Why it comes now |
 | --- | --- | --- |
 | P0 | Scenario registration | Establishes a measurable purpose and accountable owner before technology choices |
-| P1 | Ontology asset lifecycle | Prevents each FED feature from defining business terms independently |
+| P1 | Ontology asset lifecycle | Prevents each FDE feature from defining business terms independently |
 | P1 | Evidence-aware context resolution | Makes answers and metrics attributable to permitted sources |
 | P2 | Decision support | Turns context into an operating dashboard or agent interaction |
 | P3 | Controlled action execution | Adds operational effect only after read-only and advisory use is trusted |
-| P4 | Cross-scenario reuse and governance | Converts delivery work into compounding FED capability |
+| P4 | Cross-scenario reuse and governance | Converts delivery work into compounding FDE capability |
 
 P0 and P1 should form the first vertical slice. P2 and P3 should not be treated as independent products: they consume the same scenario, semantic assets, context, and access decisions.
 
 ## First Buildable Contract
 
-The project now includes a JSON Schema for a FED scenario record at [schemas/fed-scenario.schema.json](../../schemas/fed-scenario.schema.json). The schema is technology-neutral and establishes the information FED must collect before building a scenario:
+The project now includes a JSON Schema for a FDE scenario record at [schemas/fde-scenario.schema.json](../../schemas/fde-scenario.schema.json). The schema is technology-neutral and establishes the information FDE must collect before building a scenario:
 
 | Contract element | Capability it enables |
 | --- | --- |
@@ -35,7 +35,7 @@ The project now includes a JSON Schema for a FED scenario record at [schemas/fed
 | Source references | Permission, freshness, and lineage decisions |
 | Acceptance criteria | A verifiable release decision |
 
-The included [illustrative record](../../examples/order-exception-triage.scenario.json) is intentionally generic. It demonstrates the contract shape only and must be replaced with FED’s first real scenario before implementation begins.
+The included [illustrative record](../../examples/order-exception-triage.scenario.json) is intentionally generic. It demonstrates the contract shape only and must be replaced with the project's first real FDE scenario before implementation begins.
 
 ## Modules to Develop After the Contract Is Populated
 
@@ -57,4 +57,4 @@ The immediate target is not autonomous action. It is one read-only inquiry for o
 result + semantic definition version + source evidence + freshness status + access decision
 ```
 
-This result is the first proof that FED can give a user an answer grounded in governed enterprise context. Once it is reliable, the exact same context can power a dashboard, a decision-support interaction, and eventually a controlled action.
+This result is the first proof that FDE can give a user an answer grounded in governed enterprise context. Once it is reliable, the exact same context can power a dashboard, a decision-support interaction, and eventually a controlled action.

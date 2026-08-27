@@ -1,6 +1,6 @@
 # 庫存補貨能力演進：操作方案提案
 
-> **證據邊界：Synthetic / Proposed。** 本文沉澱的是一個可演練的 FED 案例，不是任何企業的現況證據或授權。所有角色、數字與系統名稱都只表示資料和決策應有的形狀。缺少的企業事實一律標示為 `missing` 或 `unverifiable`。
+> **證據邊界：Synthetic / Proposed。** 本文沉澱的是一個可演練的 FDE 案例，不是任何企業的現況證據或授權。所有角色、數字與系統名稱都只表示資料和決策應有的形狀。缺少的企業事實一律標示為 `missing` 或 `unverifiable`。
 
 ## 1. 要改善的營運結果
 
@@ -209,13 +209,13 @@ AI 的禁止自治範圍包括：自行新增供應商、變更付款條件、�
 | --- | --- | --- | --- |
 | 固定安全庫存無法表達所有未來壓力 | `proposed` | 案例問題陳述 | 需由真實流程與資料確認 |
 | AI 適合整理未結構化脈絡與人工理由 | `proposed` | 職責設計 | 需與非 AI baseline 比較 |
-| 穩定分析應提升為版本化工具 | `evidenced`（專案方法） | FED capability reuse 與 Prove and Evolve 原則 | 不證明特定工具已通過企業驗證 |
+| 穩定分析應提升為版本化工具 | `evidenced`（專案方法） | FDE capability reuse 與 Prove and Evolve 原則 | 不證明特定工具已通過企業驗證 |
 | 正式進貨單寫入已獲授權 | `missing` | 無企業授權或控制證據 | 僅能建立不提交的草稿 |
 | 商品 A 應補貨 100–140 件 | `unverifiable` | 只有合成示例 | 不得當作真實決策使用 |
 | 方案能降低缺貨或人工時間 | `unverifiable` | 尚無 shadow 或 production 結果 | 不得宣稱商業成效 |
 
 ## 12. 下一個負責行動
 
-由真實補貨流程負責人召集補貨人員、資料 owner 與 FED delivery owner，選定 10–30 個商品，確認現況 normal／exception／escalation 路徑、資料來源、修改原因分類，以及四週 shadow 的基線與接受門檻。
+由真實補貨流程負責人召集補貨人員、資料 owner 與 FDE delivery owner，選定 10–30 個商品，確認現況 normal／exception／escalation 路徑、資料來源、修改原因分類，以及四週 shadow 的基線與接受門檻。
 
 完成條件是：流程負責人接受一份技術中立的目標流程，所有必要來源與權限有直接證據，且第一個唯讀 shadow 工作包可以被交付團隊重播。達成以前，本方案保持 `proposed`。

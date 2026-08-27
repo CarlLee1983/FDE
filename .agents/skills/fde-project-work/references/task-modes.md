@@ -14,7 +14,7 @@ Use [the source map](source-map.md) to open only the canonical sources needed by
 
 ## Operating solution shaping
 
-Use this mode by default for an open-ended FED request asking what to do, how the operation should improve, where AI could fit, or what solution to propose.
+Use this mode by default for an open-ended FDE request asking what to do, how the operation should improve, where AI could fit, or what solution to propose.
 
 **Required inputs.** A bounded operating problem, prospective users, a process or case location, a decision or action, and whatever evidence is available for the current workflow, handoffs, exceptions, sources, semantics, constraints, and value. A fully approved scenario is helpful but not required to produce a `proposed` solution.
 

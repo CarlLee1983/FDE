@@ -18,7 +18,7 @@ Daily export becomes available
   → coordinator checks records and mentally compares urgency signals
   → coordinator decides an informal review order
   → missing inputs and stale data are handled case by case
-  → coordinator chooses operational follow-up outside this FED scope
+  → coordinator chooses operational follow-up outside this FDE scope
 ```
 
 The proposed diagnosis is:
@@ -149,4 +149,4 @@ Rollback for the first slice is to remove the workbench from the review workflow
 
 For this repository demo, the next work package is to record the as-is assumptions, target flow, owners, review-state behavior, and exception paths as an explicit process acceptance checklist, then implement the deterministic replay and read-only workbench without AI. Completion is observable when the synthetic workflow cases pass end to end and no integration, permission, or model dependency has been invented.
 
-For a real enterprise engagement, the first action is a process-framing and validation session with the accountable business owner, logistics users, source owner, and FED delivery owner. It must replace the synthetic process, owner, baseline, target, source, access, and acceptance claims with verifiable enterprise evidence before process shadow can be authorized.
+For a real enterprise engagement, the first action is a process-framing and validation session with the accountable business owner, logistics users, source owner, and FDE delivery owner. It must replace the synthetic process, owner, baseline, target, source, access, and acceptance claims with verifiable enterprise evidence before process shadow can be authorized.

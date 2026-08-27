@@ -1,10 +1,10 @@
-# FED 能力強化
+# FDE 能力強化
 
 > 本文件為閱讀用繁體中文譯本；英文版 [README.md](README.md) 是維護中的來源文件。
 
-本專案專注於強化 FED 的能力。
+本專案專注於強化 FDE（Forward Deployed Engineer）的能力。
 
-使用者提供的「本體論驅動 FDE」架構保留為參考模型。它協助識別 FED 應建立的能力：共用的業務語義、具證據的上下文、受控行動與持續治理；但它不會單獨定義 FED 的產品範圍。
+使用者提供的「本體論驅動 FDE」架構保留為參考模型。它協助識別 FDE 應建立的能力：共用的業務語義、具證據的上下文、受控行動與持續治理；但它不會單獨定義本專案的交付範圍。
 
 ## 目前方向
 
@@ -14,6 +14,6 @@
 4. 在啟用受控行動前，先交付決策支援。
 5. 將可重用資產累積至下一個情境。
 
-請從 [FED 能力強化計畫](FED-Capability-Enhancement-Plan.zh-TW.md) 與 [FDE 參考研究（繁中）](docs/zh-TW/README.md) 開始閱讀。
+請從 [FDE 能力強化計畫](FDE-Capability-Enhancement-Plan.zh-TW.md) 與 [FDE 參考研究（繁中）](docs/zh-TW/README.md) 開始閱讀。
 
-將業務情境轉為受治理 FED 能力的工作方法，請參閱 [FED 情境至行動方法](FED-Scenario-to-Action-Method.zh-TW.md)。
+將業務情境轉為受治理 FDE 能力的工作方法，請參閱 [FDE 情境至行動方法](FDE-Scenario-to-Action-Method.zh-TW.md)。
