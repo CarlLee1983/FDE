@@ -1,0 +1,54 @@
+{
+  "id": "personal-email-management-demo",
+  "name": "Personal email review and action list (demo)",
+  "description": "Synthetic demonstration of a read-only daily inbox review that separates deterministic mailbox organization from conditional AI-assisted summarization, action extraction, and reply drafting.",
+  "status": "proposed",
+  "businessOwner": {
+    "role": "Demo Mailbox Owner",
+    "contact": "missing:real-accountable-user"
+  },
+  "processNode": "Daily review of new and unresolved email before the mailbox owner decides what to handle next.",
+  "userRoles": [
+    "Demo Mailbox Owner"
+  ],
+  "decisionOrAction": "Decide which email threads require attention, identify the next action and deadline, and optionally prepare a reply draft without changing mailbox state or sending a message.",
+  "metrics": [
+    {
+      "name": "Missed actionable email rate",
+      "definition": "Share of email threads later found to require a reply or task but not identified during the agreed review window.",
+      "baseline": "missing:real review baseline",
+      "target": "proposed:reduce after a user-accepted shadow period",
+      "cadence": "weekly"
+    },
+    {
+      "name": "Daily inbox review time",
+      "definition": "Elapsed active time the user spends reviewing new and unresolved email during the daily review.",
+      "baseline": "missing:real time baseline",
+      "target": "proposed:reduce without increasing missed actionable email",
+      "cadence": "daily measurement and weekly trend"
+    }
+  ],
+  "ontologyReferences": [
+    {
+      "id": "proposed:personal-email-semantics@0.1.0",
+      "purpose": "Proposed definitions for message, thread, correspondent, review status, action, deadline, evidence reference, summary, and reply draft."
+    }
+  ],
+  "sourceReferences": [
+    {
+      "id": "proposed:permitted-mailbox-read-scope",
+      "purpose": "Read-only message and thread metadata and content explicitly permitted by the mailbox owner, with provider identity, retrieval time, and access decision."
+    },
+    {
+      "id": "proposed:user-review-decisions",
+      "purpose": "User-recorded attention, action, correction, rejection, and completion reasons used to evaluate and improve the workflow."
+    }
+  ],
+  "acceptanceCriteria": [
+    "Every review item identifies the source thread, retrieval time, semantic-definition version, and access decision.",
+    "The first slice keeps mailbox access read-only; any stored user decision uses a separately authorized, auditable, idempotent, and removable decision record without sending, deleting, archiving, unsubscribing, or changing mailbox state.",
+    "Any later AI summary, extracted action, deadline, or reply draft cites its source messages and abstains or asks for review when evidence is missing, conflicting, or sensitive.",
+    "Expansion beyond shadow use requires replay evidence showing incremental value over the deterministic baseline and explicit acceptance by the mailbox owner."
+  ],
+  "notes": "This record is proposed and synthetic. Real mailbox access, privacy choices, baseline, source authority, access decision, thresholds, and acceptance evidence are missing."
+}
