@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fde.local/examples/decision-memory-evolution/decision-episode.schema.json",
+  "title": "Synthetic Decision Episode Revision",
+  "description": "Proposed append-only contract for one revision of a synthetic decision episode. A correction creates a new revision and never mutates the superseded record. Cross-record lineage and timestamp ordering are semantic invariants enforced by the append action, not by this JSON Schema alone.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "episodeId",
+    "revisionId",
+    "supersedesRevisionId",
+    "actorId",
+    "recordedAt",
+    "decisionAsOf",
+    "semanticVersion",
+    "toolVersion",
+    "accessDecisionId",
+    "evidence",
+    "signal",
+    "interpretation",
+    "decision",
+    "intendedAction",
+    "outcome"
+  ],
+  "properties": {
+    "episodeId": { "type": "string", "minLength": 3, "maxLength": 120 },
+    "revisionId": { "type": "string", "minLength": 3, "maxLength": 120 },
+    "supersedesRevisionId": { "type": ["string", "null"], "minLength": 3, "maxLength": 120 },
+    "actorId": { "type": "string", "minLength": 3, "maxLength": 240 },
+    "recordedAt": { "type": "string", "format": "date-time" },
+    "decisionAsOf": { "type": "string", "format": "date-time" },
+    "semanticVersion": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "toolVersion": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "accessDecisionId": { "type": "string", "minLength": 3, "maxLength": 240 },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidenceId",
+          "sourceRecordId",
+          "sourceRevisionId",
+          "contentHash",
+          "sourceOccurredAt",
+          "availableAt",
+          "retrievedAt",
+          "freshnessStatus"
+        ],
+        "properties": {
+          "evidenceId": { "type": "string", "minLength": 3, "maxLength": 120 },
+          "sourceRecordId": { "type": "string", "minLength": 3, "maxLength": 240 },
+          "sourceRevisionId": { "type": "string", "minLength": 1, "maxLength": 240 },
+          "contentHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+          "sourceOccurredAt": { "type": "string", "format": "date-time" },
+          "availableAt": { "type": "string", "format": "date-time" },
+          "retrievedAt": { "type": "string", "format": "date-time" },
+          "freshnessStatus": { "type": "string", "enum": ["fresh", "stale", "unknown"] }
+        }
+      }
+    },
+    "signal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value", "comparison", "evidenceIds"],
+      "properties": {
+        "type": { "type": "string", "minLength": 3, "maxLength": 120 },
+        "value": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "comparison": { "type": "string", "minLength": 3, "maxLength": 500 },
+        "evidenceIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } }
+      }
+    },
+    "interpretation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["facts", "hypotheses", "missingEvidence"],
+      "properties": {
+        "facts": { "type": "array", "items": { "type": "string" } },
+        "hypotheses": { "type": "array", "items": { "type": "string" } },
+        "missingEvidence": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["disposition", "reasonCode", "rationale"],
+      "properties": {
+        "disposition": { "type": "string", "enum": ["monitor", "verify", "escalate"] },
+        "reasonCode": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "rationale": { "type": "string", "minLength": 3, "maxLength": 2000 }
+      }
+    },
+    "intendedAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ownerId", "dueAt", "description", "confirmationStatus"],
+      "properties": {
+        "ownerId": { "type": "string", "minLength": 3, "maxLength": 240 },
+        "dueAt": { "type": "string", "format": "date-time" },
+        "description": { "type": "string", "minLength": 3, "maxLength": 1000 },
+        "confirmationStatus": { "type": "string", "enum": ["intended", "confirmed", "cancelled"] }
+      }
+    },
+    "outcome": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["observedAt", "recordedAt", "observation", "evidenceIds"],
+          "properties": {
+            "observedAt": { "type": "string", "format": "date-time" },
+            "recordedAt": { "type": "string", "format": "date-time" },
+            "observation": { "type": "string", "minLength": 3, "maxLength": 2000 },
+            "evidenceIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+          }
+        }
+      ]
+    }
+  }
+}

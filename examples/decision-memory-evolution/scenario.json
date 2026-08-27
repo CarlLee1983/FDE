@@ -1,0 +1,67 @@
+{
+  "id": "decision-memory-evolution-demo",
+  "name": "Commercial decision memory evolution (demo)",
+  "description": "Synthetic demonstration of an account-review workflow that connects a business signal to evidence, human interpretation, action, and later outcome, then uses repeated corrections to propose governed decision-support capabilities.",
+  "status": "proposed",
+  "businessOwner": {
+    "role": "Demo Commercial Operations Process Owner",
+    "contact": "missing:real-accountable-owner"
+  },
+  "processNode": "Weekly review of material B2B account order-pattern changes before a manager decides whether to monitor, request account-owner verification, or escalate.",
+  "userRoles": [
+    "Demo Commercial Operations Manager",
+    "Demo Account Owner",
+    "Demo Commercial Analyst"
+  ],
+  "decisionOrAction": "Review an evidence-linked account signal, record the accountable human interpretation and rationale, choose monitor, verify, or escalate, and later connect the observed outcome without allowing the assistant to contact the customer or update CRM autonomously.",
+  "metrics": [
+    {
+      "name": "Decision trace completeness",
+      "definition": "Share of in-scope reviews that link the original signal, permitted source evidence, human interpretation, chosen action, rationale, review date, and later observed outcome.",
+      "baseline": "missing:real historical baseline",
+      "target": "proposed:accepted threshold after shadow observation",
+      "cadence": "weekly"
+    },
+    {
+      "name": "Repeated investigation effort",
+      "definition": "Analyst time spent reconstructing evidence and rationale for an account pattern that has already appeared in comparable reviewed cases.",
+      "baseline": "missing:time-study baseline",
+      "target": "proposed:reduce after a trusted decision-memory view is adopted",
+      "cadence": "weekly review and monthly trend"
+    },
+    {
+      "name": "Unsupported explanation rate",
+      "definition": "Share of review summaries that state a cause or recommended response without cited evidence or an explicit hypothesis label.",
+      "baseline": "missing:shadow baseline",
+      "target": "proposed:zero unsupported causal claims in the first slice",
+      "cadence": "per review"
+    }
+  ],
+  "ontologyReferences": [
+    {
+      "id": "proposed:commercial-decision-memory-semantics@0.1.0",
+      "purpose": "Proposed definitions for account signal, evidence item, interpretation, decision, rationale, follow-up action, observation window, outcome, correction, and capability candidate."
+    }
+  ],
+  "sourceReferences": [
+    {
+      "id": "proposed:account-order-pattern-snapshot",
+      "purpose": "Synthetic order aggregates and comparison periods with source, freshness, and metric-definition version."
+    },
+    {
+      "id": "proposed:permitted-account-context",
+      "purpose": "Synthetic service, renewal, campaign, and account notes that may support or contradict an interpretation."
+    },
+    {
+      "id": "proposed:decision-and-outcome-journal",
+      "purpose": "Proposed record of human decisions, structured reasons, follow-up observations, corrections, and capability-change candidates."
+    }
+  ],
+  "acceptanceCriteria": [
+    "Each review identifies its result, semantic-definition version, source evidence, freshness, and access decision, with missing components exposed rather than inferred.",
+    "The workflow preserves separate fields for observed facts, deterministic calculations, human interpretations, hypotheses, chosen actions, and later outcomes.",
+    "The assistant abstains when permitted evidence is insufficient and cannot label churn, contact a customer, assign work, change account state, or write to CRM autonomously.",
+    "A capability candidate is promoted only after repeated evidence, a specifiable contract, replay or shadow comparison, accountable owner acceptance, tests, versioning, observability, release, and rollback are defined."
+  ],
+  "notes": "This record is proposed and synthetic. Real owners, process acceptance, baselines, source authority, semantic definitions, access decisions, thresholds, integrations, and outcome evidence are missing."
+}
