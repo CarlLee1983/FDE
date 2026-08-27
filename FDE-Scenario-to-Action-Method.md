@@ -15,6 +15,12 @@ Every FDE capability should be able to answer these questions before it is relea
 5. Which decision logic, risk controls, and quality trade-offs constrain it?
 6. How will we prove its value before increasing its authority?
 
+## Collaborative Clarification
+
+When the operating problem is too ambiguous to enter the six stages, clarify it as a dependency-ordered decision tree. The FDE investigates available facts and evidence; accountable participants decide intent, policy, ownership, trade-offs, and acceptance. Ask only the current **frontier**: decisions whose prerequisites are already settled. Give each decision a recommended answer grounded in known evidence, record the answer and rationale, then recompute the frontier.
+
+Clarification is complete when every material branch is either decided, evidenced, or explicitly marked `missing` or `unverifiable`, and the result identifies a bounded operating outcome, user, process or case location, decision or action, and next accountable owner. It produces inputs for the applicable stage; it is not itself scenario approval, enterprise acceptance, or authority to implement.
+
 ## The Six Stages
 
 ```text

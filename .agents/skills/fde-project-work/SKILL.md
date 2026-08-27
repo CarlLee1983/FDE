@@ -17,6 +17,8 @@ The default outcome for an open-ended FDE request is an implementable operating 
 4. Use examples only to show a record's shape. Do not promote their people, systems, values, or acceptance claims into real-world facts.
 5. Analyse the whole current workflow before choosing an intervention. First remove unnecessary work; simplify handoffs; standardize definitions, ownership, and exception paths; repair evidence or data gaps; and use deterministic software for stable rules. Only then assess whether a remaining step benefits from AI because interpretation, language, synthesis, or bounded reasoning creates a defensible advantage. Assign every retained responsibility to deterministic software, an AI model, a human, or a governed system action.
 
+When missing decisions materially change the operating diagnosis or solution, read [collaborative clarification](references/collaborative-clarification.md). Investigate available facts, then work through the decision frontier with accountable participants before relying on downstream assumptions.
+
 ## Agent delivery loop
 
 For change, build, or end-to-end delivery requests, read [agent-delivery-loop](references/agent-delivery-loop.md) and drive the work until its completion or evidence boundary. Do not stop after describing the method when the requested artefacts can be safely produced or validated. For read, explanation, or review requests, use the selected mode's output contract without creating artefacts unless the user asks for them.
