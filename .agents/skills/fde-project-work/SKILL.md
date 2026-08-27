@@ -5,7 +5,7 @@ description: Turn an operating problem into an evidence-grounded, implementable 
 
 # FDE project work
 
-Use this as a thin router for FDE work whose answer or implementation depends on the project's scenario-to-action method, operating-process redesign, capability delivery, or assurance gates.
+Use this as the agent driver for FDE work whose answer or implementation depends on the project's scenario-to-action method, operating-process redesign, capability delivery, or assurance gates.
 
 The default outcome for an open-ended FDE request is an implementable operating solution, not an inventory of documents or gates and not an AI feature by default. Scenario records, models, definitions, controls, and evidence are inputs that make the solution credible. The proposal must diagnose the current process, redesign the workflow before selecting technology, and show what the delivery team can build and verify first. Assess AI only after the target process is coherent; `no AI in the first slice` is a valid and often preferable result.
 
@@ -16,6 +16,10 @@ The default outcome for an open-ended FDE request is an implementable operating 
 3. Keep repository proposals separate from facts about a target enterprise. Establish owners, authorities, baselines, targets, policies, permissions, integrations, and current acceptance only from supplied or inspected evidence. Label absent evidence `missing` and evidence that cannot be checked `unverifiable`.
 4. Use examples only to show a record's shape. Do not promote their people, systems, values, or acceptance claims into real-world facts.
 5. Analyse the whole current workflow before choosing an intervention. First remove unnecessary work; simplify handoffs; standardize definitions, ownership, and exception paths; repair evidence or data gaps; and use deterministic software for stable rules. Only then assess whether a remaining step benefits from AI because interpretation, language, synthesis, or bounded reasoning creates a defensible advantage. Assign every retained responsibility to deterministic software, an AI model, a human, or a governed system action.
+
+## Agent delivery loop
+
+For change, build, or end-to-end delivery requests, read [agent-delivery-loop](references/agent-delivery-loop.md) and drive the work until its completion or evidence boundary. Do not stop after describing the method when the requested artefacts can be safely produced or validated. For read, explanation, or review requests, use the selected mode's output contract without creating artefacts unless the user asks for them.
 
 When AI is justified for work whose method is not yet stable enough to specify, design a **governed capability-evolution loop** rather than a permanent prompt-bound task. Capture recommendations, human corrections, exceptions, and outcomes as evidence; use them to propose named process, semantic, decision, tool, model, or control changes. Promote repeated and accepted work into versioned, tested software only through an accountable owner and a replay or shadow comparison. The AI may then use the released capability and look for the next gap; it does not approve its own proposal, silently change policy, or publish production behavior.
 
