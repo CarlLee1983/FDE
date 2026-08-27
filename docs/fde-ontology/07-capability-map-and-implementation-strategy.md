@@ -127,6 +127,27 @@ The proposed modules are intentionally organized around changing concerns. Each 
 5. **Prefer depth over pass-through modules.** A module should remove recurring complexity from callers; avoid thin wrappers that only relay data.
 6. **Introduce seams only for actual variation.** Begin with one adapter per source or target type; generalize when a second real adapter requires it.
 
+## Capability Ownership and Return
+
+FDE is a capability for forming and governing operating capabilities; it is not the owner of each scenario's business behaviour.
+
+| Owner | Owns | Does not own |
+| --- | --- | --- |
+| FDE core | Scenario-to-action method, evidence states, shared delivery contracts, gate assessment, authority constraints, and capability-promotion rules | Domain objects, policies, calculations, decision thresholds, source mappings, or target-system behaviour for a particular scenario |
+| Case capability | Its domain semantics, inputs, decision logic, integrations, tests, operating evidence, version, and rollback | Cross-scenario FDE policy or authority to promote its own behaviour into FDE core |
+
+Repository location does not change ownership: an example can demonstrate an FDE invariant without becoming its canonical source, and a reusable-looking function remains case-owned until promotion is accepted.
+
+After a case slice is validated, return its learning as a reviewable capability-change candidate rather than moving case code into FDE core. Classify each observation as case-specific behaviour, an already-established FDE invariant, a proposed cross-scenario candidate, or rejected generalization. A candidate derived from cases is eligible for promotion only when:
+
+1. At least two independent runnable scenarios exhibit the same non-domain complexity.
+2. The proposed Module has a small domain-neutral Interface and hides meaningful repeated Implementation complexity.
+3. Both scenarios replay equivalently through the proposed seam, including normal, boundary, missing, conflicting, and prohibited cases where applicable.
+4. An accountable project owner accepts the shared contract, version, observability, release, and rollback path.
+5. Promotion preserves each case's independent authority, versioning, and rollback; it does not turn schema validity or synthetic evidence into enterprise acceptance.
+
+A requirement already established by this project's canonical method or control sources remains an FDE invariant; it does not need to be rediscovered through two cases. Case evidence may test that invariant but does not redefine it.
+
 ## Validation Strategy
 
 | Level | What to verify | Example evidence |

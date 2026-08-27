@@ -47,4 +47,4 @@ Completion criterion: the highest safe completed outcome, gate result, deferred 
 
 ## Handoff
 
-Report artefacts changed, checks passed or failed, evidence restrictions, rollback or operational implications when applicable, and the next owner decision. Describe synthetic evidence as synthetic and proposed behaviour as proposed.
+Report artefacts changed, checks passed or failed, evidence restrictions, rollback or operational implications when applicable, and the next owner decision. Describe synthetic evidence as synthetic and proposed behaviour as proposed. When the slice produced a reuse or core-change claim, complete the [capability-return review](capability-return-review.md) before presenting it as a project capability.

@@ -21,6 +21,8 @@ The default outcome for an open-ended FDE request is an implementable operating 
 
 For change, build, or end-to-end delivery requests, read [agent-delivery-loop](references/agent-delivery-loop.md) and drive the work until its completion or evidence boundary. Do not stop after describing the method when the requested artefacts can be safely produced or validated. For read, explanation, or review requests, use the selected mode's output contract without creating artefacts unless the user asks for them.
 
+When a case slice produces learning that might change FDE core or be reused across scenarios, read [capability-return review](references/capability-return-review.md). Keep domain behaviour with the case and return only evidence-backed change candidates for accountable promotion.
+
 When AI is justified for work whose method is not yet stable enough to specify, design a **governed capability-evolution loop** rather than a permanent prompt-bound task. Capture recommendations, human corrections, exceptions, and outcomes as evidence; use them to propose named process, semantic, decision, tool, model, or control changes. Promote repeated and accepted work into versioned, tested software only through an accountable owner and a replay or shadow comparison. The AI may then use the released capability and look for the next gap; it does not approve its own proposal, silently change policy, or publish production behavior.
 
 ## Control boundary
