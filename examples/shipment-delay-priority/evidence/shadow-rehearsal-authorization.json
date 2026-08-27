@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "1",
+  "authorizationId": "example-shadow-authorization-001",
+  "decision": "authorized",
+  "authorizedAt": "2026-08-27T14:22:37Z",
+  "authorizer": {
+    "role": "Current Project User",
+    "identityRef": "project-conversation-user-instruction-2026-08-27",
+    "identityAssurance": "asserted by the current project user in this conversation only"
+  },
+  "scope": {
+    "kind": "synthetic-example-only",
+    "scenarioId": "shipment-delay-priority-demo",
+    "semanticRegistryId": "demo-shipment-semantics",
+    "semanticVersion": "1.0.0",
+    "sourceId": "demo-shipment-export-2026-08-25",
+    "sourceCapturedAt": "2026-08-25T08:45:00Z",
+    "accessDecisionId": "demo-access-decision-001"
+  },
+  "artifactDigests": {
+    "scripts/replay_shipment_delay_priority.py": "sha256:1f07b89d76d85ffc08ecec9d05e173e2595d9ff933d57a605d3ef6b0390e0522",
+    "evidence/shipments.json": "sha256:b3caa55d0e97f023ab8e1504af1fb97f8dcfb08a13005564142c99c689f25364",
+    "artifacts/semantic-definitions.json": "sha256:59873e2e7e142584761737930ae0b8cef6714cf7808643c066cdc75e7eb7d70b",
+    "artifacts/decision-service.json": "sha256:62a5134c6cded513c82ad64868dc097b050fa283d33c3373792d01bad1cf6a2f",
+    "evidence/access-decision.json": "sha256:86efb57d57138dbf04babf49235e7af957400f70632e0e2710ece52f3f6f90b9",
+    "expected/read-only-result.json": "sha256:206bd1d2337a92acc9f07cc4938b0f573577effefb963715bc4f00711b6138f0"
+  },
+  "grant": {
+    "purpose": "one documented synthetic read-only shadow rehearsal event for the repository example",
+    "allowed": [
+      "read repository synthetic fixtures",
+      "run the deterministic shipment-priority replay",
+      "exercise accepted, rejected, and needs-investigation as seeded session-local test dispositions",
+      "record a non-operational rehearsal result summary"
+    ],
+    "persistence": "no human disposition or operational feedback; seeded test inputs may remain in repository tests",
+    "enterpriseAccess": "not-granted",
+    "controlledExecution": "denied",
+    "externalSideEffects": "denied"
+  },
+  "eventBoundary": {
+    "eventId": "example-shadow-rehearsal-001",
+    "authorizationMode": "documentary-event-scope; not a runtime token",
+    "runtimeEnforcedSingleUse": false,
+    "newEventRequiresNewAuthorization": true,
+    "invalidatedOnBindingDrift": true,
+    "consumedByEvidenceId": "example-shadow-rehearsal-result-001"
+  },
+  "sourceEvidence": {
+    "type": "user-instruction",
+    "ref": "project conversation: example implementation authorized by the current user",
+    "recordedAt": "2026-08-27T14:22:37Z"
+  },
+  "replayPlan": {
+    "workingDirectory": "example-root",
+    "command": [
+      "python3",
+      "scripts/replay_shipment_delay_priority.py",
+      "--snapshot",
+      "evidence/shipments.json",
+      "--semantic-definitions",
+      "artifacts/semantic-definitions.json",
+      "--decision-service",
+      "artifacts/decision-service.json",
+      "--access-decision",
+      "evidence/access-decision.json",
+      "--as-of",
+      "2026-08-25T09:00:00Z",
+      "--disposition",
+      "SHP-1001=needs-investigation",
+      "--disposition",
+      "SHP-1002=accepted",
+      "--disposition",
+      "SHP-1003=rejected"
+    ],
+    "expectedAssertions": [
+      "read-only output contract is complete",
+      "three recommendations and one missing-input escalation are returned",
+      "all three disposition states are exercised as seeded test inputs",
+      "session disposition persistence is none",
+      "persistentActionExecuted is false",
+      "G5 remains missing and G6 remains unverifiable"
+    ],
+    "stopConditions": [
+      "artifact binding or contract drift",
+      "stale or unverifiable source freshness",
+      "query or recommendation access denied",
+      "any requested persistence or external side effect"
+    ]
+  },
+  "rollback": {
+    "beforeRun": "supersede or revoke this authorization",
+    "duringRun": "stop the process and discard session-local output",
+    "afterRun": "no enterprise or domain compensation is required because no persistent action is allowed"
+  },
+  "notEvidenceOf": [
+    "the user's enterprise or legal authority",
+    "target-enterprise approval or identity",
+    "real source, privacy, retention, or access authorization",
+    "persistent disposition or telemetry authorization",
+    "controlled execution or ERP write-back authorization",
+    "production acceptance or operating value"
+  ]
+}

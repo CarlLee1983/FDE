@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -13,6 +14,25 @@ import unittest
 EXAMPLE = Path(__file__).resolve().parents[1]
 SCRIPT = EXAMPLE / "scripts" / "replay_shipment_delay_priority.py"
 AS_OF = "2026-08-25T09:00:00Z"
+EXPECTED_REHEARSAL_COMMAND = [
+    "python3", "scripts/replay_shipment_delay_priority.py",
+    "--snapshot", "evidence/shipments.json",
+    "--semantic-definitions", "artifacts/semantic-definitions.json",
+    "--decision-service", "artifacts/decision-service.json",
+    "--access-decision", "evidence/access-decision.json",
+    "--as-of", AS_OF,
+    "--disposition", "SHP-1001=needs-investigation",
+    "--disposition", "SHP-1002=accepted",
+    "--disposition", "SHP-1003=rejected",
+]
+BOUND_REHEARSAL_ARTIFACTS = (
+    "scripts/replay_shipment_delay_priority.py",
+    "evidence/shipments.json",
+    "artifacts/semantic-definitions.json",
+    "artifacts/decision-service.json",
+    "evidence/access-decision.json",
+    "expected/read-only-result.json",
+)
 
 
 def load_json(relative_path: str):
@@ -150,6 +170,51 @@ class ShipmentReplayCliTests(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stderr)
         self.assertEqual(result["sessionDispositions"]["persistence"], "none")
         self.assertEqual(result["sessionDispositions"]["records"][0], {"shipmentId": "SHP-1001", "disposition": "needs-investigation", "nextAccountableOutcome": "Demo Logistics Coordinator investigates the shipment evidence before operational follow-up."})
+
+    def test_authorized_shadow_rehearsal_evidence_matches_the_cli(self):
+        authorization = load_json("evidence/shadow-rehearsal-authorization.json")
+        report = load_json("evidence/shadow-rehearsal-result.json")
+        self.assertEqual(authorization["scope"]["kind"], "synthetic-example-only")
+        self.assertEqual(authorization["grant"]["controlledExecution"], "denied")
+        self.assertEqual(authorization["grant"]["externalSideEffects"], "denied")
+        self.assertEqual(authorization["eventBoundary"]["authorizationMode"], "documentary-event-scope; not a runtime token")
+        self.assertFalse(authorization["eventBoundary"]["runtimeEnforcedSingleUse"])
+        self.assertTrue(authorization["eventBoundary"]["newEventRequiresNewAuthorization"])
+        self.assertTrue(authorization["eventBoundary"]["invalidatedOnBindingDrift"])
+        self.assertEqual(authorization["eventBoundary"]["consumedByEvidenceId"], report["evidenceId"])
+        self.assertEqual(report["authorizationId"], authorization["authorizationId"])
+        self.assertEqual(report["eventId"], authorization["eventBoundary"]["eventId"])
+        self.assertEqual(report["bindings"], {key: authorization["scope"][key] for key in ("scenarioId", "semanticRegistryId", "semanticVersion", "sourceId", "sourceCapturedAt", "accessDecisionId")})
+        self.assertEqual(authorization["replayPlan"]["workingDirectory"], "example-root")
+        self.assertEqual(authorization["replayPlan"]["command"], EXPECTED_REHEARSAL_COMMAND)
+        self.assertEqual(tuple(authorization["artifactDigests"]), BOUND_REHEARSAL_ARTIFACTS)
+        actual_digests = {
+            relative_path: "sha256:" + hashlib.sha256((EXAMPLE / relative_path).read_bytes()).hexdigest()
+            for relative_path in BOUND_REHEARSAL_ARTIFACTS
+        }
+        self.assertEqual(authorization["artifactDigests"], actual_digests)
+        self.assertEqual(report["artifactDigests"], actual_digests)
+        completed = subprocess.run([sys.executable, *EXPECTED_REHEARSAL_COMMAND[1:]], cwd=EXAMPLE, text=True, capture_output=True)
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        result = json.loads(completed.stdout)
+        expected = load_json("expected/read-only-result.json")
+        normalized = dict(result)
+        normalized["sessionDispositions"] = expected["sessionDispositions"]
+        self.assertEqual(normalized, expected)
+        observations = report["observations"]
+        self.assertTrue(observations["readOnlyOutputContractComplete"])
+        self.assertEqual(observations["recommendationCount"], len(result["result"]["recommendations"]))
+        self.assertEqual(observations["recommendationScoresInOrder"], [item["priorityScore"] for item in result["result"]["recommendations"]])
+        self.assertEqual(observations["escalationCount"], len(result["result"]["escalations"]))
+        self.assertEqual(set(observations["seededDispositionCoverage"]), {item["disposition"] for item in result["sessionDispositions"]["records"]})
+        self.assertEqual(observations["sessionDispositionPersistence"], result["sessionDispositions"]["persistence"])
+        self.assertEqual(observations["persistentActionExecuted"], result["persistentActionExecuted"])
+        self.assertEqual(observations["contractFailureCount"], len(result["contractFailures"]))
+        self.assertEqual(observations["preconditionFailureCount"], len(result["preconditionFailures"]))
+        self.assertNotIn("SHP-", json.dumps(report))
+        self.assertEqual(report["execution"], {"interface": "scripts/replay_shipment_delay_priority.py", "planSource": "evidence/shadow-rehearsal-authorization.json#replayPlan", "workingDirectory": "example-root", "exitCode": 0, "deviations": []})
+        self.assertEqual(report["gateImpact"]["G5"], "missing")
+        self.assertEqual(report["gateImpact"]["G6"], "unverifiable")
 
     def test_one_command_validator_asserts_the_synthetic_gate_boundary(self):
         environment = os.environ | {"SHIPMENT_VALIDATOR_CHILD": "1"}

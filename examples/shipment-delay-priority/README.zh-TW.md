@@ -23,8 +23,9 @@
 5. 由 [evidence/process-validation.json](evidence/process-validation.json) 確認 normal、exception 與 escalation path 已在 demo 中被角色驗證，再使用 [evidence/shipments.json](evidence/shipments.json) 的 snapshot，在 [evidence/access-decision.json](evidence/access-decision.json) 指定的 demo 權限內，手動計算優先序。
 6. 使用 [scripts/validate-example.sh](scripts/validate-example.sh) 執行 scenario schema、replay tests、normal fixture contract、boundary/tie、stale、missing-field、access-denied 與 G1–G6 synthetic gate assertions。
 7. 核對 [expected/read-only-result.json](expected/read-only-result.json)：它提供唯讀結果的完整契約：`result + semantic-definition version + source evidence + freshness + access decision`。
-8. 最後閱讀 [expected/gate-review.md](expected/gate-review.md)，確認 demo 可用的證據只支撐 G1–G4，G5 與 G6 沒有被誤判為通過。
-9. 若要帶入真實企業，使用 [artifacts/enterprise-shadow-preparation.md](artifacts/enterprise-shadow-preparation.md) 收集該企業自己的 process、owner、semantic、source、access、shadow 與 persistence 決策；不要複製 demo 核准。
+8. 由 [evidence/shadow-rehearsal-authorization.json](evidence/shadow-rehearsal-authorization.json) 與 [evidence/shadow-rehearsal-result.json](evidence/shadow-rehearsal-result.json) 檢查 Current Project User 授權的一個 synthetic shadow rehearsal event；三種 disposition 是 seeded test inputs，不是觀察到的人員回饋。這是 documentary event scope，不是 CLI 的一次性 runtime token；CLI 仍可做 deterministic replay，但每個新的 rehearsal event 都要另有 authorization／result pair。
+9. 閱讀 [expected/gate-review.md](expected/gate-review.md)，確認 rehearsal 不會改變 Gate：demo 證據只支撐 G1–G4，G5 與 G6 沒有被誤判為通過。
+10. 若要帶入真實企業，使用 [artifacts/enterprise-shadow-preparation.md](artifacts/enterprise-shadow-preparation.md) 收集該企業自己的 process、owner、semantic、source、access、shadow 與 persistence 決策；不要複製 demo 核准或 rehearsal 授權。
 
 ## 手動重播
 
@@ -92,4 +93,4 @@ request → scenario → process model
 
 ## 非目標與下一步
 
-這不是 ERP 整合範例，也不是實際的企業核准紀錄。Repository 的 synthetic context／decision contract、唯讀 CLI replay 與 session-local disposition 已完成驗證；CLI 是正式的 synthetic validation seam，不代表正式使用者介面。下一步是依 [企業 Process Shadow 準備包](artifacts/enterprise-shadow-preparation.md) 取得真實 process acceptance、baseline、source、identity、privacy、telemetry、support 與 persistence 決定，而不是繼續擴充 demo UI 或 AI。只有 shadow 證明殘餘解釋負擔後，才決定是否建立 AI evaluation。若要再提升到回寫，還必須具備 controlled-execution 授權、稽核、冪等性、復原與 write adapter 證據，然後重新審查 G5。
+這不是 ERP 整合範例，也不是實際的企業核准紀錄。Repository 的 synthetic context／decision contract、唯讀 CLI replay、session-local disposition，以及由目前 project user 授權的一個具名 shadow rehearsal event 已完成驗證；CLI 是正式的 synthetic validation seam，不代表正式使用者介面，documentary event authorization 也不證明 project user 具有任何企業或法律權限。下一步若要進入真實企業，仍須依 [企業 Process Shadow 準備包](artifacts/enterprise-shadow-preparation.md) 取得 process acceptance、baseline、source、identity、privacy、telemetry、support 與 persistence 決定。只有真實 shadow 證明殘餘解釋負擔後，才決定是否建立 AI evaluation。若要再提升到回寫，還必須具備 controlled-execution 授權、稽核、冪等性、復原與 write adapter 證據，然後重新審查 G5。

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1",
+  "evidenceId": "example-shadow-rehearsal-result-001",
+  "scope": "synthetic example rehearsal only",
+  "authorizationId": "example-shadow-authorization-001",
+  "eventId": "example-shadow-rehearsal-001",
+  "status": "passed",
+  "startedAt": "2026-08-27T14:23:04Z",
+  "completedAt": "2026-08-27T14:23:04Z",
+  "evaluatedAsOf": "2026-08-25T09:00:00Z",
+  "artifactDigests": {
+    "scripts/replay_shipment_delay_priority.py": "sha256:1f07b89d76d85ffc08ecec9d05e173e2595d9ff933d57a605d3ef6b0390e0522",
+    "evidence/shipments.json": "sha256:b3caa55d0e97f023ab8e1504af1fb97f8dcfb08a13005564142c99c689f25364",
+    "artifacts/semantic-definitions.json": "sha256:59873e2e7e142584761737930ae0b8cef6714cf7808643c066cdc75e7eb7d70b",
+    "artifacts/decision-service.json": "sha256:62a5134c6cded513c82ad64868dc097b050fa283d33c3373792d01bad1cf6a2f",
+    "evidence/access-decision.json": "sha256:86efb57d57138dbf04babf49235e7af957400f70632e0e2710ece52f3f6f90b9",
+    "expected/read-only-result.json": "sha256:206bd1d2337a92acc9f07cc4938b0f573577effefb963715bc4f00711b6138f0"
+  },
+  "bindings": {
+    "scenarioId": "shipment-delay-priority-demo",
+    "semanticRegistryId": "demo-shipment-semantics",
+    "semanticVersion": "1.0.0",
+    "sourceId": "demo-shipment-export-2026-08-25",
+    "sourceCapturedAt": "2026-08-25T08:45:00Z",
+    "accessDecisionId": "demo-access-decision-001"
+  },
+  "execution": {
+    "interface": "scripts/replay_shipment_delay_priority.py",
+    "planSource": "evidence/shadow-rehearsal-authorization.json#replayPlan",
+    "workingDirectory": "example-root",
+    "exitCode": 0,
+    "deviations": []
+  },
+  "observations": {
+    "readOnlyOutputContractComplete": true,
+    "recommendationCount": 3,
+    "recommendationScoresInOrder": [
+      90,
+      65,
+      35
+    ],
+    "escalationCount": 1,
+    "seededDispositionCoverage": [
+      "accepted",
+      "rejected",
+      "needs-investigation"
+    ],
+    "sessionDispositionPersistence": "none",
+    "persistentActionExecuted": false,
+    "contractFailureCount": 0,
+    "preconditionFailureCount": 0
+  },
+  "gateImpact": {
+    "G1": "no scope change; synthetic scenario provenance only",
+    "G2": "no change; synthetic semantics remain passed",
+    "G3": "no change; synthetic read-only evidence remains passed",
+    "G4": "no change; synthetic decision contract remains passed",
+    "G5": "missing",
+    "G6": "unverifiable"
+  },
+  "notEvidenceOf": [
+    "observed human disposition or adoption",
+    "persistent operational feedback",
+    "target-enterprise shadow execution or readiness",
+    "real source access or production acceptance",
+    "controlled execution or ERP write-back authorization",
+    "45 to 15 minute operating improvement",
+    "AI incremental value"
+  ]
+}

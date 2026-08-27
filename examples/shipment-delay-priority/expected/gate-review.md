@@ -16,3 +16,7 @@
 `validate-example.sh` 的 gate assertions 僅確認上述 **synthetic** evidence chain 是否仍一致：G1–G4 `passed`、G5 `missing`、G6 `unverifiable`。它不會把這些結果提升為 enterprise approval、real-data access、controlled execution 或 value proof。
 
 若要準備真實企業 shadow，使用 [enterprise-shadow-preparation.md](../artifacts/enterprise-shadow-preparation.md) 收集企業自己的流程、owner、語意、來源、access、persistence、量測與 rollback 證據。準備包存在不會改變本表的 Gate 結論。
+
+## Synthetic shadow rehearsal
+
+[Current Project User authorization](../evidence/shadow-rehearsal-authorization.json) 只涵蓋一個綁定既有 synthetic fixtures 與 access decision 的 read-only rehearsal event。[Rehearsal result](../evidence/shadow-rehearsal-result.json) 證明 authorization 內的 allowlisted CLI command 在三種 seeded disposition 下仍維持 `persistence: none`、沒有 persistent action，且其餘輸出與完整 read-only contract 一致。這是 documentary event scope，不是 CLI 的一次性 runtime token；每個新 event 都須另建 authorization／result pair。它不證明 observed human adoption、企業 authority、真實 shadow readiness 或營運價值，因此不改變 G1–G6 結論。

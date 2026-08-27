@@ -84,6 +84,7 @@ Persistent shadow telemetry 屬於受治理的 measurement evidence，不等於 
 | --- | --- | --- |
 | Repository 的 synthetic CLI 可重播唯讀契約與三種 session-local disposition | `evidenced` | `scripts/validate-example.sh`、CLI tests、expected result |
 | 本準備包列出企業 process shadow 所需決策與 entry criteria | `evidenced` | 本文件；只證明準備內容存在 |
+| 目前 project user 已授權並完成一個具名 synthetic read-only rehearsal event | `evidenced` | Documentary authorization／result pair；不是 runtime token，也不證明企業 authority 或 human adoption |
 | 目標企業、process owner、使用者與 source owner 已具名接受 | `missing` | D1–D3 workshop evidence |
 | 企業語意、規則、來源、identity、privacy 與 access 已核准 | `missing` | D4–D5 contracts and decisions |
 | 人工 disposition 已明確決定為 session-local 或在受治理系統持久化 | `missing` | D6 decision |
