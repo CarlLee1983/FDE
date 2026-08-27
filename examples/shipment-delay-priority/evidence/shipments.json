@@ -1,0 +1,34 @@
+{
+  "sourceId": "demo-shipment-export-2026-08-25",
+  "scope": "synthetic demo only",
+  "capturedAt": "2026-08-25T08:45:00Z",
+  "records": [
+    {
+      "shipmentId": "SHP-1001",
+      "overdueHours": 60,
+      "serviceLevel": "critical",
+      "temperatureControlled": false,
+      "atRiskCustomerCommitment": true
+    },
+    {
+      "shipmentId": "SHP-1002",
+      "overdueHours": 36,
+      "serviceLevel": "standard",
+      "temperatureControlled": true,
+      "atRiskCustomerCommitment": true
+    },
+    {
+      "shipmentId": "SHP-1003",
+      "overdueHours": 12,
+      "serviceLevel": "critical",
+      "temperatureControlled": false,
+      "atRiskCustomerCommitment": false
+    },
+    {
+      "shipmentId": "SHP-1004",
+      "serviceLevel": "standard",
+      "temperatureControlled": false,
+      "atRiskCustomerCommitment": false
+    }
+  ]
+}

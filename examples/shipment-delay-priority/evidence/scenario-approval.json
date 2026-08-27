@@ -1,0 +1,16 @@
+{
+  "evidenceId": "demo-scenario-approval-001",
+  "scope": "synthetic demo sandbox only",
+  "scenarioId": "shipment-delay-priority-demo",
+  "approvedAt": "2026-08-25T08:30:00Z",
+  "approvedBy": {
+    "role": "Demo Shipment Operations Owner",
+    "contact": "demo:shipment-ops-owner"
+  },
+  "decision": "approved for synthetic read-only and recommendation demonstration",
+  "notEvidenceOf": [
+    "enterprise approval",
+    "production deployment",
+    "controlled execution authorization"
+  ]
+}

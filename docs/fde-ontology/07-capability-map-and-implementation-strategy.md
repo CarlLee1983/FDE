@@ -6,7 +6,7 @@ Back to the [chapter index](README.md).
 
 This chapter converts the ontology-driven FDE model into a practical capability map. It is a product and technical-design proposal, not evidence of current implementation: the project currently contains no application code or technology constraints.
 
-The recommended first objective is deliberately narrow: enable one business scenario to retrieve trusted enterprise context, show its provenance, and support a controlled next action. The system should earn the right to automate more only after it can explain and govern less risky work.
+The recommended first objective is deliberately narrow: validate and improve one bounded operating process, then enable only the trusted context and controlled next action that its accepted target flow requires. The system should earn the right to automate more only after the process owner and affected users accept the workflow change and the less risky path is explainable and governed.
 
 ## Capability Map
 
@@ -21,6 +21,8 @@ The recommended first objective is deliberately narrow: enable one business scen
 | Delivery and operating governance | Prevents assets and applications from becoming stale | Manages release, review, observability, incident response, and adoption metrics | All preceding capabilities |
 
 ## What to Build First
+
+Before selecting a capability, validate the current normal, exception, escalation, and rework paths; identify the bottleneck or control problem; and obtain process-owner and user acceptance of a technology-neutral target flow. Compare process change, data or semantic repair, deterministic automation, interface support, AI assistance, and governed execution. Build the simplest intervention that can prove the change hypothesis; do not use a capability or model concept to decide the process prematurely.
 
 ### Capability 1: Scenario and Metric Registry
 
@@ -85,6 +87,8 @@ The interface exposes a controlled lifecycle rather than target-system details. 
 
 Build vertical slices that remain useful on their own. Do not start by constructing a generic agent platform or a company-wide knowledge graph.
 
+Each slice assumes an accepted target-process boundary and named operational owner. If that evidence is absent, the slice remains a `proposed` design rather than implementation-ready work.
+
 | Slice | End-to-end outcome | New capabilities | Acceptance evidence |
 | --- | --- | --- | --- |
 | 1. Trusted read-only inquiry | A named user answers one scenario question from permitted evidence | Scenario registry, minimum ontology assets, one source adapter, context resolution | Answer identifies source, freshness, definition version, and access decision |
@@ -135,12 +139,14 @@ The proposed modules are intentionally organized around changing concerns. Each 
 
 ## Decisions Needed Before Implementation
 
-1. Which business scenario will be the first vertical slice?
-2. Which source system can provide the required read-only data with an accountable owner?
-3. What identities, permissions, and audit mechanisms already exist and must be integrated?
-4. Which delivery environment and technology constraints apply to the project?
-5. What action, if any, is appropriate for the first controlled write-back?
+1. Which business scenario and current operating path will be the first vertical slice?
+2. Which bottleneck or control problem is evidenced, and has the process owner accepted the technology-neutral target flow, ownership, and change hypothesis?
+3. Which intervention is the simplest sufficient choice, and which higher-complexity options—including AI—were deferred or rejected?
+4. Which source system can provide the required read-only data with an accountable owner?
+5. What identities, permissions, and audit mechanisms already exist and must be integrated?
+6. Which delivery environment and technology constraints apply to the project?
+7. What action, if any, is appropriate for the first controlled write-back?
 
 ## Proposed Next Working Session
 
-Select one scenario and fill in its scenario card. Then define its minimum object/link/action set and one evidence-producing read-only inquiry. That produces a concrete implementation contract without prematurely choosing a generic platform or expanding the ontology beyond its first useful purpose.
+Select one scenario, validate its current process, and agree on a technology-neutral target flow and change hypothesis. Then choose the simplest sufficient intervention and define only the minimum object/link/action set and evidence-producing path it needs. That produces a concrete implementation contract without prematurely choosing AI, a generic platform, or an ontology broader than the first useful purpose.

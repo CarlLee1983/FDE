@@ -1,6 +1,6 @@
 interface:
   display_name: "FED Project Work"
-  short_description: "Route governed FED project work"
-  default_prompt: "Use $fed-project-work to prepare one evidence-grounded FED scenario."
+  short_description: "Shape process-first, buildable FED solutions"
+  default_prompt: "Use $fed-project-work to analyse and improve one operating process, then select the simplest sufficient intervention—including AI only where justified—and define its first buildable vertical slice."
 policy:
   allow_implicit_invocation: true

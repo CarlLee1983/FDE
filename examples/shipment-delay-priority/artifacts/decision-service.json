@@ -1,0 +1,74 @@
+{
+  "id": "rank-delayed-shipment-for-review",
+  "version": "1.0.0",
+  "scope": "synthetic demo only; human review recommendation; no write-back",
+  "owner": {
+    "role": "Demo Shipment Priority Policy Owner",
+    "contact": "demo:shipment-priority-policy-owner"
+  },
+  "requiredInputs": [
+    "shipmentId",
+    "overdueHours",
+    "serviceLevel",
+    "temperatureControlled",
+    "atRiskCustomerCommitment"
+  ],
+  "inputBindings": [
+    {
+      "input": "shipmentId",
+      "semanticId": "Shipment.shipmentId",
+      "sourceId": "demo-shipment-export-2026-08-25",
+      "purpose": "record identity and final ascending tie-breaker"
+    },
+    {
+      "input": "overdueHours",
+      "semanticId": "Shipment.overdueHours",
+      "sourceId": "demo-shipment-export-2026-08-25"
+    },
+    {
+      "input": "serviceLevel",
+      "semanticId": "Shipment.serviceLevel",
+      "sourceId": "demo-shipment-export-2026-08-25"
+    },
+    {
+      "input": "temperatureControlled",
+      "semanticId": "Shipment.temperatureControlled",
+      "sourceId": "demo-shipment-export-2026-08-25"
+    },
+    {
+      "input": "atRiskCustomerCommitment",
+      "semanticId": "Shipment.atRiskCustomerCommitment",
+      "sourceId": "demo-shipment-export-2026-08-25"
+    }
+  ],
+  "rules": {
+    "baseScore": [
+      { "when": "overdueHours >= 48", "score": 50 },
+      { "when": "overdueHours >= 24 and overdueHours < 48", "score": 30 },
+      { "when": "overdueHours < 24", "score": 10 }
+    ],
+    "additions": [
+      { "when": "serviceLevel == critical", "score": 25 },
+      { "when": "temperatureControlled == true", "score": 20 },
+      { "when": "atRiskCustomerCommitment == true", "score": 15 }
+    ],
+    "missingRequiredInput": "escalate without score",
+    "tieBreakers": [
+      "overdueHours descending",
+      "shipmentId ascending"
+    ]
+  },
+  "preconditions": [
+    "source context is fresh under demo-access-decision-001",
+    "query and recommendation permissions are allowed"
+  ],
+  "escalation": {
+    "missingRequiredInput": "escalate the record without a score",
+    "failedPrecondition": "return no recommendation and identify the failed evidence or access condition"
+  },
+  "output": {
+    "type": "ShipmentPriorityRecommendation",
+    "consumer": "Demo Logistics Coordinator",
+    "persistentActionAllowed": false
+  }
+}

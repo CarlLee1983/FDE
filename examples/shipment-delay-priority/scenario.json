@@ -1,0 +1,43 @@
+{
+  "id": "shipment-delay-priority-demo",
+  "name": "Shipment delay priority for human review (demo)",
+  "description": "Synthetic demo scenario: rank delayed shipments from a demo export for logistics-human review only. It never authorizes ERP write-back.",
+  "status": "approved",
+  "businessOwner": {
+    "role": "Demo Shipment Operations Owner",
+    "contact": "demo:shipment-ops-owner"
+  },
+  "processNode": "Daily demo shipment-export triage before a logistics coordinator manually decides follow-up.",
+  "userRoles": [
+    "Demo Logistics Coordinator",
+    "Demo Shipment Operations Owner"
+  ],
+  "decisionOrAction": "Rank delayed shipments for human review; do not change ERP records or automatically execute operational actions.",
+  "metrics": [
+    {
+      "name": "Daily triage cycle time",
+      "definition": "Minutes from opening the daily demo shipment export to a human-ready ranked review list.",
+      "baseline": "45 minutes per daily batch (synthetic demo baseline)",
+      "target": "15 minutes per daily batch (synthetic demo target)",
+      "cadence": "daily demo batch"
+    }
+  ],
+  "ontologyReferences": [
+    {
+      "id": "demo-shipment-semantics@1.0.0",
+      "purpose": "Released synthetic semantic definitions for shipment, delay, priority recommendation, and triage-cycle-time."
+    }
+  ],
+  "sourceReferences": [
+    {
+      "id": "demo-shipment-export-2026-08-25",
+      "purpose": "Synthetic read-only shipment snapshot used by this replayable demo."
+    }
+  ],
+  "acceptanceCriteria": [
+    "A demo query returns a ranked human-review list with semantic version, source evidence, freshness, and access decision.",
+    "A record missing a required decision input is escalated without a score.",
+    "No persistent ERP action is executed by this demo."
+  ],
+  "notes": "Approved only inside the synthetic demo sandbox; see evidence/scenario-approval.json. This is not evidence of enterprise approval."
+}

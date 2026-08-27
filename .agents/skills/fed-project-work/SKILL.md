@@ -1,25 +1,30 @@
 ---
 name: fed-project-work
-description: Route FED scenario preparation, governed capability design or build, and gate-based assurance in this repository. Use for work that needs the current FED method, canonical scenario schema, or evidence-based gate decisions; not for translation, static HTML/CSS, or routine Git and repository maintenance.
+description: Turn an operating problem into an evidence-grounded, implementable FED operating solution, build its smallest governed slice, or assure its release gates. Use for process analysis and redesign, scenario shaping, intervention selection including AI-fit decisions, capability delivery, or evidence-based gate decisions; not for translation, static HTML/CSS, or routine Git and repository maintenance.
 ---
 
 # FED project work
 
-Use this as a thin router for FED work whose answer or implementation depends on the project's scenario-to-action method, capability design, or assurance gates.
+Use this as a thin router for FED work whose answer or implementation depends on the project's scenario-to-action method, operating-process redesign, capability delivery, or assurance gates.
+
+The default outcome for an open-ended FED request is an implementable operating solution, not an inventory of documents or gates and not an AI feature by default. Scenario records, models, definitions, controls, and evidence are inputs that make the solution credible. The proposal must diagnose the current process, redesign the workflow before selecting technology, and show what the delivery team can build and verify first. Assess AI only after the target process is coherent; `no AI in the first slice` is a valid and often preferable result.
 
 ## Grounding
 
 1. Locate the repository root and use the [source map](references/source-map.md) only as an index. Treat Traditional Chinese files as reading aids only.
-2. Select the applicable mode from [task modes](references/task-modes.md), then load only its current English canonical sources. When a request genuinely spans modes, process them in dependency order and stop at the first unmet gate. Read the schema directly whenever its active contract applies.
+2. Select the applicable mode from [task modes](references/task-modes.md), then load only its current English canonical sources. For an open-ended request such as “what should we do?” or “where could AI help?”, select **Operating solution shaping**. When a request spans modes, process them in dependency order. Read the schema directly whenever its active contract applies.
 3. Keep repository proposals separate from facts about a target enterprise. Establish owners, authorities, baselines, targets, policies, permissions, integrations, and current acceptance only from supplied or inspected evidence. Label absent evidence `missing` and evidence that cannot be checked `unverifiable`.
 4. Use examples only to show a record's shape. Do not promote their people, systems, values, or acceptance claims into real-world facts.
+5. Analyse the whole current workflow before choosing an intervention. First remove unnecessary work; simplify handoffs; standardize definitions, ownership, and exception paths; repair evidence or data gaps; and use deterministic software for stable rules. Only then assess whether a remaining step benefits from AI because interpretation, language, synthesis, or bounded reasoning creates a defensible advantage. Assign every retained responsibility to deterministic software, an AI model, a human, or a governed system action.
 
 ## Control boundary
 
-For a read-only inquiry, the output contract is:
+For an operating solution proposal, use the [solution proposal contract](references/solution-proposal.md). A gate gap limits the authority and claims of the proposal; it does not justify stopping at a gap list. Always return the highest safe proposed solution, its first buildable slice, and the concrete owner action or evidence needed next. Do not make model evaluation, model infrastructure, or AI interaction part of that slice unless the process analysis shows that the slice cannot deliver its intended outcome without them.
+
+For a delivered read-only inquiry, the runtime output contract is:
 
 `result + semantic-definition version + source evidence + freshness + access decision`
 
-Report a component as `missing` or `unverifiable` when evidence does not establish it. A project guardrail or proposed safe scope is not a target-enterprise access decision; label it as a proposal rather than `allowed` or `authorized`. Before a persistent write-back or a recommendation that would authorize one, read the current gate, authority-tier, and control sources and require the applicable evidence. When it is absent, stop at an advisory or design outcome and expose the gap; never infer the needed authority or control.
+Report a component as `missing` or `unverifiable` when evidence does not establish it. A project guardrail or proposed safe scope is not a target-enterprise access decision; label it `proposed`, not `allowed` or `authorized`. Before a persistent write-back or a recommendation that would authorize one, read the current gate, authority-tier, and control sources and require the applicable evidence. When it is absent, bound the proposal to a `proposed` advisory, shadow, or read-only design and expose the gap; never infer permission to operate or the needed authority or control.
 
 Use the [source map](references/source-map.md) for canonical paths and headings. Use [task modes](references/task-modes.md) for the mode-specific input, output, and stopping contracts.

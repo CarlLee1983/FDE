@@ -9,7 +9,7 @@ The method uses the research in [System-Analysis Methods That Can Inform FED](do
 Every FED capability should be able to answer these questions before it is released:
 
 1. What operating outcome and decision matter?
-2. Where in the process or case does that decision occur?
+2. What in the current process creates avoidable delay, rework, ambiguity, or risk, and what should the target process become before technology is selected?
 3. Which business facts, states, and relationships make the answer valid?
 4. Which source evidence and semantic definitions support it?
 5. Which decision logic, risk controls, and quality trade-offs constrain it?
@@ -24,7 +24,7 @@ Frame → Map Work → Model Meaning → Specify Decision → Assure Control →
 | Stage | Primary question | Method basis | Persistent artefact | Exit gate |
 | --- | --- | --- | --- | --- |
 | 1. Frame | What bounded outcome should FED improve? | ISO/IEC/IEEE 29148 requirements engineering | Approved scenario record | An owner accepts scope, constraints, baseline, target, and acceptance criteria |
-| 2. Map Work | Where does normal work, exception work, or escalation occur? | BPMN / CMMN | Process or case model with an intervention node | Users validate the normal, exception, and escalation paths |
+| 2. Map Work | What should be removed, simplified, standardized, or reassigned before technology is selected? | BPMN / CMMN | Validated current and target process or case models with bottlenecks, change hypothesis, and intervention candidates | The process owner and affected users accept the current diagnosis, target paths, handoffs, exception ownership, and change hypothesis |
 | 3. Model Meaning | What are the stable business facts and allowed lifecycle changes? | UML structure/state modelling; ISO/IEC 11179 registration pattern | Versioned object, link, state, metric, and source definitions | Owner, identity, definition, status, and lineage are present |
 | 4. Specify Decision | What recommendation or action is being made, from which inputs? | DMN | Named decision service and rule/test set | Test cases cover normal, boundary, and escalation outcomes |
 | 5. Assure Control | What access, action, and quality risks must be controlled? | NIST RMF; SEI ATAM | Risk/control record and quality-scenario decision record | Controls, approvals, trade-offs, and recovery needs are explicit |
@@ -42,7 +42,11 @@ Begin with an approved [scenario record](schemas/fed-scenario.schema.json), not 
 
 Use a BPMN model for a repeatable, prescriptive flow: handoffs, timers, approvals, and integrations. Use a CMMN-style case model when the next task depends on the evolving facts of an exception rather than a predetermined sequence.
 
-Mark the **FED intervention node** explicitly. At that node FED may retrieve context, provide a recommendation, request approval, or execute an already approved controlled action. Do not treat every process step as an AI opportunity.
+First validate the current normal, exception, escalation, and rework paths. Identify waiting, duplicate checks, unclear ownership, semantic or evidence gaps, and controls that do not reduce material risk. Then design a technology-neutral target process: eliminate unnecessary work, simplify handoffs, standardize policy and meaning, clarify decision rights and exception ownership, and repair evidence or data gaps.
+
+Record the change hypothesis and baseline that would show whether the redesign helps. The process owner and affected users must accept or correct the diagnosis and target flow before capability or AI selection. When that evidence is absent, keep the target process `proposed`.
+
+Only after this process-readiness decision should the team mark candidate **FED intervention nodes**. At a selected node FED may retrieve context, provide a recommendation, request approval, or execute an already approved controlled action. Compare workflow change, data or semantic repair, deterministic software, user-interface support, AI assistance, and governed action; select the simplest sufficient intervention. Do not treat every process step as a technology or AI opportunity, and treat `no AI` as a complete decision.
 
 ### 3. Model Meaning
 
@@ -96,7 +100,7 @@ The following artefacts form the minimum analysis package for a scenario.
 | Artefact | Created in | Maintained by | Needed before |
 | --- | --- | --- | --- |
 | Scenario record | Frame | Business owner with FED | Any delivery work |
-| Process/case model and intervention node | Map Work | Business translator / process owner | Decision-support design |
+| Current and target process/case models, bottleneck evidence, change hypothesis, and intervention candidates | Map Work | Business translator / process owner | Capability or decision-support design |
 | Object, link, state, metric, and source definitions | Model Meaning | Ontology and data owners | Context retrieval |
 | Decision service and tests | Specify Decision | Policy / decision owner | Recommendation or action |
 | Risk/control and quality-scenario records | Assure Control | Security, privacy, architecture, and business owners | Release or permission increase |
@@ -133,7 +137,7 @@ The modules should use these artefacts through their interfaces rather than recr
 | Workshop | Participants | Outcome |
 | --- | --- | --- |
 | Scenario framing | Business owner, users, FED delivery owner | Approved scenario record and baseline/target |
-| Work and meaning | Process owner, domain expert, data/ontology owner | Process/case model, intervention node, minimum semantic asset set |
+| Work and meaning | Process owner, affected users, domain expert, data/ontology owner | Accepted current/target process models, bottleneck and change hypothesis, intervention candidates, minimum semantic asset set |
 | Decision and control | Decision owner, security/privacy owner, architecture owner | Decision service outline, risk/control record, quality scenarios, first-slice acceptance test |
 
 The next concrete step is to populate the scenario record with FED’s first real operating problem, then run the first two workshops. No platform-wide build should begin before G1 and G2 are satisfied.

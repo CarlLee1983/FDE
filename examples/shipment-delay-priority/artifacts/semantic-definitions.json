@@ -1,0 +1,133 @@
+{
+  "registryId": "demo-shipment-semantics",
+  "version": "1.0.0",
+  "status": "released",
+  "scope": "synthetic demo only",
+  "owner": {
+    "role": "Demo Semantic Steward",
+    "contact": "demo:semantic-steward"
+  },
+  "reviewHistory": [
+    {
+      "reviewedAt": "2026-08-25T08:35:00Z",
+      "reviewedBy": "demo:semantic-steward",
+      "decision": "released for synthetic demo"
+    }
+  ],
+  "sourceDefinitions": [
+    {
+      "id": "demo-shipment-export-2026-08-25",
+      "definition": "The synthetic four-record shipment snapshot captured for this replayable demo.",
+      "status": "released",
+      "authority": "authoritative only for replaying this synthetic demo snapshot",
+      "owner": {
+        "role": "Demo Shipment Export Owner",
+        "contact": "demo:shipment-export-owner"
+      }
+    }
+  ],
+  "definitions": [
+    {
+      "id": "Shipment",
+      "kind": "object",
+      "definition": "A synthetic export record identified by shipmentId."
+    },
+    {
+      "id": "ShipmentDelay",
+      "kind": "fact",
+      "definition": "A Shipment whose delayed status is represented by overdueHours in the snapshot."
+    },
+    {
+      "id": "ShipmentPriorityRecommendation",
+      "kind": "output",
+      "definition": "A non-persistent, human-review ordering derived by the demo decision service."
+    },
+    {
+      "id": "Shipment.shipmentId",
+      "kind": "field",
+      "definition": "The stable string identifier of a Shipment within the demo snapshot."
+    },
+    {
+      "id": "Shipment.overdueHours",
+      "kind": "field",
+      "definition": "Whole or fractional hours by which the Shipment is overdue at snapshot capture time."
+    },
+    {
+      "id": "Shipment.serviceLevel",
+      "kind": "field",
+      "definition": "The demo service classification; critical receives the declared decision addition and standard does not."
+    },
+    {
+      "id": "Shipment.temperatureControlled",
+      "kind": "field",
+      "definition": "Boolean indicating whether the demo Shipment requires temperature control."
+    },
+    {
+      "id": "Shipment.atRiskCustomerCommitment",
+      "kind": "field",
+      "definition": "Boolean indicating whether the demo Shipment threatens a declared customer commitment."
+    }
+  ],
+  "stateModels": [
+    {
+      "id": "ShipmentReviewLifecycle",
+      "objectId": "Shipment",
+      "owner": {
+        "role": "Demo Shipment Operations Owner",
+        "contact": "demo:shipment-ops-owner"
+      },
+      "states": [
+        "untriaged",
+        "recommended",
+        "escalated",
+        "human-reviewed"
+      ],
+      "allowedTransitions": [
+        "untriaged -> recommended",
+        "untriaged -> escalated",
+        "recommended -> human-reviewed",
+        "escalated -> human-reviewed"
+      ]
+    }
+  ],
+  "metricDefinitions": [
+    {
+      "id": "triage-cycle-time",
+      "definition": "Minutes from opening a daily demo export to providing a human-ready ranked review list.",
+      "unit": "minutes per daily batch",
+      "status": "released",
+      "source": "shipment-delay-priority-demo scenario contract and future demo timing observations",
+      "owner": {
+        "role": "Demo Shipment Operations Owner",
+        "contact": "demo:shipment-ops-owner"
+      }
+    }
+  ],
+  "sourceMappings": [
+    {
+      "sourceId": "demo-shipment-export-2026-08-25",
+      "field": "shipmentId",
+      "semanticId": "Shipment.shipmentId"
+    },
+    {
+      "sourceId": "demo-shipment-export-2026-08-25",
+      "field": "overdueHours",
+      "semanticId": "Shipment.overdueHours"
+    },
+    {
+      "sourceId": "demo-shipment-export-2026-08-25",
+      "field": "serviceLevel",
+      "semanticId": "Shipment.serviceLevel"
+    },
+    {
+      "sourceId": "demo-shipment-export-2026-08-25",
+      "field": "temperatureControlled",
+      "semanticId": "Shipment.temperatureControlled"
+    },
+    {
+      "sourceId": "demo-shipment-export-2026-08-25",
+      "field": "atRiskCustomerCommitment",
+      "semanticId": "Shipment.atRiskCustomerCommitment"
+    }
+  ]
+}

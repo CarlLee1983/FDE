@@ -1,6 +1,6 @@
 # Task modes
 
-Use [the source map](source-map.md) to open only the canonical sources needed by the selected mode. Each mode works from current repository sources and supplied evidence; it never fills a factual gap with a plausible enterprise detail. If a request spans modes, follow their dependency order and stop at the first unmet gate.
+Use [the source map](source-map.md) to open only the canonical sources needed by the selected mode. Each mode works from current repository sources and supplied evidence; it never fills a factual gap with a plausible enterprise detail. If a request spans modes, follow their dependency order. An unmet gate restricts authority, release, or completion claims; it does not prevent a bounded `proposed` solution from being designed.
 
 ## Scenario preparation
 
@@ -8,19 +8,31 @@ Use [the source map](source-map.md) to open only the canonical sources needed by
 
 **Steps and sources.** Read the current scenario schema and the method's `The Six Stages`, `Stage Details`, and `Required Artefact Set`. Use the schema as the structural contract and the method to determine which analysis artifacts remain before delivery.
 
-**Output contract.** Produce a scenario record or preparation package that identifies the current schema result, source evidence, and the required follow-up artifacts. State the semantic-definition version, freshness, and access decision for any proposed read-only inquiry only when evidence establishes them; mark each unavailable component `missing` or `unverifiable`. Label a suggested safe scope as `proposed`, not as an access decision.
+**Output contract.** Produce a scenario record or preparation package that identifies the current schema result, source evidence, and the decisions that a solution still needs. State the semantic-definition version, freshness, and access decision for any proposed read-only inquiry only when evidence establishes them; mark each unavailable component `missing` or `unverifiable`. Label a suggested safe scope as `proposed`, not as an access decision. End with the concrete inputs and participants needed to shape the solution; do not make artifact completion the outcome.
 
-**Stop or gap condition.** Do not call a scenario approved, usable for delivery, or ready for a later gate merely because it has a well-formed shape. Stop at preparation when the necessary real evidence or accountable acceptance is absent.
+**Stop or gap condition.** Do not call a scenario approved, usable for delivery, or ready for a later gate merely because it has a well-formed shape. When real evidence or accountable acceptance is absent, keep the scenario `proposed`, identify the owner action needed, and continue to solution shaping only at the authority level the evidence supports.
 
-## Capability design or build
+## Operating solution shaping
 
-**Required inputs.** A scenario and its validated scope, the requested capability boundary, and evidence for any source, semantic-definition, identity, permission, target-system, or acceptance assertion involved. A build request also needs the actual repository surface to change.
+Use this mode by default for an open-ended FED request asking what to do, how the operation should improve, where AI could fit, or what solution to propose.
 
-**Steps and sources.** Read the scenario schema, the method's applicable stage and gate, the plan's `Guardrails`, and the implementation strategy's `Capability Map`, `Recommended Delivery Sequence`, `Module Seams and Ownership`, `Architecture Decision Rules`, and `Validation Strategy`. When the request changes authority or includes write-back, also read `Application Forms and Control Boundaries` from the authority-tier source. Inspect the current codebase before describing implementation as present. Keep the slice end-to-end and route shared definition, evidence, and access complexity through the documented seams.
+**Required inputs.** A bounded operating problem, prospective users, a process or case location, a decision or action, and whatever evidence is available for the current workflow, handoffs, exceptions, sources, semantics, constraints, and value. A fully approved scenario is helpful but not required to produce a `proposed` solution.
 
-**Output contract.** Deliver the narrowest coherent design or implementation with its evidence boundary, validation result, and a list of unresolved operational assumptions. A read-only slice returns `result + semantic-definition version + source evidence + freshness + access decision` and does not conceal a missing component. Keep the proposed authority tier separate from the evidenced access decision.
+**Steps and sources.** Read the method's applicable stages and gates, the plan's `Capability Target` and `Guardrails`, and the implementation strategy's `Capability Map`, `Recommended Delivery Sequence`, `Module Seams and Ownership`, `Architecture Decision Rules`, and `Validation Strategy`. First map the as-is normal, exception, escalation, and rework paths and identify waiting, duplicate work, unclear ownership, semantic or evidence gaps, and avoidable controls. Redesign the workflow without assuming a technology: eliminate, simplify, standardize, clarify ownership, repair data or meaning, and use deterministic automation where it is sufficient. Only then evaluate AI against the remaining work. Read the authority-tier source when recommending an application form or any action. Use the [solution proposal contract](solution-proposal.md) to synthesize the deliverable.
 
-**Stop or gap condition.** Do not invent an integration, policy, permission, source authority, current baseline or target, or acceptance result. If a write-back would be in scope, stop before authorizing or implementing it until the current gate/control evidence supports it; report the unmet evidence and the highest safe advisory/read-only outcome.
+**Output contract.** Deliver an evidence-grounded operating solution that changes a named workflow and gives a delivery team a buildable first vertical slice. Include the as-is diagnosis, changes made before technology selection, a technology-neutral target workflow, intervention choices, capability and integration seams, responsibility and authority boundaries, slice backlog, validation, rollout, measures, evidence status, and the next accountable action. Explicitly state whether AI is unnecessary, deferred, or justified at a specific retained step; when justified, separate deterministic logic, model responsibility, human judgment, and governed system actions. Keep the proposed authority tier separate from the evidenced access decision.
+
+**Stop or gap condition.** Do not select AI before the process redesign is complete enough to show what work remains, and do not force AI into a task where elimination, standardization, deterministic software, or workflow change is the better fit. Report the AI-fit decision honestly, including `not needed` or `deferred pending evidence`. Do not invent an integration, policy, permission, source authority, baseline, target, or acceptance result. Bound unsupported parts of the solution as `proposed`, `missing`, or `unverifiable`. Stop only before an unsupported implementation, release, write-back, or authority claim—not before producing the safest useful solution and delivery plan.
+
+## Capability build
+
+**Required inputs.** An accepted solution boundary, evidence for any source, semantic-definition, identity, permission, target-system, or acceptance assertion involved, and the actual repository surface to change.
+
+**Steps and sources.** Read the solution proposal, scenario schema, applicable method stage and gate, plan guardrails, and implementation strategy. Inspect the current codebase before describing implementation as present. Keep the slice end-to-end and route shared definition, evidence, and access complexity through the documented seams. When the request changes authority or includes write-back, read `Application Forms and Control Boundaries` and require the applicable control evidence.
+
+**Output contract.** Deliver the narrowest working vertical slice with its code, tests, necessary documentation, evidence boundary, validation result, rollout or rollback instructions, and unresolved operational assumptions. A read-only slice returns `result + semantic-definition version + source evidence + freshness + access decision` and does not conceal a missing component.
+
+**Stop or gap condition.** Do not implement an integration, permission, or persistent action on invented authority. If the accepted slice cannot be built within the evidenced boundary, deliver only the safe in-scope portion and report the exact blocked implementation decision.
 
 ## Gate-based review or assurance
 

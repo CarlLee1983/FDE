@@ -1,0 +1,23 @@
+{
+  "decisionId": "demo-access-decision-001",
+  "scope": "synthetic demo sandbox only",
+  "evaluatedAt": "2026-08-25T09:00:00Z",
+  "actor": {
+    "role": "Demo Access Authority",
+    "contact": "demo:access-authority"
+  },
+  "sourceId": "demo-shipment-export-2026-08-25",
+  "permissions": {
+    "query": "allowed",
+    "recommendation": "allowed",
+    "controlledExecution": "denied"
+  },
+  "freshnessPolicy": {
+    "maximumAgeMinutes": 60,
+    "purpose": "Only rank a demo snapshot when it is within the stated SLA."
+  },
+  "notEvidenceOf": [
+    "enterprise system access",
+    "ERP write authorization"
+  ]
+}
