@@ -1,0 +1,59 @@
+{
+  "id": "inventory-replenishment-evolution-demo",
+  "name": "Inventory replenishment capability evolution (demo)",
+  "description": "Synthetic demonstration of a replenishment workflow that begins with AI-assisted exploration, keeps purchase orders human-approved, and promotes stable analysis into governed software tools while AI continues to find operational gaps.",
+  "status": "proposed",
+  "businessOwner": {
+    "role": "Demo Replenishment Process Owner",
+    "contact": "missing:real-accountable-owner"
+  },
+  "processNode": "Daily replenishment review before a planner decides whether to approve a purchase-order draft.",
+  "userRoles": [
+    "Demo Replenishment Planner",
+    "Demo Purchasing Approver"
+  ],
+  "decisionOrAction": "Recommend whether and how much to replenish, explain the evidence and uncertainty, and prepare a purchase-order draft for human review without submitting it.",
+  "metrics": [
+    {
+      "name": "Preventable stockout exposure",
+      "definition": "Count of product-days where forecast available stock falls below expected demand before replenishment can arrive and the condition was visible early enough to review.",
+      "baseline": "missing:real historical baseline",
+      "target": "proposed:reduce preventable exposure during shadow operation",
+      "cadence": "daily review and weekly trend"
+    },
+    {
+      "name": "Planner correction rate",
+      "definition": "Share of recommendations whose quantity, timing, supplier, or reason is materially changed by the planner before approval.",
+      "baseline": "missing:shadow baseline",
+      "target": "proposed:decline after stable logic is promoted into tools",
+      "cadence": "weekly"
+    }
+  ],
+  "ontologyReferences": [
+    {
+      "id": "proposed:inventory-replenishment-semantics@0.1.0",
+      "purpose": "Proposed definitions for product, available stock, demand, inbound supply, lead time, replenishment recommendation, purchase-order draft, and planner correction."
+    }
+  ],
+  "sourceReferences": [
+    {
+      "id": "proposed:inventory-snapshot",
+      "purpose": "Current on-hand, reserved, and inbound quantities with freshness and provenance."
+    },
+    {
+      "id": "proposed:sales-and-promotion-context",
+      "purpose": "Historical sales and approved promotion calendar used to estimate near-term demand pressure."
+    },
+    {
+      "id": "proposed:supplier-performance-context",
+      "purpose": "Declared and observed supplier lead time, minimum order quantity, and delivery variability."
+    }
+  ],
+  "acceptanceCriteria": [
+    "Each recommendation identifies its source evidence, freshness, semantic or tool version, uncertainty, and access decision.",
+    "The assistant prepares only a purchase-order draft and cannot approve, submit, or write it without a named human approval and governed system action.",
+    "Planner changes and reasons are recorded so repeated corrections can become candidates for a versioned rule, model, semantic, process, or control change.",
+    "A stable candidate is promoted only after replay or shadow evidence, accountable owner acceptance, tests, versioning, rollout, and rollback are defined."
+  ],
+  "notes": "This record is proposed and synthetic. Real owners, baselines, source authority, access decisions, thresholds, and acceptance evidence are missing."
+}

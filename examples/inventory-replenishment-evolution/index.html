@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="用庫存補貨案例說明 FED 如何讓 AI 先探索需求，再將穩定做法固化成工具，並讓 AI 持續留在流程中推動下一輪改善。">
+  <title>庫存補貨能力演進｜FED 案例報告</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f4f7f4;
+      --surface: #ffffff;
+      --soft: #f0f6f2;
+      --ink: #173126;
+      --muted: #5f7168;
+      --line: #d7e2db;
+      --green: #177245;
+      --green-soft: #e3f4e9;
+      --blue: #176b87;
+      --blue-soft: #e4f3f8;
+      --amber: #9a5a0a;
+      --amber-soft: #fff2d8;
+      --purple: #6550a5;
+      --purple-soft: #f0ecff;
+      --red: #b43a46;
+      --red-soft: #fff0f1;
+      --shadow: 0 18px 50px rgba(33, 65, 48, 0.09);
+      --radius: 20px;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --page: #07130e;
+      --surface: #102019;
+      --soft: #152920;
+      --ink: #edf7f1;
+      --muted: #aec1b5;
+      --line: #294438;
+      --green: #67d89b;
+      --green-soft: #153d29;
+      --blue: #6ed0ed;
+      --blue-soft: #143945;
+      --amber: #f6be67;
+      --amber-soft: #3d2b10;
+      --purple: #b9a7ff;
+      --purple-soft: #2d2850;
+      --red: #ff929d;
+      --red-soft: #421f25;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--sans); line-height: 1.72; }
+    a { color: var(--blue); text-underline-offset: 3px; }
+    button { font: inherit; }
+    code { border: 1px solid var(--line); border-radius: 6px; background: var(--soft); padding: .08em .34em; font-family: var(--mono); }
+    .topbar { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--surface) 91%, transparent); backdrop-filter: blur(14px); }
+    .topbar-inner { width: min(1180px, calc(100% - 32px)); min-height: 62px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { color: var(--ink); font-weight: 850; text-decoration: none; }
+    .brand::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 10px; border-radius: 99px; background: var(--green); box-shadow: 0 0 0 5px var(--green-soft); }
+    .theme-button { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); padding: 7px 12px; cursor: pointer; }
+    .hero { border-bottom: 1px solid var(--line); background: radial-gradient(circle at 85% 10%, color-mix(in srgb, var(--green) 17%, transparent), transparent 30rem), var(--surface); }
+    .hero-inner { width: min(1180px, calc(100% - 32px)); margin: auto; padding: 72px 0 58px; }
+    .eyebrow { margin: 0 0 12px; color: var(--green); font-size: .78rem; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { max-width: 960px; margin: 0; font-size: clamp(2.2rem, 5.5vw, 4.8rem); line-height: 1.05; letter-spacing: -.045em; }
+    .lead { max-width: 850px; margin: 24px 0 0; color: var(--muted); font-size: clamp(1rem, 2vw, 1.25rem); }
+    .notice { display: inline-flex; margin-top: 24px; border: 1px solid color-mix(in srgb, var(--amber) 35%, var(--line)); border-radius: 99px; background: var(--amber-soft); color: var(--amber); padding: 7px 12px; font-size: .86rem; font-weight: 800; }
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 38px; }
+    .summary { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 20px; box-shadow: var(--shadow); }
+    .summary small { display: block; margin-bottom: 8px; color: var(--muted); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .summary strong { display: block; font-size: 1.1rem; line-height: 1.45; }
+    .layout { width: min(1180px, calc(100% - 32px)); margin: auto; display: grid; grid-template-columns: 245px minmax(0, 1fr); gap: 42px; padding: 46px 0 92px; }
+    .side { position: sticky; top: 90px; align-self: start; }
+    .side p { margin: 0 0 10px; color: var(--muted); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .side a { display: block; border-left: 2px solid var(--line); color: var(--muted); padding: 7px 12px; text-decoration: none; font-size: .9rem; }
+    .side a:hover { border-color: var(--green); color: var(--green); }
+    main { min-width: 0; }
+    section { scroll-margin-top: 85px; margin-bottom: 64px; }
+    h2 { margin: 0 0 16px; font-size: clamp(1.55rem, 3vw, 2.25rem); line-height: 1.2; letter-spacing: -.025em; }
+    h3 { margin: 30px 0 10px; font-size: 1.18rem; }
+    p { margin: 0 0 16px; }
+    .section-intro { max-width: 800px; color: var(--muted); font-size: 1.04rem; }
+    .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 24px; box-shadow: var(--shadow); }
+    .callout { border-left: 5px solid var(--green); background: var(--green-soft); padding: 20px 22px; border-radius: 0 16px 16px 0; }
+    .callout strong { color: var(--green); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .mini { border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 18px; }
+    .mini h3 { margin: 0 0 8px; }
+    .mini p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .tag { display: inline-block; margin-bottom: 10px; border-radius: 99px; padding: 4px 9px; font-size: .74rem; font-weight: 850; }
+    .tag.green { background: var(--green-soft); color: var(--green); }
+    .tag.blue { background: var(--blue-soft); color: var(--blue); }
+    .tag.purple { background: var(--purple-soft); color: var(--purple); }
+    .tag.amber { background: var(--amber-soft); color: var(--amber); }
+    .flow { display: grid; gap: 10px; margin-top: 18px; }
+    .flow-step { position: relative; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 15px 18px 15px 52px; }
+    .flow-step::before { content: attr(data-n); position: absolute; left: 16px; top: 14px; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 99px; background: var(--green-soft); color: var(--green); font-size: .76rem; font-weight: 900; }
+    .flow-step:not(:last-child)::after { content: "↓"; position: absolute; left: 25px; bottom: -17px; z-index: 2; color: var(--green); font-weight: 900; }
+    .loop-grid { display: grid; grid-template-columns: 1fr 70px 1fr; align-items: stretch; gap: 10px; }
+    .loop { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); padding: 22px; }
+    .loop h3 { margin: 0 0 6px; }
+    .loop ol { margin-bottom: 0; padding-left: 1.25rem; }
+    .bridge { display: grid; place-items: center; color: var(--green); font-size: 2rem; font-weight: 900; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: .92rem; }
+    th, td { border-bottom: 1px solid var(--line); padding: 12px 10px; text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; }
+    .number { font-weight: 850; white-space: nowrap; }
+    .role-row { display: grid; grid-template-columns: 1.1fr 1.6fr 1.2fr; gap: 12px; border-bottom: 1px solid var(--line); padding: 13px 0; }
+    .role-row:last-child { border: 0; }
+    .role-row strong { color: var(--green); }
+    .ladder { counter-reset: stage; display: grid; gap: 12px; }
+    .stage { counter-increment: stage; display: grid; grid-template-columns: 62px 1fr; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); overflow: hidden; }
+    .stage::before { content: "V" counter(stage); display: grid; place-items: center; background: var(--green-soft); color: var(--green); font-weight: 900; }
+    .stage div { padding: 17px 19px; }
+    .stage h3 { margin: 0 0 5px; }
+    .stage p { margin: 0; color: var(--muted); }
+    .boundary { border: 1px solid color-mix(in srgb, var(--red) 32%, var(--line)); border-radius: var(--radius); background: var(--red-soft); padding: 22px; }
+    .boundary h3 { margin-top: 0; color: var(--red); }
+    .boundary ul { margin-bottom: 0; }
+    .next { border: 1px solid color-mix(in srgb, var(--green) 35%, var(--line)); border-radius: var(--radius); background: var(--green-soft); padding: 25px; }
+    .next h2 { color: var(--green); }
+    .footer { border-top: 1px solid var(--line); background: var(--surface); }
+    .footer-inner { width: min(1180px, calc(100% - 32px)); margin: auto; padding: 28px 0; color: var(--muted); font-size: .88rem; }
+    @media (max-width: 860px) {
+      .summary-grid, .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .layout { grid-template-columns: 1fr; }
+      .side { position: static; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+      .side p { grid-column: 1 / -1; }
+      .loop-grid { grid-template-columns: 1fr; }
+      .bridge { transform: rotate(90deg); }
+    }
+    @media (max-width: 560px) {
+      .hero-inner { padding-top: 52px; }
+      .side { grid-template-columns: 1fr; }
+      .role-row { grid-template-columns: 1fr; gap: 4px; }
+      .card { padding: 19px; }
+    }
+    @media print {
+      .topbar, .side { display: none; }
+      body { background: #fff; }
+      .layout { display: block; padding-top: 30px; }
+      .card, .summary { box-shadow: none; break-inside: avoid; }
+      section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top">FED 案例報告</a>
+      <button class="theme-button" id="themeButton" type="button" aria-label="切換深色或淺色主題">切換主題</button>
+    </div>
+  </header>
+
+  <div class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow">Inventory Replenishment Evolution</p>
+      <h1>AI 先探索，工具再固化；AI 留下來推動下一次改善</h1>
+      <p class="lead">用一個人人都懂的庫存補貨問題，說明 FED 如何從固定安全庫存通知，走向能預測、能解釋、能產生進貨單草稿，而且會持續累積能力的營運流程。</p>
+      <div class="notice">合成案例：不是企業授權、上線或成效證據</div>
+      <div class="summary-grid">
+        <article class="summary"><small>舊問題</small><strong>低於安全庫存才通知，常常已經太晚</strong></article>
+        <article class="summary"><small>AI 的角色</small><strong>先處理未知與例外，再找出值得工具化的重複模式</strong></article>
+        <article class="summary"><small>安全邊界</small><strong>AI 只做建議與草稿；人類核准，受控系統才寫入</strong></article>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="side" aria-label="報告章節">
+      <p>閱讀導覽</p>
+      <a href="#idea">核心想法</a>
+      <a href="#problem">為何舊方法不夠</a>
+      <a href="#example">商品 A 示例</a>
+      <a href="#loops">雙迴路</a>
+      <a href="#roles">誰負責什麼</a>
+      <a href="#readiness">流程準備度</a>
+      <a href="#growth">能力如何長大</a>
+      <a href="#promotion">何時寫成工具</a>
+      <a href="#slice">第一個落地切片</a>
+      <a href="#proof">如何證明有效</a>
+      <a href="#boundary">不可跨越的界線</a>
+      <a href="#next">下一步</a>
+    </nav>
+
+    <main>
+      <section id="idea">
+        <h2>先把核心想法說清楚</h2>
+        <p class="section-intro">這個案例不是把原本的通知文字交給 AI 重寫。它改變的是系統如何發現問題、如何學習，以及如何把學到的做法變成下一版能力。</p>
+        <div class="callout">
+          <strong>一句話版本：</strong>AI 先承接還沒有被整理成規則的營運需求；方法穩定後，把它寫成有版本、有測試的工具；AI 繼續使用工具，專心尋找下一個缺口。
+        </div>
+        <div class="grid-3" style="margin-top:16px">
+          <article class="mini"><span class="tag amber">探索</span><h3>還不知道怎麼做</h3><p>AI 整理資料、提出假設、解釋異常，幫助團隊看懂問題。</p></article>
+          <article class="mini"><span class="tag green">固化</span><h3>已經知道怎麼做</h3><p>把穩定的算法、規則與限制做成可重播、可共用的工具。</p></article>
+          <article class="mini"><span class="tag purple">演進</span><h3>繼續找下一題</h3><p>AI 觀察人工修改與結果偏差，提出下一個改善候選。</p></article>
+        </div>
+      </section>
+
+      <section id="problem">
+        <h2>為什麼「庫存低於 80 就通知」不夠？</h2>
+        <p class="section-intro">固定門檻沒有錯。它簡單、穩定，而且很好測試。問題是它只能回答現在的庫存，不能完整回答未來的壓力。</p>
+        <div class="grid-2">
+          <article class="card">
+            <span class="tag amber">舊流程</span>
+            <div class="flow">
+              <div class="flow-step" data-n="1">讀取目前庫存</div>
+              <div class="flow-step" data-n="2">低於固定安全量才通知</div>
+              <div class="flow-step" data-n="3">人員再去找銷售、活動和交期資料</div>
+              <div class="flow-step" data-n="4">在試算表重新計算</div>
+            </div>
+          </article>
+          <article class="card">
+            <span class="tag green">真正缺少的資訊</span>
+            <ul>
+              <li>最近銷售是不是正在加速？</li>
+              <li>去年同一時間是否特別熱賣？</li>
+              <li>下週是否有促銷或大型訂單？</li>
+              <li>供應商實際交期是否正在變長？</li>
+              <li>在途庫存是否真的會準時到？</li>
+              <li>人員為什麼經常修改系統建議？</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="example">
+        <h2>商品 A：現在安全，不代表十天後安全</h2>
+        <p class="section-intro">這些是方便說明的合成數字，不是補貨政策。重點是看同一筆資料如何因為加入時間與脈絡而得到不同判斷。</p>
+        <div class="card">
+          <table>
+            <thead><tr><th>資料</th><th>示例值</th><th>它告訴我們什麼</th></tr></thead>
+            <tbody>
+              <tr><td>現有庫存</td><td class="number">120 件</td><td>高於固定安全庫存 80，所以舊系統不通知。</td></tr>
+              <tr><td>最近七日銷售</td><td class="number">10 件／日</td><td>如果速度不變，大約可支持 12 天。</td></tr>
+              <tr><td>供應商交期</td><td class="number">10 天</td><td>現在才採購，緩衝已經很小。</td></tr>
+              <tr><td>去年同期銷售</td><td class="number">18 件／日</td><td>可能有季節性需求，但仍需驗證。</td></tr>
+              <tr><td>在途庫存</td><td class="number">50 件</td><td>必須確認到貨時間與資料新鮮度。</td></tr>
+              <tr><td>下週促銷</td><td class="number">有</td><td>可能提高需求，但影響大小尚未被證明。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout" style="margin-top:16px">
+          AI 可以把這些證據整理成：「商品 A 可能在補貨到達前進入壓力區間，請審閱補貨 100–140 件。」它也必須說明促銷影響仍不確定，所以給範圍而不是假裝有唯一正確答案。
+        </div>
+      </section>
+
+      <section id="loops">
+        <h2>真正的自我進化來自兩條迴路</h2>
+        <p class="section-intro">一條讓每天的工作穩定運作；另一條從每天的工作中找出下一版能力。兩條缺一不可。</p>
+        <div class="loop-grid">
+          <article class="loop">
+            <span class="tag blue">營運迴路</span>
+            <h3>把今天的補貨工作做好</h3>
+            <ol>
+              <li>排程取得允許使用的資料。</li>
+              <li>工具計算風險與預測。</li>
+              <li>AI 整理脈絡並解釋例外。</li>
+              <li>產生建議與進貨單草稿。</li>
+              <li>人類接受、修改或拒絕。</li>
+              <li>未來只有 access 與 control evidence 完整後，受控系統才可提交正式訂單。</li>
+            </ol>
+          </article>
+          <div class="bridge" aria-hidden="true">↔</div>
+          <article class="loop">
+            <span class="tag purple">演進迴路</span>
+            <h3>把明天的系統做得更好</h3>
+            <ol>
+              <li>保存建議、修改與結果。</li>
+              <li>AI 找出重複模式和缺口。</li>
+              <li>提出新的規則或工具候選。</li>
+              <li>在重播或 shadow 中比較。</li>
+              <li>負責人接受，團隊實作發布。</li>
+              <li>AI 使用新工具，繼續觀察。</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section id="roles">
+        <h2>AI 很重要，但不是每件事都交給 AI</h2>
+        <p class="section-intro">最好的系統會把工作交給最適合的角色。這讓結果更穩，也讓 AI 有空間處理真正未知的部分。</p>
+        <div class="card">
+          <div class="role-row"><strong>確定性軟體</strong><span>排程、讀取資料、權限、新鮮度、固定計算</span><span>穩定且可測試</span></div>
+          <div class="role-row"><strong>預測與規則工具</strong><span>需求預測、交期估計、採購限制、風險分數</span><span>有版本與誤差</span></div>
+          <div class="role-row"><strong>AI 助手</strong><span>組合脈絡、解釋矛盾、發現重複修正、提出改善</span><span>能 abstain</span></div>
+          <div class="role-row"><strong>人類負責人</strong><span>接受政策、判斷模糊例外、核准草稿與變更</span><span>承擔營運責任</span></div>
+          <div class="role-row"><strong>受控系統行動</strong><span>正式寫入採購系統、稽核、去重、失敗復原</span><span>具名且經授權</span></div>
+        </div>
+      </section>
+
+      <section id="readiness">
+        <h2>目前 AI 還不能被正式選定</h2>
+        <div class="callout">
+          這個案例的 AI selection 目前是 <strong>deferred</strong>。真實流程負責人、使用者、handoff、例外負責人與 baseline 都還沒有確認。下文的 AI 角色是條件性設計：先補齊流程證據，再用 shadow 比較它是否真的勝過重新設計後的非 AI 方法。
+        </div>
+      </section>
+
+      <section id="growth">
+        <h2>能力不是一次完成，而是一層一層長大</h2>
+        <div class="ladder">
+          <article class="stage"><div><h3>固定安全庫存通知</h3><p>可靠但被動，只在越過固定門檻後提醒。</p></div></article>
+          <article class="stage"><div><h3>AI 輔助探索</h3><p>組合銷售、促銷、在途與交期，產生可解釋建議。</p></div></article>
+          <article class="stage"><div><h3>人類核准的草稿</h3><p>AI 準備進貨單草稿，人類接受、修改或拒絕。</p></div></article>
+          <article class="stage"><div><h3>穩定方法工具化</h3><p>把反覆被證明有效的計算與限制寫成共享工具。</p></div></article>
+          <article class="stage"><div><h3>AI 查漏補缺</h3><p>使用工具處理日常工作，並尋找工具未涵蓋的新例外。</p></div></article>
+          <article class="stage"><div><h3>受治理的持續演進</h3><p>每次能力提升都有證據、owner、版本、測試、發布與回復。</p></div></article>
+        </div>
+      </section>
+
+      <section id="promotion">
+        <h2>什麼時候可以把 AI 做法寫成正式工具？</h2>
+        <p class="section-intro">不能因為 AI 做對一次就立刻固化。候選方法必須經過一個簡單但嚴格的提升檢查。</p>
+        <div class="grid-2">
+          <article class="mini"><span class="tag green">1</span><h3>重複出現</h3><p>同一種人工修改或例外在足夠多次決策中出現。</p></article>
+          <article class="mini"><span class="tag green">2</span><h3>說得清楚</h3><p>輸入、輸出、來源、owner 與失敗行為可以被定義。</p></article>
+          <article class="mini"><span class="tag green">3</span><h3>可以重播</h3><p>新方法能在相同資料上和舊方法公平比較。</p></article>
+          <article class="mini"><span class="tag green">4</span><h3>涵蓋例外</h3><p>正常、邊界、缺資料和衝突案例都有測試。</p></article>
+          <article class="mini"><span class="tag green">5</span><h3>有人負責</h3><p>政策或流程負責人接受它，不是 AI 自己宣布正確。</p></article>
+          <article class="mini"><span class="tag green">6</span><h3>可以安全發布</h3><p>有版本、監控、回復與退役方式。</p></article>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <h3 style="margin-top:0">可能沉澱出的共享工具</h3>
+          <p><code>forecastDemand()</code>、<code>estimateSupplierLeadTime()</code>、<code>assessInventoryPressure()</code>、<code>recommendReplenishment()</code>、<code>preparePurchaseOrderDraft()</code></p>
+          <p style="margin-bottom:0;color:var(--muted)">Dashboard、AI 與 workflow 應使用同一套工具與定義，不再各自算出不同答案。</p>
+        </div>
+      </section>
+
+      <section id="slice">
+        <h2>第一個可落地切片：先證明非 AI baseline</h2>
+        <p class="section-intro">選擇 10–30 個商品，先用安全庫存、庫存覆蓋天數與已接受的交期規則建立每日唯讀清單，同時保存人員判斷與修改理由。</p>
+        <div class="grid-2">
+          <article class="card">
+            <span class="tag green">本次包含</span>
+            <ul>
+              <li>允許使用的唯讀 snapshot</li>
+              <li>資料品質與新鮮度檢查</li>
+              <li>可重播的非 AI baseline</li>
+              <li>人工接受、修改、拒絕與理由</li>
+              <li>不提交的進貨單草稿</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="tag amber">明確延後</span>
+            <ul>
+              <li>自動核准或提交進貨單</li>
+              <li>一次涵蓋所有商品與供應商</li>
+              <li>AI 綜整與解釋實驗</li>
+              <li>AI 自己發布規則或程式</li>
+              <li>未被證明的採購系統權限</li>
+              <li>把示例數字當成正式政策</li>
+            </ul>
+          </article>
+        </div>
+        <div class="callout" style="margin-top:16px">
+          流程 readiness 通過後，下一個條件性 shadow 才把 AI 加到同一批資料與決策中，和非 AI baseline 比較。AI 沒有可量測的增量價值，就不進入營運迴路。
+        </div>
+      </section>
+
+      <section id="proof">
+        <h2>如何知道這不只是一個漂亮 Demo？</h2>
+        <p class="section-intro">真正的價值必須在相同條件下比較，而且必須看人類為什麼修改，而不只看 AI 有沒有產生答案。</p>
+        <div class="flow">
+          <div class="flow-step" data-n="1"><strong>重播舊方法：</strong>用歷史資料跑固定安全庫存規則。</div>
+          <div class="flow-step" data-n="2"><strong>加入新方法：</strong>保持唯讀，在同一資料上產生建議。</div>
+          <div class="flow-step" data-n="3"><strong>四週 shadow：</strong>保存接受、修改、拒絕與理由。</div>
+          <div class="flow-step" data-n="4"><strong>挑一個候選：</strong>只固化一種高頻、可測試的修正。</div>
+          <div class="flow-step" data-n="5"><strong>再次比較：</strong>看缺貨暴露、提前量、修改率、延遲與例外。</div>
+        </div>
+        <div class="callout" style="margin-top:20px">
+          目前沒有真實 baseline、owner、來源權限或 shadow 結果，所以 AI 的增量價值仍是 <strong>unverifiable</strong>。案例能說明如何驗證，不能代替驗證。
+        </div>
+      </section>
+
+      <section id="boundary">
+        <h2>自我進化不等於 AI 自己改正式系統</h2>
+        <div class="boundary">
+          <h3>AI 不可以自行做的事</h3>
+          <ul>
+            <li>核准自己的補貨建議或進貨單。</li>
+            <li>新增供應商或變更付款條件。</li>
+            <li>在缺少企業政策時偷偷補出規則。</li>
+            <li>直接修改或發布正式程式、模型與語意定義。</li>
+            <li>跳過權限、稽核、冪等與失敗復原控制。</li>
+          </ul>
+        </div>
+        <p style="margin-top:16px">正確的演進順序是：<strong>AI 提議 → 證據驗證 → 負責人接受 → 開發與測試 → 版本發布 → 監控與回復</strong>。</p>
+      </section>
+
+      <section id="next" class="next">
+        <h2>下一個負責行動</h2>
+        <p>由真實補貨流程負責人召集補貨人員、資料 owner 與 FED delivery owner，選定 10–30 個商品，確認現況流程、來源權限、人工修改原因與四週 shadow 的接受門檻。</p>
+        <p><strong>完成條件：</strong>流程負責人接受技術中立的目標流程；必要資料與權限有直接證據；交付團隊能重播第一個唯讀 shadow 工作包。</p>
+        <p style="margin-bottom:0">詳細內容請閱讀 <a href="artifacts/operating-solution-proposal.md">操作方案提案</a>；案例資料契約見 <a href="scenario.json">scenario.json</a>。</p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">FED synthetic example · Inventory replenishment capability evolution · Proposed, not authorized</div>
+  </footer>
+  <script>
+    const root = document.documentElement;
+    const button = document.getElementById('themeButton');
+    const savedTheme = localStorage.getItem('inventory-evolution-theme');
+    if (savedTheme === 'dark') root.dataset.theme = 'dark';
+    button.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      localStorage.setItem('inventory-evolution-theme', next);
+    });
+  </script>
+</body>
+</html>
