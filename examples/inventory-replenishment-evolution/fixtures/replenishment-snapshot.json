@@ -1,0 +1,16 @@
+{
+  "asOf": "2026-08-27T00:00:00Z",
+  "semanticDefinitionVersion": "inventory-replenishment-semantics@0.1.0",
+  "accessDecision": {"decision": "allowed", "decisionId": "synthetic-local-read-only@0.1.0", "scope": "local fixture replay only", "evidenceStatus": "synthetic", "enterpriseAuthorization": false},
+  "sourceEvidence": [
+    {"sourceId": "inventory-snapshot", "observedAt": "2026-08-26T23:50:00Z", "freshUntil": "2026-08-27T01:00:00Z"},
+    {"sourceId": "demand-snapshot", "observedAt": "2026-08-26T23:45:00Z", "freshUntil": "2026-08-27T01:00:00Z"},
+    {"sourceId": "supplier-policy", "observedAt": "2026-08-26T12:00:00Z", "freshUntil": "2026-08-28T00:00:00Z"}
+  ],
+  "policy": {"policyVersion": "synthetic-replenishment-policy@0.1.0", "reviewPeriod": {"start": "2026-08-27", "end": "2026-08-27"}},
+  "items": [
+    {"sku": "SKU-CANDIDATE", "onHand": 120, "reserved": 20, "dailyDemand": 10, "safetyStock": 60, "leadTime": 10, "inboundBeforeArrival": 0, "minOrderQty": 100, "packSize": 24},
+    {"sku": "SKU-NO-CANDIDATE", "onHand": 200, "reserved": 0, "dailyDemand": 5, "safetyStock": 80, "leadTime": 10, "inboundBeforeArrival": 0, "minOrderQty": 20, "packSize": 10},
+    {"sku": "SKU-BOUNDARY", "onHand": 150, "reserved": 0, "dailyDemand": 10, "safetyStock": 50, "leadTime": 10, "inboundBeforeArrival": 0, "minOrderQty": 20, "packSize": 10}
+  ]
+}

@@ -17,6 +17,28 @@
 - 詳細案例與交付方案：[artifacts/operating-solution-proposal.md](artifacts/operating-solution-proposal.md)
 - 原始需求：[request.md](request.md)
 - 提議中的 scenario record：[scenario.json](scenario.json)
+- 可執行的唯讀 baseline：[補貨決策契約](artifacts/replenishment-decision-contract.md)
+
+## 可執行的唯讀補貨清單
+
+此案例現在包含一個不使用 AI、只使用 Python 標準函式庫的 deterministic baseline。它只讀取本地 synthetic JSON snapshot，計算「補貨到達日」的預計庫存，並產生供人員審閱的候選量；不連接、建立、修改、核准或提交任何採購系統資料。
+
+在 repository root 執行：
+
+```bash
+examples/inventory-replenishment-evolution/scripts/validate-example.sh
+```
+
+只重播 fixture 並將結果印到終端：
+
+```bash
+python3 examples/inventory-replenishment-evolution/scripts/recommend_replenishment.py \
+  examples/inventory-replenishment-evolution/fixtures/replenishment-snapshot.json
+```
+
+輸入必須有固定的 `asOf`、semantic definition version、明確標示非企業授權的 synthetic access profile、三個必要來源的 evidence/freshness、已實作的 policy version/review period，以及每個 SKU 的現有量、保留量、每日需求、安全庫存、交期、確認會在補貨到達日前抵達的在途量、MOQ 和 pack size。若 access 不符、policy 未支援、來源衝突／缺失／過期，整份結果會 `abstained`；單一 SKU 資料無效時，只有該 SKU abstain。
+
+輸出固定包含 `result`、semantic definition version、source evidence、freshness、access decision、policy、未評估的不確定性和明確的 `writeBack: false` 邊界。這只是 proposal 中 deterministic baseline 的子切片，尚未包含 planner feedback 與進貨單草稿。正常 fixture 展示候選、無候選、以及「到貨時剛好等於安全庫存」的邊界；另一份 fixture 展示過期來源的全體 abstain。這些都是 synthetic/local-only 測試資料，不能當成企業資料、授權或採購指令。
 
 ## 一分鐘理解
 

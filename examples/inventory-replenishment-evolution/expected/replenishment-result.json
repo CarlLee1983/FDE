@@ -1,0 +1,125 @@
+{
+  "asOf": "2026-08-27T00:00:00Z",
+  "result": {
+    "status": "candidates",
+    "reasonCodes": [],
+    "items": [
+      {
+        "sku": "SKU-CANDIDATE",
+        "status": "candidate",
+        "projectedStockAtArrival": 0,
+        "safetyStock": 60,
+        "shortfall": 60,
+        "quantity": 120,
+        "uncertainty": {
+          "status": "unassessed",
+          "factors": [
+            "demand-variability",
+            "supplier-lead-time-variability",
+            "inbound-reliability"
+          ],
+          "decisionUse": "human-review-required"
+        },
+        "reasonCodes": [
+          "projected-stock-below-safety-stock",
+          "rounded-to-min-order-and-pack-size"
+        ]
+      },
+      {
+        "sku": "SKU-NO-CANDIDATE",
+        "status": "no-candidate",
+        "projectedStockAtArrival": 150,
+        "uncertainty": {
+          "status": "unassessed",
+          "factors": [
+            "demand-variability",
+            "supplier-lead-time-variability",
+            "inbound-reliability"
+          ],
+          "decisionUse": "human-review-required"
+        },
+        "reasonCodes": [
+          "safety-stock-met-at-arrival"
+        ]
+      },
+      {
+        "sku": "SKU-BOUNDARY",
+        "status": "no-candidate",
+        "projectedStockAtArrival": 50,
+        "uncertainty": {
+          "status": "unassessed",
+          "factors": [
+            "demand-variability",
+            "supplier-lead-time-variability",
+            "inbound-reliability"
+          ],
+          "decisionUse": "human-review-required"
+        },
+        "reasonCodes": [
+          "safety-stock-met-at-arrival"
+        ]
+      }
+    ]
+  },
+  "semanticDefinitionVersion": "inventory-replenishment-semantics@0.1.0",
+  "sourceEvidence": [
+    {
+      "sourceId": "inventory-snapshot",
+      "observedAt": "2026-08-26T23:50:00Z",
+      "freshUntil": "2026-08-27T01:00:00Z"
+    },
+    {
+      "sourceId": "demand-snapshot",
+      "observedAt": "2026-08-26T23:45:00Z",
+      "freshUntil": "2026-08-27T01:00:00Z"
+    },
+    {
+      "sourceId": "supplier-policy",
+      "observedAt": "2026-08-26T12:00:00Z",
+      "freshUntil": "2026-08-28T00:00:00Z"
+    }
+  ],
+  "freshness": {
+    "status": "fresh",
+    "evaluatedAt": "2026-08-27T00:00:00Z",
+    "sources": [
+      {
+        "sourceId": "demand-snapshot",
+        "observedAt": "2026-08-26T23:45:00Z",
+        "freshUntil": "2026-08-27T01:00:00Z",
+        "status": "fresh"
+      },
+      {
+        "sourceId": "inventory-snapshot",
+        "observedAt": "2026-08-26T23:50:00Z",
+        "freshUntil": "2026-08-27T01:00:00Z",
+        "status": "fresh"
+      },
+      {
+        "sourceId": "supplier-policy",
+        "observedAt": "2026-08-26T12:00:00Z",
+        "freshUntil": "2026-08-28T00:00:00Z",
+        "status": "fresh"
+      }
+    ]
+  },
+  "accessDecision": {
+    "decision": "allowed",
+    "decisionId": "synthetic-local-read-only@0.1.0",
+    "scope": "local fixture replay only",
+    "evidenceStatus": "synthetic",
+    "enterpriseAuthorization": false
+  },
+  "policy": {
+    "policyVersion": "synthetic-replenishment-policy@0.1.0",
+    "reviewPeriod": {
+      "start": "2026-08-27",
+      "end": "2026-08-27"
+    }
+  },
+  "writeBack": {
+    "permitted": false,
+    "attempted": false,
+    "reason": "read-only-synthetic-local-tool"
+  }
+}
