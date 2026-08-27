@@ -44,10 +44,16 @@ The registry is intentionally first because it connects product intent, operatio
 ## Recommended Near-Term Work
 
 1. Replace the illustrative scenario with the project's first real FDE business scenario.
-2. Confirm its accountable business owner, source owner, and decision or action owner.
+2. Confirm its accountable business owner, process-change authority, source owner, decision or action owner, and post-engagement operating owner.
 3. Define the minimum object, link, and action set required by the scenario.
-4. Implement a read-only context-resolution path that returns evidence and access decisions.
-5. Verify the result with a dashboard or agent before considering write-back.
+4. Prepare a versioned evaluation set covering normal, incomplete, conflicting, boundary, prohibited, and representative historical-failure cases.
+5. Implement a read-only context-resolution path that returns evidence and access decisions.
+6. Run a time-bounded pilot with affected users and record usage, sustained adoption, acceptance, correction, rejection, override, exception, and fallback evidence alongside the operating metric.
+7. Diagnose observed failures at the process, source, semantic, access, integration, model, or human-decision layer; preserve accepted corrections as governed change evidence.
+8. Verify the result with a dashboard or agent before considering write-back.
+9. Close the slice with two owned outputs: an operating handoff the target team can maintain, and de-identified capability-change candidates that the delivery organization can review, version, and reuse.
+
+The cohort, duration, pass/fail thresholds, process-change authority, and long-term operating responsibility remain scenario-specific and require accountable-owner acceptance. The [FDE practice and adoption field note](docs/field-notes/2026-08-27-fde-practice-and-adoption.md) records the external signals behind this addition and their evidence limits.
 
 ## Guardrails
 
