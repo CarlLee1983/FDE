@@ -145,7 +145,7 @@ Skill 會遵守以下邊界：
 
 ## 可重播的落地範例
 
-[出貨延誤優先序實作詳解](../../examples/shipment-delay-priority/index.html) 先診斷人工掃描與例外混雜的流程問題，再提出不依賴 AI 的目標流程與「出貨延誤審閱工作台」第一切片；確定性排序、evidence trace 與人工 review 先形成可衡量 baseline，AI explanation 被延後到 shadow 證明仍有殘餘負擔之後。全數合成的 scenario、流程、語意定義、決策規則、來源 snapshot、access decision 與 Gate 證據用來說明方案邊界，而不是把工件本身當成成果。
+[出貨延誤優先序實作詳解](../../examples/shipment-delay-priority/README.zh-TW.md) 先診斷人工掃描與例外混雜的流程問題，再提出不依賴 AI 的目標流程與「出貨延誤審閱工作台」第一切片；確定性排序、evidence trace 與人工 review 先形成可衡量 baseline，AI explanation 被延後到 shadow 證明仍有殘餘負擔之後。全數合成的 scenario、流程、語意定義、決策規則、來源 snapshot、access decision 與 Gate 證據用來說明方案邊界，而不是把工件本身當成成果。
 
 ## 檔案結構
 

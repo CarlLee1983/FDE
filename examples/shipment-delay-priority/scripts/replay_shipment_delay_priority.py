@@ -18,6 +18,9 @@ EXPECTED_BINDINGS = {
     "temperatureControlled": "Shipment.temperatureControlled", "atRiskCustomerCommitment": "Shipment.atRiskCustomerCommitment",
 }
 EXPECTED_SERVICE_LEVELS = ["critical", "standard"]
+EXPECTED_DEFINITION_IDS = {"Shipment", "ShipmentDelay", "ShipmentPriorityRecommendation", *EXPECTED_BINDINGS.values()}
+EXPECTED_STATES = {"untriaged", "recommended", "escalated", "human-reviewed"}
+EXPECTED_TRANSITIONS = {"untriaged -> recommended", "untriaged -> escalated", "recommended -> human-reviewed", "escalated -> human-reviewed"}
 EXPECTED_RULES = {
     "baseScore": [{"when": "overdueHours >= 48", "score": 50}, {"when": "overdueHours >= 24 and overdueHours < 48", "score": 30}, {"when": "overdueHours < 24", "score": 10}],
     "additions": [{"when": "serviceLevel == critical", "score": 25}, {"when": "temperatureControlled == true", "score": 20}, {"when": "atRiskCustomerCommitment == true", "score": 15}],
@@ -29,6 +32,10 @@ DISPOSITION_OUTCOMES = {
     "rejected": "Demo Logistics Coordinator records the rejection rationale before choosing an alternative follow-up.",
     "needs-investigation": "Demo Logistics Coordinator investigates the shipment evidence before operational follow-up.",
 }
+DEFAULT_AS_OF = "2026-08-25T09:00:00Z"
+DEFAULT_SCENARIO_ID = "shipment-delay-priority-demo"
+DEFAULT_ACTOR = "demo-logistics-coordinator"
+EXPECTED_SUBJECT = {"id": DEFAULT_ACTOR, "role": "Demo Logistics Coordinator"}
 
 
 def parse_timestamp(value: Any) -> datetime | None:
@@ -60,9 +67,64 @@ def allowed_service_levels(semantic_definitions: dict[str, Any]) -> set[str]:
     return set()
 
 
+def has_owner(value: Any) -> bool:
+    return isinstance(value, dict) and all(isinstance(value.get(field), str) and bool(value[field].strip()) for field in ("role", "contact"))
+
+
+def has_text(value: Any) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
+def has_complete_definitions(semantics: dict[str, Any]) -> bool:
+    definitions = semantics.get("definitions")
+    if not isinstance(definitions, list) or len(definitions) != len(EXPECTED_DEFINITION_IDS):
+        return False
+    by_id = {definition["id"]: definition for definition in definitions if isinstance(definition, dict) and isinstance(definition.get("id"), str)}
+    return set(by_id) == EXPECTED_DEFINITION_IDS and len(by_id) == len(definitions) and all(has_text(by_id[definition_id].get("kind")) and has_text(by_id[definition_id].get("definition")) for definition_id in EXPECTED_DEFINITION_IDS)
+
+
+def has_review_history(semantics: dict[str, Any]) -> bool:
+    history = semantics.get("reviewHistory")
+    return isinstance(history, list) and bool(history) and all(isinstance(review, dict) and all(has_text(review.get(field)) for field in ("reviewedAt", "reviewedBy", "decision")) for review in history)
+
+
+def has_complete_state_model(semantics: dict[str, Any]) -> bool:
+    models = semantics.get("stateModels")
+    if not isinstance(models, list) or len(models) != 1:
+        return False
+    return any(isinstance(model, dict) and model.get("id") == "ShipmentReviewLifecycle" and model.get("objectId") == "Shipment" and has_owner(model.get("owner")) and isinstance(model.get("states"), list) and all(isinstance(state, str) for state in model["states"]) and set(model["states"]) == EXPECTED_STATES and isinstance(model.get("allowedTransitions"), list) and all(isinstance(transition, str) for transition in model["allowedTransitions"]) and set(model["allowedTransitions"]) == EXPECTED_TRANSITIONS for model in models)
+
+
+def has_complete_metric(semantics: dict[str, Any]) -> bool:
+    metrics = semantics.get("metricDefinitions")
+    if not isinstance(metrics, list) or len(metrics) != 1:
+        return False
+    return any(isinstance(metric, dict) and metric.get("id") == "triage-cycle-time" and metric.get("status") == "released" and has_owner(metric.get("owner")) and all(has_text(metric.get(field)) for field in ("definition", "unit", "source")) for metric in metrics)
+
+
+def has_complete_source_mappings(semantics: dict[str, Any], source_id: Any) -> bool:
+    mappings = semantics.get("sourceMappings")
+    if not isinstance(mappings, list) or not isinstance(source_id, str):
+        return False
+    expected = {(field, semantic_id, source_id) for field, semantic_id in EXPECTED_BINDINGS.items()}
+    if len(mappings) != len(expected):
+        return False
+    actual: set[tuple[str, str, str]] = set()
+    for mapping in mappings:
+        if not isinstance(mapping, dict):
+            return False
+        values = (mapping.get("field"), mapping.get("semanticId"), mapping.get("sourceId"))
+        if not all(isinstance(value, str) for value in values):
+            return False
+        actual.add(values)
+    return actual == expected
+
+
 def contract_failures(snapshot: dict[str, Any], semantics: dict[str, Any], decision: dict[str, Any], access: dict[str, Any]) -> list[str]:
     failures: list[str] = []
     source_id = snapshot.get("sourceId")
+    if not has_text(source_id):
+        failures.append("invalid snapshot source identity")
     if not expected_scope(snapshot.get("scope"), "synthetic demo only"):
         failures.append("invalid snapshot scope")
     if not expected_scope(semantics.get("scope"), "synthetic demo only"):
@@ -73,20 +135,45 @@ def contract_failures(snapshot: dict[str, Any], semantics: dict[str, Any], decis
         failures.append("invalid access scope")
     if semantics.get("registryId") != "demo-shipment-semantics" or semantics.get("version") != "1.0.0" or semantics.get("status") != "released":
         failures.append("semantic definition is not the supported released version")
+    if not has_owner(semantics.get("owner")):
+        failures.append("semantic definition has no owner")
+    if not has_review_history(semantics):
+        failures.append("semantic definition has no review history")
+    if not has_complete_definitions(semantics):
+        failures.append("semantic definitions are incomplete")
     service_level_definition = next((definition for definition in semantics.get("definitions", []) if isinstance(definition, dict) and definition.get("id") == "Shipment.serviceLevel"), None) if isinstance(semantics.get("definitions"), list) else None
     if not isinstance(service_level_definition, dict) or service_level_definition.get("allowedValues") != EXPECTED_SERVICE_LEVELS:
         failures.append("semantic service-level values do not match the supported contract")
     source_definitions = semantics.get("sourceDefinitions")
     source_definition = source_definitions[0] if isinstance(source_definitions, list) and len(source_definitions) == 1 and isinstance(source_definitions[0], dict) else None
-    if source_definition is None or source_definition.get("id") != source_id or source_definition.get("status") != "released":
+    if source_definition is None or source_definition.get("id") != source_id or source_definition.get("status") != "released" or not all(has_text(source_definition.get(field)) for field in ("definition", "authority")):
         failures.append("snapshot source is not bound to the semantic contract")
+    elif not has_owner(source_definition.get("owner")):
+        failures.append("semantic source has no owner")
+    if not has_complete_state_model(semantics):
+        failures.append("semantic state model is incomplete")
+    if not has_complete_metric(semantics):
+        failures.append("semantic metric is incomplete")
+    if not has_complete_source_mappings(semantics, source_id):
+        failures.append("semantic source mappings are incomplete")
     bindings = decision.get("inputBindings")
-    binding_map = {binding.get("input"): binding.get("semanticId") for binding in bindings if isinstance(binding, dict)} if isinstance(bindings, list) else {}
-    binding_sources = {binding.get("sourceId") for binding in bindings if isinstance(binding, dict)} if isinstance(bindings, list) else set()
-    if tuple(decision.get("requiredInputs", [])) != REQUIRED_INPUTS or binding_map != EXPECTED_BINDINGS or binding_sources != {source_id}:
+    binding_map: dict[str, str] = {}
+    binding_sources: set[str] = set()
+    bindings_valid = isinstance(bindings, list) and len(bindings) == len(REQUIRED_INPUTS)
+    if bindings_valid:
+        for binding in bindings:
+            if not isinstance(binding, dict) or not all(isinstance(binding.get(field), str) for field in ("input", "semanticId", "sourceId")):
+                bindings_valid = False
+                break
+            binding_map[binding["input"]] = binding["semanticId"]
+            binding_sources.add(binding["sourceId"])
+    required_inputs = decision.get("requiredInputs")
+    if not bindings_valid or not isinstance(required_inputs, list) or tuple(required_inputs) != REQUIRED_INPUTS or binding_map != EXPECTED_BINDINGS or not isinstance(source_id, str) or binding_sources != {source_id}:
         failures.append("decision inputs are not bound to the supported semantic source contract")
     if decision.get("id") != "rank-delayed-shipment-for-review" or decision.get("version") != "1.0.0" or decision.get("rules") != EXPECTED_RULES:
         failures.append("decision rules do not match the supported synthetic contract")
+    if not has_owner(decision.get("owner")):
+        failures.append("decision service has no owner")
     decision_output = decision.get("output") if isinstance(decision.get("output"), dict) else {}
     if decision_output.get("persistentActionAllowed") is not False or "no write-back" not in str(decision.get("scope")):
         failures.append("decision contract does not enforce the non-persistent boundary")
@@ -94,6 +181,14 @@ def contract_failures(snapshot: dict[str, Any], semantics: dict[str, Any], decis
         failures.append("access evidence is not bound to the snapshot source")
     if access.get("decisionId") != "demo-access-decision-001":
         failures.append("access decision is not the supported synthetic decision")
+    if not has_owner(access.get("actor")):
+        failures.append("access decision has no authority")
+    if access.get("evaluatedAt") != DEFAULT_AS_OF or parse_timestamp(access.get("evaluatedAt")) is None:
+        failures.append("access decision evaluation is not current for the synthetic replay")
+    if access.get("subject") != EXPECTED_SUBJECT:
+        failures.append("access decision is not bound to the demo subject")
+    if access.get("scenarioId") != DEFAULT_SCENARIO_ID:
+        failures.append("access decision is not bound to the demo scenario")
     freshness_policy = access.get("freshnessPolicy") if isinstance(access.get("freshnessPolicy"), dict) else {}
     if freshness_policy.get("maximumAgeMinutes") != 60:
         failures.append("freshness policy does not match the supported synthetic SLA")
@@ -155,9 +250,10 @@ def disposition_records(dispositions: dict[str, str], recommendation_ids: set[st
     return records
 
 
-def replay(snapshot: dict[str, Any], semantic_definitions: dict[str, Any], decision_service: dict[str, Any], access_decision: dict[str, Any], *, as_of: str, dispositions: dict[str, str] | None = None) -> dict[str, Any]:
+def replay(snapshot: dict[str, Any], semantic_definitions: dict[str, Any], decision_service: dict[str, Any], access_decision: dict[str, Any], *, as_of: str = DEFAULT_AS_OF, actor: str = DEFAULT_ACTOR, scenario_id: str = DEFAULT_SCENARIO_ID, dispositions: dict[str, str] | None = None) -> dict[str, Any]:
     """Return a deterministic, synthetic read-only recommendation result."""
     captured_at, captured, evaluated = snapshot.get("capturedAt"), parse_timestamp(snapshot.get("capturedAt")), parse_timestamp(as_of)
+    access_evaluated = parse_timestamp(access_decision.get("evaluatedAt"))
     freshness_policy = access_decision.get("freshnessPolicy") if isinstance(access_decision.get("freshnessPolicy"), dict) else {}
     permissions = access_decision.get("permissions") if isinstance(access_decision.get("permissions"), dict) else {}
     maximum_age = freshness_policy.get("maximumAgeMinutes")
@@ -166,15 +262,22 @@ def replay(snapshot: dict[str, Any], semantic_definitions: dict[str, Any], decis
     if isinstance(maximum_age, int) and maximum_age >= 0 and age_seconds is not None:
         freshness_status = "fresh" if 0 <= age_seconds <= maximum_age * 60 else "stale"
     source_id = snapshot.get("sourceId")
-    access_summary = {"decisionId": access_decision.get("decisionId"), "query": permissions.get("query"), "recommendation": permissions.get("recommendation"), "controlledExecution": permissions.get("controlledExecution")}
+    access_summary = {"decisionId": access_decision.get("decisionId"), "binding": {"subject": access_decision.get("subject"), "scenarioId": access_decision.get("scenarioId")}, "query": permissions.get("query"), "recommendation": permissions.get("recommendation"), "controlledExecution": permissions.get("controlledExecution")}
     failures = contract_failures(snapshot, semantic_definitions, decision_service, access_decision)
     preconditions = list(failures)
     if freshness_status != "fresh":
         preconditions.append(f"freshness is {freshness_status}")
     if access_summary["query"] != "allowed" or access_summary["recommendation"] != "allowed":
         preconditions.append("access is not allowed")
+    if evaluated is not None and access_evaluated is not None and access_evaluated > evaluated:
+        preconditions.append("access decision postdates replay")
+    subject = access_decision.get("subject")
+    if not isinstance(subject, dict) or actor != subject.get("id"):
+        preconditions.append("access subject does not match replay actor")
+    if scenario_id != access_decision.get("scenarioId"):
+        preconditions.append("access scenario does not match replay scenario")
     output: dict[str, Any] = {
-        "scope": snapshot.get("scope"), "query": {"scenarioId": "shipment-delay-priority-demo", "asOf": as_of}, "result": empty_result(),
+        "scope": snapshot.get("scope"), "query": {"scenarioId": scenario_id, "actor": actor, "asOf": as_of}, "result": empty_result(),
         "semanticDefinition": {"registryId": semantic_definitions.get("registryId"), "version": semantic_definitions.get("version"), "status": semantic_definitions.get("status")},
         "sourceEvidence": {"sourceId": source_id, "capturedAt": captured_at, "recordCount": len(snapshot.get("records", [])) if isinstance(snapshot.get("records"), list) else 0},
         "freshness": {"asOf": as_of, "ageMinutes": age_seconds / 60 if age_seconds is not None else None, "ageSeconds": age_seconds, "maximumAgeMinutes": maximum_age, "status": freshness_status},
@@ -186,6 +289,11 @@ def replay(snapshot: dict[str, Any], semantic_definitions: dict[str, Any], decis
     records = snapshot.get("records")
     if not isinstance(records, list):
         output["preconditionFailures"].append("snapshot records are invalid")
+        return output
+    shipment_ids = [record.get("shipmentId") for record in records if isinstance(record, dict) and isinstance(record.get("shipmentId"), str)]
+    duplicate_ids = sorted({shipment_id for shipment_id in shipment_ids if shipment_ids.count(shipment_id) > 1})
+    if duplicate_ids:
+        output["preconditionFailures"].extend(f"duplicate shipmentId: {shipment_id}" for shipment_id in duplicate_ids)
         return output
     service_levels = allowed_service_levels(semantic_definitions)
     recommendations, escalations = [], []
@@ -227,16 +335,19 @@ def parse_dispositions(values: list[str]) -> dict[str, str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--snapshot", required=True, type=Path)
-    parser.add_argument("--semantic-definitions", required=True, type=Path)
-    parser.add_argument("--decision-service", required=True, type=Path)
-    parser.add_argument("--access-decision", required=True, type=Path)
-    parser.add_argument("--as-of", required=True)
+    fixture_root = Path(__file__).resolve().parents[1]
+    parser.add_argument("--snapshot", type=Path, default=fixture_root / "evidence/shipments.json")
+    parser.add_argument("--semantic-definitions", type=Path, default=fixture_root / "artifacts/semantic-definitions.json")
+    parser.add_argument("--decision-service", type=Path, default=fixture_root / "artifacts/decision-service.json")
+    parser.add_argument("--access-decision", type=Path, default=fixture_root / "evidence/access-decision.json")
+    parser.add_argument("--as-of", default=DEFAULT_AS_OF)
+    parser.add_argument("--actor", default=DEFAULT_ACTOR)
+    parser.add_argument("--scenario", default=DEFAULT_SCENARIO_ID)
     parser.add_argument("--disposition", action="append", default=[])
     args = parser.parse_args()
     try:
         dispositions = parse_dispositions(args.disposition)
-        output = replay(load_json(args.snapshot), load_json(args.semantic_definitions), load_json(args.decision_service), load_json(args.access_decision), as_of=args.as_of, dispositions=dispositions)
+        output = replay(load_json(args.snapshot), load_json(args.semantic_definitions), load_json(args.decision_service), load_json(args.access_decision), as_of=args.as_of, actor=args.actor, scenario_id=args.scenario, dispositions=dispositions)
         if dispositions and output["preconditionFailures"]:
             raise ValueError("cannot apply dispositions: " + "; ".join(output["preconditionFailures"]))
     except ValueError as error:

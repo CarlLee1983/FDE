@@ -6,6 +6,11 @@
     "role": "Demo Access Authority",
     "contact": "demo:access-authority"
   },
+  "subject": {
+    "id": "demo-logistics-coordinator",
+    "role": "Demo Logistics Coordinator"
+  },
+  "scenarioId": "shipment-delay-priority-demo",
   "sourceId": "demo-shipment-export-2026-08-25",
   "permissions": {
     "query": "allowed",

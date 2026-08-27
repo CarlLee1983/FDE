@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1",
+  "scope": "synthetic repository validation only",
+  "status": "passed-with-restrictions",
+  "evidence": {
+    "scenario": { "status": "passed", "source": "scenario.json", "restriction": "synthetic scenario shape; not target-enterprise approval" },
+    "process": { "status": "passed", "source": "artifacts/case-analysis.md", "restriction": "proposed synthetic paths; not live observation or user acceptance" },
+    "semantics": { "status": "passed", "source": "artifacts/semantic-definitions.json", "restriction": "released synthetic definitions and executable contract checks only" },
+    "decision": { "status": "passed", "source": "artifacts/decision-service.json", "restriction": "deterministic synthetic rules and tests only" },
+    "readOnlyReplay": { "status": "passed", "source": "expected/read-only-result.json", "restriction": "named synthetic subject, scenario, source, and fixture access only" }
+  },
+  "controls": {
+    "queryAndRecommendation": "allowed only for the bound synthetic subject, scenario, and source",
+    "controlledExecution": "denied",
+    "persistence": "none",
+    "externalSideEffects": "denied"
+  },
+  "qualityScenarios": [
+    "freshness boundary",
+    "access denied",
+    "actor or scenario mismatch",
+    "access decision postdates replay",
+    "semantic or decision contract drift",
+    "duplicate shipment identity",
+    "missing or invalid required fact",
+    "non-persistent disposition"
+  ],
+  "gates": {
+    "G1": "passed",
+    "G2": "passed",
+    "G3": "passed",
+    "G4": "passed",
+    "G5": "missing",
+    "G6": "unverifiable"
+  },
+  "changeRecord": {
+    "version": "2",
+    "change": "Consolidate the synthetic case narrative and assurance evidence, deepen the replay interface, and remove duplicated rehearsal ceremony.",
+    "rollback": "Restore the prior example files and replay interface from Git; no enterprise or persistent state requires migration or compensation."
+  },
+  "notEvidenceOf": [
+    "target-enterprise process acceptance or access",
+    "real source, identity, privacy, retention, or telemetry authorization",
+    "observed human adoption or persistent feedback",
+    "controlled execution or ERP write-back authorization",
+    "production safety or operating value",
+    "45 to 15 minute operating improvement",
+    "AI incremental value"
+  ]
+}

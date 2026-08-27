@@ -39,5 +39,5 @@
     "A record missing a required decision input is escalated without a score.",
     "No persistent ERP action is executed by this demo."
   ],
-  "notes": "Approved only inside the synthetic demo sandbox; see evidence/scenario-approval.json. This is not evidence of enterprise approval."
+  "notes": "Approved only inside the synthetic demo sandbox; see evidence/assurance.json. This is not evidence of enterprise approval."
 }

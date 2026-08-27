@@ -1,75 +1,83 @@
 {
-    "scope": "synthetic demo only",
-    "query": {
-        "scenarioId": "shipment-delay-priority-demo",
-        "asOf": "2026-08-25T09:00:00Z"
-    },
-    "result": {
-        "recommendations": [
-            {
-                "shipmentId": "SHP-1001",
-                "priorityScore": 90,
-                "reasons": [
-                    "overdueHours >= 48",
-                    "serviceLevel == critical",
-                    "atRiskCustomerCommitment == true"
-                ]
-            },
-            {
-                "shipmentId": "SHP-1002",
-                "priorityScore": 65,
-                "reasons": [
-                    "overdueHours >= 24 and overdueHours < 48",
-                    "temperatureControlled == true",
-                    "atRiskCustomerCommitment == true"
-                ]
-            },
-            {
-                "shipmentId": "SHP-1003",
-                "priorityScore": 35,
-                "reasons": [
-                    "overdueHours < 24",
-                    "serviceLevel == critical"
-                ]
-            }
-        ],
-        "escalations": [
-            {
-                "shipmentId": "SHP-1004",
-                "reason": "missing required input: overdueHours",
-                "priorityScore": null
-            }
+  "scope": "synthetic demo only",
+  "query": {
+    "scenarioId": "shipment-delay-priority-demo",
+    "actor": "demo-logistics-coordinator",
+    "asOf": "2026-08-25T09:00:00Z"
+  },
+  "result": {
+    "recommendations": [
+      {
+        "shipmentId": "SHP-1001",
+        "priorityScore": 90,
+        "reasons": [
+          "overdueHours >= 48",
+          "serviceLevel == critical",
+          "atRiskCustomerCommitment == true"
         ]
+      },
+      {
+        "shipmentId": "SHP-1002",
+        "priorityScore": 65,
+        "reasons": [
+          "overdueHours >= 24 and overdueHours < 48",
+          "temperatureControlled == true",
+          "atRiskCustomerCommitment == true"
+        ]
+      },
+      {
+        "shipmentId": "SHP-1003",
+        "priorityScore": 35,
+        "reasons": [
+          "overdueHours < 24",
+          "serviceLevel == critical"
+        ]
+      }
+    ],
+    "escalations": [
+      {
+        "shipmentId": "SHP-1004",
+        "reason": "missing required input: overdueHours",
+        "priorityScore": null
+      }
+    ]
+  },
+  "semanticDefinition": {
+    "registryId": "demo-shipment-semantics",
+    "version": "1.0.0",
+    "status": "released"
+  },
+  "sourceEvidence": {
+    "sourceId": "demo-shipment-export-2026-08-25",
+    "capturedAt": "2026-08-25T08:45:00Z",
+    "recordCount": 4
+  },
+  "freshness": {
+    "asOf": "2026-08-25T09:00:00Z",
+    "ageMinutes": 15.0,
+    "ageSeconds": 900.0,
+    "maximumAgeMinutes": 60,
+    "status": "fresh"
+  },
+  "accessDecision": {
+    "decisionId": "demo-access-decision-001",
+    "binding": {
+      "subject": {
+        "id": "demo-logistics-coordinator",
+        "role": "Demo Logistics Coordinator"
+      },
+      "scenarioId": "shipment-delay-priority-demo"
     },
-    "semanticDefinition": {
-        "registryId": "demo-shipment-semantics",
-        "version": "1.0.0",
-        "status": "released"
-    },
-    "sourceEvidence": {
-        "sourceId": "demo-shipment-export-2026-08-25",
-        "capturedAt": "2026-08-25T08:45:00Z",
-        "recordCount": 4
-    },
-    "freshness": {
-        "asOf": "2026-08-25T09:00:00Z",
-        "ageMinutes": 15.0,
-        "ageSeconds": 900.0,
-        "maximumAgeMinutes": 60,
-        "status": "fresh"
-    },
-    "accessDecision": {
-        "decisionId": "demo-access-decision-001",
-        "query": "allowed",
-        "recommendation": "allowed",
-        "controlledExecution": "denied"
-    },
-    "contractFailures": [],
-    "preconditionFailures": [],
-    "persistentActionExecuted": false,
-    "sessionDispositions": {
-        "persistence": "none",
-        "status": "not-requested",
-        "records": []
-    }
+    "query": "allowed",
+    "recommendation": "allowed",
+    "controlledExecution": "denied"
+  },
+  "contractFailures": [],
+  "preconditionFailures": [],
+  "persistentActionExecuted": false,
+  "sessionDispositions": {
+    "persistence": "none",
+    "status": "not-requested",
+    "records": []
+  }
 }
