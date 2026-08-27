@@ -19,8 +19,9 @@
 3. 由 [scenario.json](scenario.json) 看被核准的 demo scenario、可量測成果與來源／語意引用。
 4. 對照 [artifacts/process-model.md](artifacts/process-model.md)、[artifacts/semantic-definitions.json](artifacts/semantic-definitions.json) 與 [artifacts/decision-service.json](artifacts/decision-service.json)，確認流程節點、定義與規則是一致的。
 5. 由 [evidence/process-validation.json](evidence/process-validation.json) 確認 normal、exception 與 escalation path 已在 demo 中被角色驗證，再使用 [evidence/shipments.json](evidence/shipments.json) 的 snapshot，在 [evidence/access-decision.json](evidence/access-decision.json) 指定的 demo 權限內，手動計算優先序。
-6. 核對 [expected/read-only-result.json](expected/read-only-result.json)：它提供唯讀結果的完整契約：`result + semantic-definition version + source evidence + freshness + access decision`。
-7. 最後閱讀 [expected/gate-review.md](expected/gate-review.md)，確認 demo 可用的證據只支撐 G1–G4，G5 與 G6 沒有被誤判為通過。
+6. 使用 [scripts/validate-example.sh](scripts/validate-example.sh) 執行 scenario schema、replay tests、normal fixture contract、boundary/tie、stale、missing-field、access-denied 與 G1–G6 synthetic gate assertions。
+7. 核對 [expected/read-only-result.json](expected/read-only-result.json)：它提供唯讀結果的完整契約：`result + semantic-definition version + source evidence + freshness + access decision`。
+8. 最後閱讀 [expected/gate-review.md](expected/gate-review.md)，確認 demo 可用的證據只支撐 G1–G4，G5 與 G6 沒有被誤判為通過。
 
 ## 手動重播
 
@@ -47,6 +48,29 @@
 | SHP-1004 | 缺 `overdueHours` | escalation，無分數 |
 
 排序依 score 由高至低；若同分，依 `overdueHours` 由高至低，再依 `shipmentId` 遞增。結果只交由物流人員審閱，不呼叫任何 ERP 寫入介面。
+
+## 一鍵驗證與 CLI replay
+
+在 repository root 執行以下命令，可重播整個 synthetic slice；它只讀取本目錄 fixture／contract，且不建立、修改或提交任何企業資料：
+
+```bash
+examples/shipment-delay-priority/scripts/validate-example.sh
+```
+
+只輸出一份唯讀 JSON 時，明確傳入 snapshot、semantic、decision 與 access contract：
+
+```bash
+python3 examples/shipment-delay-priority/scripts/replay_shipment_delay_priority.py \
+  --snapshot examples/shipment-delay-priority/evidence/shipments.json \
+  --semantic-definitions examples/shipment-delay-priority/artifacts/semantic-definitions.json \
+  --decision-service examples/shipment-delay-priority/artifacts/decision-service.json \
+  --access-decision examples/shipment-delay-priority/evidence/access-decision.json \
+  --as-of 2026-08-25T09:00:00Z
+```
+
+人員可在一次 CLI session 內加入 `--disposition SHP-1001=accepted`、`rejected` 或 `needs-investigation`。輸出會為每項 disposition 列出 Demo Logistics Coordinator 的下一個 accountable outcome；它標示為 `sessionDispositions.persistence: none`，不保存 feedback、也不改變 shipment、規則、語意或 access evidence。若 snapshot stale、query/recommendation access denied 或任何 contract 驗證失敗，帶 disposition 的 CLI 會以 non-zero 結束並清楚報錯，不會靜默忽略人工決定。
+
+CLI 會 fail closed：四份 artifact 都必須維持已知的 synthetic scope、released semantic/source binding、decision input binding/rules、`controlledExecution: denied`、`demo-access-decision-001`、60-minute freshness SLA 與 non-persistent boundary。`Shipment.serviceLevel` 的 semantic `allowedValues` 必須恰為且依序為 `critical`、`standard`（extra、duplicate 或 drift 都拒絕）；`shipmentId` 必須是非空字串，`overdueHours` 必須是有限且非負的數字，兩個風險 flags 都必須是 boolean。每筆不合法資料會在讀取結果中以具名 escalation 顯示，不會進入排序。Freshness 以完整秒數比較：正好 60 分鐘仍 fresh，超過一秒即 stale，並同時輸出 `ageSeconds`，避免 `ageMinutes` 的顯示掩蓋超時。同一個 `shipmentId` 重複傳入 `--disposition` 會 non-zero 拒絕，不會採用最後一筆值。
 
 ## 工件、證據與決策的關係
 

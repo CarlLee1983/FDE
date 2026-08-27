@@ -27,6 +27,14 @@ When a case slice produces learning that might change FDE core or be reused acro
 
 When AI is justified for work whose method is not yet stable enough to specify, design a **governed capability-evolution loop** rather than a permanent prompt-bound task. Capture recommendations, human corrections, exceptions, and outcomes as evidence; use them to propose named process, semantic, decision, tool, model, or control changes. Promote repeated and accepted work into versioned, tested software only through an accountable owner and a replay or shadow comparison. The AI may then use the released capability and look for the next gap; it does not approve its own proposal, silently change policy, or publish production behavior.
 
+## AI implementation boundary
+
+Treat AI as a replaceable implementation option at a justified intervention node. This skill owns the stable operating contract around it: the retained task, inputs and outputs, evidence, evaluation boundary, human judgment, permissions, controls, and accountable outcome. Concrete model, prompt, agent, orchestration, retrieval, memory, framework, and user-interface choices vary too quickly to form the core FDE method. Specify them only when a separately accepted capability-build request and current delivery constraints require implementation detail, and keep them subordinate to the stable operating contract.
+
+## Functional validation
+
+Validate this skill through enterprise end-to-end examples, not isolated implementation-technique demonstrations. Each example starts from a bounded operating problem and traces the complete path through current-work diagnosis, target-work redesign, semantic and source evidence, a decision or action, authority and control boundaries, an observable result, and the next accountable outcome. A synthetic example validates repository behavior only when that path is replayable, evidence states remain intact across every artefact, and the resulting gate decision restricts the next step correctly. Keep it labelled synthetic: it does not establish target-enterprise facts, acceptance, access, production value, or release authority.
+
 ## Control boundary
 
 For an operating solution proposal, use the [solution proposal contract](references/solution-proposal.md). A gate gap limits the authority and claims of the proposal; it does not justify stopping at a gap list. Always return the highest safe proposed solution, its first buildable slice, and the concrete owner action or evidence needed next. Do not make model evaluation, model infrastructure, or AI interaction part of that slice unless the process analysis shows that the slice cannot deliver its intended outcome without them.

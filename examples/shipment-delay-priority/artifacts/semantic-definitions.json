@@ -55,7 +55,8 @@
     {
       "id": "Shipment.serviceLevel",
       "kind": "field",
-      "definition": "The demo service classification; critical receives the declared decision addition and standard does not."
+      "definition": "The demo service classification; critical receives the declared decision addition and standard does not.",
+      "allowedValues": ["critical", "standard"]
     },
     {
       "id": "Shipment.temperatureControlled",
