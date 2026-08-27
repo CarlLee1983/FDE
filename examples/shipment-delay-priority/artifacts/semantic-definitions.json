@@ -97,7 +97,7 @@
       "definition": "Minutes from opening a daily demo export to providing a human-ready ranked review list.",
       "unit": "minutes per daily batch",
       "status": "released",
-      "source": "shipment-delay-priority-demo scenario contract and future demo timing observations",
+      "source": "shipment-delay-priority-demo scenario contract; no timing observations are recorded",
       "owner": {
         "role": "Demo Shipment Operations Owner",
         "contact": "demo:shipment-ops-owner"

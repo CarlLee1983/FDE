@@ -90,47 +90,47 @@ A removable explanation experiment may be justified later if shadow evidence sho
 | --- | --- | --- |
 | Accept the target workflow, policy, owners, baseline, and target | Process owner with affected coordinators | Demo assumptions are `proposed`; target-enterprise acceptance is `missing` |
 | Validate freshness, required fields, semantic version, access, score, tie-break, and escalation | Deterministic context and decision services | Demo rules and tests are `evidenced`; production implementation is `proposed` |
-| Present the queue, reason trace, evidence, and review states | Read-only review workbench | `proposed` |
+| Present the queue, reason trace, evidence, and review states | Synthetic CLI validation seam; enterprise delivery surface remains undecided | CLI behavior is `evidenced` in the demo; enterprise UI or workflow integration is `missing` |
 | Accept, reject, or investigate a recommendation and choose operational follow-up | Logistics coordinator | Demo role is `evidenced`; target-enterprise owner and workflow acceptance are `missing` |
 | Explain or compare records with AI | Deferred, removable experiment | Need and incremental benefit are `unverifiable` |
 | Modify a shipment or write to ERP | Named governed action service | Out of scope and denied by demo access evidence |
 
-The first slice needs a snapshot adapter, context resolver, deterministic decision service, review interface, and operational observability. Technology and hosting choices remain `missing`; the repository contains no application runtime constraints. No model runtime or model-evaluation infrastructure is required for the first slice.
+The synthetic repository slice contains a snapshot loader, contract validation, deterministic decision service, CLI review seam, and automated verification. It deliberately does not choose an enterprise delivery surface or observability stack. Technology and hosting choices remain `missing`; the repository contains no application runtime constraints. No model runtime or model-evaluation infrastructure is required.
 
-## First buildable vertical slice
+## Completed synthetic validation slice
 
-Deliver one read-only workbench where a named demo user can:
+The repository now provides one read-only CLI seam where a named demo user can:
 
 1. load the supplied shipment snapshot;
 2. see freshness, semantic version, and access status before any recommendation;
 3. receive the ranked list with deterministic score traces and separately escalated records;
-4. inspect the source fields and reason trace used for each result;
-5. mark a recommendation `accepted`, `rejected`, or `needs-investigation` with a session-local reason; and
+4. inspect the source-evidence metadata and deterministic reason trace returned for each result;
+5. mark a recommendation `accepted`, `rejected`, or `needs-investigation` for the session and receive the CLI's fixed next accountable outcome; and
 6. observe a clear stop or escalation when data, evidence, or access is insufficient.
 
-The slice explicitly defers AI explanation, authentication integration, enterprise source connectivity, persistent telemetry, ERP write-back, autonomous action, production scaling, and claims about operating value.
+The CLI is the formal synthetic validation interface, not a claim that an enterprise workbench exists. The slice explicitly defers UI implementation, AI explanation, authentication integration, enterprise source connectivity, persistent telemetry, ERP write-back, autonomous action, production scaling, and claims about operating value.
 
 ## Delivery work packages
 
 | Work package | Observable result | Completion evidence |
 | --- | --- | --- |
-| 1. Validate and accept the process | Operators confirm or correct as-is and target paths, ownership, and exceptions | Process validation record with accountable acceptance |
-| 2. Freeze the deterministic contract | Input, context bundle, decision result, escalation, and review-state schemas are agreed | Contract examples validate; prohibited side effects are explicit |
-| 3. Implement deterministic replay | The supplied four records return 90, 65, 35, and one escalation | Existing decision and boundary tests pass |
-| 4. Assemble the review workbench | A user can inspect queue, evidence, trace, and all three session-local review states | End-to-end workflow test; persistence remains disabled |
-| 5. Prepare process shadow | Owners approve identity, source access, telemetry, support, rollback, and measures | Target-enterprise approvals and reproducible baseline; currently `missing` |
+| 1. Model and validate the synthetic process | Demo roles accept the supplied as-is and target paths, ownership, and exceptions | Complete only for the synthetic scope; target-enterprise acceptance is `missing` |
+| 2. Freeze the synthetic deterministic contract | Input, context bundle, decision result, escalation, and review-state schemas are explicit | Complete for the repository fixture; prohibited side effects are explicit |
+| 3. Implement deterministic replay | The supplied four records return 90, 65, 35, and one escalation | Complete; CLI and boundary tests pass |
+| 4. Complete the synthetic review seam | A user can inspect queue, evidence, trace, and all three session-local review states | Complete in CLI; persistence remains disabled and no enterprise UI is claimed |
+| 5. Prepare process shadow | Gather enterprise decisions for process, owners, semantics, source access, persistence, telemetry, support, rollback, and measures | Preparation package exists; target-enterprise evidence remains `missing` |
 | 6. Decide whether to run an AI experiment | Shadow shows a material residual explanation or comparison burden | Accepted experiment hypothesis and non-AI baseline |
 
 ## Validation and rollout
 
-1. **Replay validation:** use the synthetic fixtures to verify context, deterministic decision, evidence display, stop and escalation behavior, and all review states.
+1. **Replay validation:** use the completed synthetic CLI and fixtures to verify context, deterministic decision, evidence display, stop and escalation behavior, and all review states.
 2. **Operator walkthrough:** have affected coordinators complete normal, stale-batch, missing-field, disagreement, and investigation cases; correct the target process before adding features.
-3. **Target-enterprise process shadow:** run the workbench beside the existing manual process without changing ERP or operational decisions. Compare cycle time, ranking disagreements, review states, reason codes, escalations, and user trust. Authorization, telemetry retention, real data, and baseline are currently `missing`.
+3. **Target-enterprise process shadow:** run the approved read-only delivery surface beside the existing manual process without changing ERP or operational decisions. Compare cycle time, ranking disagreements, review states, reason codes, escalations, and user trust. The delivery surface, authorization, telemetry retention, real data, and baseline are currently `missing`.
 4. **Read-only pilot:** expose recommendations to approved users only after source, identity, privacy, telemetry, support, and acceptance decisions are evidenced.
 5. **AI experiment, only if warranted:** compare the removable explanation feature against the accepted non-AI workbench. Require zero unsupported claims, correct abstention for every seeded insufficient-evidence case, no successful prompt injection or forbidden disclosure, schema-valid evidence-bearing output, agreement with the deterministic trace, and accepted latency and cost limits. Any hard-gate failure removes the experiment without affecting the core workflow.
 6. **Authority review:** consider write-back only after G5 controls for approval, audit, idempotency, recovery, and target-system authorization have been tested.
 
-Rollback for the first slice is to remove the workbench from the review workflow and return users to the existing export. No ERP state needs compensation because the slice performs no ERP write.
+Rollback for an enterprise read-only slice is to remove its approved delivery surface from the review workflow and return users to the existing process. No ERP state should need compensation because the slice performs no ERP write.
 
 ## Evidence ledger
 
@@ -139,7 +139,7 @@ Rollback for the first slice is to remove the workbench from the review workflow
 | The demo scenario, process, semantic definitions, rules, snapshot, and access decision form a replayable read-only evidence chain | `evidenced` | Files in this example and `expected/gate-review.md` |
 | 90, 65, 35, and one escalation are the expected deterministic outputs | `evidenced` | `decision-test-report.json` and `read-only-result.json` |
 | The proposed process redesign will reduce coordinator effort | `unverifiable` | Requires real as-is observation, an accepted baseline, and process shadow |
-| A read-only workbench can expose the deterministic evidence chain without AI | `proposed` | Must be built and tested with affected users |
+| The synthetic CLI exposes the deterministic evidence chain without AI | `evidenced` | CLI replay, expected result, and automated tests; this does not evidence an enterprise UI |
 | AI explanation has incremental value after the redesign | `unverifiable` | Requires residual-burden evidence and comparison against the non-AI workbench |
 | The target enterprise accepts the workflow, ownership, source access, identity, privacy, and telemetry | `missing` | Blocks real-data shadow or pilot |
 | Triage time will improve from 45 to 15 minutes | `unverifiable` | Requires reproducible baseline and shadow or production measures |
@@ -147,6 +147,6 @@ Rollback for the first slice is to remove the workbench from the review workflow
 
 ## Next accountable action
 
-For this repository demo, the next work package is to record the as-is assumptions, target flow, owners, review-state behavior, and exception paths as an explicit process acceptance checklist, then implement the deterministic replay and read-only workbench without AI. Completion is observable when the synthetic workflow cases pass end to end and no integration, permission, or model dependency has been invented.
+For this repository demo, the deterministic replay and session-local review seam are complete. The repository should not add a UI or AI implementation merely to extend the synthetic case.
 
-For a real enterprise engagement, the first action is a process-framing and validation session with the accountable business owner, logistics users, source owner, and FDE delivery owner. It must replace the synthetic process, owner, baseline, target, source, access, and acceptance claims with verifiable enterprise evidence before process shadow can be authorized.
+For a real enterprise engagement, use the [enterprise process-shadow preparation package](enterprise-shadow-preparation.md) in a process-framing and validation session with the accountable business owner, process-change authority, logistics users, source owner, security/privacy representative, and FDE delivery owner. It must replace the synthetic process, owner, baseline, target, source, access, and acceptance claims with verifiable enterprise evidence before process shadow can be authorized. Do not create a real enterprise scenario or connect a source until those decisions are evidenced.

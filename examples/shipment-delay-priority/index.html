@@ -672,7 +672,7 @@
         <h1>先把出貨延誤審閱流程改好，再決定 AI</h1>
         <p class="hero-lead">
           這個範例先找出人工掃描、例外混雜與缺少理由 trace 的流程問題，再設計不依賴 AI 的
-          目標流程。第一個切片是確定性排序與人工審閱工作台；只有 shadow 證明仍有解釋負擔時，
+          目標流程。Repository 第一個切片以 CLI 驗證確定性排序與人工 disposition；企業 delivery surface 尚未決定。只有 shadow 證明仍有解釋負擔時，
           才評估可拔除的 AI 實驗。
         </p>
         <div class="demo-notice">合成示範資料，不代表任何企業已核准、上線或產生效益</div>
@@ -727,7 +727,7 @@
             <div class="step-number">00</div>
             <div>
               <p class="step-kicker">Process-first operating solution · 先講結論</p>
-              <h2>先交付不含 AI 的「出貨延誤審閱工作台」</h2>
+              <h2>先驗證不含 AI 的出貨延誤審閱契約</h2>
               <p class="step-question">現行流程卡在哪裡？應先改掉什麼？第一個切片要交付什麼？</p>
             </div>
           </header>
@@ -802,8 +802,8 @@
                     </tr>
                     <tr>
                       <td>讓人員理解與質疑排序</td>
-                      <td><strong>結構化 UI＋reason trace</strong></td>
-                      <td>先用最低複雜度介面建立可比較基線</td>
+                      <td><strong>結構化呈現＋reason trace</strong></td>
+                      <td>Repository 先以 CLI 驗證；企業介面由實際流程決定</td>
                     </tr>
                     <tr>
                       <td>實際後續處置</td>
@@ -818,8 +818,9 @@
             <section class="block">
               <h3>第一個可交付垂直切片：不含 AI</h3>
               <p style="margin-bottom: 14px;">
-                交付一個唯讀工作台：先顯示資料能否使用，再呈現 ranked queue、escalated records、
-                每筆來源欄位與 reason trace，最後讓使用者標記 accepted、rejected 或 needs-investigation。
+                Repository 已交付唯讀 CLI validation seam：先顯示資料能否使用，再呈現 ranked queue、
+                escalated records、source-evidence metadata 與 reason trace，最後讓使用者標記 accepted、rejected 或 needs-investigation。
+                這是 synthetic contract 的驗證介面，不代表企業 UI 已存在。
               </p>
               <div class="table-wrap">
                 <table>
@@ -844,12 +845,12 @@
                     <tr>
                       <td><strong>3. 規則重播</strong></td>
                       <td>四筆資料穩定得到 90、65、35 與一筆 escalation</td>
-                      <td>現有 7 個 decision tests 自動通過</td>
+                      <td>現有 replay 與 decision tests 自動通過</td>
                     </tr>
                     <tr>
-                      <td><strong>4. 審閱工作台</strong></td>
-                      <td>使用者查看 queue、evidence、trace 與三種 session-local review state</td>
-                      <td>正常、stale、缺欄位、質疑與調查流程測試</td>
+                      <td><strong>4. Synthetic review seam</strong></td>
+                      <td>CLI 可查看 queue、evidence、trace 與三種 session-local review state</td>
+                      <td>已完成；persistence disabled，企業 UI 尚未決定</td>
                     </tr>
                     <tr>
                       <td><strong>5. Process shadow</strong></td>
@@ -886,12 +887,12 @@
                     <tr>
                       <td>情境、規則、結果與唯讀權限鏈可重播</td>
                       <td><span class="status pass">evidenced in demo</span></td>
-                      <td>足以實作 demo replay 的確定性核心</td>
+                      <td>已由 CLI replay 驗證確定性核心</td>
                     </tr>
                     <tr>
                       <td>工作台能改善真實審閱流程</td>
                       <td><span class="status unknown">unverifiable</span></td>
-                      <td>需要 process acceptance、實作與 shadow measurement</td>
+                      <td>需要 process acceptance、企業 delivery surface 與 shadow measurement</td>
                     </tr>
                     <tr>
                       <td>AI explanation 對非 AI baseline 有增量價值</td>
@@ -917,19 +918,20 @@
               <h3>完整方案檔案</h3>
               <div class="files">
                 <a class="file-link" href="artifacts/operating-solution-proposal.md">operating-solution-proposal.md</a>
+                <a class="file-link" href="artifacts/enterprise-shadow-preparation.md">enterprise-shadow-preparation.md</a>
               </div>
             </section>
 
             <div class="next-action">
               <h3>現在要做的下一件事</h3>
               <p>
-                先由 process owner、物流使用者與 FDE delivery owner 接受或修正 as-is 診斷、target flow、
-                handoff、exception 與 first-slice boundary，再建立 deterministic contracts 與唯讀工作台。
-                完成標準是團隊能在不虛構 integration、permission 或 model dependency 的前提下跑完正常與例外流程。
+                Synthetic deterministic contracts 與 CLI review seam 已完成。下一步由 business owner、process-change authority、
+                物流使用者、source owner、security/privacy 代表與 FDE delivery owner 使用 shadow 準備包，接受或修正 as-is、
+                target、handoff 與 exception，並補齊真實 source、access、baseline、telemetry、support 與 rollback 證據。
               </p>
               <ul>
                 <li><strong>若套用到真實企業：</strong>先用現場證據取代 demo 的 process、owner、baseline、source、access 與 acceptance。</li>
-                <li><strong>若只延伸本 demo：</strong>下一個工程切片是 context／decision contracts 與不含 AI 的唯讀 review workbench。</li>
+                <li><strong>若只延伸本 demo：</strong>Repository validation 階段已結案；不再為了展示而新增 UI 或 AI。</li>
               </ul>
             </div>
           </div>
@@ -1439,12 +1441,12 @@
             <div class="final-boundary">
               <h3>所以，這個方案現在走到哪裡？</h3>
               <p>
-                已有一條可重播的「唯讀出貨延誤排序建議」證據鏈，足以支撐審閱工作台的確定性核心；
-                真實流程接受、使用者介面與 process shadow 尚未實作或驗證。AI explanation 只是之後可能進行的實驗。
+                已有一條可重播的「唯讀出貨延誤排序建議」證據鏈，CLI validation seam 也已覆蓋三種 session-local disposition；
+                真實流程接受、企業 delivery surface 與 process shadow 尚未實作或驗證。AI explanation 只是之後可能進行的實驗。
               </p>
               <ul>
                 <li><strong>已證明：</strong>情境、流程、語意、規則、測試、唯讀結果與 demo Gate review。</li>
-                <li><strong>已提出但未證明：</strong>現況診斷、目標流程、審閱 UI 與 process shadow。</li>
+                <li><strong>已提出但未證明：</strong>真實企業的現況診斷、目標流程、delivery surface 與 process shadow。</li>
                 <li><strong>目前不做：</strong>AI 解釋；除非非 AI baseline 顯示仍有顯著解釋負擔。</li>
                 <li><strong>最高安全方案：</strong>唯讀、確定性排序、人工審閱、沒有 ERP side effect。</li>
               </ul>
