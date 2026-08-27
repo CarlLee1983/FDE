@@ -1,10 +1,10 @@
-# 決策記憶演進：讓企業不再重複忘記
+# AI 數據分析師演進：用決策記憶持續打造模型工具箱
 
 > **Synthetic demo only。** 本案例的人員、數字、資料來源、權限、基線與結果都是為了說明方法而虛構。它不能證明任何企業已經核准、上線或得到效益。
 
-這個案例回答一個常被報表忽略的問題：企業記得每週的營收數字，卻不一定記得當時根據什麼證據做了什麼判斷、採取什麼行動，以及後來結果如何。下一次遇到相似情況，分析人員只好重新調查。
+這個案例打造一位會持續擴充分析工具箱的 AI 數據分析師。它不只把每週營收數字改寫成文字，而是驗證資料、拆解變化、建立競爭性假設、尋找反證，並從人工修正與結果中提出下一個數據模型候選。
 
-案例以 B2B 客戶訂購節奏下降為場景。它不是要做一個自動判定客戶流失的模型，而是建立一條完整且可追溯的決策鏈：
+案例以 B2B 客戶訂購節奏下降為場景。決策記憶不是最終目的，而是分析師演進所需的證據機制：
 
 ```text
 商業訊號 → 來源證據 → 人類解讀 → 決策與理由 → 行動 → 後續結果
@@ -12,13 +12,19 @@
 
 這條決策鏈同時餵養兩條迴路：營運迴路幫助人員完成今天的審閱；演進迴路從反覆修正與結果中提出下一個能力候選。AI 可以整理與提議，但不能自行把一次成功寫成政策，也不能自行發布正式能力。
 
+已穩定的分析方法會下沉成語意、指標、診斷、行為、決策或結果模型；AI 使用這些模型探索下一個未知問題。人類 owner 接受模型定義和商業判斷，受治理的交付流程負責測試、發布、監控與回復。
+
 案例的核心資產是一筆不可覆寫的 `DecisionEpisode`。後續修正以新紀錄取代舊解讀的效力，但保留當時看到的證據、版本與判斷；歷史重播只能使用決策當時已存在的資料，不能偷看後來才發生的結果。
 
 ## 主要入口
 
 - 適合展示與講解：[index.html](index.html)
 - 詳細案例與交付方案：[artifacts/operating-solution-proposal.md](artifacts/operating-solution-proposal.md)
+- AI 分析師與模型演進：[artifacts/analyst-model-evolution.md](artifacts/analyst-model-evolution.md)
 - Append-only 決策紀錄契約：[artifacts/decision-episode.schema.json](artifacts/decision-episode.schema.json)
+- 案例結案審查：[artifacts/closure-review.md](artifacts/closure-review.md)
+- 三組合成 DecisionEpisode revisions：[evidence/decision-episodes.json](evidence/decision-episodes.json)
+- 合成 replay report：[evidence/replay-report.json](evidence/replay-report.json)
 - 原始需求：[request.md](request.md)
 - 提議中的 scenario record：[scenario.json](scenario.json)
 
@@ -26,9 +32,9 @@
 
 舊流程每週產生客戶營收報表。發現客戶 A 訂購下降後，分析人員再到訂單、客服紀錄、續約資料與業務訊息中找原因。會議最後可能決定請業務確認，但判斷理由與後續結果分散各處。三個月後遇到相似客戶，團隊又從頭查一次。
 
-新流程先用確定性方法找出值得審閱的訂購變化，再建立一筆決策紀錄，把訊號、證據、人類解讀、決策、理由、觀察期限與結果連起來。流程與 baseline 經真實 owner／使用者確認後，才條件性評估 AI 是否能在相同證據上更快整理脈絡、找出矛盾、比較過往案例並提出有界限的假設。
+新流程先用確定性模型找出值得審閱的訂購變化並拆解頻率、單價與組合。AI 數據分析師建立採購延後、服務阻塞、需求下降與資料缺漏等競爭性假設，列出支持、反對與缺少證據，再由人類決定下一個查證。流程與 baseline 經真實 owner／使用者確認後，才以 shadow 驗證 AI 是否帶來增量價值。
 
-當八筆合成決策都顯示分析人員反覆漏看「決策當時仍未結案的服務事件」，AI 提出新的 context capability 候選。只有在可明確定義、以 as-of 資料重播、可測試且由負責人接受後，才發布成版本化的 `assembleAccountReviewContext()` 工具。AI 發現缺口；確定性工具負責正式能力。
+當三組合成 episode 的初版與修正版都顯示分析人員反覆漏看「決策當時仍未結案的服務事件」，AI 提出新的 [context model candidate](artifacts/model-candidate.json)。合成 replay 只證明案例形狀成立；真實能力仍須 owner 接受與 shadow evidence，才能發布成版本化的 `assembleAccountReviewContext()` 工具。
 
 ## 客戶 A 的合成故事
 
@@ -69,7 +75,7 @@ AI 不得把客戶標記為流失、自行聯繫客戶、指派任務、修改 C
 
 ## 證據狀態
 
-本案例目前是 `proposed`，AI selection 是 `deferred`。真實流程負責人、使用者驗證、資料權限、指標定義、歷史基線、CRM 控制與商業成效全部是 `missing` 或 `unverifiable`。因此它只能用來說明和演練方法，不能宣稱已能辨識流失、改善留存或直接上線。
+本案例目前是 `proposed`，AI selection 是 `deferred`。真實流程負責人、使用者驗證、資料權限、指標定義、歷史基線、CRM 控制與商業成效全部是 `missing` 或 `unverifiable`。因此它只能用來說明和演練方法，不能宣稱已能辨識流失、改善留存或直接上線。Synthetic 教學案例文件已完成，可依[結案審查](artifacts/closure-review.md)在 repository 範圍結案；企業交付不可結案。
 
 ## 下一個負責行動
 

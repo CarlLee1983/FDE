@@ -1,0 +1,24 @@
+{
+  "status": "synthetic-demonstration-only",
+  "episodeCount": 3,
+  "revisionCount": 6,
+  "baseline": "order-only-account-review-context@0.1.0",
+  "candidate": "assemble-account-review-context@proposed:0.1.0",
+  "observedPattern": "All three initial revisions omitted a service incident that was available before decisionAsOf; all three human reviews requested the missing context, and the superseding revisions added it.",
+  "futureDataLeakageChecks": {
+    "evidenceAvailableAfterDecisionAsOf": 0,
+    "result": "passed-for-synthetic-fixtures"
+  },
+  "lineageChecks": {
+    "selfSupersedingRevisions": 0,
+    "missingPredecessors": 0,
+    "crossEpisodePredecessors": 0,
+    "result": "passed-for-synthetic-fixtures"
+  },
+  "candidateDecision": "propose-for-real-owner-review-not-release",
+  "limitations": [
+    "The fixtures are invented and cannot establish enterprise prevalence or value.",
+    "No real owner accepted the candidate.",
+    "No runtime, production model, or journal action was implemented."
+  ]
+}

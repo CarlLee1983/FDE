@@ -1,0 +1,26 @@
+{
+  "id": "assemble-account-review-context",
+  "version": "proposed:0.1.0",
+  "status": "candidate",
+  "businessProblem": "Account reviews repeatedly omit service incidents that were open at the decision-as-of time, encouraging premature demand-decline explanations.",
+  "input": {
+    "accountId": "string",
+    "asOfDate": "date-time",
+    "contextVersion": "string",
+    "actorId": "string"
+  },
+  "output": {
+    "permittedEvidence": "source-revision-bound evidence items available at or before asOfDate",
+    "missingEvidence": "required evidence that is unavailable, stale, conflicting, or denied",
+    "provenance": "source, revision, content hash, availableAt, retrievedAt, freshness, access decision"
+  },
+  "failureBehavior": [
+    "Reject when access decision is missing.",
+    "Exclude evidence whose availableAt is later than asOfDate.",
+    "Expose stale, conflicting, or unavailable evidence without inventing a value."
+  ],
+  "baseline": "proposed:order-only-account-review-context@0.1.0",
+  "candidateOwner": "missing:real-data-and-commercial-owner",
+  "promotionGate": "Replay must show zero future-data leakage, complete provenance, accepted incremental value, versioning, observability, and rollback.",
+  "releaseStatus": "not-released"
+}

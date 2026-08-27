@@ -1,4 +1,4 @@
-# 決策記憶演進：操作方案提案
+# AI 數據分析師與模型演進：操作方案提案
 
 > **證據邊界：Synthetic / Proposed。** 本文是一個可演練的 FDE 案例，不是任何企業的現況、授權或成效證據。所有角色、數字、來源與系統名稱只表示解決方案應有的形狀；缺少的企業事實標示為 `missing` 或 `unverifiable`。
 
@@ -36,7 +36,7 @@
 - 相似案例再次出現時，團隊重新匯出資料和詢問相同的人。
 - 原因不明時，升級責任人與棄答條件不清楚。
 
-真正問題是缺少共同決策記錄與回饋路徑，不是缺少更會下結論的模型。此診斷尚未由真實流程 owner 和 affected users 確認，狀態為 `proposed`。
+真正問題不是缺少一段自動生成的解讀，而是缺少可重用的診斷方法、競爭性假設分析、共同決策記錄與回饋路徑。此診斷尚未由真實流程 owner 和 affected users 確認，狀態為 `proposed`。
 
 ### Process-readiness decision
 
@@ -84,7 +84,7 @@
 | 觀察 | 三十天後訂購恢復 | 後續事實，不單獨證明原假設 |
 | 修正 | 不應只以訂購下降標記商業流失 | 能力候選證據之一 |
 
-若八筆合成 `DecisionEpisode` 都顯示團隊反覆漏看決策當時仍未結案的服務事件，可以提出 `assembleAccountReviewContext(accountId, asOfDate, contextVersion)` 候選，把 as-of 服務事件與 provenance 穩定加入 context bundle；一次案例不足以建立正式規則。
+三組合成 `DecisionEpisode` 的初版與 superseding revision 都顯示團隊反覆漏看決策當時仍未結案的服務事件，因此案例提出 `assembleAccountReviewContext(accountId, asOfDate, contextVersion)` 候選，把 as-of 服務事件與 provenance 穩定加入 context bundle。這只證明 synthetic story 可重播，不證明真實企業有相同模式或候選值得發布。
 
 ## 6. 介入選擇與 AI-fit
 
@@ -103,6 +103,10 @@
 目前為 `deferred`。若流程 readiness 成立，AI 在「綜整分散文字脈絡、揭露互相矛盾的證據、比較允許使用的過往決策紀錄、產生明確標示假設的摘要」可能具有條件性價值。它必須與重設後的非 AI baseline 在相同案例上比較時間、groundedness、棄答與修正率。
 
 AI 不負責異常計算、政策門檻、access decision、因果認定、最終決策或外部行動。
+
+### 分析師與模型的演進關係
+
+案例中的 AI 身份是「企業數據分析師」，不是報表摘要器。它使用已發布的語意、指標、診斷、行為、決策與結果模型處理已知工作；遇到模型無法回答的問題時，才負責跨證據綜整、競爭性假設、反證與下一查證。重複且穩定的方法依 [`analyst-model-evolution.md`](analyst-model-evolution.md) 的模型生命週期下沉為版本化資產，再由 AI 使用。
 
 ## 7. 營運迴路與演進迴路
 

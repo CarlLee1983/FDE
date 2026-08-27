@@ -1,7 +1,7 @@
 {
   "id": "decision-memory-evolution-demo",
-  "name": "Commercial decision memory evolution (demo)",
-  "description": "Synthetic demonstration of an account-review workflow that connects a business signal to evidence, human interpretation, action, and later outcome, then uses repeated corrections to propose governed decision-support capabilities.",
+  "name": "AI data analyst and model evolution (demo)",
+  "description": "Synthetic demonstration of an evolving AI data analyst that uses governed data models to diagnose an account pattern, preserves competing hypotheses and decision memory, and turns repeated analytical corrections into proposed model capabilities.",
   "status": "proposed",
   "businessOwner": {
     "role": "Demo Commercial Operations Process Owner",
@@ -13,7 +13,7 @@
     "Demo Account Owner",
     "Demo Commercial Analyst"
   ],
-  "decisionOrAction": "Review an evidence-linked account signal, record the accountable human interpretation and rationale, choose monitor, verify, or escalate, and later connect the observed outcome without allowing the assistant to contact the customer or update CRM autonomously.",
+  "decisionOrAction": "Use governed models to decompose an evidence-linked account signal, preserve competing hypotheses and missing evidence, support an accountable human choice of monitor, verify, or escalate, and connect the later outcome without autonomous customer contact or CRM updates.",
   "metrics": [
     {
       "name": "Decision trace completeness",
@@ -40,7 +40,7 @@
   "ontologyReferences": [
     {
       "id": "proposed:commercial-decision-memory-semantics@0.1.0",
-      "purpose": "Proposed definitions for account signal, evidence item, interpretation, decision, rationale, follow-up action, observation window, outcome, correction, and capability candidate."
+      "purpose": "Proposed definitions for account signal, evidence, fact, hypothesis, analytical model, interpretation, decision, rationale, action, outcome, correction, and model capability candidate."
     }
   ],
   "sourceReferences": [

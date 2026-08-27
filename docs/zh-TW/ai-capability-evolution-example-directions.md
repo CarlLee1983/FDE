@@ -316,7 +316,7 @@ AI 不得自行：
 
 ## 8. 已落實的第一個案例
 
-「決策記憶演進」已落實為第一個完整案例套件：[decision-memory-evolution](../../examples/decision-memory-evolution/README.zh-TW.md)。它以 B2B 客戶訂購型態轉變為合成場景，實作以下案例契約：
+「AI 數據分析師與模型演進」已落實為第一個完整案例套件：[decision-memory-evolution](../../examples/decision-memory-evolution/README.zh-TW.md)。它以 B2B 客戶訂購型態轉變為合成場景，使用決策記憶保存分析證據，並展示分析師如何持續提出與使用受治理的數據模型：
 
 - 使用者與待改善的決策。
 - 現況流程與主要重工。
@@ -335,7 +335,7 @@ AI 不得自行：
 | 主張 | 狀態 | 限制 |
 | --- | --- | --- |
 | 六種原型可作為後續案例方向 | `proposed` | 尚未經真實使用者或案例製作驗證 |
-| 決策記憶已作為第一個方向案例落實 | `evidenced`（repository artifact） | 證明案例套件存在，不代表真實企業接受或成效 |
+| AI 數據分析師與模型演進已作為第一個方向案例落實 | `evidenced`（repository artifact） | 證明案例套件存在，不代表真實企業接受或成效 |
 | 重複且可明確定義的工作應經驗證後固化為版本化能力 | `evidenced`（專案方法） | 不證明任何特定候選已達提升條件 |
 | AI 可自行修改並發布正式能力 | 不允許 | 違反本專案的受治理能力演進邊界 |
 | 任一案例已有企業資料、權限、基線或成效證據 | `missing` | 目前只能作為 synthetic／proposed 案例設計 |
