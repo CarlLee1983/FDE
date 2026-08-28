@@ -1,5 +1,7 @@
 # FDE Operating Analysis
 
+Project website: [static landing page](index.html) · [case index](examples/README.zh-TW.md)
+
 This project strengthens an FDE (Forward Deployed Engineer) as an **operating-analysis skill**. It turns a bounded operating problem into an evidence-bounded operating solution and next accountable action. It is not an enterprise application platform, delivery toolkit, or default implementation roadmap.
 
 ## Default Outcome
@@ -41,3 +43,15 @@ The [evaluation contract and recorded runs](docs/evaluations/README.md) provide 
 This evidence establishes repository behaviour only. It does not establish target-enterprise facts, acceptance, access, authority, production readiness, or value.
 
 Continue project evaluation when a new independent operating case, observed response failure, explicit structured/build/assurance request, or cross-case promotion candidate creates a decision to test. Otherwise use the skill on the next real operating problem or stop; additional synthetic files are not progress by themselves.
+
+## GitHub Pages
+
+The repository includes a static project site and a Pages deployment workflow. Build and validate the exact artifact locally with:
+
+```bash
+output_dir="$(mktemp -d)"
+scripts/build-pages.sh "$output_dir"
+python3 scripts/validate-pages.py "$output_dir"
+```
+
+The workflow publishes only after the repository owner enables GitHub Pages with **GitHub Actions** as its source. A successful repository build proves the static artifact and its local links; it does not establish target-enterprise acceptance, access, authority, production readiness, or value.

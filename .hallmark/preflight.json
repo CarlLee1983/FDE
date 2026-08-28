@@ -1,0 +1,9 @@
+{
+  "date": "2026-08-28",
+  "framework": "vanilla-html",
+  "fontStack": "system serif display + system sans body",
+  "palette": "site-scoped OKLCH tokens",
+  "motion": "motion-cut; no decorative animation",
+  "spacing": "4pt semantic scale",
+  "source": "site/zh-TW/index.html and examples/*/index.html"
+}

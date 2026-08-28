@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FDE Operating Analysis：從真實作業問題出發，重整流程、選擇最簡充分介入，並形成可交接、可驗證的下一步。">
+  <meta property="og:title" content="FDE Operating Analysis">
+  <meta property="og:description" content="先修作業，再選技術。穩定規則交給軟體，語言負擔才考慮 AI。">
+  <meta property="og:type" content="website">
+  <title>FDE Operating Analysis｜先修作業，再選技術</title>
+  <link rel="stylesheet" href="tokens.css">
+  <style>
+    /* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 */
+    /* Hallmark · genre: editorial · macrostructure: Narrative Workflow · theme: Newsprint · enrichment: none · nav: N6 · footer: Ft3 */
+    * { box-sizing: border-box; }
+    html, body { overflow-x: clip; }
+    html { scroll-behavior: smooth; background: var(--color-paper); }
+    body { margin: 0; color: var(--color-ink); background: var(--color-paper); font-family: var(--font-body); line-height: 1.65; }
+    a { color: inherit; text-decoration-color: var(--color-accent); text-decoration-thickness: var(--rule-hair); text-underline-offset: 0.25em; }
+    a:focus-visible { outline: var(--rule-heavy) solid var(--color-focus); outline-offset: var(--space-2xs); }
+    a:hover { color: var(--color-accent-dark); }
+    a:active { color: var(--color-alert); }
+    a[aria-disabled="true"] { color: var(--color-ink-soft); cursor: not-allowed; text-decoration: none; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--font-display); font-style: normal; font-weight: 400; overflow-wrap: anywhere; min-width: 0; }
+    h1 { max-width: 10ch; margin-bottom: var(--space-xl); font-size: var(--text-display); line-height: 0.91; letter-spacing: -0.055em; }
+    h2 { max-width: 13ch; margin-bottom: var(--space-lg); font-size: var(--text-h2); line-height: 1.02; letter-spacing: -0.035em; }
+    h3 { margin-bottom: var(--space-xs); font-size: var(--text-h3); line-height: 1.14; }
+    p { max-width: 68ch; }
+    .shell { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+
+    .masthead { padding: var(--space-md) 0 0; text-align: center; background: var(--color-paper); }
+    .issue { display: flex; justify-content: space-between; gap: var(--space-md); margin: 0; color: var(--color-ink-soft); font-family: var(--font-body); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .mast-name { margin: var(--space-xs) 0; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 4.2rem); font-weight: 400; letter-spacing: -0.04em; line-height: 1; }
+    .mast-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-lg); padding: var(--space-xs) 0 var(--space-md); }
+    .mast-nav a { font-size: var(--text-sm); font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .double-rule { height: 5px; margin: 0; border: 0; border-top: var(--rule-hair) solid var(--color-ink); border-bottom: var(--rule-hair) solid var(--color-ink); }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 7fr) minmax(250px, 3fr); gap: var(--space-3xl); padding: var(--space-3xl) 0 var(--space-4xl); align-items: end; }
+    .hero-copy { min-width: 0; }
+    .hero-lede { max-width: 57ch; margin-bottom: 0; color: var(--color-ink-soft); font-size: var(--text-lead); }
+    .field-note { align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; border-top: var(--rule-heavy) solid var(--color-accent); border-bottom: var(--rule-hair) solid var(--color-rule); padding: var(--space-md) 0; }
+    .field-note strong { display: block; max-width: 15ch; font-family: var(--font-display); font-size: 1.7rem; font-weight: 400; line-height: 1.08; }
+    .field-note p { margin: var(--space-lg) 0 0; color: var(--color-ink-soft); font-size: var(--text-sm); }
+    .principle { margin-bottom: var(--space-4xl); border-top: var(--rule-hair) solid var(--color-rule); border-bottom: var(--rule-hair) solid var(--color-rule); padding: var(--space-xl) 0; font-family: var(--font-display); font-size: clamp(1.55rem, 3vw, 2.8rem); line-height: 1.18; }
+    .principle mark { color: var(--color-accent-dark); background: linear-gradient(180deg, transparent 38%, var(--color-accent-wash) 38%, var(--color-accent-wash) 92%, transparent 92%); }
+
+    .workflow { margin-bottom: var(--space-4xl); }
+    .workflow-intro { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: var(--space-3xl); margin-bottom: var(--space-2xl); align-items: end; }
+    .workflow-intro p { margin-bottom: 0; color: var(--color-ink-soft); font-size: var(--text-lead); }
+    .steps { margin: 0; padding: 0; list-style: none; border-top: var(--rule-heavy) solid var(--color-ink); }
+    .step { display: grid; grid-template-columns: 110px minmax(180px, 3fr) minmax(0, 5fr) minmax(140px, 2fr); gap: var(--space-xl); padding: var(--space-2xl) 0; border-bottom: var(--rule-hair) solid var(--color-rule); align-items: start; }
+    .step-no { color: var(--color-accent); font-family: var(--font-mono); font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+    .step p { margin-bottom: 0; color: var(--color-ink-soft); }
+    .step small { color: var(--color-ink-soft); font-size: var(--text-sm); }
+
+    .case-ledger { margin-bottom: var(--space-4xl); }
+    .ledger-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(180px, 3fr); gap: var(--space-2xl); margin-bottom: var(--space-xl); align-items: end; }
+    .ledger-head p { margin-bottom: 0; color: var(--color-ink-soft); }
+    .case-list { border-top: var(--rule-heavy) solid var(--color-ink); }
+    .case-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(170px, 2fr) minmax(130px, 1.5fr) auto; gap: var(--space-lg); padding: var(--space-lg) 0; border-bottom: var(--rule-hair) solid var(--color-rule); align-items: baseline; }
+    .case-row h3 { margin: 0; font-size: clamp(1.25rem, 2.5vw, 2rem); }
+    .case-row p { margin: 0; color: var(--color-ink-soft); font-size: var(--text-sm); }
+    .case-state { font-family: var(--font-body); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; }
+    .case-row a { font-weight: 700; white-space: nowrap; }
+    .case-row.featured { background: var(--color-accent-wash); margin-inline: calc(var(--space-md) * -1); padding-inline: var(--space-md); }
+
+    .handoff { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 5fr); gap: var(--space-3xl); margin-bottom: var(--space-4xl); padding: var(--space-3xl); color: var(--color-paper); background: var(--color-ink); }
+    .handoff h2 { color: var(--color-paper); }
+    .handoff p { color: var(--color-paper-deep); }
+    .handoff-flow { display: grid; gap: var(--space-md); margin: 0; padding: 0; list-style: none; counter-reset: handoff; }
+    .handoff-flow li { counter-increment: handoff; display: grid; grid-template-columns: 3rem 1fr; gap: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); padding-top: var(--space-md); }
+    .handoff-flow li::before { content: counter(handoff, decimal-leading-zero); color: var(--color-warm); font-family: var(--font-body); font-weight: 700; }
+
+    .boundary { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: var(--space-3xl); margin-bottom: var(--space-4xl); }
+    .boundary-copy { border-top: var(--rule-heavy) solid var(--color-alert); padding-top: var(--space-md); }
+    .boundary-copy p { color: var(--color-ink-soft); }
+    .claims { margin: 0; padding: 0; list-style: none; border-top: var(--rule-hair) solid var(--color-rule); }
+    .claims li { display: grid; grid-template-columns: 130px 1fr; gap: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); padding: var(--space-md) 0; }
+    .claims strong { color: var(--color-accent-dark); font-family: var(--font-body); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; }
+
+    .foot-index { padding: var(--space-3xl) 0; border-top: var(--rule-heavy) solid var(--color-ink); background: var(--color-paper-deep); }
+    .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--space-3xl); }
+    .foot-index h2 { max-width: 10ch; font-size: clamp(2rem, 4vw, 3.8rem); }
+    .foot-index h3 { font-family: var(--font-body); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .foot-index ul { margin: 0; padding: 0; list-style: none; }
+    .foot-index li { margin-bottom: var(--space-xs); }
+    .foot-index a { white-space: nowrap; }
+    .colophon { display: flex; justify-content: space-between; gap: var(--space-md); margin-top: var(--space-2xl); padding-top: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); color: var(--color-ink-soft); font-family: var(--font-mono); font-size: var(--text-xs); }
+
+    @media (max-width: 60rem) {
+      .hero, .workflow-intro, .handoff, .boundary { grid-template-columns: 1fr; }
+      .hero { gap: var(--space-2xl); }
+      .field-note { min-height: 180px; }
+      .step { grid-template-columns: 72px minmax(150px, 2fr) minmax(0, 4fr); }
+      .step small { grid-column: 2 / -1; }
+      .case-row { grid-template-columns: minmax(0, 5fr) minmax(150px, 2fr) auto; }
+      .case-state { grid-column: 2; }
+      .foot-grid { grid-template-columns: 1.5fr 1fr 1fr; }
+    }
+    @media (max-width: 48rem) {
+      .shell { width: min(100% - 32px, 720px); }
+      .issue span:last-child { display: none; }
+      .mast-nav { gap: var(--space-md); }
+      .hero { padding: var(--space-3xl) 0; }
+      h1 { font-size: clamp(3rem, 15vw, 5.4rem); }
+      .principle { margin-bottom: var(--space-3xl); }
+      .workflow-intro, .ledger-head { display: block; }
+      .step { grid-template-columns: 56px 1fr; gap: var(--space-md); }
+      .step p, .step small { grid-column: 2; }
+      .case-row, .case-row.featured { grid-template-columns: 1fr auto; margin-inline: 0; padding: var(--space-lg) 0; }
+      .case-row p, .case-state { grid-column: 1 / -1; }
+      .case-row a { grid-column: 2; grid-row: 1; }
+      .handoff { margin-inline: calc(var(--space-md) * -1); padding: var(--space-2xl) var(--space-md); }
+      .claims li { grid-template-columns: 1fr; gap: var(--space-xs); }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+      .foot-grid > div:first-child { grid-column: 1 / -1; }
+      .colophon { display: block; }
+    }
+    @media (max-width: 25.875rem) {
+      .mast-nav a:nth-last-child(-n + 2) { display: none; }
+      .foot-grid { grid-template-columns: 1fr; }
+      .foot-grid > div:first-child { grid-column: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 150ms !important; animation-iteration-count: 1 !important; transition-duration: 150ms !important; }
+      html { scroll-behavior: auto; }
+    }
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      body { background: var(--color-paper); font-size: 9pt; }
+      .mast-nav { display: none; }
+      .hero { padding: 14mm 0 8mm; }
+      h1 { font-size: 42pt; }
+      .workflow, .case-ledger, .handoff, .boundary { break-inside: avoid; margin-bottom: 10mm; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="shell">
+      <p class="issue"><span>Field edition · 2026</span><span>Operating analysis, not an application platform</span></p>
+      <p class="mast-name">FDE Operating Analysis</p>
+      <nav class="mast-nav" aria-label="主要導覽">
+        <a href="#method">方法</a>
+        <a href="#cases">案例</a>
+        <a href="#handoff">開發交接</a>
+        <a href="examples/README.zh-TW.md">案例索引</a>
+      </nav>
+      <hr class="double-rule" aria-hidden="true">
+    </div>
+  </header>
+
+  <main>
+    <section class="shell hero">
+      <div class="hero-copy">
+        <h1>先修作業，再選技術。</h1>
+        <p class="hero-lede">FDE 走進一個具體工作現場，把模糊需求整理成可決策的作業方案：界定問題、診斷流程、重分責任、選擇最簡充分介入，最後交出下一個 accountable action。</p>
+      </div>
+      <aside class="field-note">
+        <strong>AI 可以是答案，也可以不是。</strong>
+        <p>案例證明推理與交付形狀，不證明任何企業已接受、授權、上線或取得成效。</p>
+      </aside>
+    </section>
+
+    <p class="shell principle"><mark>穩定規則交給軟體</mark>，語言負擔才考慮 AI。權限、政策與持久影響仍由可歸責的人與受治理系統承擔。</p>
+
+    <section class="shell workflow" id="method">
+      <div class="workflow-intro">
+        <h2>一條從問題走到下一步的工作線</h2>
+        <p>不是固定文件清單，也不是預設開發 roadmap。每一步只增加足以支撐下一個可靠決策的深度。</p>
+      </div>
+      <ol class="steps">
+        <li class="step"><span class="step-no">1.0</span><h3>Frame<br>界定</h3><p>確認使用者、工作節點、真正結果與本次要做的決策。沒有企業證據時，把推論標成可驗證假說。</p><small>完成：問題有邊界，下一個決策清楚。</small></li>
+        <li class="step"><span class="step-no">2.0</span><h3>Diagnose<br>診斷</h3><p>追蹤正常、例外、升級與 rework。找出等待、重複檢查、語義歧義與沒有降低風險的控制。</p><small>完成：真正的作業原因可被說明。</small></li>
+        <li class="step"><span class="step-no">3.0</span><h3>Redesign<br>重整</h3><p>先移除、簡化、標準化與重新分責；再比較流程改變、資訊修復、確定性軟體、人類判斷與 AI。</p><small>完成：技術選擇建立在較好的工作流上。</small></li>
+        <li class="step"><span class="step-no">4.0</span><h3>Decide<br>形成方案</h3><p>交付證據有界的 operating solution，說明 AI-fit、限制、驗證方式與下一個 accountable action。</p><small>完成：使用者能選擇實作、驗證、延後或停止。</small></li>
+      </ol>
+    </section>
+
+    <section class="shell case-ledger" id="cases">
+      <div class="ledger-head">
+        <h2>案例不是產品模組，是方法的壓力測試</h2>
+        <p>不同領域、不同 AI 適配、不同證據深度。每一列都標示它真正完成到哪裡。</p>
+      </div>
+      <div class="case-list">
+        <article class="case-row featured"><h3>第三方 API 變更監測</h3><p>從人工被動查看，到 deterministic diff、AI 語言解讀與 owner review。</p><span class="case-state">分析 + 開發交接</span><a href="examples/third-party-api-change-monitoring/index.html">閱讀案例</a></article>
+        <article class="case-row"><h3>補貨決策演進</h3><p>確定性 baseline、重播證據與能力回收邊界。</p><span class="case-state">可重播切片</span><a href="examples/inventory-replenishment-evolution/index.html">閱讀案例</a></article>
+        <article class="case-row"><h3>決策記憶與模型演進</h3><p>保存判斷、反證與修正，治理新的分析能力候選。</p><span class="case-state">演進案例</span><a href="examples/decision-memory-evolution/index.html">閱讀案例</a></article>
+        <article class="case-row"><h3>供應商發票例外</h3><p>先修責任與例外流程，再判斷 AI 是否值得介入。</p><span class="case-state">方案提案</span><a href="examples/vendor-invoice-exception-proposal/index.html">閱讀案例</a></article>
+        <article class="case-row"><h3>客戶退款狀態</h3><p>從作業分析到多格式溝通與可驗證交付套件。</p><span class="case-state">交付套件</span><a href="examples/customer-refund-status-delivery-kit/index.html">閱讀案例</a></article>
+      </div>
+    </section>
+
+    <section class="shell handoff" id="handoff">
+      <div>
+        <h2>分析完成，不等於程式已經完成。</h2>
+        <p>FDE skill 的責任是讓方案可被可靠地決定與交接。只有使用者另外要求開發，目標 repository 的開發 agent 才依當地架構、依賴與測試規範實作。</p>
+      </div>
+      <ol class="handoff-flow">
+        <li><span><strong>Operating solution</strong><br>問題、流程、責任、介入與證據界線。</span></li>
+        <li><span><strong>Development handoff</strong><br>第一切片、輸入、模組 seam、驗收與禁止事項。</span></li>
+        <li><span><strong>Repository delivery</strong><br>開發 agent 讀取當地規範，實作、測試並回報剩餘風險。</span></li>
+      </ol>
+    </section>
+
+    <section class="shell boundary">
+      <div class="boundary-copy">
+        <h2>我們只聲稱證據允許的事</h2>
+        <p>Repository 裡的 schema、fixtures、replay 與 HTML 可以證明案例結構和本地行為；它們不能代替企業 owner、真實資料授權、production control 或成效量測。</p>
+      </div>
+      <ul class="claims">
+        <li><strong>Evidenced</strong><span>有可追溯來源與足夠新鮮度的 repository 或企業證據。</span></li>
+        <li><strong>Proposed</strong><span>可供 owner 評估的設計、流程或驗收條件。</span></li>
+        <li><strong>Missing</strong><span>必須由 accountable owner 或目標系統補齊的輸入與授權。</span></li>
+        <li><strong>Unverifiable</strong><span>目前無法從可用證據確認，因此限制主張或下一步。</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot-index">
+    <div class="shell">
+      <div class="foot-grid">
+        <div><h2>從下一個真實作業問題開始。</h2></div>
+        <div><h3>方法</h3><ul><li><a href="FDE-Scenario-to-Action-Method.zh-TW.md">情境至行動</a></li><li><a href="FDE-Capability-Enhancement-Plan.zh-TW.md">能力強化計畫</a></li><li><a href="schemas/fde-scenario.schema.json">Scenario schema</a></li></ul></div>
+        <div><h3>索引</h3><ul><li><a href="README.zh-TW.md">專案說明</a></li><li><a href="examples/README.zh-TW.md">全部案例</a></li><li><a href="docs/zh-TW/README.md">繁中研究文件</a></li></ul></div>
+      </div>
+      <div class="colophon"><span>FDE Operating Analysis · Traditional Chinese project edition</span><span>Static HTML · no tracking · no fabricated outcomes</span></div>
+    </div>
+  </footer>
+</body>
+</html>
