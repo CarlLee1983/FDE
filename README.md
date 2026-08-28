@@ -1,17 +1,35 @@
-# FDE Capability Enhancement
+# FDE Operating Analysis
 
-This project is dedicated to strengthening the capabilities of an FDE (Forward Deployed Engineer).
+This project strengthens an FDE (Forward Deployed Engineer) as an **operating-analysis skill**. It turns a bounded operating problem into an evidence-bounded operating solution and next accountable action. It is not an enterprise application platform, delivery toolkit, or default implementation roadmap.
 
-The supplied ontology-driven FDE architecture is retained as a reference model. It informs the capabilities an FDE should develop—shared business semantics, evidence-aware context, controlled actions, and continuous governance—but does not define the project's delivery scope by itself.
+## Default Outcome
 
-## Current Direction
+The default output is the smallest sufficient five-part operating solution:
 
-1. Define one measurable business scenario.
-2. Establish a shared semantic model for that scenario.
-3. Retrieve permitted context with source provenance.
-4. Deliver decision support before enabling controlled actions.
-5. Compound reusable assets into the next scenario.
+1. Operating problem and outcome.
+2. Current-work diagnosis.
+3. Technology-neutral target workflow.
+4. Intervention and AI-fit decision, with evidence limits.
+5. Next accountable action.
 
-Start with the [FDE Capability Enhancement Plan](FDE-Capability-Enhancement-Plan.md) and the [FDE reference study](docs/fde-ontology/README.md).
+The skill first redesigns work, responsibility, definitions, and evidence flow. It compares deterministic software, human judgment, AI assistance, and governed action only where the remaining work justifies them. `No AI` is a valid outcome.
 
-The working method for turning a business scenario into a governed FDE capability is documented in [FDE Scenario-to-Action Method](FDE-Scenario-to-Action-Method.md).
+## Capability Set
+
+The project's closed capability set is:
+
+1. Operating problem framing.
+2. Workflow diagnosis and redesign.
+3. Intervention selection and AI-fit.
+4. Operating solution formation.
+5. Optional delivery and assurance assistance, only when explicitly requested.
+
+## Source Hierarchy
+
+[CONTEXT.md](CONTEXT.md) defines canonical project language, accepted [ADRs](docs/adr/) govern hard-to-reverse decisions, and the [FDE operating-analysis skill](.agents/skills/fde-project-work/SKILL.md) governs runtime analysis behavior. The README is the entry point; supporting material cannot independently expand this boundary.
+
+The [FDE Scenario-to-Action Method](FDE-Scenario-to-Action-Method.md) provides the full-depth reference method when a case needs deeper modelling, assurance, or delivery support. The [FDE Capability Enhancement Plan](FDE-Capability-Enhancement-Plan.md) explains how analysis quality is validated across cases.
+
+The [FDE reference study](docs/fde-ontology/README.md) and its capability materials are supporting reference. Scenario registration, semantic definition, context resolution, decision support, and controlled action are **solution patterns** that may be selected for a case; they are not project modules or a mandatory roadmap.
+
+Generic cases may use clearly labelled reference hypotheses. They demonstrate reasoning, not target-enterprise facts, acceptance, authority, value, or implementation progress. Models, schemas, artefacts, gates, research, and executable validation are optional and proportional to uncertainty, risk, authority, persistence, or an explicit request.

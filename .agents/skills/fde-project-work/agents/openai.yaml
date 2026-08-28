@@ -1,6 +1,6 @@
 interface:
-  display_name: "FDE Project Work"
-  short_description: "Drive governed FDE work from scenario to evidence"
-  default_prompt: "Use $fde-project-work to drive this operating problem through its next safe FDE delivery stage, produce the required artefacts, validate them, and report the gate result."
+  display_name: "FDE Operating Analysis"
+  short_description: "Diagnose workflows and choose the right intervention"
+  default_prompt: "Use $fde-project-work to analyze this operating problem, redesign the workflow, select the simplest sufficient intervention, and identify the next accountable action."
 policy:
   allow_implicit_invocation: true

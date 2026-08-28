@@ -4,57 +4,38 @@ Back to the [chapter index](README.md).
 
 ## Project Positioning
 
-FDE capability enhancement is the purpose of this project. The ontology-driven FDE architecture remains a reference model: it helps identify what an FDE can build and strengthen, but it is not assumed to be the project's existing implementation or complete product definition.
+This project strengthens an FDE as an **operating-analysis skill**, not as an enterprise platform or a default delivery program. The ontology-driven FDE architecture remains supporting reference: it offers vocabulary and possible solution patterns when a particular operating case needs them.
 
-The practical question is not “How do we recreate the diagram?” It is “Which capabilities would let an FDE deliver trusted, governed, and reusable outcomes in a real business scenario?”
+The practical question is: “What is the smallest evidence-bounded operating solution that lets an accountable person improve this workflow?” The answer is not presumed to be an application, an AI feature, or a build.
 
-## Capability Priorities
+## Closed Project Capability Set
 
-| Priority | Capability | Why it comes now |
-| --- | --- | --- |
-| P0 | Scenario registration | Establishes a measurable purpose and accountable owner before technology choices |
-| P1 | Ontology asset lifecycle | Prevents each FDE feature from defining business terms independently |
-| P1 | Evidence-aware context resolution | Makes answers and metrics attributable to permitted sources |
-| P2 | Decision support | Turns context into an operating dashboard or agent interaction |
-| P3 | Controlled action execution | Adds operational effect only after read-only and advisory use is trusted |
-| P4 | Cross-scenario reuse and governance | Converts delivery work into compounding FDE capability |
-
-P0 and P1 should form the first vertical slice. P2 and P3 should not be treated as independent products: they consume the same scenario, semantic assets, context, and access decisions.
-
-## First Buildable Contract
-
-The project now includes a JSON Schema for a FDE scenario record at [schemas/fde-scenario.schema.json](../../schemas/fde-scenario.schema.json). The schema is technology-neutral and establishes the information FDE must collect before building a scenario:
-
-| Contract element | Capability it enables |
+| Capability | Role in the skill |
 | --- | --- |
-| Accountable owner | Definition approval, ongoing decisions, and acceptance |
-| Process node and user role | A narrow and testable operating scope |
-| Decision or action | A direct path from information to work |
-| Baseline and target metric | Outcome measurement rather than demo evaluation |
-| Ontology references | The minimum shared semantics to build or extend |
-| Source references | Permission, freshness, and lineage decisions |
-| Acceptance criteria | A verifiable release decision |
+| Operating problem framing | Turns a vague request into a bounded problem with a user, workflow location, outcome, and decision. |
+| Workflow diagnosis and redesign | Explains normal, exception, escalation, and rework paths, then forms a simpler technology-neutral target workflow. |
+| Intervention selection and AI-fit | Compares process, responsibility, information, deterministic software, human judgment, AI assistance, and governed action to select the simplest sufficient intervention. |
+| Operating solution formation | Produces a usable decision with diagnosis, target workflow, intervention rationale, evidence limits, and next accountable action. |
+| Optional delivery and assurance assistance | Helps plan, review, validate, or hand off implementation only when separately requested. |
 
-The included [illustrative record](../../examples/order-exception-triage.scenario.json) is intentionally generic. It demonstrates the contract shape only and must be replaced with the project's first real FDE scenario before implementation begins.
+The default output is a five-part operating solution: problem and outcome; current-work diagnosis; target workflow; intervention and AI-fit decision with evidence limits; and next accountable action.
 
-## Modules to Develop After the Contract Is Populated
+## Conditional Solution Patterns
 
-The following modules are ordered by dependency. Their interfaces should remain small while their implementations absorb recurring complexity.
+Scenario registration, semantic definition, context resolution, decision support, controlled action, and governance are reusable **solution patterns**. They can be selected to address a case, but are not project modules to develop in sequence or a measure of project progress.
 
-| Module | Interface purpose | Complexity kept inside the module |
-| --- | --- | --- |
-| Scenario Registry Module | Register and resolve an approved scenario | Validation, ownership checks, metric metadata, lifecycle state |
-| Ontology Asset Module | Read released definitions and govern definition changes | Versioning, review, impact analysis, retirement |
-| Context Resolution Module | Return permitted, sourced context for a scenario request | Source adapters, mappings, quality checks, access evaluation, lineage |
-| Decision Support Module | Produce a metric, answer, or recommendation from context | Calculations, model use, formatting, uncertainty treatment |
-| Action Execution Module | Prepare, approve, and execute named actions | Preconditions, idempotency, audit, retries, recovery |
+| Pattern | When it may help |
+| --- | --- |
+| Scenario registration | The problem needs a shared scope, owner, outcome, or acceptance boundary. |
+| Semantic definition | A decision depends on contested or unstable business terms, states, metrics, or source meaning. |
+| Context resolution | The target workflow needs permitted, attributable information from one or more sources. |
+| Decision support | A user needs a bounded metric, answer, recommendation, or route. |
+| Controlled action | An already authorized operating action needs execution controls. |
 
-## Next Acceptance Target
+The [scenario record schema](../../schemas/fde-scenario.schema.json) and its [illustrative record](../../examples/order-exception-triage.scenario.json) are optional validation artefacts. The example demonstrates shape only; it is not a project milestone, enterprise fact, or implementation commitment.
 
-The immediate target is not autonomous action. It is one read-only inquiry for one approved scenario that returns:
+## Conditional Delivery and Assurance
 
-```text
-result + semantic definition version + source evidence + freshness status + access decision
-```
+When implementation is explicitly requested, a narrow read-only inquiry or other governed slice can provide evidence for a target operating capability. Access, release, persistent action, and value claims require the applicable owner authority and evidence. Without them, keep the result as a proposed advisory, shadow, or read-only design.
 
-This result is the first proof that FDE can give a user an answer grounded in governed enterprise context. Once it is reliable, the exact same context can power a dashboard, a decision-support interaction, and eventually a controlled action.
+The detailed [Capability Map and Implementation Strategy](07-capability-map-and-implementation-strategy.md) is reference material for such a selected solution, not the project's roadmap.

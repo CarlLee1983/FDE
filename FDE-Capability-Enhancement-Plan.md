@@ -1,67 +1,48 @@
 # FDE Capability Enhancement Plan
 
-This plan makes the capability enhancement of an FDE (Forward Deployed Engineer) the project objective. The ontology-driven FDE delivery architecture is a reference model that supplies design constraints and a vocabulary for the work.
+This plan improves an FDE (Forward Deployed Engineer) as an **operating-analysis skill**. The objective is not to build an ontology platform or a fixed delivery sequence. It is to reliably form evidence-bounded operating solutions that let an accountable person decide what to do next.
 
 ## Capability Target
 
-FDE delivery should progress from isolated answers or demonstrations to governed, reusable operating capabilities:
+The project has a closed set of five capabilities:
 
-```text
-Defined scenario → shared semantics → sourced context → decision support
-→ controlled action → reusable enterprise capability
-```
+| Capability | Observable case outcome |
+| --- | --- |
+| Operating problem framing | A vague request becomes a bounded problem with a user, workflow location, outcome, and decision. |
+| Workflow diagnosis and redesign | The analysis explains normal, exception, escalation, and rework paths, then proposes a simpler target workflow before selecting technology. |
+| Intervention selection and AI-fit | The analysis compares process, responsibility, information, deterministic software, human judgment, AI assistance, and governed action, then selects the simplest sufficient intervention. |
+| Operating solution formation | A user receives a usable five-part operating solution with explicit evidence limits and a next accountable action. |
+| Optional delivery and assurance assistance | When explicitly requested, the skill helps plan, review, validate, or hand off an implementation without treating that work as the default outcome. |
 
-## Mapping the Reference Model to FDE Targets
+## Default Case Output
 
-| Reference-model concern | FDE capability to build or strengthen | First observable outcome |
-| --- | --- | --- |
-| Business topic and metrics | Scenario definition | A scenario has an owner, process node, baseline, target, and acceptance rule |
-| Enterprise ontology | Semantic asset lifecycle | A released object/link/action definition has source, owner, version, and review cycle |
-| System connectivity | Source ingestion and alignment | A permitted source is mapped to a semantic asset with freshness and lineage |
-| Dashboards, agents, workflows | Evidence-aware decision support | A user can obtain a consistent answer or metric with cited evidence |
-| Approval, dispatch, write-back | Controlled action execution | An approved, named action is validated, audited, and executed once |
-| Feedback and evolution | Operating governance | Production feedback leads to an accountable asset or application revision |
+Every ordinary case should reach the minimum sufficient operating solution:
 
-## Maturity Model
+1. Problem and outcome.
+2. Current-work diagnosis.
+3. Target workflow.
+4. Intervention and AI-fit decision, including evidence limits.
+5. Next accountable action.
 
-| Level | FDE capability | Definition of done |
-| --- | --- | --- |
-| 1. Defined | Scenario registry | A scenario record has a clear owner, decision, source set, and measurable outcome |
-| 2. Grounded | Semantic context | A permitted request resolves to versioned objects, links, data, and provenance |
-| 3. Useful | Decision support | A dashboard or agent uses that context and agrees with the business definition |
-| 4. Controlled | Action execution | An approved action meets preconditions, records an audit trail, and has failure handling |
-| 5. Compounding | Reuse and governance | A second scenario reuses assets without creating a competing definition |
+Depth is proportional. Detailed models, research, gate reviews, schemas, replays, or executable validation are added only when material uncertainty, risk, authority, persistent action, value claims, or an explicit request requires them. Generic cases may use labelled reference hypotheses; they do not establish enterprise facts, approval, access, or value.
 
-## First Concrete Capability: Scenario Registration
+## Case-Based Validation
 
-The first FDE artifact is a technology-neutral contract for a scenario registry:
+Progress is measured through varied operating cases, not by document count, schema count, code volume, or runnable examples. A case is strong when it:
 
-- [Scenario record JSON Schema](schemas/fde-scenario.schema.json)
-- [Illustrative scenario record](examples/order-exception-triage.scenario.json)
+1. Frames the right operating problem and outcome.
+2. Accounts for the whole current workflow, including exceptions and rework.
+3. Redesigns the work before proposing technology.
+4. Selects a proportionate intervention and treats AI as optional.
+5. Preserves evidence, authority, and value boundaries.
+6. Leaves an accountable person with a concrete next action.
 
-The registry is intentionally first because it connects product intent, operational ownership, ontology scope, data sources, and acceptance evidence before implementation complexity is introduced.
+Examples and validation artefacts can test this reasoning, but remain evidence aids rather than capability milestones or implementation progress.
 
-## Recommended Near-Term Work
+## Supporting Solution Patterns
 
-1. Replace the illustrative scenario with the project's first real FDE business scenario.
-2. Confirm its accountable business owner, process-change authority, source owner, decision or action owner, and post-engagement operating owner.
-3. Define the minimum object, link, and action set required by the scenario.
-4. Prepare a versioned evaluation set covering normal, incomplete, conflicting, boundary, prohibited, and representative historical-failure cases.
-5. Implement a read-only context-resolution path that returns evidence and access decisions.
-6. Run a time-bounded pilot with affected users and record usage, sustained adoption, acceptance, correction, rejection, override, exception, and fallback evidence alongside the operating metric.
-7. Diagnose observed failures at the process, source, semantic, access, integration, model, or human-decision layer; preserve accepted corrections as governed change evidence.
-8. Verify the result with a dashboard or agent before considering write-back.
-9. Close the slice with two owned outputs: an operating handoff the target team can maintain, and de-identified capability-change candidates that the delivery organization can review, version, and reuse.
+The ontology-driven FDE reference model remains useful as a vocabulary and source of solution patterns. A case may need scenario registration, semantic definition, context resolution, decision support, controlled action, or governance. These patterns are selected for their fit to the target workflow; they are not a project roadmap or modules that must be built.
 
-The cohort, duration, pass/fail thresholds, process-change authority, and long-term operating responsibility remain scenario-specific and require accountable-owner acceptance. The [FDE practice and adoption field note](docs/field-notes/2026-08-27-fde-practice-and-adoption.md) records the external signals behind this addition and their evidence limits.
+When a case explicitly requests delivery, a narrow read-only inquiry or other governed slice can be a valid first implementation. Persistent actions, release claims, access increases, and value claims require the relevant evidence and approval. In their absence, the output remains a proposed advisory, shadow, or read-only design.
 
-## Guardrails
-
-- An FDE is not required to ingest every enterprise source before delivering a useful capability.
-- A system must prove semantic consistency, provenance, and access control before it gains write authority.
-- Business definitions are owned and versioned assets; prompts or individual applications do not own them.
-- An action must be explicit, approved at the correct level, and auditable; an agent must not improvise a persistent action.
-
-For the detailed module design and vertical-slice plan, see [Capability Map and Implementation Strategy](docs/fde-ontology/07-capability-map-and-implementation-strategy.md).
-
-For the methodology used to analyse and prepare each scenario, see [FDE Scenario-to-Action Method](FDE-Scenario-to-Action-Method.md).
+For detailed pattern and module reference, see [Capability Map and Implementation Strategy](docs/fde-ontology/07-capability-map-and-implementation-strategy.md). For the full-depth method used only when a case needs it, see [FDE Scenario-to-Action Method](FDE-Scenario-to-Action-Method.md).

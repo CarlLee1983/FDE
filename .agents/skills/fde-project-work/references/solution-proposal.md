@@ -1,54 +1,37 @@
-# Operating solution proposal
+# Operating solution
 
-Use this contract when the requested outcome is a solution, roadmap, architecture, or answer to “what should we build?” The proposal is a delivery decision, not another inventory of method artefacts.
+Use this reference when the user asks what an operation should become, which intervention fits, or what should happen next. Produce the least detail that supports the decision.
 
-## Proposal contract
+## Minimum contract
 
-Produce the smallest solution that changes a named operating outcome and can be delivered end to end. Include:
+1. **Operating problem and outcome.** Bound the user, workflow location, pain or opportunity, and desired operating result. Label unsupported enterprise claims and reference hypotheses.
+2. **Current-work diagnosis.** Explain normal, exception, escalation, and rework paths and the material causes of delay, ambiguity, duplication, or risk.
+3. **Target workflow.** Show what is eliminated, simplified, standardized, reassigned, or repaired before technology is selected.
+4. **Intervention decision.** Choose the simplest sufficient mix of process change, information repair, deterministic software, human judgment, AI assistance, or governed action. State the AI-fit decision and evidence limits.
+5. **Next accountable action.** Name the next decision or work package, its owner role, required input, and observable completion condition.
 
-1. **Operating outcome.** Name the user, current workflow or pain, decision or action, baseline and target. Mark unsupported enterprise facts `missing` or `unverifiable`.
-2. **Current-process diagnosis.** Show the as-is normal, exception, escalation, and rework paths. Identify avoidable work, waiting, duplicate checks, unclear handoffs or ownership, semantic inconsistency, evidence gaps, and controls that do not reduce material risk.
-3. **Process redesign.** State what should be eliminated, simplified, standardized, reassigned, or repaired before introducing technology. Explain which constraints genuinely remain and why.
-4. **Target operating flow.** Show the improved sequence from source evidence to user decision and any system effect, including exception, escalation, and human-override paths. The flow must be understandable without naming a model or product.
-5. **Process-readiness decision.** State whether the as-is diagnosis and target flow have been confirmed by the accountable process owner and affected users, whether handoffs and exception owners are named, and whether a baseline exists. If this evidence is absent, keep the process `proposed` and defer AI selection; do not use a model concept to conceal an unresolved process decision.
-6. **Intervention selection.** For each retained problem, choose the simplest sufficient intervention: process or policy change, data or semantic repair, deterministic software, user-interface or workflow support, AI, or a governed system action. Explain rejected higher-complexity choices.
-7. **AI-fit and capability-evolution decision.** Only after steps 2–6, state whether AI is `not needed`, `deferred`, or `justified` at a named step. Justification must identify the interpretation, language, synthesis, or bounded-reasoning advantage and the evidence needed to prove incremental value over the redesigned non-AI baseline. Keep stable calculations, thresholds, access checks, policy enforcement, and execution controls deterministic. When AI initially covers work whose method is still emerging, define how recommendations, human corrections, exceptions, and outcomes become evidence for a named capability-change candidate. State the promotion test: the work is repeated, specifiable, replayable against a baseline, accepted by an accountable owner, and releasable as a versioned, tested, observable, and reversible process, semantic, rule, tool, model, or control change. After promotion, keep AI only where it adds value by using the released capability, handling bounded exceptions, explaining results, or finding the next gap.
-8. **Responsibility, capability, and integration design.** Assign each retained step to deterministic software, an AI model if justified, a human, or a governed system action. Identify only the source, semantic, context, decision-support, application, identity, observability, and target-system seams required for the first slice. Treat an unverified integration as `proposed`. If AI is used, state model inputs, grounded outputs, abstention behavior, and prohibited autonomy.
-9. **First vertical slice.** Define one user-visible workflow that remains useful on its own, the components and work packages needed to deliver it, and what is explicitly deferred. Prefer a slice that proves the redesigned process and deterministic baseline before adding AI; include AI only when the slice cannot deliver its intended outcome without it. Avoid platform-first backlogs.
-10. **Authority and controls.** Separate the proposed application form from an evidenced access decision. Name approval, privacy, security, audit, quality, recovery, and write-back controls only when relevant to the slice.
-11. **Validation and rollout.** Define test cases, explicit pass/fail thresholds, acceptance owners, pilot or shadow entry criteria, structured reasons for human acceptance, correction, rejection, or override, operational measures, observability, rollback, and the evidence required to expand scope or authority. When an AI experiment is justified, add a versioned evaluation set and cover task success, groundedness, abstention, prompt injection, sensitive-data handling, output-contract adherence, latency, cost, and incremental benefit over the non-AI baseline when each is material. Where the solution includes a capability-evolution loop, compare the promoted capability with the exploratory method and state how accepted deviations feed an accountable next change rather than an undocumented workaround. Label a threshold `proposed` until the accountable owner accepts it, and name which failure blocks the next rollout stage.
-12. **Evidence ledger.** Classify material statements as `evidenced`, `proposed`, `missing`, or `unverifiable`, cite the supporting source, and explain how each gap limits delivery or authority.
-13. **Next accountable action.** End with the next decision or work package, its owner role, required inputs, and observable completion criterion.
+This contract is complete when the user can choose the next action without an unstated material assumption. It does not require a build backlog, pilot design, formal artefacts, or implementation unless the request or risk does.
 
-Use diagrams or tables only when they make responsibility, sequence, or architecture materially clearer. A proposal can reference scenario and analysis artefacts, but those artefacts are supporting evidence rather than the headline result.
+## Conditional depth
+
+Add only the detail activated by the case:
+
+- **Material process ambiguity:** map handoffs, bottlenecks, exceptions, ownership, and change hypotheses in more detail.
+- **Proposed implementation:** identify the first user-visible slice, capability and integration seams, acceptance checks, rollout, and rollback.
+- **AI justified:** state model inputs, grounded outputs, abstention and escalation, prohibited autonomy, evaluation against the non-AI baseline, and how corrections become governed evidence.
+- **Sensitive access or persistent effect:** state identity, privacy, security, approval, audit, idempotency, recovery, and authority evidence.
+- **Value or expansion claim:** state baseline, target, adoption or outcome evidence, deviations, and the accountable follow-up.
+
+When enterprise evidence is unavailable, a generic case may use explicit reference hypotheses and explain how a real operator or owner would validate them. Do not turn a missing fact into a fictional approval, integration, threshold, or outcome.
 
 ## Responsibility test
 
-Use the following allocation unless scenario evidence justifies another:
-
-| Responsibility | Best fit |
+| Responsibility | Default fit |
 | --- | --- |
-| Remove unnecessary work, clarify ownership, accept policy, and resolve cross-functional trade-offs | Human process owners and affected operators |
-| Source retrieval, stable calculations, thresholds, schemas, access checks, and policy enforcement | Deterministic software |
-| Language understanding, synthesis, explanation, and bounded reasoning over a permitted context bundle | AI model |
-| Ambiguous policy decisions, exception ownership, approval, and accountable operational judgment | Human |
-| Persistent side effects | Named, authorized, audited, idempotent, and recoverable system action |
+| Remove work, clarify ownership, accept policy, resolve trade-offs | Human process owners and affected operators |
+| Retrieval, stable calculations, schemas, access checks, policy enforcement | Deterministic software |
+| Language interpretation, synthesis, explanation, bounded reasoning | AI, when it adds measured value |
+| Ambiguous policy, exception ownership, accountable judgment | Human |
+| Persistent side effects | Named, authorized, audited, idempotent, recoverable system action |
 
-Do not hide a policy threshold inside a prompt, let a model silently fill missing business evidence, or describe a deterministic rules engine as AI. The competitive value must come from a better operating decision or workflow, not from the presence of a model.
-
-## Completion test
-
-The proposal is complete only when a delivery team can answer all of these from it:
-
-- What changes for which user?
-- What is wrong with the current process, and which work is removed or simplified before technology is added?
-- What does the target process look like without assuming AI?
-- Why is each intervention the simplest sufficient choice?
-- Is AI unnecessary, deferred, or justified—and what evidence would prove incremental value?
-- What is the first end-to-end workflow to build?
-- Which real sources, permissions, and integrations are established versus proposed?
-- If AI is in scope, how will the model abstain or escalate when evidence is insufficient?
-- How will the slice be tested, introduced into real work, measured, and rolled back?
-- What exact owner action unlocks the next step?
-
-If one answer is unavailable, mark it with its evidence status and resulting restriction. Do not replace the missing answer with more documents or generic discovery work.
+Keep policy thresholds out of prompts, keep missing evidence visible, and describe deterministic rules as deterministic rules. The value is a better operating decision or workflow, not the presence of a model.

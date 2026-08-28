@@ -1,12 +1,16 @@
 # FDE Scenario-to-Action Method
 
-This method is the standard way to turn one business scenario into a governed FDE capability. It composes established system-analysis methods into a small sequence of durable artefacts and decision gates. It is deliberately lighter than adopting every source framework end to end.
+This is the **full-depth reference method** for a case that needs deeper modelling, assurance, validation, or explicitly requested delivery assistance. The default FDE operating-analysis outcome remains a five-part operating solution: problem and outcome, current-work diagnosis, target workflow, intervention and AI-fit decision with evidence limits, and next accountable action. This method supplies optional techniques; its stages, artefacts, and gates are not a universal delivery checklist.
 
 The method uses the research in [System-Analysis Methods That Can Inform FDE](docs/research/system-analysis-methods.md). That memo cites the official ISO, OMG, NIST, and SEI sources behind the method choices.
 
-## Design Objective
+## When to Use This Method
 
-Every FDE capability should be able to answer these questions before it is released:
+Use only the smallest relevant parts after the core analysis shows a need caused by material uncertainty, risk, authority, persistence, value claims, or an explicit request. Generic cases may use clearly labelled reference hypotheses; they never establish target-enterprise fact, acceptance, access, release authority, or value. Implementation begins only when separately requested.
+
+## Full-Depth Design Objective
+
+When a case needs a governed release or increased authority, the analysis should answer these questions before making that claim:
 
 1. What operating outcome and decision matter?
 2. What in the current process creates avoidable delay, rework, ambiguity, or risk, and what should the target process become before technology is selected?
@@ -21,13 +25,13 @@ When the operating problem is too ambiguous to enter the six stages, clarify it 
 
 Clarification is complete when every material branch is either decided, evidenced, or explicitly marked `missing` or `unverifiable`, and the result identifies a bounded operating outcome, user, process or case location, decision or action, and next accountable owner. It produces inputs for the applicable stage; it is not itself scenario approval, enterprise acceptance, or authority to implement.
 
-## The Six Stages
+## Optional Six-Stage Reference Flow
 
 ```text
 Frame → Map Work → Model Meaning → Specify Decision → Assure Control → Prove and Evolve
 ```
 
-| Stage | Primary question | Method basis | Persistent artefact | Exit gate |
+| Stage | Primary question | Method basis | Optional artefact | Conditional gate |
 | --- | --- | --- | --- | --- |
 | 1. Frame | What bounded outcome should an FDE improve? | ISO/IEC/IEEE 29148 requirements engineering | Approved scenario record | An owner accepts scope, constraints, baseline, target, and acceptance criteria |
 | 2. Map Work | What should be removed, simplified, standardized, or reassigned before technology is selected? | BPMN / CMMN | Validated current and target process or case models with bottlenecks, change hypothesis, and intervention candidates | The process owner and affected users accept the current diagnosis, target paths, handoffs, exception ownership, and change hypothesis |
@@ -99,9 +103,9 @@ result + semantic-definition version + source evidence + freshness status + acce
 
 Run new and existing processes in parallel when the outcome affects operating work. Compare results, reasons for differences, exceptions, user intervention, and the business metric. Accepted deviations become changes to the process, semantic assets, decision logic, controls, or application—not undocumented workarounds.
 
-## Required Artefact Set
+## Full-Depth Artefact Set
 
-The following artefacts form the minimum analysis package for a scenario.
+Use the following artefacts only where the selected depth requires them. They are not the minimum analysis package for every scenario.
 
 | Artefact | Created in | Maintained by | Needed before |
 | --- | --- | --- | --- |
@@ -112,20 +116,20 @@ The following artefacts form the minimum analysis package for a scenario.
 | Risk/control and quality-scenario records | Assure Control | Security, privacy, architecture, and business owners | Release or permission increase |
 | Vertical-slice evidence and change record | Prove and Evolve | FDE delivery owner | Expansion or automation |
 
-## Decision Gates
+## Conditional Assurance Gates
 
-| Gate | Question | Allowed next step |
-| --- | --- | --- |
-| G1 — Scenario approved | Is the outcome bounded, owned, and measurable? | Model work and meaning |
-| G2 — Semantics grounded | Are required facts, states, metrics, sources, and owners defined? | Build read-only context retrieval |
-| G3 — Evidence proved | Can users obtain a permitted, fresh, explainable result? | Build shared dashboard or advisory decision support |
-| G4 — Decision controlled | Is consequential logic testable and governed? | Enable approval workflow |
-| G5 — Action authorized | Are access, approval, audit, idempotency, and recovery controls tested? | Permit controlled write-back |
-| G6 — Value demonstrated | Does production or shadow evidence meet acceptance criteria? | Reuse assets in an adjacent scenario |
+| Gate | When it applies | Question | Restricted or allowed next step |
+| --- | --- | --- | --- |
+| G1 — Scenario approval | A real scenario requires owner acceptance or delivery scope | Is the outcome bounded, owned, and measurable? | Model work and meaning within the accepted scope |
+| G2 — Semantics grounded | A solution relies on shared definitions or sourced context | Are required facts, states, metrics, sources, and owners defined? | Build or validate only the required read-only context path |
+| G3 — Evidence proved | A release or decision-support claim depends on user-facing evidence | Can users obtain a permitted, fresh, explainable result? | Support an advisory or shared result within its evidence boundary |
+| G4 — Decision controlled | The solution makes consequential recommendations, approvals, or routing | Is consequential logic testable and governed? | Enable the bounded approval or decision workflow |
+| G5 — Action authorized | The solution would create a persistent action or increase authority | Are access, approval, audit, idempotency, and recovery controls tested? | Permit only the authorized controlled write-back |
+| G6 — Value demonstrated | The case claims production, shadow, or sustained operating value | Does evidence meet the accepted criteria? | Support that value claim or select the next bounded experiment |
 
-## How This Fits the FDE Capability Roadmap
+## Solution Patterns This Method May Inform
 
-The method creates the inputs consumed by the proposed FDE modules:
+When a case needs them, the method can inform the following solution patterns:
 
 ```text
 Scenario record
@@ -136,9 +140,9 @@ Scenario record
   → Action Execution Module
 ```
 
-The modules should use these artefacts through their interfaces rather than recreate them. This concentrates definition, validation, authorization, and traceability complexity in a few deep modules, providing leverage for all future FDE capabilities.
+These are not project modules or a mandatory roadmap. They are possible designs for a target operating capability and should be selected only when they fit the case.
 
-## First Workshop Sequence
+## Full-Depth Workshop Sequence
 
 | Workshop | Participants | Outcome |
 | --- | --- | --- |
@@ -146,4 +150,4 @@ The modules should use these artefacts through their interfaces rather than recr
 | Work and meaning | Process owner, affected users, domain expert, data/ontology owner | Accepted current/target process models, bottleneck and change hypothesis, intervention candidates, minimum semantic asset set |
 | Decision and control | Decision owner, security/privacy owner, architecture owner | Decision service outline, risk/control record, quality scenarios, first-slice acceptance test |
 
-The next concrete step is to populate the scenario record with the project's first real FDE operating problem, then run the first two workshops. No platform-wide build should begin before G1 and G2 are satisfied.
+For a real case that needs this depth, start by framing the operating problem and choose only the workshops and gates that its next accountable decision requires. Do not infer authority to build, release, access enterprise data, or execute an action from use of this method.

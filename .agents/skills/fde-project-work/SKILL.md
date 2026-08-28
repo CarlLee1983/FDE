@@ -1,48 +1,50 @@
 ---
 name: fde-project-work
-description: Turn an operating problem into an evidence-grounded, implementable FDE operating solution, build its smallest governed slice, or assure its release gates. Use for process analysis and redesign, scenario shaping, intervention selection including AI-fit decisions, capability delivery, or evidence-based gate decisions; not for translation, static HTML/CSS, or routine Git and repository maintenance.
+description: Analyze an operating problem, redesign its workflow, and select the simplest sufficient intervention, including whether AI fits. Use for FDE case analysis and operating-solution shaping, or for delivery and assurance assistance when the user explicitly requests them; not for routine repository maintenance.
 ---
 
-# FDE project work
+# FDE operating analysis
 
-Use this as the agent driver for FDE work whose answer or implementation depends on the project's scenario-to-action method, operating-process redesign, capability delivery, or assurance gates.
+Turn an operating problem into a decision the user can act on. The default outcome is a **minimum operating solution**, not an artefact package or implementation:
 
-The default outcome for an open-ended FDE request is an implementable operating solution, not an inventory of documents or gates and not an AI feature by default. Scenario records, models, definitions, controls, and evidence are inputs that make the solution credible. The proposal must diagnose the current process, redesign the workflow before selecting technology, and show what the delivery team can build and verify first. Assess AI only after the target process is coherent; `no AI in the first slice` is a valid and often preferable result.
+1. operating problem and outcome;
+2. current-work diagnosis;
+3. technology-neutral target workflow;
+4. intervention and AI-fit decision with evidence limits;
+5. next accountable action.
 
-## Grounding
+Analysis is complete when these five parts let the user choose the next action. Enterprise acceptance, gate passage, or working code are separate outcomes.
 
-1. Locate the repository root and use the [source map](references/source-map.md) only as an index. Treat Traditional Chinese files as reading aids only.
-2. Select the applicable mode from [task modes](references/task-modes.md), then load only its current English canonical sources. For an open-ended request such as “what should we do?” or “where could AI help?”, select **Operating solution shaping**. When a request spans modes, process them in dependency order. Read the schema directly whenever its active contract applies.
-3. Keep repository proposals separate from facts about a target enterprise. Establish owners, authorities, baselines, targets, policies, permissions, integrations, and current acceptance only from supplied or inspected evidence. Label absent evidence `missing` and evidence that cannot be checked `unverifiable`.
-4. Use examples only to show a record's shape. Do not promote their people, systems, values, or acceptance claims into real-world facts.
-5. Analyse the whole current workflow before choosing an intervention. First remove unnecessary work; simplify handoffs; standardize definitions, ownership, and exception paths; repair evidence or data gaps; and use deterministic software for stable rules. Only then assess whether a remaining step benefits from AI because interpretation, language, synthesis, or bounded reasoning creates a defensible advantage. Assign every retained responsibility to deterministic software, an AI model, a human, or a governed system action.
+## Core analysis flow
 
-When missing decisions materially change the operating diagnosis or solution, read [collaborative clarification](references/collaborative-clarification.md). Investigate available facts, then work through the decision frontier with accountable participants before relying on downstream assumptions.
+1. **Frame.** Bound the user, workflow location, operating outcome, and decision. In a generic case, state testable **reference hypotheses** instead of demanding enterprise evidence or presenting assumptions as facts.
+2. **Diagnose.** Trace normal, exception, escalation, and rework paths. Identify avoidable work, waiting, duplicate checks, unclear ownership, semantic ambiguity, evidence gaps, and controls that do not reduce material risk.
+3. **Redesign.** First eliminate, simplify, standardize, reassign, and repair the work without assuming technology.
+4. **Select.** Compare process or responsibility change, information or semantic repair, deterministic software, interface support, human judgment, AI assistance, and governed action. Choose the simplest sufficient intervention.
+5. **Form the solution.** Return the five-part minimum operating solution at the least depth that supports a sound decision.
 
-## Agent delivery loop
+When unresolved choices materially change the diagnosis or recommendation, read [collaborative clarification](references/collaborative-clarification.md), investigate available facts, and ask accountable participants only for decisions.
 
-For change, build, or end-to-end delivery requests, read [agent-delivery-loop](references/agent-delivery-loop.md) and drive the work until its completion or evidence boundary. Do not stop after describing the method when the requested artefacts can be safely produced or validated. For read, explanation, or review requests, use the selected mode's output contract without creating artefacts unless the user asks for them.
+## Depth and evidence
 
-When a case slice produces learning that might change FDE core or be reused across scenarios, read [capability-return review](references/capability-return-review.md). Keep domain behaviour with the case and return only evidence-backed change candidates for accountable promotion.
+Use **sufficient depth**. Add models, schemas, formal decision logic, controls, research, or executable validation only when material uncertainty, risk, authority, persistence, or an explicit request justifies them.
 
-When AI is justified for work whose method is not yet stable enough to specify, design a **governed capability-evolution loop** rather than a permanent prompt-bound task. Capture recommendations, human corrections, exceptions, and outcomes as evidence; use them to propose named process, semantic, decision, tool, model, or control changes. Promote repeated and accepted work into versioned, tested software only through an accountable owner and a replay or shadow comparison. The AI may then use the released capability and look for the next gap; it does not approve its own proposal, silently change policy, or publish production behavior.
+Keep repository proposals separate from target-enterprise facts. Classify material claims as `evidenced`, `proposed`, `missing`, or `unverifiable`; cite provenance and freshness when they matter. Examples may prove reasoning or repository behavior, never enterprise acceptance, access, authority, or value.
 
-## AI implementation boundary
+Use [the source map](references/source-map.md) only to locate detail needed by the current branch. Use [task modes](references/task-modes.md) when the user explicitly asks for a scenario record, implementation, or assurance review.
 
-Treat AI as a replaceable implementation option at a justified intervention node. This skill owns the stable operating contract around it: the retained task, inputs and outputs, evidence, evaluation boundary, human judgment, permissions, controls, and accountable outcome. Concrete model, prompt, agent, orchestration, retrieval, memory, framework, and user-interface choices vary too quickly to form the core FDE method. Specify them only when a separately accepted capability-build request and current delivery constraints require implementation detail, and keep them subordinate to the stable operating contract.
+## AI boundary
 
-## Functional validation
+AI is one optional intervention. Justify it only for a retained task where interpretation, language, synthesis, or bounded reasoning adds value over the redesigned non-AI workflow. Keep stable calculations, permissions, policy enforcement, and persistent effects deterministic or human-governed. `AI not needed` and `AI deferred pending evidence` are complete decisions.
 
-Validate this skill through enterprise end-to-end examples, not isolated implementation-technique demonstrations. Each example starts from a bounded operating problem and traces the complete path through current-work diagnosis, target-work redesign, semantic and source evidence, a decision or action, authority and control boundaries, an observable result, and the next accountable outcome. A synthetic example validates repository behavior only when that path is replayable, evidence states remain intact across every artefact, and the resulting gate decision restricts the next step correctly. Keep it labelled synthetic: it does not establish target-enterprise facts, acceptance, access, production value, or release authority.
+## Conditional delivery and assurance
 
-## Control boundary
+Implementation begins only from an explicit build or change request with an accepted boundary. Then read [the delivery loop](references/agent-delivery-loop.md), build the smallest coherent slice, and validate it proportionately.
 
-For an operating solution proposal, use the [solution proposal contract](references/solution-proposal.md). A gate gap limits the authority and claims of the proposal; it does not justify stopping at a gap list. Always return the highest safe proposed solution, its first buildable slice, and the concrete owner action or evidence needed next. Do not make model evaluation, model infrastructure, or AI interaction part of that slice unless the process analysis shows that the slice cannot deliver its intended outcome without them.
+Use assurance gates only when a conclusion depends on real source access, release, authority increase, persistent action, or a value claim. A gap restricts the claim or action; it does not make a generic analysis incomplete. Before recommending persistent write-back, require direct evidence for authorization, audit, idempotency, recovery, and accountable ownership.
 
-For a delivered read-only inquiry, the runtime output contract is:
+When multiple independent cases reveal the same non-domain analysis need, read [capability-return review](references/capability-return-review.md). Case-specific behavior remains with the case until evidence justifies a governed change to the core skill.
 
-`result + semantic-definition version + source evidence + freshness + access decision`
+## Case evaluation
 
-Report a component as `missing` or `unverifiable` when evidence does not establish it. A project guardrail or proposed safe scope is not a target-enterprise access decision; label it `proposed`, not `allowed` or `authorized`. Before a persistent write-back or a recommendation that would authorize one, read the current gate, authority-tier, and control sources and require the applicable evidence. When it is absent, bound the proposal to a `proposed` advisory, shadow, or read-only design and expose the gap; never infer permission to operate or the needed authority or control.
-
-Use the [source map](references/source-map.md) for canonical paths and headings. Use [task modes](references/task-modes.md) for the mode-specific input, output, and stopping contracts.
+Evaluate this skill across varied operating cases. A strong result bounds the problem, understands the whole workflow, redesigns work before technology, selects an appropriate intervention, preserves evidence boundaries, and enables the user's next action. File count, code volume, gate count, and runnable examples are not progress measures.
