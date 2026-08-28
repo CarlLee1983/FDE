@@ -743,49 +743,152 @@
       line-height: 1.5;
     }
     
-    /* Resource Quick Links */
+    /* Enhanced Resource Section */
     .resources-section {
       border: 1px solid var(--color-rule);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       background: var(--color-surface);
-      padding: var(--space-2xl);
+      padding: var(--space-3xl) var(--space-2xl);
       box-shadow: var(--shadow-sm);
     }
     .resources-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--space-xl);
-      margin-top: var(--space-lg);
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
     }
-    .resource-col h3 {
-      font-size: var(--text-sm);
+    .resource-card {
+      border: 1px solid var(--color-rule-subtle);
+      border-radius: var(--radius-md);
+      background: var(--color-paper-subtle);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .resource-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-accent-light);
+    }
+    .resource-card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+      border-bottom: 1px solid var(--color-rule);
+      padding-bottom: var(--space-sm);
+    }
+    .resource-card-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: var(--radius-sm);
+      background: var(--color-accent-wash);
+      color: var(--color-accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .resource-card-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .resource-card-header h3 {
+      font-size: 1.05rem;
       font-weight: 800;
       color: var(--color-ink);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      border-bottom: 1px solid var(--color-rule);
-      padding-bottom: var(--space-xs);
-      margin-bottom: var(--space-md);
+      margin: 0;
+      letter-spacing: -0.01em;
     }
-    .resource-list {
+    .resource-items-list {
       list-style: none;
       padding: 0;
       margin: 0;
       display: grid;
+      gap: var(--space-sm);
+      flex-grow: 1;
+    }
+    .resource-link-item {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-md);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface);
+      border: 1px solid var(--color-rule-subtle);
+      text-decoration: none;
+      color: inherit;
+      transition: all var(--dur-short) var(--ease-out);
+    }
+    .resource-link-item:hover {
+      border-color: var(--color-accent);
+      background: var(--color-surface-hover);
+      transform: translateX(2px);
+    }
+    .resource-link-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-3xs);
       gap: var(--space-xs);
     }
-    .resource-list a {
-      color: var(--color-ink-soft);
+    .resource-link-title {
       font-size: var(--text-sm);
-      text-decoration: none;
+      font-weight: 700;
+      color: var(--color-ink);
       display: inline-flex;
       align-items: center;
       gap: var(--space-2xs);
-      transition: color var(--dur-short) var(--ease-out);
     }
-    .resource-list a:hover {
+    .resource-link-item:hover .resource-link-title {
       color: var(--color-accent);
+    }
+    .resource-link-title svg {
+      width: 0.95rem;
+      height: 0.95rem;
+      opacity: 0.6;
+      transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .resource-link-item:hover .resource-link-title svg {
+      opacity: 1;
       transform: translateX(2px);
+    }
+    .resource-format-tag {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      font-weight: 800;
+      padding: 0.1rem 0.4rem;
+      border-radius: var(--radius-xs);
+      background: var(--color-paper-subtle);
+      border: 1px solid var(--color-rule);
+      color: var(--color-ink-muted);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .resource-link-desc {
+      font-size: var(--text-xs);
+      color: var(--color-ink-soft);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .badge-icon-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 800;
+      font-size: var(--text-xs);
+      letter-spacing: 0.02em;
+    }
+    .badge-icon-label svg {
+      width: 0.95rem;
+      height: 0.95rem;
+      flex-shrink: 0;
+    }
+    .badge-icon-label.scene {
+      color: var(--color-accent);
+    }
+    .badge-icon-label.solution {
+      color: var(--color-warm);
     }
     
     /* Footer */
@@ -933,7 +1036,11 @@
       </div>
 
       <div class="eli5-takeaway">
-        💡 <b>FDE 的核心理念：</b>AI 是眾多廚具中的一種，不是每道菜都需要買一台新機器。先把流程弄順，才是最划算的投資。
+        <span class="badge-icon-label" style="color:var(--color-accent-dark); display:inline-flex; align-items:center; gap:0.4rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:1.1rem; height:1.1rem;"><path d="M9 18h6M10 22h4M12 2v2M12 6a6 6 0 0 0-6 6c0 2.22 1.21 4.16 3 5.2V18h6v-.8c1.79-1.04 3-2.98 3-5.2a6 6 0 0 0-6-6z"/></svg>
+          <b>FDE 的核心理念：</b>
+        </span>
+        AI 是眾多廚具中的一種，不是每道菜都需要買一台新機器。先把流程弄順，才是最划算的投資。
       </div>
     </section>
 
@@ -1015,7 +1122,7 @@
           <div class="case-eyebrow">合成示範情境 · FEATURED CASE</div>
           <h2>第三方 API 變更監測：<br>告別「想到才手動檢查」的被動風險</h2>
           <p>
-            <strong>🎯 白話場景：</strong>就像家裡的大門換了新門鎖，如果沒通知郵差，包裹就會全部卡在門口進不來。
+            <span class="badge-icon-label scene" style="color:var(--color-warm);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>就像家裡的大門換了新門鎖，如果沒通知郵差，包裹就會全部卡在門口進不來。
           </p>
           <p>
             公司串接了刷卡金流、簡訊與地圖等外部服務。過去只有工程師「偶爾想起來」才去翻對方的更新說明。等到哪天客人刷卡突然全部失敗、全公司跳腳時，才發現對方上週早就改版了。
@@ -1055,8 +1162,8 @@
           </div>
           <h3>第三方 API 變更監測</h3>
           <p>
-            <strong>🎯 白話場景：</strong>外部串接服務改版沒人知道，導致線上付款壞掉。<br>
-            <strong>💡 解決方式：</strong>用自動比對抓出改動，AI 翻譯成白話影響摘要，再由工程師確認排程。
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>外部串接服務改版沒人知道，導致線上付款壞掉。<br>
+            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>用自動比對抓出改動，AI 翻譯成白話影響摘要，再由工程師確認排程。
           </p>
           <div class="case-card-footer">
             <span>交付物：監測架構與驗收腳本</span>
@@ -1070,8 +1177,8 @@
           </div>
           <h3>庫存補貨決策演化</h3>
           <p>
-            <strong>🎯 白話場景：</strong>像超商補貨茶葉蛋，叫太少會缺貨，叫太多會過期。<br>
-            <strong>💡 解決方式：</strong>先用「賣多少補多少」的固定算術規則跑一遍，確認可靠了，再來評估是否需要考慮天氣預報等複雜模型。
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>像超商補貨茶葉蛋，叫太少會缺貨，叫太多會過期。<br>
+            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>先用「賣多少補多少」的固定算術規則跑一遍，確認可靠了，再來評估是否需要考慮天氣預報等複雜模型。
           </p>
           <div class="case-card-footer">
             <span>交付物：決策回放與評估報告</span>
@@ -1085,8 +1192,8 @@
           </div>
           <h3>供應商發票例外治理</h3>
           <p>
-            <strong>🎯 白話場景：</strong>廠商請款發票數字對不上，財務跟採購每天互相甩鍋。<br>
-            <strong>💡 解決方式：</strong>在花幾百萬買 OCR 影像辨識前，先明確定義「差額多少錢以內誰能簽字核准、少發票找誰補件」。
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>廠商請款發票數字對不上，財務跟採購每天互相甩鍋。<br>
+            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>在花幾百萬買 OCR 影像辨識前，先明確定義「差額多少錢以內誰能簽字核准、少發票找誰補件」。
           </p>
           <div class="case-card-footer">
             <span>交付物：營運方案提案書</span>
@@ -1100,8 +1207,8 @@
           </div>
           <h3>客戶退款狀態交付套件</h3>
           <p>
-            <strong>🎯 白話場景：</strong>客人問退款到哪了，客服去問財務、財務去問工程師，沒人講得清楚。<br>
-            <strong>💡 解決方式：</strong>打造像包裹物流追蹤一樣透明的進度狀態機，工程、客服與主管都看同一份資料。
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>客人問退款到哪了，客服去問財務、財務去問工程師，沒人講得清楚。<br>
+            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>打造像包裹物流追蹤一樣透明的進度狀態機，工程、客服與主管都看同一份資料。
           </p>
           <div class="case-card-footer">
             <span>交付物：規格書與交付包</span>
@@ -1115,8 +1222,8 @@
           </div>
           <h3>決策記憶演化分析</h3>
           <p>
-            <strong>🎯 白話場景：</strong>資深主管離職後，新人不知道過去遇到突發狀況時為什麼要這樣處理。<br>
-            <strong>💡 解決方式：</strong>把每次重要決策的「背景原因、參考數據、最終選擇」白紙黑字存起來，變成能傳承的企業記憶。
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>資深主管離職後，新人不知道過去遇到突發狀況時為什麼要這樣處理。<br>
+            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>把每次重要決策的「背景原因、參考數據、最終選擇」白紙黑字存起來，變成能傳承的企業記憶。
           </p>
           <div class="case-card-footer">
             <span>交付物：決策事件 JSON Schema</span>
@@ -1130,8 +1237,8 @@
           </div>
           <h3>退款狀態互動式簡報</h3>
           <p>
-            <strong>🎯 白話場景：</strong>如何向非技術的老闆和跨部門主管說明「我們到底要改什麼、為什麼這樣改最省錢」？<br>
-            <strong>💡 解決方式：</strong>用乾淨直觀的簡報投影片，5 分鐘說清業務痛點、決策矩陣與投資報酬。
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>如何向非技術的老闆和跨部門主管說明「我們到底要改什麼、為什麼這樣改最省錢」？<br>
+            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>用乾淨直觀的簡報投影片，5 分鐘說清業務痛點、決策矩陣與投資報酬。
           </p>
           <div class="case-card-footer">
             <span>交付物：全螢幕互動簡報</span>
@@ -1155,7 +1262,8 @@
         <ul class="claims-grid">
           <li class="claim-item">
             <div class="claim-tag evidence">
-              <span aria-hidden="true">●</span> <span>有證據</span>
+              <span aria-hidden="true" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:currentColor;"></span>
+              <span>有證據</span>
             </div>
             <div class="claim-desc">
               <strong>數據來源一清二楚：</strong>有真實可回放的數據與邏輯驗證，講話百分之百有底氣。
@@ -1163,7 +1271,8 @@
           </li>
           <li class="claim-item">
             <div class="claim-tag proposal">
-              <span aria-hidden="true">●</span> <span>這是提案</span>
+              <span aria-hidden="true" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:currentColor;"></span>
+              <span>這是提案</span>
             </div>
             <div class="claim-desc">
               <strong>整理好的好方案：</strong>提供給主管或團隊評估的選項，但需等負責人點頭核准才算數。
@@ -1171,7 +1280,8 @@
           </li>
           <li class="claim-item">
             <div class="claim-tag gap">
-              <span aria-hidden="true">●</span> <span>還缺資料</span>
+              <span aria-hidden="true" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:currentColor;"></span>
+              <span>還缺資料</span>
             </div>
             <div class="claim-desc">
               <strong>知道缺什麼：</strong>需要對接真實企業環境、特定系統權限或內部數據才能進一步落實。
@@ -1179,7 +1289,8 @@
           </li>
           <li class="claim-item">
             <div class="claim-tag unverified">
-              <span aria-hidden="true">○</span> <span>無法確認</span>
+              <span aria-hidden="true" style="display:inline-block; width:8px; height:8px; border-radius:50%; border:2px solid currentColor;"></span>
+              <span>無法確認</span>
             </div>
             <div class="claim-desc">
               <strong>絕不瞎猜：</strong>缺乏足夠證據時誠實承認，縮小說法並安排下一步的小規模實驗來驗證。
@@ -1194,36 +1305,134 @@
       <div class="resources-section">
         <div class="section-head">
           <span class="section-eyebrow">資源庫</span>
-          <h2>專案規格與方法論文件庫</h2>
-          <p>所有工作方法、分析規範與架構模型均具備完整的 Markdown 與 JSON Schema 支援。</p>
+          <h2>專案規格、實戰交付件與研究文件庫</h2>
+          <p>所有方法論、交付包與研究架構均有完整的 Markdown、JSON Schema 與 HTML 驗證支援。</p>
         </div>
         
         <div class="resources-grid">
-          <div class="resource-col">
-            <h3>核心方法論</h3>
-            <ul class="resource-list">
-              <li><a href="FDE-Scenario-to-Action-Method.zh-TW.md">情境至行動方法論 →</a></li>
-              <li><a href="FDE-Capability-Enhancement-Plan.zh-TW.md">能力強化計畫綱領 →</a></li>
-              <li><a href="FDE-Enterprise-Delivery-Architecture.zh-TW.md">企業交付架構摘要 →</a></li>
+          <!-- Category 1: Methodology -->
+          <div class="resource-card">
+            <div class="resource-card-header">
+              <div class="resource-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              </div>
+              <h3>核心工作方法論</h3>
+            </div>
+            <ul class="resource-items-list">
+              <li>
+                <a class="resource-link-item" href="FDE-Scenario-to-Action-Method.zh-TW.md">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">情境至行動方法論 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">DOC</span>
+                  </div>
+                  <p class="resource-link-desc">整合需求工程、DMN 與六大分析階段的完整指導手冊</p>
+                </a>
+              </li>
+              <li>
+                <a class="resource-link-item" href="FDE-Capability-Enhancement-Plan.zh-TW.md">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">能力強化計畫綱領 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">PLAN</span>
+                  </div>
+                  <p class="resource-link-desc">從單一情境沉澱為企業級語義與決策資產之藍圖</p>
+                </a>
+              </li>
+              <li>
+                <a class="resource-link-item" href="FDE-Enterprise-Delivery-Architecture.zh-TW.md">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">企業交付架構摘要 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">ARCH</span>
+                  </div>
+                  <p class="resource-link-desc">語義模型、存取控制、決策引擎與受控回寫模型</p>
+                </a>
+              </li>
             </ul>
           </div>
-          
-          <div class="resource-col">
-            <h3>實戰案例與交付件</h3>
-            <ul class="resource-list">
-              <li><a href="examples/README.zh-TW.md">全部範例總覽目錄 →</a></li>
-              <li><a href="examples/third-party-api-change-monitoring/index.html">API 變更監測互動版 →</a></li>
-              <li><a href="examples/customer-refund-status-delivery-kit/presentation.html">退款分析互動簡報 →</a></li>
-              <li><a href="examples/inventory-replenishment-evolution/index.html">補貨決策演化範例 →</a></li>
+
+          <!-- Category 2: Cases & Delivery Kits -->
+          <div class="resource-card">
+            <div class="resource-card-header">
+              <div class="resource-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              </div>
+              <h3>實戰案例與交付件</h3>
+            </div>
+            <ul class="resource-items-list">
+              <li>
+                <a class="resource-link-item" href="examples/README.zh-TW.md">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">全部範例總覽目錄 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">INDEX</span>
+                  </div>
+                  <p class="resource-link-desc">收錄對帳、發票、API、退款與補貨等完整案例索引</p>
+                </a>
+              </li>
+              <li>
+                <a class="resource-link-item" href="examples/third-party-api-change-monitoring/index.html">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">API 變更監測互動版 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">HTML</span>
+                  </div>
+                  <p class="resource-link-desc">確定性比對、AI 摘要與人工確認三道防線實時展示</p>
+                </a>
+              </li>
+              <li>
+                <a class="resource-link-item" href="examples/customer-refund-status-delivery-kit/presentation.html">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">退款分析互動簡報 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">SLIDES</span>
+                  </div>
+                  <p class="resource-link-desc">專為利害關係人打造的現代全螢幕 HTML5 投影片</p>
+                </a>
+              </li>
+              <li>
+                <a class="resource-link-item" href="examples/inventory-replenishment-evolution/index.html">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">補貨決策演化範例 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">CASE</span>
+                  </div>
+                  <p class="resource-link-desc">確定性可重播算術基線與進階模型演化評估</p>
+                </a>
+              </li>
             </ul>
           </div>
-          
-          <div class="resource-col">
-            <h3>架構與研究規範</h3>
-            <ul class="resource-list">
-              <li><a href="README.zh-TW.md">專案總覽 (README) →</a></li>
-              <li><a href="docs/zh-TW/README.md">本體論與研究章節索引 →</a></li>
-              <li><a href="AGENTS.md">Agent 指引與邊界規範 →</a></li>
+
+          <!-- Category 3: Standards & Research -->
+          <div class="resource-card">
+            <div class="resource-card-header">
+              <div class="resource-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <h3>架構研究與邊界規範</h3>
+            </div>
+            <ul class="resource-items-list">
+              <li>
+                <a class="resource-link-item" href="README.zh-TW.md">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">專案總覽 (README) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">README</span>
+                  </div>
+                  <p class="resource-link-desc">專案背景、來源階層與快速入門導覽</p>
+                </a>
+              </li>
+              <li>
+                <a class="resource-link-item" href="docs/zh-TW/README.md">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">本體論與研究索引 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">RESEARCH</span>
+                  </div>
+                  <p class="resource-link-desc">企業語義模型、知識治理與系統分析方法深度研究</p>
+                </a>
+              </li>
+              <li>
+                <a class="resource-link-item" href="AGENTS.md">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">Agent 邊界與守則 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">AGENTS</span>
+                  </div>
+                  <p class="resource-link-desc">嚴格定義 AI Agent 的分析邊界、驗證準則與運作條件</p>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
