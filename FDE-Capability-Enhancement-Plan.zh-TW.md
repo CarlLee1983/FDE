@@ -39,7 +39,7 @@ FDE 的交付能力應從孤立的回答或展示，逐步發展為可治理、�
 第一個 FDE 工件是一份技術中立的情境登錄契約：
 
 - [情境紀錄 JSON Schema](schemas/fde-scenario.schema.json)
-- [示意情境紀錄](examples/order-exception-triage.scenario.json)
+- [示意情境紀錄](schemas/fde-scenario.example.json)
 
 情境登錄必須先完成，因為它能在引入實作複雜度前，連結產品意圖、營運責任、 本體範圍、資料來源與驗收證據。
 

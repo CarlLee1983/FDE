@@ -11,7 +11,7 @@
 | 帳務對帳 | 精準匹配是否需要 AI？ | Deterministic read-only replay、fixtures、tests、expected result；AI not needed | [說明](account-reconciliation/README.zh-TW.md) |
 | 出貨延遲優先級 | 如何在 access、freshness 與語意版本下提供唯讀排序？ | Scenario、evidence、deterministic replay、tests、expected result | [說明](shipment-delay-priority/README.zh-TW.md) |
 | 個人 Email 管理 | 如何先交付唯讀每日審閱，再評估 AI shadow？ | Operating proposal、scenario、HTML 尚未提供；真實信箱 access 與 baseline 缺失 | [說明](personal-email-management/README.zh-TW.md) |
-| 供應商發票例外 | 例外流程應先修責任，還是先加入 AI？ | Markdown 與 HTML operating proposal | [案例頁](vendor-invoice-exception-proposal/index.html) |
+| 供應商發票例外 | 例外流程應先修責任，還是先加入 AI？ | Request、scenario、Markdown 與 HTML operating proposal | [案例頁](vendor-invoice-exception-proposal/index.html) · [提案](vendor-invoice-exception-proposal/artifacts/operating-solution-proposal.zh-TW.md) |
 
 ## 如何閱讀狀態
 

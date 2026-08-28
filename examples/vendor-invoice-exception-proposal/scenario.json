@@ -1,0 +1,66 @@
+{
+  "id": "vendor-invoice-exception-proposal",
+  "name": "Vendor invoice exception handling redesign",
+  "description": "Proposed reference scenario for replacing scattered accounts-payable exception handling with unified exception classification, ownership, deterministic three-way matching, and a read-only replay before any AI or payment-affecting change.",
+  "status": "proposed",
+  "businessOwner": {
+    "role": "Accounts Payable Process Owner",
+    "contact": "missing:real-accountable-owner"
+  },
+  "processNode": "From receipt of a vendor invoice to the invoice becoming payment-eligible and entering the payment schedule; payment execution, vendor onboarding, and bank-detail changes are out of scope.",
+  "userRoles": [
+    "Accounts Payable Specialist",
+    "Accounts Payable Process Owner",
+    "Purchasing Contact",
+    "Receiving Contact",
+    "Finance Data Owner"
+  ],
+  "decisionOrAction": "Decide whether the process owner reviews the proposed current-state assumptions and authorises a read-only replay over a de-identified batch of closed historical invoices; the replay does not write to the ERP or affect payment.",
+  "metrics": [
+    {
+      "name": "Receipt-to-payment-eligible time",
+      "definition": "Median and high-percentile elapsed time from invoice receipt to payment eligibility.",
+      "baseline": "missing:enterprise baseline",
+      "target": "proposed:owner-defined after read-only replay",
+      "cadence": "monthly"
+    },
+    {
+      "name": "First-pass match rate",
+      "definition": "Share of invoices that complete three-way matching without entering the exception queue, with the distribution of exception types for the remainder.",
+      "baseline": "missing:enterprise baseline",
+      "target": "proposed:owner-defined after read-only replay",
+      "cadence": "monthly"
+    },
+    {
+      "name": "Payment control incidents",
+      "definition": "Count of erroneous releases, duplicate payments, and mispayments; the redesign must not increase this.",
+      "baseline": "missing:enterprise baseline",
+      "target": "proposed:no worse than the accepted baseline",
+      "cadence": "monthly"
+    }
+  ],
+  "ontologyReferences": [
+    {
+      "id": "proposed:accounts-payable-exception-semantics@0.1.0",
+      "purpose": "Proposed definitions for invoice case, exception type, reason code, responsible role, response deadline, escalation path, and payment eligibility."
+    }
+  ],
+  "sourceReferences": [
+    {
+      "id": "proposed:current-ap-sop-and-exception-list",
+      "purpose": "Current standard operating procedure, exception types, and responsibility split to be confirmed or corrected by the process owner."
+    },
+    {
+      "id": "proposed:de-identified-closed-invoice-cases",
+      "purpose": "Closed invoice cases from a representative recent period, used only for read-only replay after an access and de-identification decision."
+    }
+  ],
+  "acceptanceCriteria": [
+    "The process owner accepts or corrects each step of the proposed current-state and target workflows.",
+    "The finance data owner confirms available fields, period, data quality, and usage rights for the historical cases.",
+    "Both owners approve the success conditions of a read-only replay that does not write back to the ERP or affect payment.",
+    "Deterministic three-way matching and duplicate-invoice checks are reproducible and keep prior results and a full audit trail when re-run after supplementation.",
+    "AI is considered only after replay evidence shows residual language work; it never approves payment, rewrites policy thresholds, changes vendor bank details, or releases exceptions."
+  ],
+  "notes": "This record is proposed and generic. The real enterprise, process owner, current SOP, exception taxonomy, historical cases, baseline, target, and acceptance evidence are missing or unverifiable."
+}

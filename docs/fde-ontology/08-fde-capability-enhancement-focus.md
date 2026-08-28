@@ -32,7 +32,7 @@ Scenario registration, semantic definition, context resolution, decision support
 | Decision support | A user needs a bounded metric, answer, recommendation, or route. |
 | Controlled action | An already authorized operating action needs execution controls. |
 
-The [scenario record schema](../../schemas/fde-scenario.schema.json) and its [illustrative record](../../examples/order-exception-triage.scenario.json) are optional validation artefacts. The example demonstrates shape only; it is not a project milestone, enterprise fact, or implementation commitment.
+The [scenario record schema](../../schemas/fde-scenario.schema.json) and its [illustrative record](../../schemas/fde-scenario.example.json) are optional validation artefacts. The example demonstrates shape only; it is not a project milestone, enterprise fact, or implementation commitment.
 
 ## Conditional Delivery and Assurance
 
