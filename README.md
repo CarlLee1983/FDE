@@ -55,3 +55,9 @@ python3 scripts/validate-pages.py "$output_dir"
 ```
 
 The workflow publishes only after the repository owner enables GitHub Pages with **GitHub Actions** as its source. A successful repository build proves the static artifact and its local links; it does not establish target-enterprise acceptance, access, authority, production readiness, or value.
+
+## Contributing and License
+
+[Contributing](.github/CONTRIBUTING.md) states the boundary check and the three verification commands a change must pass; [security reports](.github/SECURITY.md) go through GitHub private reporting, never a public issue. Participation is governed by the [code of conduct](.github/CODE_OF_CONDUCT.md), and released versions are listed in the [changelog](CHANGELOG.md).
+
+Released under the MIT License. The full text is in the `LICENSE` file at the repository root; it is not part of the published static site.

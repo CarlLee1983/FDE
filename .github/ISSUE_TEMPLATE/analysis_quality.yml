@@ -1,0 +1,37 @@
+name: Analysis quality problem
+description: The skill's reasoning, boundary, or a worked case is wrong, unsupported, or misleading.
+labels: ["analysis-quality"]
+body:
+  - type: textarea
+    id: where
+    attributes:
+      label: Where
+      description: The document, example case, or skill section at fault, with a path.
+      placeholder: examples/shipment-delay-priority/scenario.json
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of problem
+      options:
+        - A claim is stated as fact but rests on no evidence
+        - An analysis crossed the project's capability boundary
+        - The intervention or AI-fit decision does not follow from the diagnosis
+        - Canonical language in CONTEXT.md is used inconsistently
+        - A reference hypothesis is presented as a target-enterprise fact
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: What is wrong
+      description: Quote the passage and say what a careful reader would conclude that they should not.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Proposed correction
+      description: Optional. If this needs an accepted decision changed, name the ADR.

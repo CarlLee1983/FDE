@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security problem privately
+    url: https://github.com/CarlLee1983/FDE/security/advisories/new
+    about: Vulnerabilities in the repository tooling go through private reporting, never a public issue.
+  - name: Read the agent entry first
+    url: https://github.com/CarlLee1983/FDE/blob/main/AGENTS.md
+    about: AGENTS.md names the four rule sources that govern what this project will and will not do.

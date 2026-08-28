@@ -23,3 +23,9 @@
 ## GitHub Pages
 
 本 repository 已提供純靜態網站與 GitHub Actions workflow。Repository owner 在 GitHub Pages 設定中選擇 **GitHub Actions** 為發布來源後，push 到 `main` 會先組裝並驗證 artifact，再執行部署。此網站展示專案方法與合成案例，不代表任何企業已接受、授權、上線或取得成效。
+
+## 參與與授權
+
+[貢獻指南](.github/CONTRIBUTING.md)說明邊界檢查與三道驗證指令；安全問題走 GitHub 私下回報，見[安全政策](.github/SECURITY.md)，不要開公開 issue。社群行為依[行為準則](.github/CODE_OF_CONDUCT.md)，已發佈版本記於[變更紀錄](CHANGELOG.md)。
+
+本專案採用 MIT License，全文位於 repository 根目錄的 `LICENSE`，不納入靜態網站發佈內容。

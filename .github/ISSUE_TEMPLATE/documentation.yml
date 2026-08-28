@@ -1,0 +1,24 @@
+name: Documentation problem
+description: A document is inaccurate, out of date, untranslated, or has a broken link.
+labels: ["documentation"]
+body:
+  - type: input
+    id: path
+    attributes:
+      label: File
+      placeholder: docs/zh-TW/fde-project-work-skill.md
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What the document says now, and why that is wrong or stale.
+    validations:
+      required: true
+  - type: checkboxes
+    id: translation
+    attributes:
+      label: Translation
+      options:
+        - label: This also affects the Traditional Chinese mirror of the same document.

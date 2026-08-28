@@ -1,0 +1,45 @@
+name: Tooling defect
+description: Something in the scripts, tests, schemas, or Pages build behaves incorrectly.
+labels: ["defect"]
+body:
+  - type: markdown
+    attributes:
+      value: For an unfixed security problem, use private reporting instead of this form.
+  - type: input
+    id: command
+    attributes:
+      label: Command
+      description: The exact command you ran.
+      placeholder: python3 scripts/validate-pages.py _site
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed output
+      description: Paste the real output, including the exit status.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What should have happened, and which file or document says so.
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit or tag
+      description: Output of `git rev-parse --short HEAD`.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, and the Python and shell versions used.
+      placeholder: macOS 26.1, python3 3.13.2, zsh
+    validations:
+      required: true
