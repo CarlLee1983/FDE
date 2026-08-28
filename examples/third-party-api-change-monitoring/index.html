@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="第三方 API 版本更新監測的 FDE 落地案例：以確定性偵測、條件式 AI 解讀與人類治理取代被動人工查看。">
+  <title>第三方 API 變更監測｜FDE 落地案例</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page:#f1f4f2; --surface:#fff; --ink:#14211d; --muted:#65716c; --line:#d7dfdb;
+      --green:#166048; --green-soft:#e1f0e9; --blue:#205f82; --blue-soft:#e3f0f7;
+      --amber:#9b5c12; --amber-soft:#fff0d9; --red:#a33c3c; --red-soft:#fae6e4;
+      --shadow:0 18px 48px rgba(25,55,44,.08); --radius:18px;
+      --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;
+      --serif:Georgia,"Noto Serif TC",serif;
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --page:#0d1713; --surface:#14221c; --ink:#eef5f1; --muted:#a8b8b0; --line:#30443a;
+      --green:#6ed5ae; --green-soft:#173d30; --blue:#7ec7eb; --blue-soft:#173649;
+      --amber:#f1bd6b; --amber-soft:#3d2c13; --red:#ff9c98; --red-soft:#412222;
+      --shadow:0 18px 48px rgba(0,0,0,.28);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--page); color:var(--ink); font-family:var(--sans); line-height:1.7; }
+    a { color:var(--blue); text-underline-offset:3px; }
+    button { font:inherit; }
+    .shell { width:min(1160px,calc(100% - 36px)); margin:auto; }
+    .topbar { position:sticky; top:0; z-index:20; border-bottom:1px solid var(--line); background:color-mix(in srgb,var(--surface) 92%,transparent); backdrop-filter:blur(14px); }
+    .topbar .shell { min-height:60px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { color:var(--ink); font-size:.82rem; font-weight:850; letter-spacing:.1em; text-decoration:none; text-transform:uppercase; }
+    .actions { display:flex; gap:9px; }
+    .actions button { border:1px solid var(--line); border-radius:999px; background:var(--surface); color:var(--ink); padding:8px 13px; cursor:pointer; }
+    .hero { border-bottom:1px solid var(--line); background:radial-gradient(circle at 86% 10%,color-mix(in srgb,var(--green) 16%,transparent),transparent 28rem),var(--surface); }
+    .hero .shell { padding:76px 0 58px; }
+    .eyebrow { margin:0 0 14px; color:var(--green); font-size:.76rem; font-weight:850; letter-spacing:.15em; text-transform:uppercase; }
+    h1,h2,h3 { margin-top:0; line-height:1.16; letter-spacing:-.025em; }
+    h1 { max-width:900px; margin-bottom:22px; font-family:var(--serif); font-size:clamp(2.6rem,7vw,5.7rem); font-weight:500; }
+    h2 { margin-bottom:14px; font-family:var(--serif); font-size:clamp(1.9rem,4vw,3.3rem); font-weight:500; }
+    h3 { font-size:1.05rem; }
+    .lede { max-width:810px; margin:0; color:var(--muted); font-size:clamp(1.05rem,2vw,1.28rem); }
+    .status { display:inline-flex; margin-top:24px; border:1px solid color-mix(in srgb,var(--amber) 40%,var(--line)); border-radius:999px; background:var(--amber-soft); color:var(--amber); padding:7px 12px; font-size:.82rem; font-weight:800; }
+    .summary { display:grid; grid-template-columns:repeat(4,1fr); margin-top:36px; border:1px solid var(--line); background:var(--surface); }
+    .summary div { min-height:116px; padding:20px; border-right:1px solid var(--line); }
+    .summary div:last-child { border-right:0; }
+    .summary small { display:block; margin-bottom:8px; color:var(--muted); }
+    .summary strong { display:block; line-height:1.4; }
+    .layout { display:grid; grid-template-columns:220px minmax(0,1fr); gap:44px; padding:52px 0 90px; }
+    nav { position:sticky; top:88px; align-self:start; }
+    nav p { margin:0 0 9px; color:var(--muted); font-size:.72rem; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
+    nav a { display:block; border-left:2px solid var(--line); color:var(--muted); padding:7px 12px; font-size:.9rem; text-decoration:none; }
+    nav a:hover { border-color:var(--green); color:var(--green); }
+    main { min-width:0; }
+    section { scroll-margin-top:84px; margin-bottom:68px; }
+    .intro { max-width:820px; color:var(--muted); font-size:1.04rem; }
+    .callout,.card,.flow-step,.evidence-wrap { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow); }
+    .callout { border-left:5px solid var(--green); padding:22px 24px; }
+    .callout strong { color:var(--green); }
+    .grid-2,.grid-3 { display:grid; gap:16px; }
+    .grid-2 { grid-template-columns:repeat(2,1fr); }
+    .grid-3 { grid-template-columns:repeat(3,1fr); }
+    .card { padding:23px; }
+    .card h3 { margin-bottom:8px; }
+    .card p,.card li { color:var(--muted); }
+    .card ul,.card ol { margin-bottom:0; padding-left:1.25rem; }
+    .tag { display:inline-block; margin-bottom:12px; border-radius:999px; padding:4px 9px; font-size:.72rem; font-weight:850; }
+    .green { background:var(--green-soft); color:var(--green); }
+    .blue { background:var(--blue-soft); color:var(--blue); }
+    .amber { background:var(--amber-soft); color:var(--amber); }
+    .red { background:var(--red-soft); color:var(--red); }
+    .flow { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:24px; }
+    .flow-step { position:relative; min-height:178px; padding:20px; border-top:4px solid var(--green); }
+    .flow-step b { display:block; margin-bottom:18px; color:var(--green); font-size:.76rem; letter-spacing:.08em; }
+    .flow-step p { margin:0; font-size:.92rem; }
+    .flow-step:not(:last-child)::after { content:"→"; position:absolute; right:-17px; top:70px; z-index:2; display:grid; place-items:center; width:24px; height:24px; border:1px solid var(--line); border-radius:50%; background:var(--page); color:var(--green); font-weight:900; }
+    .roles { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .role { border-radius:var(--radius); padding:24px; }
+    .role.software { background:var(--green); color:#fff; }
+    .role.ai { border:1px solid color-mix(in srgb,var(--blue) 38%,var(--line)); background:var(--blue-soft); }
+    .role.human { border:1px solid color-mix(in srgb,var(--amber) 38%,var(--line)); background:var(--amber-soft); }
+    .role p { margin-bottom:0; }
+    .timeline { display:grid; gap:10px; }
+    .phase { display:grid; grid-template-columns:110px 1fr; gap:20px; border:1px solid var(--line); border-radius:14px; background:var(--surface); padding:17px 20px; }
+    .phase strong { color:var(--green); }
+    .phase p { margin:0; color:var(--muted); }
+    .evidence-wrap { overflow-x:auto; }
+    table { width:100%; min-width:680px; border-collapse:collapse; font-size:.9rem; }
+    th,td { border-bottom:1px solid var(--line); padding:13px 15px; text-align:left; vertical-align:top; }
+    th { color:var(--muted); font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; }
+    tr:last-child td { border-bottom:0; }
+    .next { border-radius:var(--radius); background:var(--green); color:#fff; padding:28px; }
+    .next h2 { font-family:var(--serif); }
+    .next p { max-width:860px; margin-bottom:0; font-size:1.04rem; }
+    footer { border-top:1px solid var(--line); background:var(--surface); }
+    footer .shell { padding:28px 0; color:var(--muted); font-size:.84rem; }
+    @media (max-width:900px) {
+      .summary,.flow { grid-template-columns:repeat(2,1fr); }
+      .summary div:nth-child(2) { border-right:0; }
+      .summary div:nth-child(-n+2) { border-bottom:1px solid var(--line); }
+      .flow-step:nth-child(2)::after { display:none; }
+      .layout { grid-template-columns:1fr; }
+      nav { position:static; display:grid; grid-template-columns:repeat(3,1fr); }
+      nav p { grid-column:1/-1; }
+      .roles,.grid-3 { grid-template-columns:1fr; }
+    }
+    @media (max-width:600px) {
+      .hero .shell { padding-top:52px; }
+      .summary,.flow,.grid-2 { grid-template-columns:1fr; }
+      .summary div { border-right:0; border-bottom:1px solid var(--line); }
+      .summary div:last-child { border-bottom:0; }
+      .flow-step::after { display:none!important; }
+      nav { grid-template-columns:repeat(2,1fr); }
+      .phase { grid-template-columns:1fr; gap:4px; }
+      .actions button:first-child { display:none; }
+    }
+    @media print {
+      @page { size:A4; margin:13mm; }
+      body { background:#fff; color:#111; font-size:9.5pt; }
+      .topbar,nav { display:none; }
+      .shell { width:100%; }
+      .hero .shell { padding:10mm 0 6mm; }
+      h1 { font-size:32pt; }
+      .layout { display:block; padding:8mm 0; }
+      section { margin-bottom:10mm; break-inside:avoid; }
+      .summary,.flow,.roles,.grid-3 { grid-template-columns:repeat(2,1fr); }
+      .flow-step::after { display:none!important; }
+      .card,.callout,.flow-step,.evidence-wrap { box-shadow:none; break-inside:avoid; }
+      table { min-width:0; font-size:7.5pt; }
+      .role.software,.next { background:#fff; color:#111; border:1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell">
+      <a class="brand" href="#top">FDE Operating Case</a>
+      <div class="actions">
+        <button type="button" onclick="window.print()">列印／另存 PDF</button>
+        <button id="themeButton" type="button" aria-label="切換深色或淺色主題">切換主題</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero" id="top">
+    <div class="shell">
+      <p class="eyebrow">Third-party API change monitoring</p>
+      <h1>不再等 API 壞掉，<br>才發現版本已經改了</h1>
+      <p class="lede">把三個外部服務的被動人工查看，重整為有來源、有 owner、有時限的唯讀監測；確定性軟體找差異，AI 解讀語言，人類承擔升級決策。</p>
+      <div class="status">Proposed · 通用合成案例，尚未連接真實供應商</div>
+      <div class="summary">
+        <div><small>作業問題</small><strong>人工偶爾查看，涵蓋與責任都不清楚</strong></div>
+        <div><small>第一切片</small><strong>唯讀 deterministic shadow</strong></div>
+        <div><small>AI 邊界</small><strong>只做有引用、可拒絕的語言解讀</strong></div>
+        <div><small>禁止事項</small><strong>不自動改 code、升版或改供應商設定</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell layout">
+    <nav aria-label="案例章節">
+      <p>閱讀導覽</p>
+      <a href="#problem">問題與結果</a>
+      <a href="#diagnosis">現況診斷</a>
+      <a href="#workflow">目標流程</a>
+      <a href="#roles">責任與 AI</a>
+      <a href="#slice">最小切片</a>
+      <a href="#evidence">證據邊界</a>
+      <a href="#handoff">開發交接</a>
+      <a href="#next">下一步</a>
+    </nav>
+
+    <main>
+      <section id="problem">
+        <h2>01 — 改善的是決策鏈，不只是多一個通知 bot</h2>
+        <p class="intro">預期結果是：每個可能影響串接的變更，都能在合理時間內被發現、連回實際使用點、交給明確的人決定，並保留來源與處置證據。</p>
+        <div class="callout"><strong>第一階段決策：</strong>只做唯讀決策支援。量測偵測延遲、相關變更召回率與無關通知負擔；baseline 與 target 由真正的 owner 實測後接受。</div>
+      </section>
+
+      <section id="diagnosis">
+        <h2>02 — 現況的四種失效路徑</h2>
+        <p class="intro">以下是待企業證據驗證的參考假說，不是對任何真實團隊的既成事實。</p>
+        <div class="grid-2">
+          <article class="card"><span class="tag amber">正常</span><h3>每個人各自追文件</h3><p>重複查看 release notes、文件頁與 email，卻不知道三個服務是否都被涵蓋。</p></article>
+          <article class="card"><span class="tag blue">例外</span><h3>公告沒有直接說影響</h3><p>工程師重新讀公告、搜 code、問原作者，才能判斷 endpoint、SDK 或 auth 是否受影響。</p></article>
+          <article class="card"><span class="tag red">升級</span><h3>發現後才臨時找 owner</h3><p>breaking change 或 deprecation 已出現，但責任、review-by time 與排期不清楚。</p></article>
+          <article class="card"><span class="tag green">Rework</span><h3>判讀沒有可重播證據</h3><p>缺少內容 hash、當時的使用清冊 revision，以及接受或拒絕理由。</p></article>
+        </div>
+      </section>
+
+      <section id="workflow">
+        <h2>03 — 先修作業，再加入技術</h2>
+        <div class="grid-2">
+          <article class="card"><span class="tag green">先做</span><ol><li>移除多人重複查看同一來源。</li><li>每個供應商建立一份 owner 接受的來源登錄。</li><li>標準化 API、版本、使用點與處置語義。</li><li>重新分配監測、影響判斷與升級責任。</li></ol></article>
+          <article class="card"><span class="tag amber">先不要做</span><ul><li>不讓 AI 猜沒有來源的變更。</li><li>不把 AI 摘要當唯一證據。</li><li>不自動建立升級工作。</li><li>不自動修改 dependency、code 或 vendor configuration。</li></ul></article>
+        </div>
+        <div class="flow" aria-label="目標工作流程">
+          <article class="flow-step"><b>01 · REGISTER</b><h3>登錄來源</h3><p>官方 changelog、deprecation、OpenAPI、schema 與 SDK source。</p></article>
+          <article class="flow-step"><b>02 · DETECT</b><h3>確定性比較</h3><p>保存時間、版本與 hash；比較 endpoint、欄位與棄用日期。</p></article>
+          <article class="flow-step"><b>03 · INTERPRET</b><h3>條件式 AI</h3><p>需要語言解讀時，產生有引用、標示不確定性的影響候選。</p></article>
+          <article class="flow-step"><b>04 · GOVERN</b><h3>人類審查</h3><p>指派 owner 與 review-by；逾期升級 fallback owner，直到有證據結案。</p></article>
+        </div>
+      </section>
+
+      <section id="roles">
+        <h2>04 — 穩定規則交給軟體，語言負擔才考慮 AI</h2>
+        <div class="roles">
+          <article class="role software"><h3>確定性軟體</h3><p>排程、擷取、hash、版本比較、OpenAPI/schema diff、棄用日期、freshness 與 fail-closed。</p></article>
+          <article class="role ai"><h3>條件式 AI · Shadow</h3><p>摘要散文公告、合併文件、對照核准的使用點 view；必須引用、呈現不確定性，證據不足時 abstain。</p></article>
+          <article class="role human"><h3>可歸責的人類</h3><p>maintainer 判斷相關性；integration owner 決定升級；data owner 核准模型輸入欄位與遮罩。</p></article>
+        </div>
+        <div class="callout" style="margin-top:16px"><strong>資料治理：</strong>每次模型請求記錄 input-scope access decision。憑證、secret、原始 auth material、未核准 code 與 metadata 不得進入模型。</div>
+      </section>
+
+      <section id="slice">
+        <h2>05 — 四週最小落地切片</h2>
+        <div class="timeline">
+          <article class="phase"><strong>第 0 週</strong><p>指定 integration owner 與 data owner；確認三個服務、官方來源、內部使用清冊 revision、人工 baseline，以及欄位層級的模型輸入與遮罩政策。</p></article>
+          <article class="phase"><strong>第 1–2 週</strong><p>啟動唯讀 deterministic shadow；產生 raw diff 與 change record，設定 owner、review-by time 與逾期 escalation，不做任何寫回。</p></article>
+          <article class="phase"><strong>第 3–4 週</strong><p>對同一批 records 比較 deterministic-only 與 AI-assisted，量測召回、誤報、審查時間與引用正確性。</p></article>
+          <article class="phase"><strong>Promotion gate</strong><p>owner 接受 source coverage、inventory、notification threshold、fallback owner 與 shadow evidence 後，才能規劃下一階段。</p></article>
+        </div>
+      </section>
+
+      <section id="evidence">
+        <h2>06 — 現在能說到哪裡？</h2>
+        <div class="evidence-wrap">
+          <table>
+            <thead><tr><th>主張</th><th>狀態</th><th>限制</th></tr></thead>
+            <tbody>
+              <tr><td>串接三個服務，靠被動人工方式檢查</td><td><span class="tag blue">proposed</span></td><td>來自案例需求；不能宣稱實際工時或漏報率。</td></tr>
+              <tr><td>官方來源、抓取條款與完整性</td><td><span class="tag amber">missing</span></td><td>確認前不得啟用真實來源擷取。</td></tr>
+              <tr><td>內部使用點、owner 與模型資料範圍</td><td><span class="tag amber">missing</span></td><td>不得宣稱影響判讀完整或資料可送入模型。</td></tr>
+              <tr><td>AI 比 non-AI baseline 更有價值</td><td><span class="tag red">unverifiable</span></td><td>AI selection 維持 conditional，需先做 shadow A/B。</td></tr>
+              <tr><td>自動升級或寫回權限</td><td><span class="tag red">out of scope</span></td><td>第一切片嚴格唯讀；另案才可評估。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="handoff">
+        <h2>07 — 提案完成後，交給開發 agent</h2>
+        <p class="intro">FDE project-work skill 負責把作業問題、目標流程、AI 適配、證據限制與第一切片說清楚；它不負責撰寫監測系統。Owner 接受邊界後，由目標 repository 的開發 agent 依當地技術棧與工程規範完成實作。</p>
+        <div class="grid-3">
+          <article class="card"><span class="tag green">交付給 agent</span><h3>可執行契約</h3><p>提供 source、diff、inventory、AI shadow、review policy 的模組邊界，以及輸出 contract。</p></article>
+          <article class="card"><span class="tag blue">Agent 自行確認</span><h3>Repository 事實</h3><p>先讀適用的 AGENTS.md、依賴、測試與執行命令；提案不猜測框架或套件。</p></article>
+          <article class="card"><span class="tag amber">完成證據</span><h3>測試與邊界</h3><p>從 deterministic offline slice 開始，證明可重播、fail-closed、AI 可關閉與 writeBack false。</p></article>
+        </div>
+        <div class="callout" style="margin-top:16px"><strong>開發入口：</strong><a href="artifacts/development-handoff.md">開啟 AI Agent 開發交接契約</a>。缺少真實 owner、access 或資料核准時，agent 只能使用合成 fixtures 建立離線 reference implementation。</div>
+      </section>
+
+      <section id="next" class="next">
+        <h2>下一個 accountable action</h2>
+        <p>由 External Integration Owner 召開 60–90 分鐘工作坊，確認三個服務、官方來源、內部使用點 owner、兩週 shadow baseline 與通知閾值；同時指定 Internal Data Owner，核准模型可見欄位、遮罩政策與 input-scope access decision。完成前，本案例僅能使用合成資料演練。</p>
+      </section>
+    </main>
+  </div>
+
+  <footer><div class="shell">FDE synthetic operating case · Third-party API change monitoring · Proposed, not authorized</div></footer>
+  <script>
+    const root = document.documentElement;
+    const button = document.getElementById('themeButton');
+    const saved = localStorage.getItem('third-party-api-monitoring-theme');
+    if (saved === 'dark') root.dataset.theme = 'dark';
+    button.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      localStorage.setItem('third-party-api-monitoring-theme', next);
+    });
+  </script>
+</body>
+</html>

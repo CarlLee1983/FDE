@@ -1,0 +1,71 @@
+{
+  "id": "third-party-api-change-monitoring",
+  "name": "Third-party API change monitoring and impact review",
+  "description": "Proposed reference scenario for replacing passive manual API-version checks with read-only source monitoring, deterministic change detection, and conditional AI-assisted impact review.",
+  "status": "proposed",
+  "businessOwner": {
+    "role": "External Integration Owner",
+    "contact": "missing:real-accountable-owner"
+  },
+  "processNode": "Monitor approved official sources for three integrated external services and review detected API changes before planning an upgrade.",
+  "userRoles": [
+    "External Integration Owner",
+    "Service Maintainer",
+    "Internal Data Owner",
+    "Security or Risk Reviewer"
+  ],
+  "decisionOrAction": "Decide whether a detected vendor API change affects an internal integration, who owns the response, and whether to create a separately governed upgrade task; the monitoring slice does not change code or vendor configuration.",
+  "metrics": [
+    {
+      "name": "Change detection latency",
+      "definition": "Elapsed time between publication on an approved vendor source and creation of a reviewable change record.",
+      "baseline": "missing:manual detection baseline",
+      "target": "proposed:owner-defined service level after shadow validation",
+      "cadence": "per detected publication and monthly trend"
+    },
+    {
+      "name": "Relevant change recall",
+      "definition": "Share of vendor changes later confirmed as relevant to an in-scope integration that the monitoring workflow surfaced within the agreed review window.",
+      "baseline": "missing:historical relevant-change set",
+      "target": "proposed:no worse than the accepted manual baseline",
+      "cadence": "monthly during shadow"
+    },
+    {
+      "name": "Unnecessary review load",
+      "definition": "Number of surfaced change records that maintainers confirm have no relationship to an in-scope API usage point.",
+      "baseline": "missing:manual review-load baseline",
+      "target": "proposed:owner-accepted threshold after shadow validation",
+      "cadence": "weekly during shadow"
+    }
+  ],
+  "ontologyReferences": [
+    {
+      "id": "proposed:external-api-change-semantics@0.1.0",
+      "purpose": "Proposed definitions for vendor, API product, API version, official source, publication, contract snapshot, change, internal usage point, impact candidate, review decision, and upgrade task."
+    }
+  ],
+  "sourceReferences": [
+    {
+      "id": "proposed:approved-vendor-source-registry",
+      "purpose": "Owner-approved official changelog, release-note, deprecation, OpenAPI, schema, SDK, and version sources for each in-scope vendor, including retrieval terms and expected freshness."
+    },
+    {
+      "id": "proposed:internal-api-usage-inventory",
+      "purpose": "Versioned inventory of internal services, endpoints, SDKs, authentication methods, and owning teams that use each external API; every review binds to an immutable inventory revision, while model-visible fields require a separately approved and redacted view."
+    },
+    {
+      "id": "proposed:human-change-review-decisions",
+      "purpose": "Reviewer-confirmed relevance, impact, disposition, owner, due date, and rejection reason used to evaluate the shadow workflow."
+    }
+  ],
+  "acceptanceCriteria": [
+    "Every change record identifies the vendor source URL or source identifier, publication or observation time, retrieval time, content hash or contract version, source-access decision, and the immutable internal-usage-inventory revision used for impact review.",
+    "Stable version, schema, endpoint, field, and deprecation comparisons are deterministic and reproducible; AI output never replaces the raw diff or source evidence.",
+    "Any AI-generated summary or impact candidate cites the vendor evidence and internal usage points it used, labels uncertainty, and abstains when the sources are missing, conflicting, stale, or outside the approved scope.",
+    "Before AI shadow begins, the accountable data owner approves a field-level model input view and redaction policy; credentials, secrets, raw authentication material, and unapproved code or metadata are excluded, and every model request records its input-scope access decision.",
+    "The first slice is read-only and shadow-only: it does not edit integration code, update dependencies, change vendor configuration, open external changes, or automatically create an upgrade task.",
+    "Each surfaced change receives an owner and review-by time derived from an owner-approved severity policy; overdue records escalate to a named fallback owner and remain visible until accepted, rejected, or closed with evidence.",
+    "Promotion beyond shadow requires owner-approved source coverage, a confirmed internal usage inventory, replay or shadow evidence against the manual baseline, and explicit acceptance of notification, review-by, fallback-owner, and escalation thresholds."
+  ],
+  "notes": "This record is proposed and generic. The three real vendors, source authority and terms, internal dependency inventory, current workflow, ownership, baseline, target, notification channel, security review, and acceptance evidence are missing or unverifiable."
+}
