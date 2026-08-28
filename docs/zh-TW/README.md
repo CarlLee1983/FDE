@@ -34,3 +34,4 @@
 ## 研究
 
 - [可用於 FDE 的系統分析方法](research/system-analysis-methods.md)
+- [Forward Deployed Engineer——一手來源紀錄](research/forward-deployed-engineer-sources.md)
