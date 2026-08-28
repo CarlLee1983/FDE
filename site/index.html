@@ -818,48 +818,58 @@
     <!-- Hero Section -->
     <section class="shell hero">
       <div>
-        <div class="badge-pill"><span class="dot"></span> Forward Deployed Engineering · 企業現場問題架構</div>
+        <div class="badge-pill"><span class="dot"></span> 什麼是 FDE？· 白話解說版</div>
         <h1>先把工作弄順，<br><span class="hero-highlight">再談 AI。</span></h1>
-        <p class="lede">FDE 會走進真實工作現場，找出流程卡點、責任邊界與資訊斷層；以確定性規則、最簡介入與受控驗證，將模糊問題轉化為能執行的下一步。</p>
+        <p class="lede">
+          許多公司一看到業務卡住，第一反應就是「買個 AI 機器人」或「做套大系統」。但真實世界的卡點，往往不是因為少了高科技，而是因為<strong>動線打結、交接沒講清楚、每個人都在重複做別人做過的事</strong>。
+        </p>
+        <p class="lede" style="font-size: var(--text-body); margin-top: -0.75rem;">
+          FDE（Forward Deployed Engineer，現場問題架構師）就像走進現場的拆解專家——我們先把大家每天卡住的原因理清楚，把混亂的工作理成一條順暢的流水線；確認規則都對了，才看哪一步真的需要寫程式或用 AI 來幫忙。
+        </p>
         <div class="actions">
           <a class="button" href="#example">探索示範案例 ↓</a>
           <a class="button button-secondary" href="#how">理解 4 大分析步驟</a>
-          <a class="text-link" href="site/zh-TW/index.html">開啟繁中閱讀版 →</a>
+          <a class="text-link" href="#cases">瀏覽完整案例庫 →</a>
         </div>
       </div>
       
       <aside class="executive-card" aria-label="一句話解釋 FDE">
-        <span class="label">現場問題解決者</span>
-        <strong>FDE (Forward Deployed Engineer) 是懂技術的現場問題架構師。</strong>
-        <p>不急著做系統，而是先確認：真正需要改動的是流程動線、工具輔助，還是人的分工與責任邊界。</p>
+        <span class="label">現場問題拆解師</span>
+        <strong>好醫生不會一進門就叫你動大手術，而是先摸清到底是哪裡發炎。</strong>
+        <p>FDE 不急著推銷昂貴系統，而是先挽起袖子走進辦公室，確認真正需要改動的是流程動線、工具輔助，還是人的分工與責任邊界。</p>
         <ul class="executive-pillars">
-          <li><span class="check">✓</span> <span><b>先流程後工具：</b>消除多餘步驟，避免過早軟體化。</span></li>
-          <li><span class="check">✓</span> <span><b>確定性優先：</b>程式能解的先解，AI 僅在不確定處介入。</span></li>
-          <li><span class="check">✓</span> <span><b>責任始終在人：</b>確保產出可追溯、可審查、可覆蓋。</span></li>
+          <li><span class="check">✓</span> <span><b>先理流程，不急著買軟體：</b>90% 的卡點只要改動線或說清楚規則就能解決。</span></li>
+          <li><span class="check">✓</span> <span><b>確定性優先，不迷信 AI：</b>能用簡單計算和自動化搞定的，絕不用昂貴黑盒子。</span></li>
+          <li><span class="check">✓</span> <span><b>責任始終在人，機器不背鍋：</b>所有產出都有人把關，出事知道找誰，不推給演算法。</span></li>
         </ul>
       </aside>
     </section>
 
-    <!-- ELI5 Analogy -->
+    <!-- ELI5 Analogy Section -->
     <section class="shell eli5" aria-labelledby="eli5-title">
       <div class="eli5-grid">
         <div>
-          <div class="eli5-tag">白話比喻</div>
-          <h2 id="eli5-title">把它想成重整一間很亂的廚房</h2>
-          <p class="eli5-lead">先看大家為什麼一直撞在一起，再重新安排動線與分工。只有真正需要時，才添購新設備。</p>
+          <div class="eli5-tag">核心白話比喻</div>
+          <h2 id="eli5-title">把它想成重整一間手忙腳亂的餐廳廚房</h2>
+          <p class="eli5-lead">
+            尖峰時間客人一直催餐，內場廚師忙得滿頭大汗卻老是出不了菜。這時老闆如果花幾十萬買一台最頂級的「多功能料理機（AI）」，廚房就會變順嗎？
+          </p>
+          <p class="eli5-lead" style="font-size: var(--text-body); margin-top: var(--space-xs);">
+            <strong>答案通常是不會。</strong>因為走進去一看才會發現：洗碗槽和備料砧板靠太近，大家轉身一直撞在一起；外場手寫單字跡潦草，廚師每張單都要跑出去問；而且沒人負責算雞蛋剩多少，煎到一半才發現缺料。
+          </p>
         </div>
         <div class="eli5-cards">
           <div class="eli5-item">
-            <b>01 釐清動線與等待</b>
-            <span>看清廚師與助手卡在何處、誰在等待備料。</span>
+            <b>01 第一步：把動線和桌子分開（動線重整）</b>
+            <span>把備料、炒菜、出餐的桌子分開排好，讓每個人不用轉身打架，省下大半折返與等待時間。</span>
           </div>
           <div class="eli5-item">
-            <b>02 規範標準與分工</b>
-            <span>定義出菜與驗收規則，釐清誰對哪道菜負最終責任。</span>
+            <b>02 第二步：把點單規格寫標準（明確規則與責任）</b>
+            <span>外場改用標準勾選單，每道菜明確寫好「誰負責炒、誰負責擺盤、誰檢查」，杜絕推諉與漏單。</span>
           </div>
           <div class="eli5-item">
-            <b>03 慎選工具與 AI</b>
-            <span>AI 就像其中一種特定廚具，不是每道菜都需要買一台新機器。</span>
+            <b>03 第三步：只有揉麵團最累時，才買攪拌機（理性選用 AI）</b>
+            <span>流程順了之後，發現廚師每天手工揉麵 2 小時最累，這時買一台揉麵機（專屬工具 / AI），效益才會瞬間放大 10 倍！</span>
           </div>
         </div>
       </div>
@@ -868,61 +878,69 @@
     <!-- 4 Steps Framework -->
     <section class="shell section" id="how">
       <div class="section-head">
-        <span class="section-eyebrow">分析方法論</span>
-        <h2>FDE 怎麼把問題變成可交付的下一步？</h2>
-        <p>四個層層遞進的步驟。每一步都先回答一個關鍵問題，不堆砌無謂的技術名詞。</p>
+        <span class="section-eyebrow">4 步分析方法論</span>
+        <h2>FDE 怎麼把一團混亂變成能落地的下一步？</h2>
+        <p>四個層層遞進的步驟。每一步都先回答一個關鍵問題，不堆砌聽不懂的技術黑話。</p>
       </div>
       
       <ol class="steps-grid">
         <li class="step-card">
           <div class="step-header">
             <span class="step-num">01</span>
-            <span class="step-badge">邊界定義</span>
+            <span class="step-badge">邊界定義 · 抓出痛點</span>
           </div>
           <h3>到底哪裡卡住？</h3>
-          <p>找出誰在做事、在哪個環節耗費等待，以及什麼具體結果才算真正解決業務目標。</p>
+          <p>
+            不要只說「我們系統很慢」或「跨部門溝通很差」。我們要找出：<strong>到底是在哪張桌子前面、是誰在等待哪一份單據、最後要拿到什麼才算搞定？</strong>
+          </p>
           <div class="step-output">
-            <span class="out-label">產出</span>
-            <span>一個有清晰邊界與負責人的問題陳述</span>
+            <span class="out-label">具體產出</span>
+            <span>畫清楚「起點、終點、誰在裡面、誰在外面」的問題邊界圖</span>
           </div>
         </li>
         
         <li class="step-card">
           <div class="step-header">
             <span class="step-num">02</span>
-            <span class="step-badge">根本原因</span>
+            <span class="step-badge">根本原因 · 追查病根</span>
           </div>
           <h3>為什麼會一直發生？</h3>
-          <p>沿著正常流程與例外路徑反推，找出重複校對、資訊孤島或責任未明的瓶頸根源。</p>
+          <p>
+            沿著正常流程和例外情況倒回去看。常常會發現：根本不是員工偷懶，而是<strong>「規定沒寫清楚」、「三個人都在重複核對同一張表」、或是「遇到意外狀況不知道該問誰」</strong>。
+          </p>
           <div class="step-output">
-            <span class="out-label">產出</span>
-            <span>流程動線與例外處理歸因圖</span>
+            <span class="out-label">具體產出</span>
+            <span>找出真正絆倒大家的石頭，而不是只在表面貼 OK 繃</span>
           </div>
         </li>
         
         <li class="step-card">
           <div class="step-header">
             <span class="step-num">03</span>
-            <span class="step-badge">簡潔介入</span>
+            <span class="step-badge">簡潔介入 · 不過度設計</span>
           </div>
           <h3>最簡單的改善是什麼？</h3>
-          <p>優先簡化多餘步驟、明確規則與權責；再客觀評估是否需要寫程式或引入 AI 模型。</p>
+          <p>
+            能用「改一張表格」或「刪掉多餘審核」解決的，就不要寫程式；用三行固定程式碼能算好的，就不要請昂貴的 AI。<strong>只有當需要理解海量複雜文字時，AI 才是好幫手。</strong>
+          </p>
           <div class="step-output">
-            <span class="out-label">產出</span>
-            <span>不過度設計、具投資報酬率的方案選項</span>
+            <span class="out-label">具體產出</span>
+            <span>花最少成本、承擔最低風險，卻能解決 80% 痛苦的方案</span>
           </div>
         </li>
         
         <li class="step-card">
           <div class="step-header">
             <span class="step-num">04</span>
-            <span class="step-badge">可交付行動</span>
+            <span class="step-badge">可交付行動 · 責任交接</span>
           </div>
           <h3>誰要做下一步？</h3>
-          <p>完整載明負責人、驗收門檻、限制與風險，讓團隊能果斷決定執行、驗證或終止。</p>
+          <p>
+            分析完不能只留下一份「大家都覺得有道理但沒人知道要幹嘛」的報告。我們會寫明：<strong>明天誰負責執行？做到什麼標準算驗收通過？如果系統掛了誰來手動接手？</strong>
+          </p>
           <div class="step-output">
-            <span class="out-label">產出</span>
-            <span>能直接交接給工程或營運的行動規格</span>
+            <span class="out-label">具體產出</span>
+            <span>連新進實習生拿起來都能照著走、能打勾驗收的交接規格書</span>
           </div>
         </li>
       </ol>
@@ -934,22 +952,27 @@
         <div>
           <div class="case-eyebrow">合成示範情境 · FEATURED CASE</div>
           <h2>第三方 API 變更監測：<br>告別「想到才手動檢查」的被動風險</h2>
-          <p>團隊串接多家外部服務，但過去僅靠工程師偶爾想起才查閱文件。往往等正式環境壞掉才緊急除錯，代價極高。</p>
+          <p>
+            <strong>🎯 白話場景：</strong>就像家裡的大門換了新門鎖，如果沒通知郵差，包裹就會全部卡在門口進不來。
+          </p>
+          <p>
+            公司串接了刷卡金流、簡訊與地圖等外部服務。過去只有工程師「偶爾想起來」才去翻對方的更新說明。等到哪天客人刷卡突然全部失敗、全公司跳腳時，才發現對方上週早就改版了。
+          </p>
           <a class="featured-btn" href="examples/third-party-api-change-monitoring/index.html">開啟完整案例互動頁面 →</a>
         </div>
         
         <ul class="flow-pipeline">
           <li class="pipeline-step">
-            <strong><span class="pipe-num">STAGE 01</span> 確定性自動比對</strong>
-            <span>排程抓取版本與 OpenAPI 規格，過濾 95% 無關字元變更，精準鎖定真正的 breaking changes。</span>
+            <strong><span class="pipe-num">STAGE 01</span> 守衛每天自動巡邏（確定性比對）</strong>
+            <span>由程式每天自動下載對方的技術規格。如果一個字都沒變，就安靜不打擾任何人；只有真正改動時才觸發警報，過濾掉 95% 的無效雜訊。</span>
           </li>
           <li class="pipeline-step">
-            <strong><span class="pipe-num">STAGE 02</span> 條件式 AI 白話解讀</strong>
-            <span>AI 自動產出繁中摘要與潛在受影響端點評估，但不具備自主決策或自動發布程式碼權限。</span>
+            <strong><span class="pipe-num">STAGE 02</span> AI 助手快速讀長文說人話（條件式摘要）</strong>
+            <span>對方的更新文件可能有 50 頁英文。AI 在 3 秒內讀完並翻譯成白話：「注意！下個月起，電話號碼欄位必須加上國碼，我們的會員註冊功能可能會壞掉。」</span>
           </li>
           <li class="pipeline-step">
-            <strong><span class="pipe-num">STAGE 03</span> 責任人最終確認與工單交接</strong>
-            <span>系統將報告推送給對應模組 Owner；由人類工程師核准優先序並排入開發排程。</span>
+            <strong><span class="pipe-num">STAGE 03</span> 工程師老司機點頭確認（責任人把關）</strong>
+            <span>AI 只負責整理報告，不能擅自修改程式。報告送交模組負責人確認後，由人類工程師排入下週的修改排程，絕無失控風險。</span>
           </li>
         </ul>
       </div>
@@ -959,17 +982,20 @@
     <section class="shell section" id="cases">
       <div class="section-head">
         <span class="section-eyebrow">實戰案例庫</span>
-        <h2>探索不同業務場景的 FDE 落地實踐</h2>
-        <p>下列範例展示如何運用結構化分析拆解問題。所有案例均包含完整情境規格與可驗證依據。</p>
+        <h2>看看這些真實問題，如何用白話思維被拆解</h2>
+        <p>每個案例都包含完整的情境背景、動線分析、數據規格與可驗收交接成果。</p>
       </div>
       
       <div class="cases-grid">
         <a class="case-card" href="examples/third-party-api-change-monitoring/index.html">
           <div class="case-card-header">
-            <span class="case-card-badge">分析與開發交接</span>
+            <span class="case-card-badge">自動巡邏 + AI 摘譯 + 人工把關</span>
           </div>
           <h3>第三方 API 變更監測</h3>
-          <p>以確定性抓取、條件式 AI 摘要與人工確認三道防線，取代不可靠的人工作業。</p>
+          <p>
+            <strong>🎯 白話場景：</strong>外部串接服務改版沒人知道，導致線上付款壞掉。<br>
+            <strong>💡 解決方式：</strong>用自動比對抓出改動，AI 翻譯成白話影響摘要，再由工程師確認排程。
+          </p>
           <div class="case-card-footer">
             <span>交付物：監測架構與驗收腳本</span>
             <span>閱讀案例 →</span>
@@ -978,10 +1004,13 @@
 
         <a class="case-card" href="examples/inventory-replenishment-evolution/index.html">
           <div class="case-card-header">
-            <span class="case-card-badge">可重播評估範例</span>
+            <span class="case-card-badge">可回放算術基線 ➔ 模型演化</span>
           </div>
           <h3>庫存補貨決策演化</h3>
-          <p>先建立可回放的確定性業務規則基線，再嚴格評估機器學習與大模型介入的邊際效益。</p>
+          <p>
+            <strong>🎯 白話場景：</strong>像超商補貨茶葉蛋，叫太少會缺貨，叫太多會過期。<br>
+            <strong>💡 解決方式：</strong>先用「賣多少補多少」的固定算術規則跑一遍，確認可靠了，再來評估是否需要考慮天氣預報等複雜模型。
+          </p>
           <div class="case-card-footer">
             <span>交付物：決策回放與評估報告</span>
             <span>閱讀案例 →</span>
@@ -990,10 +1019,13 @@
 
         <a class="case-card" href="examples/vendor-invoice-exception-proposal/index.html">
           <div class="case-card-header">
-            <span class="case-card-badge">方案提案</span>
+            <span class="case-card-badge">釐清權責 ➔ 規範流程 ➔ 輔助工具</span>
           </div>
           <h3>供應商發票例外治理</h3>
-          <p>在導入昂貴 OCR 與 AI 之前，先重新劃分對帳責任與例外上報動線，降低整體摩擦成本。</p>
+          <p>
+            <strong>🎯 白話場景：</strong>廠商請款發票數字對不上，財務跟採購每天互相甩鍋。<br>
+            <strong>💡 解決方式：</strong>在花幾百萬買 OCR 影像辨識前，先明確定義「差額多少錢以內誰能簽字核准、少發票找誰補件」。
+          </p>
           <div class="case-card-footer">
             <span>交付物：營運方案提案書</span>
             <span>閱讀案例 →</span>
@@ -1002,22 +1034,28 @@
 
         <a class="case-card" href="examples/customer-refund-status-delivery-kit/index.html">
           <div class="case-card-header">
-            <span class="case-card-badge">跨角色交付套件</span>
+            <span class="case-card-badge">全員同頻 · 跨角色交付套件</span>
           </div>
           <h3>客戶退款狀態交付套件</h3>
-          <p>將分析成果轉化為工程師、客服與業務主管皆能直接理解的規格與簡報展示套件。</p>
+          <p>
+            <strong>🎯 白話場景：</strong>客人問退款到哪了，客服去問財務、財務去問工程師，沒人講得清楚。<br>
+            <strong>💡 解決方式：</strong>打造像包裹物流追蹤一樣透明的進度狀態機，工程、客服與主管都看同一份資料。
+          </p>
           <div class="case-card-footer">
-            <span>交付物：規格書與簡報 HTML</span>
+            <span>交付物：規格書與交付包</span>
             <span>閱讀案例 →</span>
           </div>
         </a>
 
         <a class="case-card" href="examples/decision-memory-evolution/index.html">
           <div class="case-card-header">
-            <span class="case-card-badge">模型演化評估</span>
+            <span class="case-card-badge">老手經驗數位化 · 決策軌跡</span>
           </div>
           <h3>決策記憶演化分析</h3>
-          <p>記錄分析師決策軌跡與模型候選版本，提供可解釋性與回溯性的長期記憶演化機制。</p>
+          <p>
+            <strong>🎯 白話場景：</strong>資深主管離職後，新人不知道過去遇到突發狀況時為什麼要這樣處理。<br>
+            <strong>💡 解決方式：</strong>把每次重要決策的「背景原因、參考數據、最終選擇」白紙黑字存起來，變成能傳承的企業記憶。
+          </p>
           <div class="case-card-footer">
             <span>交付物：決策事件 JSON Schema</span>
             <span>閱讀案例 →</span>
@@ -1026,10 +1064,13 @@
 
         <a class="case-card" href="examples/customer-refund-status-delivery-kit/presentation.html">
           <div class="case-card-header">
-            <span class="case-card-badge">簡報檢視</span>
+            <span class="case-card-badge">主管報告 · HTML5 投影片</span>
           </div>
           <h3>退款狀態互動式簡報</h3>
-          <p>專為利害關係人打造的現代 HTML5 投影片，清楚傳達問題脈絡、邊界與決策矩陣。</p>
+          <p>
+            <strong>🎯 白話場景：</strong>如何向非技術的老闆和跨部門主管說明「我們到底要改什麼、為什麼這樣改最省錢」？<br>
+            <strong>💡 解決方式：</strong>用乾淨直觀的簡報投影片，5 分鐘說清業務痛點、決策矩陣與投資報酬。
+          </p>
           <div class="case-card-footer">
             <span>交付物：全螢幕互動簡報</span>
             <span>開啟簡報 →</span>
@@ -1042,9 +1083,11 @@
     <section class="shell section" id="boundary">
       <div class="boundary-matrix">
         <div class="boundary-intro">
-          <span class="section-eyebrow" style="color:var(--color-alert);">誠信與邊界</span>
+          <span class="section-eyebrow" style="color:var(--color-alert);">誠信與邊界承諾</span>
           <h2>說清楚「知道什麼」與「還不知道什麼」</h2>
-          <p>範例證明方法論與交付文件的嚴謹性，但絕不假裝未經授權的成果或過度誇大 AI 效益。</p>
+          <p>
+            就像去餐廳點菜，菜單上老實標明「哪些是現撈鮮魚、哪些是今日推薦、哪些今天缺貨」，才是負責任的態度。我們絕不把「想像中的美好」當成「已經做好的成果」。
+          </p>
         </div>
         
         <ul class="claims-grid">
@@ -1052,25 +1095,33 @@
             <div class="claim-tag evidence">
               <span aria-hidden="true">●</span> <span>有證據</span>
             </div>
-            <div class="claim-desc">資料來源與邏輯推導清楚，足以全面支撐當前宣稱。</div>
+            <div class="claim-desc">
+              <strong>數據來源一清二楚：</strong>有真實可回放的數據與邏輯驗證，講話百分之百有底氣。
+            </div>
           </li>
           <li class="claim-item">
             <div class="claim-tag proposal">
               <span aria-hidden="true">●</span> <span>這是提案</span>
             </div>
-            <div class="claim-desc">提供給業務負責人評估的結構化選項，非已核准既成事實。</div>
+            <div class="claim-desc">
+              <strong>整理好的好方案：</strong>提供給主管或團隊評估的選項，但需等負責人點頭核准才算數。
+            </div>
           </li>
           <li class="claim-item">
             <div class="claim-tag gap">
               <span aria-hidden="true">●</span> <span>還缺資料</span>
             </div>
-            <div class="claim-desc">需要真實企業現場系統環境、權限或具體數據補充。</div>
+            <div class="claim-desc">
+              <strong>知道缺什麼：</strong>需要對接真實企業環境、特定系統權限或內部數據才能進一步落實。
+            </div>
           </li>
           <li class="claim-item">
             <div class="claim-tag unverified">
               <span aria-hidden="true">○</span> <span>無法確認</span>
             </div>
-            <div class="claim-desc">缺乏足夠依據時誠實承認，縮小宣稱範圍並排定後續驗證。</div>
+            <div class="claim-desc">
+              <strong>絕不瞎猜：</strong>缺乏足夠證據時誠實承認，縮小說法並安排下一步的小規模實驗來驗證。
+            </div>
           </li>
         </ul>
       </div>
@@ -1081,35 +1132,36 @@
       <div class="resources-section">
         <div class="section-head">
           <span class="section-eyebrow">資源庫</span>
-          <h2>規格、方法論與繁體中文文件庫</h2>
-          <p>所有方法、規範與架構均有完整的 Markdown 與 JSON Schema 支援。</p>
+          <h2>專案規格與方法論文件庫</h2>
+          <p>所有工作方法、分析規範與架構模型均具備完整的 Markdown 與 JSON Schema 支援。</p>
         </div>
         
         <div class="resources-grid">
           <div class="resource-col">
             <h3>核心方法論</h3>
             <ul class="resource-list">
-              <li><a href="FDE-Scenario-to-Action-Method.zh-TW.md">情境至行動方法 (zh-TW) →</a></li>
-              <li><a href="FDE-Capability-Enhancement-Plan.zh-TW.md">能力強化計畫 (zh-TW) →</a></li>
-              <li><a href="FDE-Enterprise-Delivery-Architecture.zh-TW.md">企業交付架構摘要 (zh-TW) →</a></li>
+              <li><a href="FDE-Scenario-to-Action-Method.zh-TW.md">情境至行動方法論 →</a></li>
+              <li><a href="FDE-Capability-Enhancement-Plan.zh-TW.md">能力強化計畫綱領 →</a></li>
+              <li><a href="FDE-Enterprise-Delivery-Architecture.zh-TW.md">企業交付架構摘要 →</a></li>
             </ul>
           </div>
           
           <div class="resource-col">
-            <h3>案例與閱讀版</h3>
+            <h3>實戰案例與交付件</h3>
             <ul class="resource-list">
               <li><a href="examples/README.zh-TW.md">全部範例總覽目錄 →</a></li>
-              <li><a href="site/zh-TW/index.html">繁中完整閱讀版頁面 →</a></li>
               <li><a href="examples/third-party-api-change-monitoring/index.html">API 變更監測互動版 →</a></li>
+              <li><a href="examples/customer-refund-status-delivery-kit/presentation.html">退款分析互動簡報 →</a></li>
+              <li><a href="examples/inventory-replenishment-evolution/index.html">補貨決策演化範例 →</a></li>
             </ul>
           </div>
           
           <div class="resource-col">
-            <h3>專案與研究</h3>
+            <h3>架構與研究規範</h3>
             <ul class="resource-list">
-              <li><a href="README.zh-TW.md">繁中專案總覽 (README) →</a></li>
+              <li><a href="README.zh-TW.md">專案總覽 (README) →</a></li>
               <li><a href="docs/zh-TW/README.md">本體論與研究章節索引 →</a></li>
-              <li><a href="AGENTS.md">Agent 指引與規則 →</a></li>
+              <li><a href="AGENTS.md">Agent 指引與邊界規範 →</a></li>
             </ul>
           </div>
         </div>
