@@ -1,0 +1,51 @@
+{
+  "id": "return-exception-triage",
+  "name": "Return exception triage preparation",
+  "description": "Proposed scenario-preparation record for a distribution company's customer-service handling of customer return requests. It records only the supplied workflow description and proposes a human-governed triage decision; it authorizes neither access nor action in enterprise systems.",
+  "status": "proposed",
+  "businessOwner": {
+    "role": "missing: target-enterprise business/process owner role has not been identified",
+    "contact": "unverifiable: no target-enterprise owner or contact was supplied"
+  },
+  "processNode": "Evidenced: customer service checks order, delivery, return policy, and item condition after a return request. Missing: owner acceptance of the as-is normal, exception, escalation, waiting, and rework paths.",
+  "userRoles": [
+    "Evidenced: distribution-company customer-service staff",
+    "Proposed: supervisor for escalated return exceptions",
+    "Missing: target-enterprise process owner"
+  ],
+  "decisionOrAction": "Proposed triage only: advise a human reviewer to route a return request to direct return, request additional information, rejection, or supervisor escalation. Missing: target-enterprise decision policy, decision owner, and route acceptance; no automated or persistent action is authorized.",
+  "metrics": [
+    {
+      "name": "Return-request triage cycle time",
+      "definition": "proposed: elapsed time from receipt of a return request to a human-recorded triage route, with waiting and rework reported separately; formal target-enterprise metric definition is missing.",
+      "baseline": "missing: no target-enterprise baseline supplied",
+      "target": "missing: no target-enterprise target supplied",
+      "cadence": "missing: no target-enterprise measurement cadence supplied"
+    },
+    {
+      "name": "Return-request rework rate",
+      "definition": "proposed: share of return requests that require a repeated check or additional-information cycle before a human-recorded triage route; formal target-enterprise metric definition is missing.",
+      "baseline": "missing: no target-enterprise baseline supplied",
+      "target": "missing: no target-enterprise target supplied",
+      "cadence": "missing: no target-enterprise measurement cadence supplied"
+    }
+  ],
+  "ontologyReferences": [
+    {
+      "id": "missing: return-triage-semantics-owner-and-version",
+      "purpose": "Missing: no governed definitions, semantic owner, or version were supplied for return request, order, delivery record, return policy, item condition, route, waiting, or rework."
+    }
+  ],
+  "sourceReferences": [
+    {
+      "id": "missing: order-delivery-policy-item-condition-source-register",
+      "purpose": "Missing: source systems and permitted use were not supplied. Unverifiable: authority, freshness, and access for order, delivery, policy, and item-condition evidence."
+    }
+  ],
+  "acceptanceCriteria": [
+    "Missing: target-enterprise owner must accept the as-is process path, including normal, exception, escalation, waiting, and rework paths, before any capability design.",
+    "Missing: target-enterprise decision-policy owner must approve the four proposed triage routes and the evidence, conflict, and escalation handling for each route.",
+    "Missing: target-enterprise owner must define and accept metrics, baseline, target, cadence, source authority, semantic version, access boundary, and production acceptance criteria before enterprise use."
+  ],
+  "notes": "Evidence ledger: evidenced only from the scenario request are the customer-service workflow checks, the four candidate outcomes, and waiting/rework as reported problems. The triage decision, supervisor role, and metrics are proposed preparation hypotheses. Owner/contact, as-is acceptance, baseline, targets, metric definitions/cadence, semantic owner/version, sources/authority/freshness/access, decision policy, acceptance criteria, and production authority are missing or unverifiable. Restriction: this proposed record permits no source access, recommendation, automation, write-back, release, or production claim."
+}
