@@ -1,0 +1,10 @@
+{
+  "semanticDefinitionVersion": "refund-status/v2",
+  "expiresAt": "2026-08-29T00:00:00Z",
+  "sourceEvidence": {
+    "kind": "synthetic-deidentified-fixture",
+    "sourceId": "refund-status-fixture-unsupported",
+    "observedAt": "2026-08-28T00:00:00Z"
+  },
+  "records": []
+}

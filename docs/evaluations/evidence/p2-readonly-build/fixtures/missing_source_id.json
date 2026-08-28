@@ -1,0 +1,15 @@
+{
+  "semanticDefinitionVersion": "refund-status/v1",
+  "expiresAt": "2026-08-29T00:00:00Z",
+  "sourceEvidence": {
+    "kind": "synthetic-deidentified-fixture",
+    "observedAt": "2026-08-28T00:00:00Z"
+  },
+  "records": [
+    {
+      "refundCaseId": "case_synth_001",
+      "accessAllowed": true,
+      "result": {"refundStatus": "approved"}
+    }
+  ]
+}
