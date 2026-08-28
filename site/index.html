@@ -321,21 +321,25 @@
     
     /* ELI5 Kitchen Metaphor Banner - Centered & Full Width Layout */
     .eli5 {
-      margin: var(--space-3xl) 0 var(--space-4xl);
+      margin-block: var(--space-3xl) var(--space-4xl);
+      margin-inline: auto !important;
       padding: var(--space-3xl) var(--space-2xl);
       border-radius: var(--radius-lg);
       background: var(--color-surface);
       border: 1px solid var(--color-rule);
       box-shadow: var(--shadow-sm);
       position: relative;
+      width: min(74rem, calc(100% - 3rem));
+      box-sizing: border-box;
     }
     .eli5-head {
       text-align: center;
-      max-width: 52rem;
+      max-width: 54rem;
       margin: 0 auto var(--space-2xl);
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
     .eli5-tag {
       color: var(--color-warm);
@@ -345,6 +349,7 @@
       text-transform: uppercase;
       margin-bottom: var(--space-xs);
       display: inline-block;
+      text-align: center;
     }
     .eli5 h2 {
       margin-bottom: var(--space-sm);
@@ -373,6 +378,7 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--space-lg);
       margin-bottom: var(--space-xl);
+      width: 100%;
     }
     .eli5-card-col {
       padding: var(--space-xl);
@@ -382,6 +388,8 @@
       border-top: 3px solid var(--color-accent);
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
       transition: transform var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
     }
     .eli5-card-col:hover {
@@ -399,7 +407,7 @@
       padding: 0.15rem 0.5rem;
       border-radius: var(--radius-pill);
       margin-bottom: var(--space-sm);
-      align-self: flex-start;
+      align-self: center;
     }
     .eli5-card-col b {
       display: block;
@@ -407,6 +415,7 @@
       font-size: 1.1rem;
       margin-bottom: var(--space-xs);
       line-height: 1.4;
+      text-align: center;
     }
     .eli5-card-col span {
       color: var(--color-ink-soft);
@@ -414,6 +423,7 @@
       line-height: 1.65;
       display: block;
       flex-grow: 1;
+      text-align: center;
     }
     .eli5-takeaway {
       text-align: center;
@@ -424,8 +434,13 @@
       color: var(--color-accent-dark);
       font-size: var(--text-sm);
       font-weight: 700;
-      max-width: 48rem;
+      max-width: 52rem;
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
     
     /* Section Layout */
