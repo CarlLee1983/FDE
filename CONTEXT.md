@@ -44,6 +44,10 @@ _Avoid_: mandatory artefact checklist, unrestricted analysis
 A deliberate change to process, responsibility, information, deterministic software, human judgment, AI assistance, or governed action selected to improve the target workflow.
 _Avoid_: AI feature, implementation by default
 
+**Core intervention principle**:
+**穩定規則交給軟體，語言負擔才考慮 AI。** Assign stable rules, calculations, controls, and repeatable state transitions to deterministic software. Consider AI only for retained work whose material burden comes from language interpretation, synthesis, explanation, or bounded reasoning, and only when evidence shows value over the non-AI workflow. Persistent effects remain human-governed or explicitly authorized.
+_Avoid_: using AI to compensate for unclear ownership, broken process, inconsistent data, or unspecified policy
+
 **Reference hypothesis**:
 An explicit, testable assumption used to analyse a generic case when target-enterprise evidence is unavailable. It demonstrates reasoning but does not establish enterprise fact, acceptance, authority, or value.
 _Avoid_: verified fact, fictional approval

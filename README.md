@@ -12,7 +12,7 @@ The default output is the smallest sufficient five-part operating solution:
 4. Intervention and AI-fit decision, with evidence limits.
 5. Next accountable action.
 
-The skill first redesigns work, responsibility, definitions, and evidence flow. It compares deterministic software, human judgment, AI assistance, and governed action only where the remaining work justifies them. `No AI` is a valid outcome.
+The skill first redesigns work, responsibility, definitions, and evidence flow. Its core intervention principle is **穩定規則交給軟體，語言負擔才考慮 AI。** Stable rules, calculations, controls, and repeatable state transitions belong in deterministic software; AI is considered only for retained language-heavy work where it adds evidence-backed value. `No AI` is a valid outcome.
 
 ## Capability Set
 

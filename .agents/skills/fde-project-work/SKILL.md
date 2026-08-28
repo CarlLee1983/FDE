@@ -23,6 +23,8 @@ Analysis is complete when these five parts let the user choose the next action. 
 4. **Select.** Compare process or responsibility change, information or semantic repair, deterministic software, interface support, human judgment, AI assistance, and governed action. Choose the simplest sufficient intervention.
 5. **Form the solution.** Return the five-part minimum operating solution at the least depth that supports a sound decision.
 
+When the user asks for a **proposal**, read [operating solution](references/solution-proposal.md) and persist the proposal as an editable Markdown source plus a standalone, responsive, print-ready HTML communication document in the requested repository location, or beside the case material when no location is specified. These files are the proposal deliverable; a chat summary alone is incomplete. Keep them `proposed` until the required enterprise evidence and accountable acceptance exist.
+
 When unresolved choices materially change the diagnosis or recommendation, read [collaborative clarification](references/collaborative-clarification.md), investigate available facts, and ask accountable participants only for decisions.
 
 ## Depth and evidence
@@ -31,11 +33,11 @@ Use **sufficient depth**. Add models, schemas, formal decision logic, controls, 
 
 Keep repository proposals separate from target-enterprise facts. Classify material claims as `evidenced`, `proposed`, `missing`, or `unverifiable`; cite provenance and freshness when they matter. Examples may prove reasoning or repository behavior, never enterprise acceptance, access, authority, or value.
 
-Use [the source map](references/source-map.md) only to locate detail needed by the current branch. Use [task modes](references/task-modes.md) when the user explicitly asks for a scenario record, implementation, or assurance review.
+Use [the source map](references/source-map.md) only to locate detail needed by the current branch. Use [task modes](references/task-modes.md) when the user explicitly asks for a proposal, scenario record, implementation, or assurance review.
 
 ## AI boundary
 
-AI is one optional intervention. Justify it only for a retained task where interpretation, language, synthesis, or bounded reasoning adds value over the redesigned non-AI workflow. Keep stable calculations, permissions, policy enforcement, and persistent effects deterministic or human-governed. `AI not needed` and `AI deferred pending evidence` are complete decisions.
+**穩定規則交給軟體，語言負擔才考慮 AI。** Apply this as the core intervention principle after workflow redesign. Assign stable rules, calculations, permissions, policy enforcement, and repeatable state transitions to deterministic software. Consider AI only for retained work whose material burden comes from language interpretation, synthesis, explanation, or bounded reasoning, and require evidence that it adds value over the non-AI workflow. Keep persistent effects human-governed or explicitly authorized. `AI not needed` and `AI deferred pending evidence` are complete decisions.
 
 ## Conditional delivery and assurance
 
