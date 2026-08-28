@@ -1,0 +1,19 @@
+{
+  "accessDecision": {"decisionId": "synthetic-local-reconciliation-access-001", "evaluatedAt": "2026-08-28T09:05:00Z", "query": "allowed", "reconciliation": "allowed", "scenarioId": "account-reconciliation-demo", "scope": "synthetic local fixture only; not target-enterprise access evidence", "sourceId": "synthetic-bank-ledger-snapshot-2026-08-28", "status": "active", "subject": {"id": "synthetic-reconciliation-operator", "role": "Synthetic reconciliation operator"}, "validUntil": "2026-08-28T10:00:00Z", "writeBack": "denied"},
+  "contractFailures": [],
+  "decisionServiceVersion": {"id": "synthetic-bank-ledger-exact-reconciliation", "status": "proposed", "version": "1.0.0"},
+  "freshness": {"ageSeconds": 900, "asOf": "2026-08-28T09:15:00Z", "maximumAgeMinutes": 60, "status": "fresh"},
+  "query": {"actor": "synthetic-reconciliation-operator", "asOf": "2026-08-28T09:15:00Z", "scenarioId": "account-reconciliation-demo"},
+  "result": {
+    "exactMatches": [{"amountMinor": 12500, "bankTransactionId": "TX-100", "bookingDate": "2026-07-27", "currency": "TWD", "ledgerTransactionId": "TX-100", "reference": "PAY-100", "referenceVersion": "v1"}],
+    "humanReviewQueue": [
+      {"bankCandidates": [{"amountMinor": 8000, "bookingDate": "2026-07-27", "currency": "TWD", "reference": "PAY-200", "referenceVersion": "v1", "transactionId": "TX-200"}], "bookingDate": "2026-07-27", "currency": "TWD", "ledgerCandidates": [{"amountMinor": 7500, "bookingDate": "2026-07-27", "currency": "TWD", "reference": "PAY-200", "referenceVersion": "v1", "transactionId": "TX-200"}], "reason": "amount-mismatch", "reference": "PAY-200", "referenceVersion": "v1"},
+      {"bankCandidates": [{"amountMinor": 5000, "bookingDate": "2026-07-28", "currency": "TWD", "reference": "PAY-300", "referenceVersion": "v1", "transactionId": "TX-300"}], "bookingDate": "2026-07-28", "currency": "TWD", "ledgerCandidates": [], "reason": "unmatched", "reference": "PAY-300", "referenceVersion": "v1"},
+      {"bankCandidates": [], "bookingDate": "2026-07-28", "currency": "TWD", "ledgerCandidates": [{"amountMinor": 3000, "bookingDate": "2026-07-28", "currency": "TWD", "reference": "PAY-400", "referenceVersion": "v1", "transactionId": "TX-400"}], "reason": "unmatched", "reference": "PAY-400", "referenceVersion": "v1"}
+    ]
+  },
+  "scope": "synthetic local example only",
+  "semanticDefinitionVersion": {"registryId": "synthetic-account-reconciliation-semantics", "status": "proposed", "version": "1.0.0"},
+  "sourceEvidence": {"accountId": "synthetic-account-001", "capturedAt": "2026-08-28T09:00:00Z", "closedPeriod": "2026-07", "controlTotals": {"bankAmountMinor": 25500, "bankRecordCount": 3, "ledgerAmountMinor": 23000, "ledgerRecordCount": 3}, "currency": "TWD", "immutable": true, "sourceId": "synthetic-bank-ledger-snapshot-2026-08-28"},
+  "writeBack": false
+}

@@ -1,0 +1,28 @@
+{
+  "id": "account-reconciliation-demo",
+  "name": "Synthetic bank-to-ledger reconciliation review",
+  "description": "Proposed generic synthetic scenario for read-only, exact bank-versus-internal-ledger matching and human review of residual cases; it authorizes no enterprise action.",
+  "status": "proposed",
+  "businessOwner": {
+    "role": "Missing: target-enterprise process owner",
+    "contact": "unverifiable: no target-enterprise contact supplied"
+  },
+  "processNode": "Proposed: compare a bounded bank snapshot with an internal-ledger snapshot before a human resolves residual differences; the target-enterprise as-is process is missing.",
+  "userRoles": ["Proposed: reconciliation operator", "Missing: target-enterprise process owner"],
+  "decisionOrAction": "Proposed read-only decision: present exact matches and a human review queue; no ledger, bank, or other system record is changed.",
+  "metrics": [{
+    "name": "Reconciliation review cycle time",
+    "definition": "Proposed elapsed time from receiving both bounded snapshots to a human-ready residual review queue; no target-enterprise measurement is supplied.",
+    "baseline": "missing: no target-enterprise baseline supplied",
+    "target": "proposed: target-enterprise owner must set and accept a target",
+    "cadence": "proposed: per bounded reconciliation snapshot"
+  }],
+  "ontologyReferences": [{"id": "synthetic-account-reconciliation-semantics@1.0.0", "purpose": "Synthetic local definition shape only; target-enterprise semantic acceptance is unverifiable."}],
+  "sourceReferences": [{"id": "synthetic-bank-ledger-snapshot-2026-08-28", "purpose": "Synthetic local snapshot only; target-enterprise source access and authority are missing."}],
+  "acceptanceCriteria": [
+    "Proposed synthetic replay emits a read-only exact-match result with semantic version, source evidence, freshness, access decision, and writeBack false.",
+    "Proposed synthetic replay sends ambiguous or unmatched records to human review and fails closed for invalid, duplicate, stale, conflicting, or unauthorized inputs.",
+    "Missing: target-enterprise owner must accept process, access, baseline, target, and production criteria before any enterprise use."
+  ],
+  "notes": "Evidence ledger: target-enterprise owner, process baseline, target, source authority, access, integration, acceptance, and write-back authorization are missing or unverifiable. The local fixture and its local access decision are proposed synthetic controls only."
+}

@@ -1,0 +1,13 @@
+{
+  "decisionId": "synthetic-local-reconciliation-access-001",
+  "scope": "synthetic local fixture only; not target-enterprise access evidence",
+  "evaluatedAt": "2026-08-28T09:05:00Z",
+  "validUntil": "2026-08-28T10:00:00Z",
+  "status": "active",
+  "subject": {"id": "synthetic-reconciliation-operator", "role": "Synthetic reconciliation operator"},
+  "scenarioId": "account-reconciliation-demo",
+  "sourceId": "synthetic-bank-ledger-snapshot-2026-08-28",
+  "permissions": {"query": "allowed", "reconciliation": "allowed", "writeBack": "denied"},
+  "freshnessPolicy": {"maximumAgeMinutes": 60},
+  "targetEnterpriseEvidence": {"owner": "missing", "access": "unverifiable", "writeBackAuthorization": "missing"}
+}

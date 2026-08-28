@@ -1,0 +1,21 @@
+{
+  "sourceId": "synthetic-bank-ledger-snapshot-2026-08-28",
+  "scope": "synthetic local example only",
+  "capturedAt": "2026-08-28T09:00:00Z",
+  "accountId": "synthetic-account-001",
+  "currency": "TWD",
+  "closedPeriod": "2026-07",
+  "immutable": true,
+  "controlTotals": {"bankRecordCount": 3, "bankAmountMinor": 25500, "ledgerRecordCount": 3, "ledgerAmountMinor": 23000},
+  "bankTransactions": [
+    {"transactionId": "TX-100", "reference": "PAY-100", "referenceVersion": "v1", "amountMinor": 12500, "currency": "TWD", "bookingDate": "2026-07-27"},
+    {"transactionId": "TX-200", "reference": "PAY-200", "referenceVersion": "v1", "amountMinor": 8000, "currency": "TWD", "bookingDate": "2026-07-27"},
+    {"transactionId": "TX-300", "reference": "PAY-300", "referenceVersion": "v1", "amountMinor": 5000, "currency": "TWD", "bookingDate": "2026-07-28"}
+  ],
+  "ledgerEntries": [
+    {"transactionId": "TX-100", "reference": "PAY-100", "referenceVersion": "v1", "amountMinor": 12500, "currency": "TWD", "bookingDate": "2026-07-27"},
+    {"transactionId": "TX-200", "reference": "PAY-200", "referenceVersion": "v1", "amountMinor": 7500, "currency": "TWD", "bookingDate": "2026-07-27"},
+    {"transactionId": "TX-400", "reference": "PAY-400", "referenceVersion": "v1", "amountMinor": 3000, "currency": "TWD", "bookingDate": "2026-07-28"}
+  ],
+  "targetEnterpriseEvidence": {"sourceAuthority": "unverifiable", "access": "missing"}
+}

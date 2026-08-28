@@ -1,0 +1,22 @@
+{
+  "registryId": "synthetic-account-reconciliation-semantics",
+  "version": "1.0.0",
+  "status": "proposed",
+  "scope": "synthetic local example only: one account, one currency, one closed period, immutable snapshots; target-enterprise semantic owner and acceptance are missing",
+  "definitions": [
+    {"id": "BankTransaction", "definition": "A synthetic immutable bank-side record identified by transactionId."},
+    {"id": "InternalLedgerEntry", "definition": "A synthetic immutable internal-ledger record identified by transactionId."},
+    {"id": "ReconciliationExactMatch", "definition": "One bank record and one ledger record sharing reference, referenceVersion, currency, integer amountMinor, and bookingDate in the same closed-period snapshot."},
+    {"id": "transactionId", "definition": "Non-empty stable string identity within one source snapshot."},
+    {"id": "amountMinor", "definition": "Integer monetary amount in the currency minor unit; floating-point values are not permitted."},
+    {"id": "currency", "definition": "Three-letter currency code; this slice accepts one declared snapshot currency only."},
+    {"id": "reference", "definition": "Business reference used with referenceVersion as the exact matching reference."},
+    {"id": "referenceVersion", "definition": "Version label for a reference; a reference without its version is not a match key."},
+    {"id": "bookingDate", "definition": "ISO calendar date within the declared closed period."}
+  ],
+  "sourceMappings": [
+    {"source": "bankTransactions", "fields": ["transactionId", "reference", "referenceVersion", "amountMinor", "currency", "bookingDate"]},
+    {"source": "ledgerEntries", "fields": ["transactionId", "reference", "referenceVersion", "amountMinor", "currency", "bookingDate"]}
+  ],
+  "targetEnterpriseEvidence": {"owner": "missing", "sourceAuthority": "unverifiable", "acceptance": "missing"}
+}

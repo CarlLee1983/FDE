@@ -1,0 +1,15 @@
+{
+  "id": "synthetic-bank-ledger-exact-reconciliation",
+  "version": "1.0.0",
+  "status": "proposed",
+  "scope": "synthetic local, read-only reference only",
+  "inputs": {"bank": ["transactionId", "reference", "referenceVersion", "amountMinor", "currency", "bookingDate"], "ledger": ["transactionId", "reference", "referenceVersion", "amountMinor", "currency", "bookingDate"]},
+  "rule": "Within one immutable account/currency/closed-period snapshot, match exactly one bank record to exactly one ledger record only when reference, referenceVersion, integer amountMinor, currency, and bookingDate all match; never tie-break multiple candidates.",
+  "residualHandling": {
+    "ambiguous": "Put any repeated exact-match key into the human review queue as abstained; never select a candidate.",
+    "unmatched": "Put a valid single-sided or non-exact record into the human review queue.",
+    "batchFailure": "Return no result when sources are stale, missing, conflicting, invalid, duplicate, or access is not locally allowed and bound."
+  },
+  "output": {"type": "read-only reconciliation result", "writeBack": false},
+  "targetEnterpriseEvidence": {"policyOwner": "missing", "access": "unverifiable", "writeBackAuthorization": "missing"}
+}
