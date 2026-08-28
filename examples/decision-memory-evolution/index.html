@@ -1,71 +1,682 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="用客戶分析案例說明 AI 數據分析師如何透過決策記憶持續打造受治理的數據模型工具箱。">
   <title>AI 數據分析師與模型演進｜FDE 案例報告</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light; --page:#f5f3fa; --surface:#fff; --soft:#f2eefb; --ink:#251f35; --muted:#6e667c; --line:#ded8e8; --violet:#6842b8; --violet-soft:#eee8fb; --cyan:#087b8c; --cyan-soft:#e2f5f7; --amber:#9a5a0a; --amber-soft:#fff2d8; --red:#b43a46; --red-soft:#fff0f1; --shadow:0 18px 50px rgba(55,35,90,.09); --radius:20px; --sans:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
-    html[data-theme="dark"] { color-scheme: dark; --page:#100c18; --surface:#1a1426; --soft:#241b35; --ink:#f4effb; --muted:#bcb1ca; --line:#3d3150; --violet:#b99bf7; --violet-soft:#342554; --cyan:#74d5df; --cyan-soft:#153d43; --amber:#f6be67; --amber-soft:#3d2b10; --red:#ff929d; --red-soft:#421f25; --shadow:0 18px 50px rgba(0,0,0,.3); }
-    * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; background:var(--page); color:var(--ink); font-family:var(--sans); line-height:1.72; } a { color:var(--cyan); text-underline-offset:3px; } button { font:inherit; } code { border:1px solid var(--line); border-radius:6px; background:var(--soft); padding:.08em .34em; font-family:var(--mono); }
-    .topbar { position:sticky; top:0; z-index:20; border-bottom:1px solid var(--line); background:color-mix(in srgb,var(--surface) 91%,transparent); backdrop-filter:blur(14px); }
-    .topbar-inner,.hero-inner,.layout,.footer-inner { width:min(1160px,calc(100% - 32px)); margin:auto; }
-    .topbar-inner { min-height:62px; display:flex; align-items:center; justify-content:space-between; gap:18px; } .brand { color:var(--ink); font-weight:850; text-decoration:none; } .brand::before { content:""; display:inline-block; width:10px; height:10px; margin-right:10px; border-radius:50%; background:var(--violet); box-shadow:0 0 0 5px var(--violet-soft); } .theme-button { border:1px solid var(--line); border-radius:10px; background:var(--surface); color:var(--ink); padding:7px 12px; cursor:pointer; }
-    .hero { border-bottom:1px solid var(--line); background:radial-gradient(circle at 84% 8%,color-mix(in srgb,var(--violet) 19%,transparent),transparent 31rem),var(--surface); } .hero-inner { padding:72px 0 58px; } .eyebrow { margin:0 0 12px; color:var(--violet); font-size:.78rem; font-weight:850; letter-spacing:.14em; text-transform:uppercase; } h1 { max-width:980px; margin:0; font-size:clamp(2.2rem,5.5vw,4.7rem); line-height:1.05; letter-spacing:-.045em; } .lead { max-width:850px; margin:24px 0 0; color:var(--muted); font-size:clamp(1rem,2vw,1.25rem); } .notice { display:inline-flex; margin-top:24px; border:1px solid color-mix(in srgb,var(--amber) 35%,var(--line)); border-radius:99px; background:var(--amber-soft); color:var(--amber); padding:7px 12px; font-size:.86rem; font-weight:800; }
-    .summary-grid,.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; } .summary-grid { margin-top:38px; } .summary,.card,.mini,.loop { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow); } .summary { padding:20px; } .summary small { display:block; margin-bottom:8px; color:var(--muted); font-weight:800; letter-spacing:.08em; text-transform:uppercase; } .summary strong { display:block; font-size:1.08rem; line-height:1.45; }
-    .layout { display:grid; grid-template-columns:230px minmax(0,1fr); gap:42px; padding:46px 0 92px; } .side { position:sticky; top:90px; align-self:start; } .side p { margin:0 0 10px; color:var(--muted); font-size:.78rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; } .side a { display:block; border-left:2px solid var(--line); color:var(--muted); padding:7px 12px; text-decoration:none; font-size:.9rem; } .side a:hover { border-color:var(--violet); color:var(--violet); } main { min-width:0; } section { scroll-margin-top:85px; margin-bottom:62px; } h2 { margin:0 0 16px; font-size:clamp(1.55rem,3vw,2.25rem); line-height:1.2; letter-spacing:-.025em; } h3 { margin:24px 0 8px; } p { margin:0 0 16px; } .section-intro { max-width:820px; color:var(--muted); font-size:1.04rem; }
-    .card { padding:24px; } .callout { border-left:5px solid var(--violet); background:var(--violet-soft); padding:20px 22px; border-radius:0 16px 16px 0; } .callout strong { color:var(--violet); } .grid-2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; } .mini { padding:18px; } .mini h3 { margin:0 0 7px; } .mini p { margin:0; color:var(--muted); font-size:.93rem; } .tag { display:inline-block; margin-bottom:10px; border-radius:99px; padding:4px 9px; font-size:.74rem; font-weight:850; } .tag.violet { background:var(--violet-soft); color:var(--violet); } .tag.cyan { background:var(--cyan-soft); color:var(--cyan); } .tag.amber { background:var(--amber-soft); color:var(--amber); }
-    .timeline { display:grid; gap:10px; } .event { display:grid; grid-template-columns:90px 1fr; gap:18px; border:1px solid var(--line); border-radius:15px; background:var(--surface); padding:15px 18px; } .event strong { color:var(--violet); } .event span { color:var(--muted); }
-    .loop-grid { display:grid; grid-template-columns:1fr 60px 1fr; align-items:stretch; gap:10px; } .loop { padding:22px; } .loop h3 { margin:0 0 6px; } .loop ol { margin-bottom:0; padding-left:1.25rem; } .bridge { display:grid; place-items:center; color:var(--violet); font-size:2rem; font-weight:900; }
-    table { width:100%; border-collapse:collapse; margin-top:14px; font-size:.92rem; } th,td { border-bottom:1px solid var(--line); padding:12px 10px; text-align:left; vertical-align:top; } th { color:var(--muted); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; } .number { font-weight:850; white-space:nowrap; }
-    .ladder { counter-reset:stage; display:grid; gap:12px; } .stage { counter-increment:stage; display:grid; grid-template-columns:62px 1fr; border:1px solid var(--line); border-radius:16px; background:var(--surface); overflow:hidden; } .stage::before { content:"V" counter(stage); display:grid; place-items:center; background:var(--violet-soft); color:var(--violet); font-weight:900; } .stage div { padding:17px 19px; } .stage h3 { margin:0 0 4px; } .stage p { margin:0; color:var(--muted); }
-    .boundary { border:1px solid color-mix(in srgb,var(--red) 32%,var(--line)); border-radius:var(--radius); background:var(--red-soft); padding:22px; } .boundary h3 { margin-top:0; color:var(--red); } .next { border:1px solid color-mix(in srgb,var(--violet) 35%,var(--line)); border-radius:var(--radius); background:var(--violet-soft); padding:25px; } .next h2 { color:var(--violet); } .footer { border-top:1px solid var(--line); background:var(--surface); } .footer-inner { padding:28px 0; color:var(--muted); font-size:.88rem; }
-    @media (max-width:860px) { .summary-grid,.grid-3,.grid-2 { grid-template-columns:1fr; } .layout { grid-template-columns:1fr; } .side { position:static; display:grid; grid-template-columns:repeat(2,1fr); } .side p { grid-column:1/-1; } .loop-grid { grid-template-columns:1fr; } .bridge { transform:rotate(90deg); } }
-    @media (max-width:560px) { .hero-inner { padding-top:52px; } .side { grid-template-columns:1fr; } .event { grid-template-columns:1fr; gap:2px; } .card { padding:19px; } }
-    @media print { .topbar,.side { display:none; } body { background:#fff; } .layout { display:block; padding-top:30px; } .card,.summary,.mini,.loop { box-shadow:none; break-inside:avoid; } section { break-inside:avoid; } }
+    :root {
+      color-scheme: light;
+      --page: #f6f4fa;
+      --surface: #ffffff;
+      --surface-subtle: #f0ecf8;
+      --ink: #1f182e;
+      --ink-soft: #554d66;
+      --muted: #746c86;
+      --line: #ddd5ec;
+      --line-subtle: #eae3f5;
+      --violet: #6039b5;
+      --violet-soft: #eee7fb;
+      --cyan: #0b7385;
+      --cyan-soft: #e2f4f7;
+      --amber: #9a5700;
+      --amber-soft: #fff2d8;
+      --red: #b33245;
+      --red-soft: #fdebee;
+      --shadow-sm: 0 2px 8px rgba(45,25,75,.04);
+      --shadow-md: 0 14px 34px rgba(45,25,75,.08);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --sans: "Plus Jakarta Sans", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --serif: "Noto Serif TC", Georgia, serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --page: #0d0817;
+      --surface: #171126;
+      --surface-subtle: #211936;
+      --ink: #f2ecfb;
+      --ink-soft: #b2a4cb;
+      --muted: #83759c;
+      --line: #34274d;
+      --line-subtle: #251b3b;
+      --violet: #b592ff;
+      --violet-soft: #2d1f4b;
+      --cyan: #6ed0e0;
+      --cyan-soft: #12373f;
+      --amber: #f8c96c;
+      --amber-soft: #3d2d10;
+      --red: #ff8c9b;
+      --red-soft: #431b22;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.2);
+      --shadow-md: 0 16px 36px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--cyan); text-underline-offset: 3px; }
+    button { font: inherit; }
+    code {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--surface-subtle);
+      padding: 0.1em 0.35em;
+      font-family: var(--mono);
+      font-size: 0.88em;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      backdrop-filter: blur(14px);
+    }
+    .topbar-inner, .hero-inner, .layout, .footer-inner {
+      width: min(1160px, calc(100% - 36px));
+      margin: auto;
+    }
+    .topbar-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-subtle);
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .back-btn:hover {
+      background: var(--violet-soft);
+      color: var(--violet);
+      border-color: var(--violet);
+    }
+    .brand {
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 0.86rem;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--violet);
+      box-shadow: 0 0 0 4px var(--violet-soft);
+    }
+    .theme-button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink);
+      padding: 7px 14px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .theme-button:hover {
+      border-color: var(--violet);
+      color: var(--violet);
+    }
+    .hero {
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 84% 8%, color-mix(in srgb, var(--violet) 16%, transparent), transparent 31rem), var(--surface);
+    }
+    .hero-inner { padding: 68px 0 54px; }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--violet);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    h1 {
+      max-width: 980px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.3rem, 5.5vw, 4.2rem);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .lead {
+      max-width: 850px;
+      margin: 20px 0 0;
+      color: var(--ink-soft);
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+      line-height: 1.7;
+    }
+    .notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 24px;
+      border: 1px solid color-mix(in srgb, var(--amber) 35%, var(--line));
+      border-radius: 999px;
+      background: var(--amber-soft);
+      color: var(--amber);
+      padding: 6px 14px;
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+    .summary-grid, .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .summary-grid { margin-top: 36px; }
+    .summary, .card, .mini, .loop {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+    }
+    .summary { padding: 22px; }
+    .summary small {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+    }
+    .summary strong {
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      gap: 48px;
+      padding: 48px 0 92px;
+    }
+    .side {
+      position: sticky;
+      top: 88px;
+      align-self: start;
+    }
+    .side p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .side a {
+      display: block;
+      border-left: 2px solid var(--line);
+      color: var(--ink-soft);
+      padding: 8px 14px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+    .side a:hover {
+      border-color: var(--violet);
+      color: var(--violet);
+      transform: translateX(3px);
+    }
+    main { min-width: 0; }
+    section { scroll-margin-top: 88px; margin-bottom: 64px; }
+    h2 {
+      margin: 0 0 16px;
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.25rem);
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    h3 { margin: 24px 0 8px; font-size: 1.08rem; font-weight: 700; color: var(--ink); }
+    p { margin: 0 0 16px; color: var(--ink-soft); }
+    .section-intro { max-width: 820px; color: var(--ink-soft); font-size: 1.05rem; line-height: 1.7; }
+    .card {
+      padding: 24px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .callout {
+      border-left: 4px solid var(--violet);
+      background: var(--violet-soft);
+      padding: 20px 24px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      color: var(--ink);
+    }
+    .callout strong { color: var(--violet); }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .mini { padding: 20px; }
+    .mini h3 { margin: 0 0 6px; }
+    .mini p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; }
+    .tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .tag.violet { background: var(--violet-soft); color: var(--violet); border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent); }
+    .tag.cyan { background: var(--cyan-soft); color: var(--cyan); border: 1px solid color-mix(in srgb, var(--cyan) 30%, transparent); }
+    .tag.amber { background: var(--amber-soft); color: var(--amber); border: 1px solid color-mix(in srgb, var(--amber) 30%, transparent); }
+    .timeline { display: grid; gap: 12px; }
+    .event {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+      align-items: center;
+    }
+    .event strong { color: var(--violet); font-weight: 800; }
+    .event span { color: var(--ink-soft); font-size: 0.94rem; }
+    .loop-grid {
+      display: grid;
+      grid-template-columns: 1fr 50px 1fr;
+      align-items: center;
+      gap: 12px;
+    }
+    .loop { padding: 24px; }
+    .loop h3 { margin: 0 0 8px; }
+    .loop ol { margin-bottom: 0; padding-left: 1.25rem; color: var(--ink-soft); font-size: 0.94rem; }
+    .bridge {
+      display: grid;
+      place-items: center;
+      color: var(--violet);
+      font-size: 1.8rem;
+      font-weight: 900;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 0.92rem; }
+    th, td { border-bottom: 1px solid var(--line); padding: 14px 16px; text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface-subtle); }
+    .number { font-weight: 800; white-space: nowrap; font-family: var(--mono); color: var(--ink); }
+    .ladder { counter-reset: stage; display: grid; gap: 12px; }
+    .stage {
+      counter-increment: stage;
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .stage::before {
+      content: "V" counter(stage);
+      display: grid;
+      place-items: center;
+      background: var(--violet-soft);
+      color: var(--violet);
+      font-weight: 900;
+      font-family: var(--mono);
+      font-size: 1.1rem;
+    }
+    .stage div { padding: 18px 20px; }
+    .stage h3 { margin: 0 0 4px; }
+    .stage p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; }
+    .boundary {
+      border: 1px solid color-mix(in srgb, var(--red) 30%, var(--line));
+      border-radius: var(--radius-md);
+      background: var(--red-soft);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .boundary h3 { margin-top: 0; color: var(--red); }
+    .boundary ul { margin-bottom: 0; padding-left: 1.25rem; color: var(--ink-soft); }
+    .next {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--violet);
+      border-radius: var(--radius-lg);
+      background: var(--surface-subtle);
+      padding: 30px;
+    }
+    .next h2 { color: var(--violet); }
+    .footer { border-top: 1px solid var(--line); background: var(--surface); }
+    .footer-inner {
+      padding: 32px 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .summary-grid, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .layout { grid-template-columns: 1fr; }
+      .side { position: static; display: grid; grid-template-columns: repeat(2, 1fr); }
+      .side p { grid-column: 1/-1; }
+      .loop-grid { grid-template-columns: 1fr; }
+      .bridge { transform: rotate(90deg); margin: 8px 0; }
+    }
+    @media (max-width: 560px) {
+      .hero-inner { padding-top: 48px; }
+      .side { grid-template-columns: 1fr; }
+      .event { grid-template-columns: 1fr; gap: 4px; }
+      .card { padding: 20px; }
+      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media print {
+      .topbar, .side { display: none; }
+      body { background: #fff; }
+      .layout { display: block; padding-top: 30px; }
+      .card, .summary, .mini, .loop { box-shadow: none; break-inside: avoid; }
+      section { break-inside: avoid; }
+    }
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="topbar-inner"><a class="brand" href="#top">FDE 案例報告</a><button class="theme-button" id="themeButton" type="button" aria-label="切換深色或淺色主題">切換主題</button></div></header>
-  <div class="hero" id="top"><div class="hero-inner">
-    <p class="eyebrow">AI Data Analyst &amp; Model Evolution</p>
-    <h1>打造會持續擴充模型工具箱的 AI 數據分析師</h1>
-    <p class="lead">數據指出哪裡變了；AI 建立競爭性假設、尋找反證與下一個查證；穩定方法再沉澱成受治理的數據模型。</p>
-    <div class="notice">合成案例：不是企業授權、上線或成效證據</div>
-    <div class="summary-grid">
-      <article class="summary"><small>舊問題</small><strong>把下降 24% 改寫成「賣不動」，沒有分析價值</strong></article>
-      <article class="summary"><small>演進焦點</small><strong>分析師成長，背後的模型工具箱也持續成長</strong></article>
-      <article class="summary"><small>安全邊界</small><strong>AI 整理和提議；人類決策，治理流程發布能力</strong></article>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-wrap">
+        <a class="back-btn" href="../../index.html">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          回到首頁
+        </a>
+        <a class="brand" href="#top">FDE 案例報告</a>
+      </div>
+      <button class="theme-button" id="themeButton" type="button" aria-label="切換深色或淺色主題">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        切換主題
+      </button>
     </div>
-  </div></div>
+  </header>
+
+  <div class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow">AI Data Analyst &amp; Model Evolution</p>
+      <h1>打造會持續擴充模型工具箱的 AI 數據分析師</h1>
+      <p class="lead">數據指出哪裡變了；AI 建立競爭性假設、尋找反證與下一個查證；穩定方法再沉澱成受治理的數據模型。</p>
+      <div class="notice">合成案例：不是企業授權、上線或成效證據</div>
+      <div class="summary-grid">
+        <article class="summary"><small>舊問題</small><strong>把下降 24% 改寫成「賣不動」，沒有分析價值</strong></article>
+        <article class="summary"><small>演進焦點</small><strong>分析師成長，背後的模型工具箱也持續成長</strong></article>
+        <article class="summary"><small>安全邊界</small><strong>AI 整理和提議；人類決策，治理流程發布能力</strong></article>
+      </div>
+    </div>
+  </div>
+
   <div class="layout">
-    <nav class="side" aria-label="報告章節"><p>閱讀導覽</p><a href="#idea">核心想法</a><a href="#problem">舊流程問題</a><a href="#case">客戶 A</a><a href="#memory">決策時間線</a><a href="#loops">雙迴路</a><a href="#roles">責任分工</a><a href="#growth">能力演進</a><a href="#slice">第一切片</a><a href="#proof">驗證方式</a><a href="#boundary">安全邊界</a><a href="#next">下一步</a></nav>
+    <nav class="side" aria-label="報告章節">
+      <p>閱讀導覽</p>
+      <a href="#idea">核心想法</a>
+      <a href="#problem">舊流程問題</a>
+      <a href="#case">客戶 A</a>
+      <a href="#memory">決策時間線</a>
+      <a href="#loops">雙迴路</a>
+      <a href="#roles">責任分工</a>
+      <a href="#growth">能力演進</a>
+      <a href="#slice">第一切片</a>
+      <a href="#proof">驗證方式</a>
+      <a href="#boundary">安全邊界</a>
+      <a href="#next">下一步</a>
+    </nav>
     <main>
-      <section id="idea"><h2>AI 不是替數字補上一段文字</h2><p class="section-intro">確定性模型先拆解頻率、單價、組合與資料效果；AI 數據分析師再建立採購延後、服務阻塞、需求下降與資料缺漏等競爭性假設，尋找反證和最有價值的下一個查證。</p><div class="callout"><strong>一句話版本：</strong>AI 負責探索未知問題；數據模型沉澱已知方法；人類接受模型定義與商業判斷。</div></section>
-      <section id="problem"><h2>為什麼同一種問題總要重新調查？</h2><div class="grid-2"><article class="card"><span class="tag amber">舊流程</span><ol><li>週報發現客戶訂購下降。</li><li>分析人員分別查訂單、客服和續約。</li><li>會議形成判斷，請業務跟進。</li><li>理由留在簡報、訊息或人的記憶裡。</li><li>相似案例出現時，再從頭調查。</li></ol></article><article class="card"><span class="tag violet">應先修復</span><ul><li>統一重大變化與比較期定義。</li><li>把事實、假設和決策分開保存。</li><li>限制第一版決策為 monitor／verify／escalate。</li><li>決策當下指定觀察期限與結果。</li><li>讓後續結果回連原始訊號。</li></ul></article></div></section>
-      <section id="case"><h2>客戶 A：訂購下降不等於已經流失</h2><p class="section-intro">這些合成數字只用來呈現證據形狀。它們可以觸發審閱，不能直接建立因果或客戶標籤。</p><div class="card"><table><thead><tr><th>證據</th><th>示例</th><th>可以說到哪裡</th></tr></thead><tbody><tr><td>最近四週訂購金額</td><td class="number">下降 24%</td><td>存在值得審閱的變化。</td></tr><tr><td>訂購頻率</td><td class="number">4 次 → 2 次</td><td>變化主要來自頻率。</td></tr><tr><td>平均訂單金額</td><td class="number">大致持平</td><td>不支持直接宣稱全面縮減預算。</td></tr><tr><td>未結服務事件</td><td class="number">1 件</td><td>可能相關，但尚未證明因果。</td></tr><tr><td>合約續約</td><td class="number">45 天後</td><td>提高及時查證的重要性。</td></tr></tbody></table></div></section>
-      <section id="memory"><h2>一筆完整的決策記憶長什麼樣？</h2><p class="section-intro"><code>DecisionEpisode</code> 不可被覆寫；修正只能追加新版本。歷史重播也只能看到決策當時已存在的資料，不能偷看後來結果。</p><div class="timeline"><div class="event"><strong>訊號</strong><span>四週訂購金額下降 24%；合成來源 <code>orders-snapshot:r17</code>，as-of 2026-07-31，語意版本 <code>0.1.0</code>，新鮮度 fresh，access decision <code>demo-read-17</code>。</span></div><div class="event"><strong>解讀</strong><span>AI 保留採購延後、服務阻塞、需求下降與資料缺漏等假設，各自連結支持與反對證據。</span></div><div class="event"><strong>決策</strong><span>選擇 verify，由帳戶負責人在五個工作日內查證。</span></div><div class="event"><strong>觀察</strong><span>三十天後訂購恢復；這是結果，不單獨證明原假設正確。</span></div><div class="event"><strong>模型候選</strong><span>三組合成 episode 的 revision 都補上 as-of 未結服務事件，因此提出 <code>assembleAccountReviewContext()</code>；這是可重播示例，不是發布證據。</span></div></div></section>
-      <section id="loops"><h2>兩條迴路，讓記憶變成能力</h2><div class="loop-grid"><article class="loop"><span class="tag cyan">營運迴路</span><h3>把今天的判斷留下來</h3><ol><li>取得可信訊號與證據。</li><li>人類區分事實和假設。</li><li>記錄決策、理由和 owner。</li><li>到期後補記結果。</li><li>形成完整決策時間線。</li></ol></article><div class="bridge" aria-hidden="true">↔</div><article class="loop"><span class="tag violet">演進迴路</span><h3>把重複經驗變成新能力</h3><ol><li>比較修正、例外與結果。</li><li>找出重複調查模式。</li><li>提出具名能力候選。</li><li>以封存案例重播比較。</li><li>owner 接受後才開發發布。</li></ol></article></div></section>
-      <section id="roles"><h2>誰應該負責什麼？</h2><div class="grid-3"><article class="mini"><span class="tag cyan">軟體</span><h3>穩定事實</h3><p>排程、權限、新鮮度、比較期、變化計算與版本。</p></article><article class="mini"><span class="tag violet">條件性 AI</span><h3>未知脈絡</h3><p>整理文字、揭露矛盾、比較允許的過往案例並在不足時棄答。</p></article><article class="mini"><span class="tag amber">人類</span><h3>可歸責判斷</h3><p>接受解讀、選擇行動、處理例外並接受能力變更。</p></article></div></section>
-      <section id="growth"><h2>分析師與模型工具箱一起長大</h2><div class="ladder"><article class="stage"><div><h3>描述型分析師</h3><p>使用語意與指標模型說明發生什麼。</p></div></article><article class="stage"><div><h3>診斷型分析師</h3><p>使用診斷模型拆解頻率、價格、組合與資料效果。</p></div></article><article class="stage"><div><h3>假設驅動分析師</h3><p>建立競爭性假設、反證與下一個查證。</p></div></article><article class="stage"><div><h3>決策記憶分析師</h3><p>比較當時證據、人工修正、行動與延遲結果。</p></div></article><article class="stage"><div><h3>分析能力建設者</h3><p>把重複方法提議為語意、指標、診斷、行為或決策模型。</p></div></article><article class="stage"><div><h3>受治理持續演進</h3><p>模型經 replay、owner 接受與版本發布後，AI 使用它探索下一題。</p></div></article></div></section>
-      <section id="slice"><h2>第一個切片：先建立沒有 AI 也有用的決策時間線</h2><div class="grid-2"><article class="card"><span class="tag violet">包含</span><ul><li>一個商業單位、10–20 筆可用案例</li><li>一套已接受的變化 baseline</li><li>來源、新鮮度、語意版本與 access decision</li><li>受控、append-only 的決策 journal action</li><li>到期結果與原訊號回連</li></ul></article><article class="card"><span class="tag amber">延後</span><ul><li>AI 正式進入營運迴路</li><li>自動判定客戶流失</li><li>客戶聯繫、派工或 CRM 寫入</li><li>一次涵蓋全公司資料</li><li>AI 自行發布新規則或工具</li></ul></article></div><div class="callout" style="margin-top:16px">來源讀取是唯讀，但 journal 本身是持久寫入，仍需授權、稽核、冪等與復原證據。目前 process readiness 未通過，AI selection 是 <strong>deferred</strong>。</div></section>
-      <section id="proof"><h2>如何證明不是漂亮的故事？</h2><div class="timeline"><div class="event"><strong>1. 重播</strong><span>用封存案例量測現有人工調查時間與決策鏈缺漏。</span></div><div class="event"><strong>2. 非 AI shadow</strong><span>在相同案例建立可信訊號與人工決策時間線。</span></div><div class="event"><strong>3. AI shadow</strong><span>readiness 後比較 groundedness、棄答、修正、時間、成本與安全。</span></div><div class="event"><strong>4. 單一候選</strong><span>只選一種反覆且可規格化的修正進行重播。</span></div><div class="event"><strong>5. 受治理發布</strong><span>owner 接受、測試與回復齊備後，營運迴路才使用新版本。</span></div></div></section>
-      <section id="boundary"><h2>決策記憶不是自動決策權</h2><div class="boundary"><h3>AI 不得自行</h3><ul><li>把訂購下降標記為客戶流失。</li><li>把相關性寫成因果關係。</li><li>聯繫客戶、指派工作或修改 CRM。</li><li>根據單次結果改寫政策。</li><li>接受並發布自己提出的能力。</li><li>擴大資料權限或隱藏缺少的證據。</li></ul></div><p style="margin-top:16px">正確順序是：<strong>AI 提議 → 封存案例重播 → 負責人接受 → 開發測試 → 版本發布 → 監控與回復</strong>。</p></section>
-      <section id="next" class="next"><h2>案例結案，企業工作另案開始</h2><p>Synthetic 教學案例已完成；真實企業導入必須從 owner、流程、baseline、target、來源與 access evidence 重新開始，不能沿用 demo 的假設。</p><p><strong>結案邊界：</strong>repository artifact 可結案；G1–G6 未通過，AI selection 維持 deferred。</p><p style="margin-bottom:0">閱讀 <a href="artifacts/analyst-model-evolution.md">分析師與模型演進</a>、<a href="artifacts/operating-solution-proposal.md">操作方案</a>、<a href="artifacts/closure-review.md">結案審查</a>與 <a href="artifacts/decision-episode.schema.json">DecisionEpisode schema</a>。</p></section>
+      <section id="idea">
+        <h2>AI 不是替數字補上一段文字</h2>
+        <p class="section-intro">確定性模型先拆解頻率、單價、組合與資料效果；AI 數據分析師再建立採購延後、服務阻塞、需求下降與資料缺漏等競爭性假設，尋找反證和最有價值的下一個查證。</p>
+        <div class="callout"><strong>一句話版本：</strong>AI 負責探索未知問題；數據模型沉澱已知方法；人類接受模型定義與商業判斷。</div>
+      </section>
+
+      <section id="problem">
+        <h2>為什麼同一種問題總要重新調查？</h2>
+        <div class="grid-2">
+          <article class="card">
+            <span class="tag amber">舊流程</span>
+            <ol>
+              <li>週報發現客戶訂購下降。</li>
+              <li>分析人員分別查訂單、客服和續約。</li>
+              <li>會議形成判斷，請業務跟進。</li>
+              <li>理由留在簡報、訊息或人的記憶裡。</li>
+              <li>相似案例出現時，再從頭調查。</li>
+            </ol>
+          </article>
+          <article class="card">
+            <span class="tag violet">應先修復</span>
+            <ul>
+              <li>統一重大變化與比較期定義。</li>
+              <li>把事實、假設和決策分開保存。</li>
+              <li>限制第一版決策為 monitor／verify／escalate。</li>
+              <li>決策當下指定觀察期限與結果。</li>
+              <li>讓後續結果回連原始訊號。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="case">
+        <h2>客戶 A：訂購下降不等於已經流失</h2>
+        <p class="section-intro">這些合成數字只用來呈現證據形狀。它們可以觸發審閱，不能直接建立因果或客戶標籤。</p>
+        <div class="card">
+          <table>
+            <thead>
+              <tr><th>證據</th><th>示例</th><th>可以說到哪裡</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>最近四週訂購金額</td><td class="number">下降 24%</td><td>存在值得審閱的變化。</td></tr>
+              <tr><td>訂購頻率</td><td class="number">4 次 → 2 次</td><td>變化主要來自頻率。</td></tr>
+              <tr><td>平均訂單金額</td><td class="number">大致持平</td><td>不支持直接宣稱全面縮減預算。</td></tr>
+              <tr><td>未結服務事件</td><td class="number">1 件</td><td>可能相關，但尚未證明因果。</td></tr>
+              <tr><td>合約續約</td><td class="number">45 天後</td><td>提高及時查證的重要性。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="memory">
+        <h2>一筆完整的決策記憶長什麼樣？</h2>
+        <p class="section-intro"><code>DecisionEpisode</code> 不可被覆寫；修正只能追加新版本。歷史重播也只能看到決策當時已存在的資料，不能偷看後來結果。</p>
+        <div class="timeline">
+          <div class="event"><strong>訊號</strong><span>四週訂購金額下降 24%；合成來源 <code>orders-snapshot:r17</code>，as-of 2026-07-31，語意版本 <code>0.1.0</code>，新鮮度 fresh，access decision <code>demo-read-17</code>。</span></div>
+          <div class="event"><strong>解讀</strong><span>AI 保留採購延後、服務阻塞、需求下降與資料缺漏等假設，各自連結支持與反對證據。</span></div>
+          <div class="event"><strong>決策</strong><span>選擇 verify，由帳戶負責人在五個工作日內查證。</span></div>
+          <div class="event"><strong>觀察</strong><span>三十天後訂購恢復；這是結果，不單獨證明原假設正確。</span></div>
+          <div class="event"><strong>模型候選</strong><span>三組合成 episode 的 revision 都補上 as-of 未結服務事件，因此提出 <code>assembleAccountReviewContext()</code>；這是可重播示例，不是發布證據。</span></div>
+        </div>
+      </section>
+
+      <section id="loops">
+        <h2>兩條迴路，讓記憶變成能力</h2>
+        <div class="loop-grid">
+          <article class="loop">
+            <span class="tag cyan">營運迴路</span>
+            <h3>把今天的判斷留下來</h3>
+            <ol>
+              <li>取得可信訊號與證據。</li>
+              <li>人類區分事實和假設。</li>
+              <li>記錄決策、理由和 owner。</li>
+              <li>到期後補記結果。</li>
+              <li>形成完整決策時間線。</li>
+            </ol>
+          </article>
+          <div class="bridge" aria-hidden="true">↔</div>
+          <article class="loop">
+            <span class="tag violet">演進迴路</span>
+            <h3>把重複經驗變成新能力</h3>
+            <ol>
+              <li>比較修正、例外與結果。</li>
+              <li>找出重複調查模式。</li>
+              <li>提出具名能力候選。</li>
+              <li>以封存案例重播比較。</li>
+              <li>owner 接受後才開發發布。</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section id="roles">
+        <h2>誰應該負責什麼？</h2>
+        <div class="grid-3">
+          <article class="mini">
+            <span class="tag cyan">軟體</span>
+            <h3>穩定事實</h3>
+            <p>排程、權限、新鮮度、比較期、變化計算與版本。</p>
+          </article>
+          <article class="mini">
+            <span class="tag violet">條件性 AI</span>
+            <h3>未知脈絡</h3>
+            <p>整理文字、揭露矛盾、比較允許的過往案例並在不足時棄答。</p>
+          </article>
+          <article class="mini">
+            <span class="tag amber">人類</span>
+            <h3>可歸責判斷</h3>
+            <p>接受解讀、選擇行動、處理例外並接受能力變更。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="growth">
+        <h2>分析師與模型工具箱一起長大</h2>
+        <div class="ladder">
+          <article class="stage"><div><h3>描述型分析師</h3><p>使用語意與指標模型說明發生什麼。</p></div></article>
+          <article class="stage"><div><h3>診斷型分析師</h3><p>使用診斷模型拆解頻率、價格、組合與資料效果。</p></div></article>
+          <article class="stage"><div><h3>假設驅動分析師</h3><p>建立競爭性假設、反證與下一個查證。</p></div></article>
+          <article class="stage"><div><h3>決策記憶分析師</h3><p>比較當時證據、人工修正、行動與延遲結果。</p></div></article>
+          <article class="stage"><div><h3>分析能力建設者</h3><p>把重複方法提議為語意、指標、診斷、行為或決策模型。</p></div></article>
+          <article class="stage"><div><h3>受治理持續演進</h3><p>模型經 replay、owner 接受與版本發布後，AI 使用它探索下一題。</p></div></article>
+        </div>
+      </section>
+
+      <section id="slice">
+        <h2>第一個切片：先建立沒有 AI 也有用的決策時間線</h2>
+        <div class="grid-2">
+          <article class="card">
+            <span class="tag violet">包含</span>
+            <ul>
+              <li>一個商業單位、10–20 筆可用案例</li>
+              <li>一套已接受的變化 baseline</li>
+              <li>來源、新鮮度、語意版本與 access decision</li>
+              <li>受控、append-only 的決策 journal action</li>
+              <li>到期結果與原訊號回連</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="tag amber">延後</span>
+            <ul>
+              <li>AI 正式進入營運迴路</li>
+              <li>自動判定客戶流失</li>
+              <li>客戶聯繫、派工或 CRM 寫入</li>
+              <li>一次涵蓋全公司資料</li>
+              <li>AI 自行發布新規則或工具</li>
+            </ul>
+          </article>
+        </div>
+        <div class="callout" style="margin-top:16px">來源讀取是唯讀，但 journal 本身是持久寫入，仍需授權、稽核、冪等與復原證據。目前 process readiness 未通過，AI selection 是 <strong>deferred</strong>。</div>
+      </section>
+
+      <section id="proof">
+        <h2>如何證明不是漂亮的故事？</h2>
+        <div class="timeline">
+          <div class="event"><strong>1. 重播</strong><span>用封存案例量測現有人工調查時間與決策鏈缺漏。</span></div>
+          <div class="event"><strong>2. 非 AI shadow</strong><span>在相同案例建立可信訊號與人工決策時間線。</span></div>
+          <div class="event"><strong>3. AI shadow</strong><span>readiness 後比較 groundedness、棄答、修正、時間、成本與安全。</span></div>
+          <div class="event"><strong>4. 單一候選</strong><span>只選一種反覆且可規格化的修正進行重播。</span></div>
+          <div class="event"><strong>5. 受治理發布</strong><span>owner 接受、測試與回復齊備後，營運迴路才使用新版本。</span></div>
+        </div>
+      </section>
+
+      <section id="boundary">
+        <h2>決策記憶不是自動決策權</h2>
+        <div class="boundary">
+          <h3>AI 不得自行</h3>
+          <ul>
+            <li>把訂購下降標記為客戶流失。</li>
+            <li>把相關性寫成因果關係。</li>
+            <li>聯繫客戶、指派工作或修改 CRM。</li>
+            <li>根據單次結果改寫政策。</li>
+            <li>接受並發布自己提出的能力。</li>
+            <li>擴大資料權限或隱藏缺少的證據。</li>
+          </ul>
+        </div>
+        <p style="margin-top:16px">正確順序是：<strong>AI 提議 → 封存案例重播 → 負責人接受 → 開發測試 → 版本發布 → 監控與回復</strong>。</p>
+      </section>
+
+      <section id="next" class="next">
+        <h2>案例結案，企業工作另案開始</h2>
+        <p>Synthetic 教學案例已完成；真實企業導入必須從 owner、流程、baseline、target、來源與 access evidence 重新開始，不能沿用 demo 的假設。</p>
+        <p><strong>結案邊界：</strong>repository artifact 可結案；G1–G6 未通過，AI selection 維持 deferred。</p>
+        <p style="margin-bottom:0">閱讀 <a href="artifacts/analyst-model-evolution.md">分析師與模型演進</a>、<a href="artifacts/operating-solution-proposal.md">操作方案</a>、<a href="artifacts/closure-review.md">結案審查</a>與 <a href="artifacts/decision-episode.schema.json">DecisionEpisode schema</a>。</p>
+      </section>
     </main>
   </div>
-  <footer class="footer"><div class="footer-inner">FDE synthetic example · AI data analyst and model evolution · Proposed, not authorized</div></footer>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>FDE synthetic example · AI data analyst and model evolution · Proposed, not authorized</span>
+      <a href="#top" style="color:var(--muted); text-decoration:none;">回到頂部 ↑</a>
+    </div>
+  </footer>
+
   <script>
     const root = document.documentElement;
     const button = document.getElementById('themeButton');
     const savedTheme = localStorage.getItem('decision-memory-evolution-theme');
     if (savedTheme === 'dark') root.dataset.theme = 'dark';
-    button.addEventListener('click', () => {
-      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-      root.dataset.theme = next;
-      localStorage.setItem('decision-memory-evolution-theme', next);
-    });
+    if (button) {
+      button.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem('decision-memory-evolution-theme', next);
+      });
+    }
   </script>
 </body>
 </html>
