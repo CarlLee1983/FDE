@@ -38,6 +38,8 @@ The diagram explicitly requires parallel old/new operation and definition alignm
 
 Handover includes SOPs, training, and accountable owners. **Recommendation:** also include the asset inventory, exception procedure, change workflow, monitoring checklist, and recovery path.
 
+**Evidence status.** This stage is derived from the supplied architecture diagram and is this project's synthesis. No primary source read in [the FDE primary-source record](../research/forward-deployed-engineer-sources.md) states an exit or handoff criterion for the role, so nothing here should be cited as established industry practice.
+
 ## Recommended Acceptance Gates
 
 | Gate | Acceptance question |

@@ -6,7 +6,7 @@ This context defines the analysis-and-assistance capability that the project str
 
 **FDE (Forward Deployed Engineer)**:
 An engineer embedded in a concrete business setting who translates operating problems into working, governed capabilities.
-_Avoid_: alternative acronyms or expanding FDE as an engineering discipline
+_Avoid_: alternative acronyms, expanding FDE as an engineering discipline, or using FDE to name an agent or product rather than a person
 
 **FDE capability**:
 The ability to turn an operating problem into a workflow-informed, evidence-bounded recommendation and next accountable action.
