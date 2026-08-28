@@ -512,6 +512,26 @@
       margin-bottom: var(--space-lg);
       flex-grow: 1;
     }
+    .step-eli5-box {
+      margin: var(--space-sm) 0 var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
+      background: var(--color-warm-wash);
+      border-left: 3px solid var(--color-warm);
+      font-size: var(--text-xs);
+      line-height: 1.6;
+      color: var(--color-ink);
+    }
+    .step-eli5-box strong {
+      color: var(--color-warm);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-bottom: 0.2rem;
+      font-size: var(--text-xs);
+      font-weight: 700;
+    }
+    
     .step-output {
       border-top: 1px dashed var(--color-rule);
       padding-top: var(--space-sm);
@@ -519,8 +539,8 @@
       font-size: var(--text-xs);
       font-weight: 600;
       display: flex;
-      align-items: center;
-      gap: var(--space-xs);
+      flex-direction: column;
+      gap: var(--space-3xs);
     }
     .step-output .out-label {
       color: var(--color-accent);
@@ -1047,9 +1067,9 @@
     <!-- 4 Steps Framework -->
     <section class="shell section" id="how">
       <div class="section-head">
-        <span class="section-eyebrow">4 步分析方法論</span>
+        <span class="section-eyebrow">4 步分析方法論 · 深入淺出</span>
         <h2>FDE 怎麼把一團混亂變成能落地的下一步？</h2>
-        <p>四個層層遞進的步驟。每一步都先回答一個關鍵問題，不堆砌聽不懂的技術黑話。</p>
+        <p>四個層層遞進的步驟。每一步都先回答一個關鍵問題，完全不堆砌聽不懂的技術黑話。</p>
       </div>
       
       <ol class="steps-grid">
@@ -1060,8 +1080,15 @@
           </div>
           <h3>到底哪裡卡住？</h3>
           <p>
-            不要只說「我們系統很慢」或「跨部門溝通很差」。我們要找出：<strong>到底是在哪張桌子前面、是誰在等待哪一份單據、最後要拿到什麼才算搞定？</strong>
+            不要只說「我們系統很慢」或「跨部門溝通很差」。我們要精確找出：<strong>到底是在哪張辦公桌前面、是誰在苦等哪一份單據、最後要拿到什麼東西才算真正搞定？</strong>
           </p>
+          <div class="step-eli5-box">
+            <strong>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              白話舉例（掛號問診）
+            </strong>
+            就像去醫院看診，護理師先問清楚「哪裡痛？痛多久？之前吃過什麼藥？」，先框出病灶範圍，而不是一進診間就直接推上手術台。
+          </div>
           <div class="step-output">
             <span class="out-label">具體產出</span>
             <span>畫清楚「起點、終點、誰在裡面、誰在外面」的問題邊界圖</span>
@@ -1075,11 +1102,18 @@
           </div>
           <h3>為什麼會一直發生？</h3>
           <p>
-            沿著正常流程和例外情況倒回去看。常常會發現：根本不是員工偷懶，而是<strong>「規定沒寫清楚」、「三個人都在重複核對同一張表」、或是「遇到意外狀況不知道該問誰」</strong>。
+            順著正常流程和例外情況一步步倒推。常常會發現：根本不是員工偷懶，而是<strong>「規則沒寫清楚」、「三個人重複查同一份表」、或是「遇到突發狀況沒人知道找誰拍板」</strong>。
           </p>
+          <div class="step-eli5-box">
+            <strong>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              白話舉例（老修車師傅）
+            </strong>
+            車子開起來會震動，老師傅聽引擎聲音發現只是火星塞積碳，而不是輪胎壞掉。抓出真病根，才不會白花幾萬塊換掉四個好輪胎。
+          </div>
           <div class="step-output">
             <span class="out-label">具體產出</span>
-            <span>找出真正絆倒大家的石頭，而不是只在表面貼 OK 繃</span>
+            <span>揪出真正絆倒大家的石頭，而不是只在表面貼一層看似漂亮的 OK 繃</span>
           </div>
         </li>
         
@@ -1090,11 +1124,18 @@
           </div>
           <h3>最簡單的改善是什麼？</h3>
           <p>
-            能用「改一張表格」或「刪掉多餘審核」解決的，就不要寫程式；用三行固定程式碼能算好的，就不要請昂貴的 AI。<strong>只有當需要理解海量複雜文字時，AI 才是好幫手。</strong>
+            能用「改一張表格」或「刪除多餘審核」解決的，就不要寫程式；用三行固定規則能算準的，絕不用昂貴黑盒子 AI。<strong>只有當需要理解海量多變的非結構文字時，AI 才是絕佳幫手。</strong>
           </p>
+          <div class="step-eli5-box">
+            <strong>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              白話舉例（打掃家裡）
+            </strong>
+            吸塵器裝個定時開關就能每天準時吸地板，不需要特地買一台會跟你聊哲學的昂貴人形機器人。選對工具，省錢又不容易壞。
+          </div>
           <div class="step-output">
             <span class="out-label">具體產出</span>
-            <span>花最少成本、承擔最低風險，卻能解決 80% 痛苦的方案</span>
+            <span>花最少成本、承擔最低風險，卻能解決 80% 工作痛苦的精準解法</span>
           </div>
         </li>
         
@@ -1105,11 +1146,18 @@
           </div>
           <h3>誰要做下一步？</h3>
           <p>
-            分析完不能只留下一份「大家都覺得有道理但沒人知道要幹嘛」的報告。我們會寫明：<strong>明天誰負責執行？做到什麼標準算驗收通過？如果系統掛了誰來手動接手？</strong>
+            分析完不能只留下一份「大家都覺得有道理但沒人知道要幹嘛」的投影片。我們會寫明：<strong>明天誰負責執行？做到什麼標準算驗收通過？如果系統異常誰來手動接手？</strong>
           </p>
+          <div class="step-eli5-box">
+            <strong>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              白話舉例（大隊接力交棒）
+            </strong>
+            接力賽交棒不能把棒子往後隨便一扔，而是要親手交到下一棒手裡、確認對方握緊了、並指明終點線的方向。
+          </div>
           <div class="step-output">
             <span class="out-label">具體產出</span>
-            <span>連新進實習生拿起來都能照著走、能打勾驗收的交接規格書</span>
+            <span>連新進同仁拿起來都能照著走、能一條一條打勾驗收的交接規格書</span>
           </div>
         </li>
       </ol>
@@ -1122,10 +1170,10 @@
           <div class="case-eyebrow">合成示範情境 · FEATURED CASE</div>
           <h2>第三方 API 變更監測：<br>告別「想到才手動檢查」的被動風險</h2>
           <p>
-            <span class="badge-icon-label scene" style="color:var(--color-warm);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>就像家裡的大門換了新門鎖，如果沒通知郵差，包裹就會全部卡在門口進不來。
+            <span class="badge-icon-label scene" style="color:var(--color-warm);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>就像大樓大門換了新門禁密碼，如果沒通知快遞員，所有住戶的包裹都會卡在門口進不來。
           </p>
           <p>
-            公司串接了刷卡金流、簡訊與地圖等外部服務。過去只有工程師「偶爾想起來」才去翻對方的更新說明。等到哪天客人刷卡突然全部失敗、全公司跳腳時，才發現對方上週早就改版了。
+            現代公司串接了刷卡金流、簡訊與地圖等外部服務。過去只有工程師「偶爾想起來」才去翻對方的更新說明。等到哪天客人刷卡突然全部失敗、全公司跳腳時，才發現對方上週早就改版了。
           </p>
           <a class="featured-btn" href="examples/third-party-api-change-monitoring/index.html">開啟完整案例互動頁面 →</a>
         </div>
@@ -1141,7 +1189,7 @@
           </li>
           <li class="pipeline-step">
             <strong><span class="pipe-num">STAGE 03</span> 工程師老司機點頭確認（責任人把關）</strong>
-            <span>AI 只負責整理報告，不能擅自修改程式。報告送交模組負責人確認後，由人類工程師排入下週的修改排程，絕無失控風險。</span>
+            <span>AI 只負責整理報告，不能擅自修改正式系統。報告送交模組負責人確認後，由人類工程師排入下週的修改排程，絕無失控風險。</span>
           </li>
         </ul>
       </div>
@@ -1150,7 +1198,7 @@
     <!-- Cases Showcase Grid -->
     <section class="shell section" id="cases">
       <div class="section-head">
-        <span class="section-eyebrow">實戰案例庫</span>
+        <span class="section-eyebrow">實戰案例庫 · 經典問題拆解</span>
         <h2>看看這些真實問題，如何用白話思維被拆解</h2>
         <p>每個案例都包含完整的情境背景、動線分析、數據規格與可驗收交接成果。</p>
       </div>
@@ -1162,8 +1210,8 @@
           </div>
           <h3>第三方 API 變更監測</h3>
           <p>
-            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>外部串接服務改版沒人知道，導致線上付款壞掉。<br>
-            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>用自動比對抓出改動，AI 翻譯成白話影響摘要，再由工程師確認排程。
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>外部串接服務改版沒人知道，導致線上付款壞掉、客戶抱怨連連。<br>
+            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>用自動比對抓出改動，AI 翻譯成白話影響摘要，再由工程師確認排程，防患未然。
           </p>
           <div class="case-card-footer">
             <span>交付物：監測架構與驗收腳本</span>
@@ -1177,8 +1225,8 @@
           </div>
           <h3>庫存補貨決策演化</h3>
           <p>
-            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>像超商補貨茶葉蛋，叫太少會缺貨，叫太多會過期。<br>
-            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>先用「賣多少補多少」的固定算術規則跑一遍，確認可靠了，再來評估是否需要考慮天氣預報等複雜模型。
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>像超商補貨茶葉蛋，叫太少會缺貨被罵，叫太多又會報廢虧錢。<br>
+            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>先用「賣多少補多少」的固定算術規則跑一遍，確認可靠了，再來評估是否需要考慮促銷與天氣等複雜模型。
           </p>
           <div class="case-card-footer">
             <span>交付物：決策回放與評估報告</span>
@@ -1192,8 +1240,8 @@
           </div>
           <h3>供應商發票例外治理</h3>
           <p>
-            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>廠商請款發票數字對不上，財務跟採購每天互相甩鍋。<br>
-            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>在花幾百萬買 OCR 影像辨識前，先明確定義「差額多少錢以內誰能簽字核准、少發票找誰補件」。
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>廠商請款發票金額對不上，財務跟採購每天互相踢皮球、拖延請款。<br>
+            <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>在花幾百萬買 OCR 辨識前，先明確定義「差額多少以內誰能簽字核准、少發票找誰補件」。
           </p>
           <div class="case-card-footer">
             <span>交付物：營運方案提案書</span>
@@ -1207,7 +1255,7 @@
           </div>
           <h3>客戶退款狀態交付套件</h3>
           <p>
-            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>客人問退款到哪了，客服去問財務、財務去問工程師，沒人講得清楚。<br>
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>客人打電話問退款到哪了，客服去問財務、財務去問工程師，沒人講得清楚。<br>
             <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>打造像包裹物流追蹤一樣透明的進度狀態機，工程、客服與主管都看同一份資料。
           </p>
           <div class="case-card-footer">
@@ -1222,7 +1270,7 @@
           </div>
           <h3>決策記憶演化分析</h3>
           <p>
-            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>資深主管離職後，新人不知道過去遇到突發狀況時為什麼要這樣處理。<br>
+            <span class="badge-icon-label scene"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 白話場景：</span>資深主管離職後，新人接手遇到突發狀況不知道為什麼過去要這樣決策。<br>
             <span class="badge-icon-label solution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> 解決方式：</span>把每次重要決策的「背景原因、參考數據、最終選擇」白紙黑字存起來，變成能傳承的企業記憶。
           </p>
           <div class="case-card-footer">
@@ -1252,10 +1300,10 @@
     <section class="shell section" id="boundary">
       <div class="boundary-matrix">
         <div class="boundary-intro">
-          <span class="section-eyebrow" style="color:var(--color-alert);">誠信與邊界承諾</span>
+          <span class="section-eyebrow" style="color:var(--color-alert);">誠信與邊界承諾 · 白話菜單</span>
           <h2>說清楚「知道什麼」與「還不知道什麼」</h2>
           <p>
-            就像去餐廳點菜，菜單上老實標明「哪些是現撈鮮魚、哪些是今日推薦、哪些今天缺貨」，才是負責任的態度。我們絕不把「想像中的美好」當成「已經做好的成果」。
+            就像去海鮮餐廳點菜，菜單上老實標明「哪些是現撈鮮魚、哪些是今日推薦、哪些今天缺貨」，才是負責任的態度。我們絕不把「想像中的美好」當成「已經做好的成果」。
           </p>
         </div>
         
@@ -1266,7 +1314,7 @@
               <span>有證據</span>
             </div>
             <div class="claim-desc">
-              <strong>數據來源一清二楚：</strong>有真實可回放的數據與邏輯驗證，講話百分之百有底氣。
+              <strong>數據來源一清二楚（現撈鮮魚）：</strong>有真實可回放的數據與邏輯驗證，講話百分之百有底氣。
             </div>
           </li>
           <li class="claim-item">
@@ -1275,7 +1323,7 @@
               <span>這是提案</span>
             </div>
             <div class="claim-desc">
-              <strong>整理好的好方案：</strong>提供給主管或團隊評估的選項，但需等負責人點頭核准才算數。
+              <strong>整理好的好方案（今日推薦）：</strong>提供給主管或團隊評估的選項，需等負責人點頭核准才算數。
             </div>
           </li>
           <li class="claim-item">
@@ -1284,7 +1332,7 @@
               <span>還缺資料</span>
             </div>
             <div class="claim-desc">
-              <strong>知道缺什麼：</strong>需要對接真實企業環境、特定系統權限或內部數據才能進一步落實。
+              <strong>知道缺什麼（季節限定待補貨）：</strong>需要對接真實企業環境、特定系統權限或內部數據才能進一步落實。
             </div>
           </li>
           <li class="claim-item">
@@ -1293,7 +1341,7 @@
               <span>無法確認</span>
             </div>
             <div class="claim-desc">
-              <strong>絕不瞎猜：</strong>缺乏足夠證據時誠實承認，縮小說法並安排下一步的小規模實驗來驗證。
+              <strong>絕不瞎猜（產地未明不供應）：</strong>缺乏足夠證據時誠實承認，縮小說法並安排下一步的小規模實驗來驗證。
             </div>
           </li>
         </ul>
