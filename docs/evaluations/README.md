@@ -28,3 +28,15 @@ Missing enterprise evidence is not a failure when the response exposes the gap, 
 ## Complete
 
 A run is complete when every criterion has a decision and response citation, every score difference is adjudicated, provenance limits are explicit, and any proposed runtime change is tied to a reproducible response failure.
+
+## Recorded runs
+
+- [Operating-analysis forward evaluation](2026-08-28-p0-forward-evaluation.md) — varied, failure-seeking, and evaluator-contract repeat cases.
+- [Scenario-preparation mode](2026-08-28-scenario-preparation-mode.md) — proposed schema-valid record with visible evidence gaps and an owner decision frontier.
+- [Conditional delivery and assurance](2026-08-28-p2-conditional-modes.md) — tested local read-only build and persistent-write gate review.
+
+## Continue or stop
+
+Run another evaluation only when there is a new independent operating case, an observed response or scoring failure, an explicit task-mode request that lacks coverage, or repeated cross-case evidence that may justify a core candidate. State the hypothesis and observable failure before adding the case.
+
+When none applies, evaluation is complete for the current evidence. Use the skill on a real operating problem or stop; do not add synthetic cases to increase file or case counts.

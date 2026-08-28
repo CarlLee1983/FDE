@@ -33,3 +33,11 @@ The [FDE Scenario-to-Action Method](FDE-Scenario-to-Action-Method.md) provides t
 The [FDE reference study](docs/fde-ontology/README.md) and its capability materials are supporting reference. Scenario registration, semantic definition, context resolution, decision support, and controlled action are **solution patterns** that may be selected for a case; they are not project modules or a mandatory roadmap.
 
 Generic cases may use clearly labelled reference hypotheses. They demonstrate reasoning, not target-enterprise facts, acceptance, authority, value, or implementation progress. Models, schemas, artefacts, gates, research, and executable validation are optional and proportional to uncertainty, risk, authority, persistence, or an explicit request.
+
+## Validation Evidence
+
+The [evaluation contract and recorded runs](docs/evaluations/README.md) provide bounded evidence for the skill's four task modes: operating analysis, scenario preparation, capability build, and assurance. The records include varied and failure-seeking forward evaluations, a proposed schema-valid scenario package, a tested local read-only slice, and a persistent-write gate review.
+
+This evidence establishes repository behaviour only. It does not establish target-enterprise facts, acceptance, access, authority, production readiness, or value.
+
+Continue project evaluation when a new independent operating case, observed response failure, explicit structured/build/assurance request, or cross-case promotion candidate creates a decision to test. Otherwise use the skill on the next real operating problem or stop; additional synthetic files are not progress by themselves.
