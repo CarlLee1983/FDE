@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="用白話認識 FDE：先弄懂工作哪裡卡住，再決定流程、軟體或 AI 該怎麼幫忙。">
   <meta property="og:title" content="FDE Operating Analysis｜先把工作弄順，再談 AI">
-  <meta property="og:description" content="用真實案例說明 FDE 如何把模糊問題整理成能執行、能驗證的下一步。">
+  <meta property="og:description" content="用合成案例說明 FDE 如何把模糊問題整理成受證據限制、能採取行動的下一步。">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#fbfaf7">
   <title>FDE Operating Analysis｜先把工作弄順，再談 AI</title>
@@ -991,6 +991,7 @@
         <a class="brand" href="#main">FDE Operating Analysis</a>
       </div>
       <nav class="nav-links">
+        <a href="docs/zh-TW/quickstart.md">五分鐘開始</a>
         <a href="#how">核心步驟</a>
         <a href="#example">示範場景</a>
         <a href="#cases">案例庫</a>
@@ -1010,27 +1011,27 @@
     <!-- Hero Section -->
     <section class="shell hero">
       <div>
-        <div class="badge-pill"><span class="dot"></span> 什麼是 FDE？· 白話解說版</div>
+        <div class="badge-pill"><span class="dot"></span> FDE 營運分析 Skill · 白話解說版</div>
         <h1>先把工作弄順，<br><span class="hero-highlight">再談 AI。</span></h1>
         <p class="lede">
           許多公司一看到業務卡住，第一反應就是「買個 AI 機器人」或「做套大系統」。但真實世界的卡點，往往不是因為少了高科技，而是因為<strong>動線打結、交接沒講清楚、每個人都在重複做別人做過的事</strong>。
         </p>
         <p class="lede" style="font-size: var(--text-body); margin-top: -0.75rem;">
-          FDE（Forward Deployed Engineer，現場問題架構師）就像走進現場的拆解專家——我們先把大家每天卡住的原因理清楚，把混亂的工作理成一條順暢的流水線；確認規則都對了，才看哪一步真的需要寫程式或用 AI 來幫忙。
+          FDE（Forward Deployed Engineer）是嵌入具體業務現場的工程師：先把每天卡住的原因理清楚，把混亂的工作整理成可行流程；確認規則與責任後，才判斷哪一步需要流程調整、確定性軟體、人工判斷或 AI。
         </p>
         <div class="actions">
-          <a class="button" href="#example">探索示範案例 ↓</a>
+          <a class="button" href="docs/zh-TW/quickstart.md">五分鐘開始使用 →</a>
           <a class="button button-secondary" href="#how">理解 4 大分析步驟</a>
           <a class="text-link" href="#cases">瀏覽完整案例庫 →</a>
         </div>
       </div>
       
       <aside class="executive-card" aria-label="一句話解釋 FDE">
-        <span class="label">現場問題拆解師</span>
+        <span class="label">預設產出：minimum operating solution</span>
         <strong>好醫生不會一進門就叫你動大手術，而是先摸清到底是哪裡發炎。</strong>
         <p>FDE 不急著推銷昂貴系統，而是先挽起袖子走進辦公室，確認真正需要改動的是流程動線、工具輔助，還是人的分工與責任邊界。</p>
         <ul class="executive-pillars">
-          <li><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> <span><b>先理流程，不急著買軟體：</b>90% 的卡點只要改動線或說清楚規則就能解決。</span></li>
+          <li><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> <span><b>先理流程，不預設技術：</b>先刪除多餘工作、說清楚規則與責任，再選介入方式。</span></li>
           <li><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> <span><b>確定性優先，不迷信 AI：</b>能用簡單計算和自動化搞定的，絕不用昂貴黑盒子。</span></li>
           <li><span class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> <span><b>責任始終在人，機器不背鍋：</b>所有產出都有人把關，出事知道找誰，不推給演算法。</span></li>
         </ul>
@@ -1066,7 +1067,7 @@
         <div class="eli5-card-col">
           <span class="eli5-card-num">STEP 03</span>
           <b>第三步：只有揉麵最累時買攪拌機（理性選用 AI）</b>
-          <span>流程順了之後，發現廚師每天手工揉麵 2 小時最累，這時買一台揉麵機（專屬工具 / AI），效益才會瞬間放大 10 倍！</span>
+          <span>流程順了之後，若仍有明確負擔，再依工作性質選專用工具；只有語言負擔且有比較證據時才考慮 AI。</span>
         </div>
       </div>
 
@@ -1105,8 +1106,8 @@
             就像去醫院看診，護理師先問清楚「哪裡痛？痛多久？之前吃過什麼藥？」，先框出病灶範圍，而不是一進診間就直接推上手術台。
           </div>
           <div class="step-output">
-            <span class="out-label">具體產出</span>
-            <span>畫清楚「起點、終點、誰在裡面、誰在外面」的問題邊界圖</span>
+            <span class="out-label">答案要能說明</span>
+            <span>使用者、流程位置、預期結果、待做決策與問題範圍</span>
           </div>
         </li>
         
@@ -1127,8 +1128,8 @@
             車子開起來會震動，老師傅聽引擎聲音發現只是火星塞積碳，而不是輪胎壞掉。抓出真病根，才不會白花幾萬塊換掉四個好輪胎。
           </div>
           <div class="step-output">
-            <span class="out-label">具體產出</span>
-            <span>揪出真正絆倒大家的石頭，而不是只在表面貼一層看似漂亮的 OK 繃</span>
+            <span class="out-label">答案要能說明</span>
+            <span>正常、例外、升級與重工路徑，以及真正造成負擔的原因</span>
           </div>
         </li>
         
@@ -1149,8 +1150,8 @@
             吸塵器裝個定時開關就能每天準時吸地板，不需要特地買一台會跟你聊哲學的昂貴人形機器人。選對工具，省錢又不容易壞。
           </div>
           <div class="step-output">
-            <span class="out-label">具體產出</span>
-            <span>花最少成本、承擔最低風險，卻能解決 80% 工作痛苦的精準解法</span>
+            <span class="out-label">答案要能說明</span>
+            <span>在證據限制內，選出能支持下一個決策的最小充分介入</span>
           </div>
         </li>
         
@@ -1171,8 +1172,8 @@
             接力賽交棒不能把棒子往後隨便一扔，而是要親手交到下一棒手裡、確認對方握緊了、並指明終點線的方向。
           </div>
           <div class="step-output">
-            <span class="out-label">具體產出</span>
-            <span>連新進同仁拿起來都能照著走、能一條一條打勾驗收的交接規格書</span>
+            <span class="out-label">答案要能說明</span>
+            <span>一個有責任歸屬、可被下一位 owner 接手的具體行動</span>
           </div>
         </li>
       </ol>
@@ -1196,11 +1197,11 @@
         <ul class="flow-pipeline">
           <li class="pipeline-step">
             <strong><span class="pipe-num">STAGE 01</span> 守衛每天自動巡邏（確定性比對）</strong>
-            <span>由程式每天自動下載對方的技術規格。如果一個字都沒變，就安靜不打擾任何人；只有真正改動時才觸發警報，過濾掉 95% 的無效雜訊。</span>
+            <span>由程式按排程下載技術規格；若內容未變就不通知，只有偵測到改動時才觸發後續判讀。</span>
           </li>
           <li class="pipeline-step">
             <strong><span class="pipe-num">STAGE 02</span> AI 助手快速讀長文說人話（條件式摘要）</strong>
-            <span>對方的更新文件可能有 50 頁英文。AI 在 3 秒內讀完並翻譯成白話：「注意！下個月起，電話號碼欄位必須加上國碼，我們的會員註冊功能可能會壞掉。」</span>
+            <span>文件有大量語言判讀負擔時，才評估以 AI 產生待人工確認的影響摘要；速度與品質必須另行驗證。</span>
           </li>
           <li class="pipeline-step">
             <strong><span class="pipe-num">STAGE 03</span> 工程師老司機點頭確認（責任人把關）</strong>
@@ -1213,9 +1214,9 @@
     <!-- Cases Showcase Grid -->
     <section class="shell section" id="cases">
       <div class="section-head">
-        <span class="section-eyebrow">實戰案例庫 · 經典問題拆解</span>
-        <h2>看看這些真實問題，如何用白話思維被拆解</h2>
-        <p>每個案例都包含完整的情境背景、動線分析、數據規格與可驗收交接成果。</p>
+        <span class="section-eyebrow">合成案例庫 · 方法壓力測試</span>
+        <h2>看看不同營運問題如何被拆解</h2>
+        <p>這些案例用來展示或驗證 repository reasoning；不代表任何企業已接受、授權、上線或取得成效。</p>
       </div>
       
       <div class="cases-grid">
@@ -1329,7 +1330,7 @@
               <span>有證據</span>
             </div>
             <div class="claim-desc">
-              <strong>數據來源一清二楚（現撈鮮魚）：</strong>有真實可回放的數據與邏輯驗證，講話百分之百有底氣。
+              <strong>來源與限制可追溯（現撈鮮魚）：</strong>有可檢查的 repository evidence，結論只延伸到該證據能支持的範圍。
             </div>
           </li>
           <li class="claim-item">
@@ -1368,8 +1369,8 @@
       <div class="resources-section">
         <div class="section-head">
           <span class="section-eyebrow">資源庫</span>
-          <h2>專案規格、實戰交付件與研究文件庫</h2>
-          <p>所有方法論、交付包與研究架構均有完整的 Markdown、JSON Schema 與 HTML 驗證支援。</p>
+          <h2>Skill、案例與 supporting references</h2>
+          <p>預設從五段式 minimum operating solution 開始；models、schemas、assurance、implementation 與企業架構資料只在案例或明確要求需要時使用。</p>
         </div>
         
         <div class="resources-grid">
@@ -1397,7 +1398,7 @@
                     <span class="resource-link-title">能力強化計畫綱領 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                     <span class="resource-format-tag">PLAN</span>
                   </div>
-                  <p class="resource-link-desc">從單一情境沉澱為企業級語義與決策資產之藍圖</p>
+                  <p class="resource-link-desc">跨案例驗證營運分析品質的 supporting plan</p>
                 </a>
               </li>
               <li>
@@ -1406,7 +1407,7 @@
                     <span class="resource-link-title">企業交付架構摘要 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                     <span class="resource-format-tag">ARCH</span>
                   </div>
-                  <p class="resource-link-desc">語義模型、存取控制、決策引擎與受控回寫模型</p>
+                  <p class="resource-link-desc">案例需要企業架構深度時才查閱的 supporting reference</p>
                 </a>
               </li>
             </ul>
@@ -1475,7 +1476,7 @@
                     <span class="resource-link-title">專案總覽 (README) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                     <span class="resource-format-tag">README</span>
                   </div>
-                  <p class="resource-link-desc">專案背景、來源階層與快速入門導覽</p>
+                  <p class="resource-link-desc">營運分析 Skill 的邊界、安裝、驗證與入口</p>
                 </a>
               </li>
               <li>
@@ -1490,10 +1491,10 @@
               <li>
                 <a class="resource-link-item" href="AGENTS.md">
                   <div class="resource-link-top">
-                    <span class="resource-link-title">Agent 邊界與守則 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-link-title">Repository 入口與規則 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                     <span class="resource-format-tag">AGENTS</span>
                   </div>
-                  <p class="resource-link-desc">嚴格定義 AI Agent 的分析邊界、驗證準則與運作條件</p>
+                  <p class="resource-link-desc">Repository 的 canonical sources 與驗證入口</p>
                 </a>
               </li>
             </ul>
@@ -1509,7 +1510,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <h2>從一個真正的現場問題開始。</h2>
-          <p>以工程嚴謹度建立可信、可審查、可維護的企業營運分析架構。</p>
+          <p>用 FDE 營運分析 Skill 形成受證據限制的 minimum operating solution 與下一個行動。</p>
         </div>
       </div>
       <div class="colophon">
@@ -1548,4 +1549,3 @@
   </script>
 </body>
 </html>
-

@@ -1,0 +1,13 @@
+[project]
+name = "fde-repository-verification"
+version = "0.0.0"
+requires-python = ">=3.11"
+
+[dependency-groups]
+dev = [
+  "check-jsonschema==0.38.0",
+  "pytest==9.1.1",
+]
+
+[tool.uv]
+package = false
