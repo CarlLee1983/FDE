@@ -8,17 +8,17 @@ Read [../AGENTS.md](../AGENTS.md) before proposing a change. It names the four r
 
 ## Verify before claiming
 
-Run all three locally and paste the output in the pull request:
+Install Git, Make, and [uv](https://docs.astral.sh/uv/). Dependencies are pinned in `pyproject.toml` and `uv.lock`; run the same frozen verification chain used by CI and paste its summary in the pull request:
 
 ```bash
-uvx --with pytest pytest -q tests
-.agents/skills/fde-project-work/scripts/validate-scenario.sh <scenario.json>
-output_dir="$(mktemp -d)/site"
-scripts/build-pages.sh "$output_dir"
-python3 scripts/validate-pages.py "$output_dir"
+make verify
 ```
 
-The scenario validator applies only when you touch a `scenario.json` or [`schemas/`](../schemas/). The Pages build applies to any change under a published path — every tracked `*.md`, plus `examples/`, `schemas/`, `docs/`, `site/zh-TW/`, and the skill directory. `scripts/build-pages.sh` publishes only tracked files, so a new file must be `git add`ed before it will validate.
+The component targets are `make test`, `make validate-scenarios`, and `make validate-pages`; they are useful while iterating but do not replace the final `make verify`. Scenario release validation discovers only Git-tracked `examples/**/scenario.json`. The Pages build likewise publishes only tracked files, so a new scenario or published file must be `git add`ed before it is included. Untracked scenarios are deliberately excluded rather than treated as release evidence.
+
+## Repository settings
+
+The repository owner must separately protect `main`, require pull requests, require the `verify` status check, and block merges while required checks are failing. Workflow code cannot assert that these GitHub settings are enabled.
 
 ## Conventions
 

@@ -10,18 +10,10 @@
 
 ## Verification
 
-<!-- Paste real output. "Should pass" is not verification. Delete a command only if it does not apply. -->
+<!-- Paste the real summary. "Should pass" is not verification. -->
 
 ```
-uvx --with pytest pytest -q tests
-```
-
-```
-scripts/build-pages.sh "$output_dir" && python3 scripts/validate-pages.py "$output_dir"
-```
-
-```
-.agents/skills/fde-project-work/scripts/validate-scenario.sh <scenario.json>
+make verify
 ```
 
 ## What this does not establish

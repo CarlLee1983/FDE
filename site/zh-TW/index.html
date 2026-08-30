@@ -1,260 +1,106 @@
 <!doctype html>
 <html lang="zh-Hant">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="FDE 能力強化的繁體中文閱讀版" />
-    <title>FDE 能力強化｜閱讀版</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../tokens.css" />
-    <script>
-      (function() {
-        const savedTheme = localStorage.getItem('fde_theme');
-        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-          document.documentElement.setAttribute('data-theme', 'light');
-        }
-      })();
-    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="FDE 營運分析 Skill：先重整工作，再選最小充分介入。">
+    <title>FDE 營運分析 Skill｜繁體中文入口</title>
+    <link rel="stylesheet" href="../../tokens.css">
     <style>
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; background: var(--color-paper); }
-      body {
-        margin: 0;
-        background: var(--color-paper);
-        color: var(--color-ink);
-        font-family: var(--font-body);
-        font-size: 16px;
-        line-height: 1.75;
-        transition: background-color var(--dur-medium) var(--ease-out), color var(--dur-medium) var(--ease-out);
-      }
-
-      a { color: var(--color-accent-dark); text-underline-offset: 0.2em; transition: color var(--dur-short) var(--ease-out); }
-      a:hover { color: var(--color-accent); }
-      code {
-        padding: 0.15em 0.4em;
-        border-radius: var(--radius-xs);
-        background: var(--color-paper-subtle);
-        border: 1px solid var(--color-rule);
-        font-family: var(--font-mono);
-        font-size: 0.88em;
-      }
-
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        border-bottom: 1px solid var(--color-rule);
-        background: var(--color-paper-alpha);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-      }
-      .topbar-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        min-height: 3.8rem;
-      }
-      .back-link {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--space-xs);
-        font-weight: 700;
-        font-size: var(--text-sm);
-        text-decoration: none;
-      }
-
-      .hero {
-        padding: 64px 24px 48px;
-        color: var(--color-paper);
-        background: radial-gradient(circle at 86% 12%, oklch(42% 0.11 155 / 0.28), transparent 45%), linear-gradient(135deg, var(--color-ink), var(--color-accent-dark));
-        border-bottom: 1px solid var(--color-rule);
-      }
-      .wrap { width: min(1140px, calc(100% - 40px)); margin: 0 auto; }
-      .eyebrow { margin: 0 0 10px; color: var(--color-warm); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
-      h1, h2, h3 { line-height: 1.25; }
-      h1 { max-width: 820px; margin: 0; font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem); letter-spacing: -0.03em; color: var(--color-paper); }
-      .hero p { max-width: 780px; margin: 20px 0 0; color: var(--color-paper-subtle); font-size: 1.12rem; }
-      .source-note { margin-top: 24px !important; font-size: 0.88rem !important; color: var(--color-paper-deep) !important; opacity: 0.9; }
-
-      .layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 36px; padding: 36px 0 72px; }
-      nav { position: sticky; top: 80px; align-self: start; padding: 18px; border: 1px solid var(--color-rule); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-sm); }
-      nav strong { display: block; margin-bottom: 10px; font-size: 0.82rem; color: var(--color-ink-muted); text-transform: uppercase; letter-spacing: 0.08em; }
-      nav a { display: block; padding: 6px 8px; font-size: 0.92rem; text-decoration: none; border-radius: var(--radius-xs); color: var(--color-ink-soft); }
-      nav a:hover { background: var(--color-surface-hover); color: var(--color-accent); }
-      main { min-width: 0; }
-      section { margin-bottom: 32px; padding: 32px; border: 1px solid var(--color-rule); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-sm); scroll-margin-top: 80px; }
-      h2 { margin: 0 0 16px; font-size: 1.55rem; letter-spacing: -0.02em; font-family: var(--font-display); color: var(--color-ink); }
-      h3 { margin: 24px 0 10px; font-size: 1.15rem; color: var(--color-ink); }
-      p { margin: 0 0 14px; }
-      .lead { color: var(--color-ink-soft); font-size: 1.06rem; }
-      .callout { margin: 20px 0 0; padding: 16px 20px; border-left: 4px solid var(--color-accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; background: var(--color-accent-wash); }
-      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
-      .card { padding: 20px; border: 1px solid var(--color-rule); border-radius: var(--radius-sm); background: var(--color-paper-subtle); }
-      .card strong { display: block; margin-bottom: 6px; color: var(--color-accent); }
-      .card p { margin: 0; color: var(--color-ink-soft); font-size: 0.92rem; }
-      .stages { display: grid; grid-template-columns: repeat(6, minmax(136px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 10px; }
-      .stage { min-width: 136px; padding: 16px; border-radius: var(--radius-sm); background: var(--color-accent-wash); border: 1px solid var(--color-accent-light); }
-      .stage b { display: block; color: var(--color-accent-dark); font-family: var(--font-mono); font-size: 0.82rem; }
-      .stage span { display: block; margin-top: 4px; font-weight: 700; color: var(--color-ink); }
-      .stage small { display: block; margin-top: 8px; color: var(--color-ink-soft); font-size: 0.8rem; line-height: 1.45; }
-      .gate-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-      .gate { padding: 16px 18px; border-radius: var(--radius-sm); background: var(--color-warm-soft); border-left: 4px solid var(--color-warm); }
-      .gate b { color: var(--color-ink); display: block; margin-bottom: 4px; }
-      table { width: 100%; margin: 20px 0; border-collapse: collapse; font-size: 0.93rem; }
-      th, td { padding: 12px 14px; vertical-align: top; text-align: left; border-bottom: 1px solid var(--color-rule); }
-      th { background: var(--color-paper-subtle); color: var(--color-ink); font-size: 0.85rem; font-weight: 700; }
-      ol { padding-left: 1.35rem; }
-      li { margin: 0.4rem 0; color: var(--color-ink-soft); }
-      li b { color: var(--color-ink); }
-      .links { columns: 2; gap: 28px; }
-      .links a { display: block; margin: 0 0 10px; }
-      footer { padding: 32px 0 60px; color: var(--color-ink-muted); font-size: 0.9rem; border-top: 1px solid var(--color-rule); }
-
-      @media (max-width: 860px) {
-        .layout { display: block; padding-top: 20px; }
-        nav { position: static; margin-bottom: 24px; }
-        nav a { display: inline-block; margin-right: 12px; }
-        section { padding: 24px; }
-        .grid, .gate-list { grid-template-columns: 1fr; }
-      }
-      @media (max-width: 560px) {
-        .hero { padding: 48px 20px 36px; }
-        .wrap { width: min(100% - 28px, 1140px); }
-        section { padding: 20px; border-radius: var(--radius-sm); }
-        .links { columns: 1; }
-        table { font-size: 0.85rem; }
-        th, td { padding: 9px 8px; }
-      }
+      html { background: var(--color-paper); color: var(--color-ink); }
+      body { margin: 0; font-family: var(--font-body); line-height: 1.75; }
+      a { color: var(--color-accent-dark); text-underline-offset: 0.2em; }
+      a:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+      code { font-family: var(--font-mono); }
+      .wrap { width: min(68rem, calc(100% - 2rem)); margin-inline: auto; }
+      header { padding: 1rem 0; border-bottom: 1px solid var(--color-rule); }
+      header .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+      header a { font-weight: 700; text-decoration: none; }
+      .hero { padding: clamp(4rem, 10vw, 8rem) 0 4rem; border-bottom: 1px solid var(--color-rule); }
+      .eyebrow { color: var(--color-accent); font-size: var(--text-xs); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+      h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; }
+      h1 { max-width: 14ch; margin: 0.75rem 0 1.5rem; font-size: clamp(2.6rem, 8vw, 5.5rem); letter-spacing: -0.04em; }
+      h2 { margin-top: 0; font-size: clamp(1.7rem, 4vw, 2.6rem); }
+      .lede { max-width: 46rem; color: var(--color-ink-soft); font-size: var(--text-lead); }
+      .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+      .button { display: inline-flex; padding: 0.75rem 1rem; border: 1px solid var(--color-ink); border-radius: var(--radius-sm); background: var(--color-ink); color: var(--color-paper); font-weight: 700; text-decoration: none; }
+      .button.secondary { background: transparent; color: var(--color-ink); }
+      main { padding: 3rem 0 5rem; }
+      section { padding: 2rem 0; border-bottom: 1px solid var(--color-rule-subtle); }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+      .card { padding: 1.25rem; border: 1px solid var(--color-rule); border-radius: var(--radius-md); background: var(--color-surface); }
+      .card strong { display: block; margin-bottom: 0.35rem; color: var(--color-accent-dark); }
+      ol { padding-left: 1.5rem; }
+      li { margin: 0.6rem 0; }
+      .principle { padding: 1.5rem; border-left: 4px solid var(--color-accent); background: var(--color-accent-wash); font-size: var(--text-lead); font-weight: 700; }
+      footer { padding: 2rem 0; color: var(--color-ink-muted); font-size: var(--text-sm); }
+      @media (max-width: 42rem) { .grid { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
-    <div class="topbar">
-      <div class="wrap topbar-content">
-        <a class="back-link" href="../../index.html">← 返回 FDE 首頁</a>
-        <span style="font-size:0.85rem; font-weight:700; color:var(--color-ink-muted);">繁體中文閱讀版</span>
-      </div>
-    </div>
-    <header class="hero">
+    <header>
       <div class="wrap">
-        <p class="eyebrow">FDE Capability Enhancement</p>
-        <h1>以受治理的語義與決策能力，讓 FDE 持續累積</h1>
-        <p>本閱讀版整合專案目標、能力路線圖與「情境至行動」方法論。它適合離線開啟與快速導覽；完整細節則保留於相連的繁體中文 Markdown 文件。</p>
-        <p class="source-note">英文文件為維護中的來源；本頁與 <code>docs/zh-TW/</code> 為閱讀用繁中衍生版本。</p>
+        <a href="../../index.html">← FDE Operating Analysis</a>
+        <span>繁體中文閱讀入口</span>
       </div>
     </header>
 
-    <div class="wrap layout">
-      <nav aria-label="頁面目錄">
-        <strong>閱讀導覽</strong>
-        <a href="#purpose">專案目的</a>
-        <a href="#roadmap">能力路線</a>
-        <a href="#method">方法論</a>
-        <a href="#gates">決策關卡</a>
-        <a href="#first-slice">第一條切片</a>
-        <a href="#library">文件庫</a>
-      </nav>
-
-      <main>
-        <section id="purpose">
-          <h2>專案目的</h2>
-          <p class="lead">此專案用來強化 FDE 的能力。本體論驅動的 FDE 交付架構是參考模型，而非本專案的既定實作或完整產品定義。</p>
-          <div class="grid">
-            <div class="card"><strong>共用語義</strong><p>讓物件、關係、行動與指標在不同應用中使用一致定義。</p></div>
-            <div class="card"><strong>具證據的上下文</strong><p>讓結果能指出資料來源、版本、新鮮度與存取決策。</p></div>
-            <div class="card"><strong>決策支援</strong><p>先讓看板與 Agent 提供可理解、可驗證的答案與建議。</p></div>
-            <div class="card"><strong>受控行動</strong><p>僅在權限、核准、稽核、冪等與復原條件完備後才允許回寫。</p></div>
-          </div>
-          <p class="callout"><b>核心原則：</b>先證明唯讀結果的語義一致性、來源血緣與存取控制，再逐步提高自動化與寫入權限。</p>
-        </section>
-
-        <section id="roadmap">
-          <h2>能力路線圖</h2>
-          <p class="lead">FDE 的目標不是累積孤立功能，而是由一個情境開始，逐步將可重用能力沉澱為企業資產。</p>
-          <table>
-            <thead><tr><th>成熟度</th><th>能力</th><th>完成定義</th></tr></thead>
-            <tbody>
-              <tr><td>1. 已定義</td><td>情境登錄</td><td>有負責人、決策、來源集合與可量測結果。</td></tr>
-              <tr><td>2. 有依據</td><td>語義上下文</td><td>已授權請求可解析為具版本的物件、關係、資料與血緣。</td></tr>
-              <tr><td>3. 有用</td><td>決策支援</td><td>看板或 Agent 使用相同上下文，並符合業務定義。</td></tr>
-              <tr><td>4. 受控</td><td>行動執行</td><td>已核准行動符合前置條件、保留稽核軌跡並具失敗處理。</td></tr>
-              <tr><td>5. 可累積</td><td>重用與治理</td><td>第二個情境重用資產，而非建立競爭性定義。</td></tr>
-            </tbody>
-          </table>
-          <h3>第一個可實作能力</h3>
-          <p>情境登錄是一份技術中立的契約。它先將產品意圖、營運責任、本體範圍、資料來源與驗收證據連結起來，讓實作不會從「做一個 Agent」這種無邊界的請求開始。</p>
-          <p><a href="../../schemas/fde-scenario.schema.json">開啟情境紀錄 JSON Schema</a> ・ <a href="../../schemas/fde-scenario.example.json">開啟示意情境紀錄</a></p>
-        </section>
-
-        <section id="method">
-          <h2>FDE 情境至行動方法</h2>
-          <p class="lead">此方法輕量整合需求工程、BPMN／CMMN、UML、ISO 11179、DMN、NIST RMF、ATAM 與 ISO 15288；它們各自處理不同問題，不相互取代。</p>
-          <div class="stages" aria-label="六個方法階段">
-            <div class="stage"><b>01</b><span>界定</span><small>確認業務成果、範圍、負責人與驗收條件。</small></div>
-            <div class="stage"><b>02</b><span>描繪工作</span><small>標示正常、例外、升級路徑與介入節點。</small></div>
-            <div class="stage"><b>03</b><span>建模意義</span><small>區分物件關係、生命週期狀態與語義登錄。</small></div>
-            <div class="stage"><b>04</b><span>明確決策</span><small>將重要規則與建議寫成可測試的決策服務。</small></div>
-            <div class="stage"><b>05</b><span>確保控制</span><small>設定權限、風險控制、品質取捨與復原需求。</small></div>
-            <div class="stage"><b>06</b><span>證明與演化</span><small>以最小垂直切片和影子運行驗證，再將回饋沉澱。</small></div>
-          </div>
-
-          <h3>六個問題，一條可追溯鏈</h3>
-          <ol>
-            <li>哪個營運成果與決策重要？</li>
-            <li>該決策在流程或案例的何處發生？</li>
-            <li>哪些業務事實、狀態與關係使結果成立？</li>
-            <li>哪些來源證據與語義定義支撐它？</li>
-            <li>哪些決策邏輯、風險控制與品質取捨限制它？</li>
-            <li>如何在增加權限前證明它有價值？</li>
-          </ol>
-        </section>
-
-        <section id="gates">
-          <h2>決策關卡</h2>
-          <p class="lead">關卡是避免跳過必要分析的節奏控制，而非大型瀑布式流程。</p>
-          <div class="gate-list">
-            <div class="gate"><b>G1 — 情境核准</b><br />成果有邊界、負責人且可量測，才開始建模。</div>
-            <div class="gate"><b>G2 — 語義落地</b><br />事實、狀態、指標、來源與負責人已定義，才建置唯讀上下文。</div>
-            <div class="gate"><b>G3 — 證據已證明</b><br />使用者可取得已授權、新鮮且可說明的結果，才進入決策支援。</div>
-            <div class="gate"><b>G4 — 決策已受控</b><br />具影響性的邏輯可測試且受治理，才啟用核准工作流。</div>
-            <div class="gate"><b>G5 — 行動已授權</b><br />權限、核准、稽核、冪等與復原均經測試，才允許受控回寫。</div>
-            <div class="gate"><b>G6 — 價值已證明</b><br />生產或影子證據符合驗收條件，才擴大到相鄰情境。</div>
-          </div>
-        </section>
-
-        <section id="first-slice">
-          <h2>第一條能力切片</h2>
-          <p class="lead">第一個目標不是自主行動，而是單一核准情境中的唯讀、可解釋查詢。</p>
-          <p><code>結果 + 語義定義版本 + 來源證據 + 新鮮度狀態 + 存取決策</code></p>
-          <p>這是 FDE 能提供受治理企業上下文的第一個證明。可靠後，同一份上下文可被看板、決策支援互動，以及後續受控行動重用。</p>
-          <h3>接下來的工作坊</h3>
-          <ol>
-            <li><b>情境界定：</b>確認業務負責人、使用者、基線、目標與驗收。</li>
-            <li><b>工作與意義：</b>確認流程／案例、介入節點與最小語義資產集合。</li>
-            <li><b>決策與控制：</b>確認決策服務、風險控制、品質情境與首切片測試。</li>
-          </ol>
-        </section>
-
-        <section id="library">
-          <h2>完整文件庫</h2>
-          <p class="lead">下列連結可開啟繁中 Markdown 閱讀版；英文文件仍是維護中的來源。</p>
-          <div class="links">
-            <a href="../../README.zh-TW.md">FDE 專案入口</a>
-            <a href="../../FDE-Capability-Enhancement-Plan.zh-TW.md">FDE 能力強化計畫</a>
-            <a href="../../FDE-Scenario-to-Action-Method.zh-TW.md">FDE 情境至行動方法</a>
-            <a href="../../FDE-Enterprise-Delivery-Architecture.zh-TW.md">FDE 企業交付架構摘要</a>
-            <a href="../../docs/zh-TW/README.md">繁中章節目錄</a>
-            <a href="../../docs/zh-TW/research/system-analysis-methods.md">系統分析方法研究</a>
-            <a href="../../docs/zh-TW/fde-ontology/07-capability-map-and-implementation-strategy.md">能力地圖與實作策略</a>
-            <a href="../../docs/zh-TW/fde-ontology/09-fde-scenario-to-action-method.md">方法論與參考架構的關係</a>
-          </div>
-        </section>
-      </main>
+    <div class="hero">
+      <div class="wrap">
+        <span class="eyebrow">FDE operating-analysis skill</span>
+        <h1>先把工作弄順，再選工具。</h1>
+        <p class="lede">本專案協助 FDE 把有邊界的營運問題，轉成受證據限制的營運方案與下一個有責任歸屬的行動。它不是 Agent、產品、企業平台或預設 implementation roadmap。</p>
+        <div class="actions">
+          <a class="button" href="../../docs/zh-TW/quickstart.md">五分鐘開始使用</a>
+          <a class="button secondary" href="../../README.zh-TW.md">閱讀繁中 README</a>
+        </div>
+      </div>
     </div>
 
-    <footer class="wrap">FDE Capability Enhancement · Traditional Chinese reading edition · English documents remain the maintained source.</footer>
+    <main class="wrap">
+      <section>
+        <h2>預設只需要五個部分</h2>
+        <ol>
+          <li>營運問題與預期結果。</li>
+          <li>現行工作的診斷。</li>
+          <li>技術中立的目標工作流程。</li>
+          <li>介入方式、AI 適用性與證據限制。</li>
+          <li>下一個有責任歸屬的行動。</li>
+        </ol>
+        <p>這五段足以讓使用者決定下一步時，分析就完成了；不必為了看起來完整而先建立 schema、model、gate 或程式。</p>
+      </section>
+
+      <section>
+        <h2>介入原則</h2>
+        <p class="principle">穩定規則交給軟體，語言負擔才考慮 AI。</p>
+        <div class="grid">
+          <div class="card"><strong>先重整工作</strong>刪除、簡化、標準化、重新分工，並修好定義與資訊流。</div>
+          <div class="card"><strong>再選最小充分介入</strong>比較流程、責任、資訊修復、確定性軟體、介面支援、人工判斷與 AI。</div>
+          <div class="card"><strong>AI 是條件式選項</strong>只處理保留下來的語言理解、整合、說明或有限推理負擔，並需證據支持。</div>
+          <div class="card"><strong>不需要 AI 也是完整決策</strong>固定轉換、計算、權限與狀態轉換優先交給可測試的軟體。</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Models 與企業架構不是 roadmap</h2>
+        <p>情境登錄、語義定義、上下文解析、決策支援與受控行動是案例有需要時才選用的 solution patterns。Schemas、models、assurance、implementation 與企業平台架構都是 supporting references 或條件式深度，不是本專案必建模組。</p>
+      </section>
+
+      <section>
+        <h2>安全安裝，同一條驗證鏈</h2>
+        <div class="grid">
+          <div class="card"><strong>安裝</strong><code>scripts/install-skill.sh --target /path/to/project --agent both</code> 只建立 Skill 目錄，預設拒絕覆寫。</div>
+          <div class="card"><strong>驗證</strong><code>make verify</code> 是本地與 Pull Request 共用的 frozen verification entry point。</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>證據邊界</h2>
+        <p>Repository tests、scenario schema validation 與 Pages checks 只證明 repository behavior。Supporting documents 與合成案例不得被解讀為任何企業的 acceptance、access、authority、production readiness 或 business value。</p>
+      </section>
+    </main>
+
+    <footer class="wrap">英文 <a href="../../README.md">README.md</a> 是維護中的 canonical entry；繁中內容是對齊閱讀版。</footer>
   </body>
 </html>
