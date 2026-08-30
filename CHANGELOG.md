@@ -4,6 +4,8 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-30
+
 ### Added
 
 - A frozen `make verify` chain covering root and example tests, tracked scenario records, schema metaschema, Pages content and links, and Skill structure.
@@ -14,6 +16,7 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 - Pull requests now run full repository verification; Pages deployment remains limited to successful non-PR runs on `main`.
 - English and Traditional Chinese entry points now link installation and verification while keeping enterprise architecture, schemas, models, assurance, and implementation conditional.
+- GitHub Pages Actions were updated to `actions/checkout` v7, `actions/configure-pages` v6, and `actions/deploy-pages` v5.
 
 ## [0.1.0] - 2026-08-28
 
@@ -35,5 +38,6 @@ First tagged version. It marks the point where the project boundary, the skill's
 
 This version establishes repository behaviour only. It does not establish target-enterprise facts, acceptance, access, authority, production readiness, or value.
 
-[Unreleased]: https://github.com/CarlLee1983/FDE/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/CarlLee1983/FDE/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/CarlLee1983/FDE/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/CarlLee1983/FDE/releases/tag/v0.1.0
