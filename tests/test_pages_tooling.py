@@ -82,6 +82,21 @@ class PagesToolingTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertFalse((output / "docs" / "private-untracked.md").exists())
 
+    def test_build_includes_tracked_path_with_spaces(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            shutil.copytree(REPO, root / "repo", symlinks=True, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+            repo = root / "repo"
+            subprocess.run(["git", "init", "-q"], cwd=repo, check=True)
+            subprocess.run(["git", "add", "."], cwd=repo, check=True)
+            tracked = repo / "docs" / "path with spaces.md"
+            tracked.write_text("# Tracked\n", encoding="utf-8")
+            subprocess.run(["git", "add", str(tracked.relative_to(repo))], cwd=repo, check=True)
+            output = root / "artifact"
+            result = self.run_command(str(repo / "scripts" / "build-pages.sh"), str(output), cwd=repo)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertTrue((output / "docs" / "path with spaces.md").is_file())
+
     def test_build_rejects_tracked_symlink(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
