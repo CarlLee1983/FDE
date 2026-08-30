@@ -4,6 +4,17 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ## [Unreleased]
 
+### Added
+
+- A frozen `make verify` chain covering root and example tests, tracked scenario records, schema metaschema, Pages content and links, and Skill structure.
+- A safe `install-skill.sh` entry point for independent Codex and Claude Code repository copies, with installer integration tests.
+- Five-minute Quick Starts in English and Traditional Chinese.
+
+### Changed
+
+- Pull requests now run full repository verification; Pages deployment remains limited to successful non-PR runs on `main`.
+- English and Traditional Chinese entry points now link installation and verification while keeping enterprise architecture, schemas, models, assurance, and implementation conditional.
+
 ## [0.1.0] - 2026-08-28
 
 First tagged version. It marks the point where the project boundary, the skill's runtime behaviour, and the validation tooling were all stated and verifiable in one place.

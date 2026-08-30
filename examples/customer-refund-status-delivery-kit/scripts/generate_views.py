@@ -423,7 +423,7 @@ def build_presentation_html(data: dict) -> str:
     </section>
   </main>
   <div class="help">← → / Space · Home / End · F fullscreen · P print</div>
-  <div class="controls" aria-label="Presentation controls"><button id="prev" type="button" aria-label="Previous slide">←</button><span id="counter">1 / 10</span><button id="next" type="button" aria-label="Next slide">→</button><button id="full" type="button" aria-label="Toggle fullscreen">⛶</button></div>
+  <div class="controls" aria-label="Presentation controls"><button id="prev" type="button" aria-label="Previous slide">←</button><span id="counter">1 / 10</span><button id="next" type="button" aria-label="Next slide">→</button><button id="full" type="button" aria-label="Toggle fullscreen"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button></div>
   <div class="progress" aria-hidden="true"><i id="progress"></i></div>
   <script>
     const slides=[...document.querySelectorAll('.slide')]; let current=0;

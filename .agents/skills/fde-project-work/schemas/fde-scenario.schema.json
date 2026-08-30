@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fde.local/schemas/fde-scenario.schema.json",
+  "title": "FDE Scenario Record",
+  "description": "A technology-neutral contract for registering a measurable FDE capability scenario.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "status",
+    "businessOwner",
+    "processNode",
+    "userRoles",
+    "decisionOrAction",
+    "metrics",
+    "ontologyReferences",
+    "sourceReferences",
+    "acceptanceCriteria"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{2,63}$",
+      "description": "Stable, lowercase scenario identifier."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 120
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "approved", "in-delivery", "shadow", "operating", "retired"]
+    },
+    "businessOwner": {
+      "$ref": "#/$defs/owner"
+    },
+    "processNode": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 240
+    },
+    "userRoles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 120
+      }
+    },
+    "decisionOrAction": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 1000
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/metric"
+      }
+    },
+    "ontologyReferences": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/reference"
+      }
+    },
+    "sourceReferences": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/reference"
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 10,
+        "maxLength": 1000
+      }
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000
+    }
+  },
+  "$defs": {
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "contact"],
+      "properties": {
+        "role": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "contact": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 240
+        }
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "definition", "baseline", "target", "cadence"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "definition": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 1000
+        },
+        "baseline": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "cadence": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "purpose"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 240
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 1000
+        }
+      }
+    }
+  }
+}

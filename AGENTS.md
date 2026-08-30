@@ -9,4 +9,4 @@ Read in this order and treat nothing else as a rule source:
 
 `.agents/skills/fde-project-work/references/source-map.md` locates every supporting document; open supporting material only for the branch you are on. Supporting documents, examples, and translations cannot expand the capability boundary.
 
-Verify before claiming: `uvx --with pytest pytest -q tests` and `.agents/skills/fde-project-work/scripts/validate-scenario.sh <scenario.json>`.
+Verify before claiming: `make verify`.

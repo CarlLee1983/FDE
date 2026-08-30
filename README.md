@@ -26,6 +26,28 @@ The project's closed capability set is:
 4. Operating solution formation.
 5. Optional delivery and assurance assistance, only when explicitly requested.
 
+## Install and Verify
+
+Prerequisites are Git, Make, and [uv](https://docs.astral.sh/uv/). The development tools are pinned in `pyproject.toml` and `uv.lock`.
+
+```bash
+git clone https://github.com/CarlLee1983/FDE.git
+cd FDE
+make verify
+```
+
+Install an independent copy of the Skill into another Git repository:
+
+```bash
+scripts/install-skill.sh --target /path/to/project --agent codex
+scripts/install-skill.sh --target /path/to/project --agent claude
+scripts/install-skill.sh --target /path/to/project --agent both
+# or
+make install-skill TARGET=/path/to/project AGENT=both
+```
+
+The installer writes only `.agents/skills/fde-project-work/` and/or `.claude/skills/fde-project-work/`. It refuses an existing Skill instead of overwriting local changes. See the [five-minute Quick Start](docs/quickstart.md) for installation, first use, update, and removal.
+
 ## Source Hierarchy
 
 [CONTEXT.md](CONTEXT.md) defines canonical project language, accepted [ADRs](docs/adr/) govern hard-to-reverse decisions, and the [FDE operating-analysis skill](.agents/skills/fde-project-work/SKILL.md) governs runtime analysis behavior. The README is the entry point; supporting material cannot independently expand this boundary.
@@ -44,20 +66,21 @@ This evidence establishes repository behaviour only. It does not establish targe
 
 Continue project evaluation when a new independent operating case, observed response failure, explicit structured/build/assurance request, or cross-case promotion candidate creates a decision to test. Otherwise use the skill on the next real operating problem or stop; additional synthetic files are not progress by themselves.
 
-## GitHub Pages
+## Repository Verification
 
-The repository includes a static project site and a Pages deployment workflow. Build and validate the exact artifact locally with:
+`make verify` is the local and CI entry point. It runs root and example tests, validates every Git-tracked `examples/**/scenario.json` and the schema metaschema, builds the tracked-only Pages artifact, checks its HTML, Markdown, CSS, and local links, and validates the Skill structure and frontmatter. Untracked scenarios and Pages files are excluded from release validation; add intended content to Git before relying on the result.
 
 ```bash
-output_dir="$(mktemp -d)"
-scripts/build-pages.sh "$output_dir"
-python3 scripts/validate-pages.py "$output_dir"
+make test
+make validate-scenarios
+make validate-pages
+make verify
 ```
 
-The workflow publishes only after the repository owner enables GitHub Pages with **GitHub Actions** as its source. A successful repository build proves the static artifact and its local links; it does not establish target-enterprise acceptance, access, authority, production readiness, or value.
+Pull requests and pushes to `main` run the same `make verify` chain. Deployment is limited to successful non-PR runs on `main`, after the repository owner enables GitHub Pages with **GitHub Actions** as its source. A successful repository verification proves repository behavior only; it does not establish target-enterprise acceptance, access, authority, production readiness, or business value.
 
 ## Contributing and License
 
-[Contributing](.github/CONTRIBUTING.md) states the boundary check and the three verification commands a change must pass; [security reports](.github/SECURITY.md) go through GitHub private reporting, never a public issue. Participation is governed by the [code of conduct](.github/CODE_OF_CONDUCT.md), and released versions are listed in the [changelog](CHANGELOG.md).
+[Contributing](.github/CONTRIBUTING.md) states the boundary check and the single verification command a change must pass; [security reports](.github/SECURITY.md) go through GitHub private reporting, never a public issue. Participation is governed by the [code of conduct](.github/CODE_OF_CONDUCT.md), and released versions are listed in the [changelog](CHANGELOG.md).
 
 Released under the MIT License. The full text is in the `LICENSE` file at the repository root; it is not part of the published static site.

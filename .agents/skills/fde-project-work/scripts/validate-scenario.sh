@@ -13,8 +13,12 @@ if [[ ! -f "$scenario_path" ]]; then
 fi
 
 skill_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-repo_dir="$(cd "$skill_dir/../../.." && pwd)"
-schema_path="$repo_dir/schemas/fde-scenario.schema.json"
+schema_path="$skill_dir/schemas/fde-scenario.schema.json"
 
-uvx check-jsonschema --check-metaschema "$schema_path"
-uvx check-jsonschema --schemafile "$schema_path" "$scenario_path"
+if ! command -v uv >/dev/null 2>&1; then
+  echo "required tool not found: uv" >&2
+  exit 69
+fi
+
+uv tool run --from 'check-jsonschema==0.38.0' check-jsonschema --check-metaschema "$schema_path"
+uv tool run --from 'check-jsonschema==0.38.0' check-jsonschema --schemafile "$schema_path" "$scenario_path"
