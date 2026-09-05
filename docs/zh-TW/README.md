@@ -15,7 +15,7 @@
 
 | 文件 | 說明 |
 | --- | --- |
-| [`fde-project-work` skill 功能說明](fde-project-work-skill.md) | Skill 的工作模式、證據護欄、使用範例與維護方式 |
+| [`fde-project-work` Skill 操作指南](fde-project-work-skill.md) | Codex／Claude Code 安裝、工作模式、scenario 驗證與維護方式 |
 
 ## FDE 參考章節
 

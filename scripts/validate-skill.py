@@ -22,7 +22,6 @@ REQUIRED_FILES = (
 )
 PACKAGED_SOURCES = {
     "canonical/CONTEXT.md": "CONTEXT.md",
-    "canonical/README.md": "README.md",
     "canonical/adr/0001-operating-analysis-is-project-boundary.md": "docs/adr/0001-operating-analysis-is-project-boundary.md",
     "canonical/adr/0002-use-an-adaptive-analysis-core.md": "docs/adr/0002-use-an-adaptive-analysis-core.md",
     "canonical/adr/0003-separate-analysis-completion-from-assurance.md": "docs/adr/0003-separate-analysis-completion-from-assurance.md",

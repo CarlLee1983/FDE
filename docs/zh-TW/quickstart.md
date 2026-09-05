@@ -43,6 +43,8 @@ Installer 不會修改目標專案的 `AGENTS.md`、`CLAUDE.md`、README 或其�
 
 每份安裝的 Skill 都包含必要的 FDE 方法快照、scenario schema 與 validator，不會把目標 repository 裡同名的檔案誤認為 FDE 指引。大型 synthetic example、翻譯與方法理由屬於已釘選版本的選讀外部參考，列在安裝包的 `references/source-map.md`；Skill 的獨立使用不依賴它們。
 
+工作模式、安裝包結構與維護流程請見 [Skill 操作指南](fde-project-work-skill.md)。
+
 ## 4. 呼叫 Skill
 
 從目標 repository 啟動 Codex 或 Claude Code。Codex 直接貼上完整 prompt；Claude Code 先呼叫 `/fde-project-work`，再貼上同一個營運問題。以下完整文字也已明確指定 Skill：

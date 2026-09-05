@@ -46,7 +46,7 @@ scripts/install-skill.sh --target /path/to/project --agent both
 make install-skill TARGET=/path/to/project AGENT=both
 ```
 
-The installer writes only `.agents/skills/fde-project-work/` and/or `.claude/skills/fde-project-work/`. Each copy includes its required method references, schema, and validator; it does not read same-named target-project files as FDE guidance. It refuses an existing Skill instead of overwriting local changes. See the [five-minute Quick Start](docs/quickstart.md) for installation, first use, validation, update, and removal.
+The installer writes only `.agents/skills/fde-project-work/` and/or `.claude/skills/fde-project-work/`. Each copy includes its required method references, schema, and validator; it does not read same-named target-project files as FDE guidance. It refuses an existing Skill instead of overwriting local changes. See the [five-minute Quick Start](docs/quickstart.md) for installation, first use, validation, update, and removal, and the [Skill operating guide](docs/fde-project-work-skill.md) for modes and package maintenance.
 
 ## Source Hierarchy
 

@@ -4,6 +4,13 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-09-05
+
+### Changed
+
+- Consolidated the Codex and Claude Code portable-Skill operating instructions in English and Traditional Chinese, including installation, invocation, scenario validation, update, removal, and package maintenance.
+- Updated the project site and contribution guide to describe self-contained Skill copies and synchronized reference snapshots.
+
 ## [0.2.1] - 2026-09-05
 
 ### Fixed
@@ -45,7 +52,8 @@ First tagged version. It marks the point where the project boundary, the skill's
 
 This version establishes repository behaviour only. It does not establish target-enterprise facts, acceptance, access, authority, production readiness, or value.
 
-[Unreleased]: https://github.com/CarlLee1983/FDE/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/CarlLee1983/FDE/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/CarlLee1983/FDE/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/CarlLee1983/FDE/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/CarlLee1983/FDE/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/CarlLee1983/FDE/releases/tag/v0.1.0
