@@ -4,6 +4,13 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-09-05
+
+### Fixed
+
+- Installed Codex and Claude Code Skills now include the required local FDE method references and use host-independent scenario-validator instructions.
+- Skill verification now rejects missing packaged references and canonical/package drift; the synchronized snapshots are regenerated with `scripts/sync-skill-references.py`.
+
 ## [0.2.0] - 2026-08-30
 
 ### Added
@@ -39,5 +46,6 @@ First tagged version. It marks the point where the project boundary, the skill's
 This version establishes repository behaviour only. It does not establish target-enterprise facts, acceptance, access, authority, production readiness, or value.
 
 [Unreleased]: https://github.com/CarlLee1983/FDE/compare/v0.2.0...HEAD
+[0.2.1]: https://github.com/CarlLee1983/FDE/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/CarlLee1983/FDE/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/CarlLee1983/FDE/releases/tag/v0.1.0

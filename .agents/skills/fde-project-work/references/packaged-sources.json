@@ -1,0 +1,14 @@
+{
+  "canonical/CONTEXT.md": "CONTEXT.md",
+  "canonical/README.md": "README.md",
+  "canonical/adr/0001-operating-analysis-is-project-boundary.md": "docs/adr/0001-operating-analysis-is-project-boundary.md",
+  "canonical/adr/0002-use-an-adaptive-analysis-core.md": "docs/adr/0002-use-an-adaptive-analysis-core.md",
+  "canonical/adr/0003-separate-analysis-completion-from-assurance.md": "docs/adr/0003-separate-analysis-completion-from-assurance.md",
+  "canonical/adr/0004-make-skill-behavior-canonical.md": "docs/adr/0004-make-skill-behavior-canonical.md",
+  "canonical/FDE-Capability-Enhancement-Plan.md": "FDE-Capability-Enhancement-Plan.md",
+  "canonical/FDE-Scenario-to-Action-Method.md": "FDE-Scenario-to-Action-Method.md",
+  "canonical/docs/fde-ontology/05-platform-capabilities-and-application-operations.md": "docs/fde-ontology/05-platform-capabilities-and-application-operations.md",
+  "canonical/docs/fde-ontology/07-capability-map-and-implementation-strategy.md": "docs/fde-ontology/07-capability-map-and-implementation-strategy.md",
+  "canonical/docs/fde-ontology/08-fde-capability-enhancement-focus.md": "docs/fde-ontology/08-fde-capability-enhancement-focus.md",
+  "canonical/schemas/fde-scenario.example.json": "schemas/fde-scenario.example.json"
+}
