@@ -29,11 +29,13 @@ Completion criterion: the artefact set answers the selected mode's output contra
 
 ## 4. Validate deterministically
 
-For every scenario record, run:
+For every scenario record, change to the installed Skill directory (the directory that contains this file's `SKILL.md`) and run:
 
 ```bash
-.agents/skills/fde-project-work/scripts/validate-scenario.sh <scenario.json>
+./scripts/validate-scenario.sh <scenario.json>
 ```
+
+This works for both `.agents/skills/fde-project-work/` (Codex) and `.claude/skills/fde-project-work/` (Claude Code); it does not require the other host's installation.
 
 Run any narrower example or slice-specific checks, then the repository's proportionate required checks. Inspect generated output and the final diff; a schema pass proves structure only. For read-only results, also verify result, semantic-definition version, source evidence, freshness, and access decision. For controlled action, require direct authorization, audit, idempotency, and recovery evidence.
 

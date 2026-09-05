@@ -95,7 +95,7 @@ run_pages() {
 }
 
 run_skill() {
-  skill_result="$("$uv_bin" run --frozen python "$repo_dir/scripts/validate-skill.py" "$repo_dir/.agents/skills/fde-project-work" "$repo_dir/schemas/fde-scenario.schema.json")"
+  skill_result="$("$uv_bin" run --frozen python "$repo_dir/scripts/validate-skill.py" "$repo_dir/.agents/skills/fde-project-work" --source-root "$repo_dir")"
   echo "$skill_result"
 }
 

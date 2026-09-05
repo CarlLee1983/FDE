@@ -41,6 +41,8 @@ test ! -L "$target_dir/.claude/skills/fde-project-work"
 
 The installer does not edit the target's `AGENTS.md`, `CLAUDE.md`, README, or other settings.
 
+Each installed copy includes the required FDE method snapshots, scenario schema, and validator. It never resolves FDE guidance through similarly named files in the target repository. Large synthetic examples, translations, and method rationale remain optional fixed-version online references in the installed `references/source-map.md`; the installed Skill does not need them to work.
+
 ## 4. Call the Skill
 
 Start Codex or Claude Code from the target repository. In Codex, paste the full prompt below. In Claude Code, invoke `/fde-project-work`, then paste the same operating problem; the full text below also states the intended Skill explicitly.
@@ -64,7 +66,17 @@ The expected answer has five sections:
 
 For this prompt, the stable transformation rules should be considered for deterministic software before AI. The Skill should label assumptions and evidence gaps instead of inventing enterprise evidence.
 
-## 5. Update or remove
+## 5. Validate a scenario from either host
+
+`uv` is the validator's only tool dependency. Run it from the installed Skill directory, so the same command works in a Codex-only or Claude-only project:
+
+```bash
+cd /path/to/project/.agents/skills/fde-project-work # Codex
+# or: cd /path/to/project/.claude/skills/fde-project-work # Claude Code
+./scripts/validate-scenario.sh /path/to/scenario.json
+```
+
+## 6. Update or remove
 
 The installer intentionally refuses to overwrite an existing Skill. To update, review or back up local Skill changes, update the FDE checkout, remove only the installed Skill directory, and run the installer again:
 

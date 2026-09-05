@@ -101,6 +101,10 @@ def main() -> int:
 
     markdown_link = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
     for source in sorted(root.rglob("*.md")):
+        if source.is_relative_to(root / ".agents" / "skills" / "fde-project-work"):
+            # The portable Skill has its own validator: snapshots retain their
+            # canonical repository links and are not Pages documentation.
+            continue
         for href in markdown_link.findall(source.read_text(encoding="utf-8")):
             href = href.strip().split(maxsplit=1)[0].strip("<>")
             try:

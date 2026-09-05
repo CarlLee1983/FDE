@@ -41,6 +41,8 @@ test ! -L "$target_dir/.claude/skills/fde-project-work"
 
 Installer 不會修改目標專案的 `AGENTS.md`、`CLAUDE.md`、README 或其他設定。
 
+每份安裝的 Skill 都包含必要的 FDE 方法快照、scenario schema 與 validator，不會把目標 repository 裡同名的檔案誤認為 FDE 指引。大型 synthetic example、翻譯與方法理由屬於已釘選版本的選讀外部參考，列在安裝包的 `references/source-map.md`；Skill 的獨立使用不依賴它們。
+
 ## 4. 呼叫 Skill
 
 從目標 repository 啟動 Codex 或 Claude Code。Codex 直接貼上完整 prompt；Claude Code 先呼叫 `/fde-project-work`，再貼上同一個營運問題。以下完整文字也已明確指定 Skill：
@@ -64,7 +66,17 @@ Use $fde-project-work to analyze this operating problem:
 
 這個 prompt 中的轉換規則已固定，因此應先考慮確定性軟體，而不是 AI。Skill 應標示假設與證據缺口，不得編造企業證據。
 
-## 5. 更新或移除
+## 5. 從任一宿主驗證 scenario
+
+validator 唯一的工具依賴是 `uv`。從已安裝的 Skill 目錄執行，所以 Codex-only 與 Claude-only 都使用同一個命令：
+
+```bash
+cd /path/to/project/.agents/skills/fde-project-work # Codex
+# 或：cd /path/to/project/.claude/skills/fde-project-work # Claude Code
+./scripts/validate-scenario.sh /path/to/scenario.json
+```
+
+## 6. 更新或移除
 
 Installer 會刻意拒絕覆寫既有 Skill。更新前先檢查或備份本地 Skill 變更，再更新 FDE checkout、只移除已安裝的 Skill 目錄，然後重新安裝：
 
