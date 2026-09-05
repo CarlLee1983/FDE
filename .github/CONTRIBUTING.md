@@ -16,6 +16,18 @@ make verify
 
 The component targets are `make test`, `make validate-scenarios`, and `make validate-pages`; they are useful while iterating but do not replace the final `make verify`. Scenario release validation discovers only Git-tracked `examples/**/scenario.json`. The Pages build likewise publishes only tracked files, so a new scenario or published file must be `git add`ed before it is included. Untracked scenarios are deliberately excluded rather than treated as release evidence.
 
+## Portable Skill package
+
+The installed Skill carries the method references, scenario schema, and validator it needs. When changing a canonical source named in `.agents/skills/fde-project-work/references/packaged-sources.json`, refresh its packaged snapshot, then verify it before the normal release check:
+
+```bash
+python3 scripts/sync-skill-references.py
+python3 scripts/sync-skill-references.py --check
+make verify
+```
+
+Do not replace packaged requirements with target-repository paths or network downloads. The source map may link large examples and translations to a fixed release as optional reading, but operating analysis, scenario preparation, delivery, and assurance guidance must remain usable from an installed copy.
+
 ## Repository settings
 
 The repository owner must separately protect `main`, require pull requests, require the `verify` status check, and block merges while required checks are failing. Workflow code cannot assert that these GitHub settings are enabled.
