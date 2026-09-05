@@ -4,6 +4,11 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ## [Unreleased]
 
+### Fixed
+
+- Installed Codex and Claude Code Skills now include the required local FDE method references and use host-independent scenario-validator instructions.
+- Skill verification now rejects missing packaged references and canonical/package drift; the synchronized snapshots are regenerated with `scripts/sync-skill-references.py`.
+
 ## [0.2.0] - 2026-08-30
 
 ### Added

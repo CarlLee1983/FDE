@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import json
 import os
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -116,6 +118,48 @@ class VerificationOrchestrationTests(unittest.TestCase):
         result = self.run_make(REPO, "verify", env={"UV": "missing-uv-for-test"})
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("required tool not found: missing-uv-for-test", result.stderr)
+
+    def test_skill_verification_rejects_unsynchronized_canonical_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            repo = self.copy_repo(Path(temporary))
+            canonical = repo / "FDE-Scenario-to-Action-Method.md"
+            canonical.write_text(canonical.read_text(encoding="utf-8") + "\nchanged\n", encoding="utf-8")
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(repo / "scripts" / "validate-skill.py"),
+                    str(repo / ".agents" / "skills" / "fde-project-work"),
+                    "--source-root",
+                    str(repo),
+                ],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("canonical/FDE-Scenario-to-Action-Method.md", result.stderr)
+
+    def test_skill_verification_rejects_incomplete_snapshot_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            repo = self.copy_repo(Path(temporary))
+            manifest = repo / ".agents" / "skills" / "fde-project-work" / "references" / "packaged-sources.json"
+            sources = json.loads(manifest.read_text(encoding="utf-8"))
+            sources.pop("canonical/adr/0004-make-skill-behavior-canonical.md")
+            manifest.write_text(json.dumps(sources, indent=2) + "\n", encoding="utf-8")
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(repo / "scripts" / "validate-skill.py"),
+                    str(repo / ".agents" / "skills" / "fde-project-work"),
+                    "--source-root",
+                    str(repo),
+                ],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("packaged source manifest is incomplete", result.stderr)
 
     def test_temporary_output_is_cleaned(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
