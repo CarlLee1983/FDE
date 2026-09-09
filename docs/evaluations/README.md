@@ -34,7 +34,7 @@ A run is complete when every criterion has a decision and response citation, eve
 - [Operating-analysis forward evaluation](2026-08-28-p0-forward-evaluation.md) — varied, failure-seeking, and evaluator-contract repeat cases.
 - [Scenario-preparation mode](2026-08-28-scenario-preparation-mode.md) — proposed schema-valid record with visible evidence gaps and an owner decision frontier.
 - [Conditional delivery and assurance](2026-08-28-p2-conditional-modes.md) — tested local read-only build and persistent-write gate review.
-- [New-evidence reconciliation](2026-09-09-new-evidence-reconciliation.md) — baseline and post-change runs on information arriving after a conclusion, scope-separated coexistence, and an ordinary analysis control case.
+- [New-evidence reconciliation](2026-09-09-new-evidence-reconciliation.md) — baseline and post-change runs on information arriving after a conclusion, scope-separated coexistence, and an ordinary analysis control case. Round 2 re-adjudicates case B for scope over-reach, tests fact verification against a knowing role, verifies an in-place partial update of a case document by file diff, and adds an independent adjudicator over all its answers.
 
 ## Continue or stop
 

@@ -4,11 +4,17 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ## [Unreleased]
 
+### Added
+
+- ADR 0005 records that new information recomputes only the conclusions it has a dependency on, that widening the analysis stays an option rather than a task, and that facts out of the agent's reach are requested from a knowing role while decisions go to the accountable one. Its falsification condition names the two files the decision depends on.
+
 ### Changed
 
 - Collaborative clarification now covers reconciling information that arrives after a conclusion exists — preserving the prior conclusion, bounding the new information's source, time, version, and scope, separating what must be recomputed from what still holds, and naming the work that can continue while a decision waits.
 - Decision-changing unknowns now return with the decision they affect, a verification method, an accountable role, a closure condition, and the analysis to recompute, ordered by decision impact, dependency, then verification cost.
 - `SKILL.md` triggers that reconciliation without adding an artefact or gate to an analysis that has no conflicting evidence.
+- Reconciliation now recomputes only the conclusions whose facts, rules, or assumptions the new information actually changes. Information under a different scope with no dependency retains the conclusion and creates no task; a cross-scope comparison, a control simplification, or a wider process is offered as an option with its reason and cost, never as a work requirement, and an unstated scope is asked about rather than assumed global.
+- Collaborative clarification now separates who knows a fact from who may decide it: reachable facts are investigated, unreachable ones are requested as evidence from a knowing role, and policy, scope, and authorization decisions go to the accountable role. The previous wording that people are asked only for decisions is replaced in `SKILL.md`, the clarification reference, and `FDE-Scenario-to-Action-Method.md`.
 
 ## [0.2.2] - 2026-09-05
 

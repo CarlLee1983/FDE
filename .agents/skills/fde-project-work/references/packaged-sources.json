@@ -4,6 +4,7 @@
   "canonical/adr/0002-use-an-adaptive-analysis-core.md": "docs/adr/0002-use-an-adaptive-analysis-core.md",
   "canonical/adr/0003-separate-analysis-completion-from-assurance.md": "docs/adr/0003-separate-analysis-completion-from-assurance.md",
   "canonical/adr/0004-make-skill-behavior-canonical.md": "docs/adr/0004-make-skill-behavior-canonical.md",
+  "canonical/adr/0005-recompute-only-on-dependency.md": "docs/adr/0005-recompute-only-on-dependency.md",
   "canonical/FDE-Capability-Enhancement-Plan.md": "FDE-Capability-Enhancement-Plan.md",
   "canonical/FDE-Scenario-to-Action-Method.md": "FDE-Scenario-to-Action-Method.md",
   "canonical/docs/fde-ontology/05-platform-capabilities-and-application-operations.md": "docs/fde-ontology/05-platform-capabilities-and-application-operations.md",
