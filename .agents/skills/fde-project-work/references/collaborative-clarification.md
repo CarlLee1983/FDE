@@ -47,8 +47,27 @@ Hold these limits while reconciling:
 - An inference or a pending assumption stays labelled as one and never becomes a confirmed fact.
 - Use `evidenced`, `proposed`, `missing`, and `unverifiable`; do not introduce a competing classification.
 - A different scope with no dependency on a conclusion is context, not a reason to revise it.
-- Widening the analysis — a cross-scope comparison, a simplified control, an approval matrix, a broader process — is an optional suggestion carrying its reason and its cost. It never becomes a work requirement, an open decision the user must close, or a change to the agreed target workflow.
-- An unstated scope is asked about, not assumed. One market's case is not a request to design a global rule.
+- Widening the analysis — a cross-scope comparison, a simplified control, an approval matrix, a broader process — is an optional suggestion carrying its reason and its cost when the new information alone raises it. On the strength of that information it never becomes a work requirement, an open decision the user must close, or a change to the agreed target workflow. A widening the user asked for is a different event; see `Requested analysis is a task`.
+- An unstated scope is asked about, not assumed. One market's case is not a request to design a global rule. When the user names the scopes to compare, those named scopes are the scope, and asking again is not needed.
+
+## Requested analysis is a task
+
+Information arriving and the user assigning work are different events, and only the first is governed by `Revising on new information`. Separate three things before deciding what to do:
+
+- **Scope the new information widens by itself.** Governed by the dependency test above: no dependency, no recompute, no task, no new open decision.
+- **Analysis the user explicitly asked for.** A request to compare, re-examine, reassess, or extend the analysis *is* the new task. Carry it out in the same reply. Do not return the request as an option the user must activate, and do not ask whether to begin work that has already been asked for.
+- **A change to policy, authority, access, or a running system.** Authority to analyse is never authority to change. This boundary holds whatever the user asked to analyse.
+
+When the requested analysis is under-specified, deliver it rather than block on it:
+
+1. **Produce the part the current evidence supports.** Give the comparison, re-examination, or assessment the facts in hand can carry, and mark it provisional.
+2. **Compare the scopes the user named.** When no further markets, product lines, roles, or periods are specified, the named ones are the scope. Do not silently expand to a global rule, and do not stop because a fuller list was never stated.
+3. **Mark every unknown `missing` or `unverifiable` in place.** An unknown is a labelled hole in the comparison, never a value to invent and never a reason to withhold the rest of the analysis.
+4. **State the assumptions the provisional result rests on**, so a returning fact shows plainly which part of it changes.
+5. **Ask only about an open scope decision that would change the result.** Work completable independently of that answer is completed and reported first; the question travels with the delivered work, not instead of it.
+6. **Keep the authority boundary inside the result.** Say what the analysis supports — a question worth re-examining, an evidence request, a bounded recommendation — and what it does not: a policy change, new data access, a system change, or a release.
+
+A list of verification requests with no analysis in it does not complete a requested comparison.
 
 ## Unknowns that drive verification
 

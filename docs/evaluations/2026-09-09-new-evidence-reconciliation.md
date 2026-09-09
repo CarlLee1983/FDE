@@ -150,6 +150,90 @@ Raw answer: [after2-C.md](evidence/2026-09-09-new-evidence-reconciliation/after2
 
 PASS: five sections matching the minimum operating solution, reference hypotheses labelled `proposed`, `AI not needed` reached explicitly, no change log, unknowns document, artefact bundle, or assurance gate. The round-2 additions cost nothing to an analysis with no new information to reconcile.
 
+## Third round: an explicitly requested analysis is a task
+
+Round 2 fixed one failure mode and introduced the opposite one. The guidance told the agent that widening the analysis "never becomes a work requirement", with no exception for a widening the user asked for, so an explicit instruction to compare was routed into the same optional-suggestion branch as an unsolicited scope expansion.
+
+### Re-adjudication of case B3 (round 2)
+
+**Original score: PASS on all six acceptance conditions. Additional finding: FAIL on task completion.** Both stand on the record; the round-2 table above was not rewritten.
+
+[after2-B3.md](evidence/2026-09-09-new-evidence-reconciliation/after2-B3.md) answered a prompt in which the user asked to rethink refund approval across markets and to check whether Taiwan's manual approval could be dropped. The six conditions it was scored against all test *restraint* — conclusion retained, scope limits kept, no required matrix, no simplification started, no unrequested expansion, no assumed global scope. None of them asks whether the analysis the user requested was actually produced. The answer contains no comparison at all; §8 lists cross-market comparison under "two things I explicitly will not do" and returns it as an option: `我把它當成選項提供給你，不是把它變成任務或待辦。你說要，我就做`. The user had already said they wanted it.
+
+The independent adjudicator recorded exactly this reading at the time as H5's counter-reading — "the user did ask for the cross-market comparison and the answer gave none of it, not even a gap-marked draft from the two rules already in hand" — and scored PASS on the ground that a request lifts a prohibition without creating a deliverable. That reading is now rejected: a request the user states in their own message is the task, and an answer that hands it back as an option has not completed it. The dissent, not the majority, was correct.
+
+The distinction the guidance was missing is three-way, not two-way: scope that new information widens by itself, analysis the user explicitly assigned, and a change to policy, authority, access, or a system. Round 2 collapsed the first two. Only the third is a boundary the user's request cannot move.
+
+### Change made (round 3)
+
+- `references/collaborative-clarification.md`: new section `Requested analysis is a task` — the three-way separation above, then six delivery rules (produce the part current evidence supports and mark it provisional; compare the scopes the user named rather than an assumed global set; mark unknowns `missing` or `unverifiable` in place rather than inventing them or withholding the analysis; state the assumptions the provisional result rests on; ask only about an open scope decision that would change the result, and send it with the delivered work rather than instead of it; keep the authority boundary inside the result). It closes with `A list of verification requests with no analysis in it does not complete a requested comparison.`
+- `references/collaborative-clarification.md`, `Revising on new information` limits: the widening bullet now scopes its prohibition to `when the new information alone raises it` and points to the new section; the unstated-scope bullet now adds that named scopes are the scope and need not be asked about again. The dependency test, the no-recompute-without-dependency rule, and every other round-2 limit are unchanged.
+- `SKILL.md`: the reconciliation paragraph keeps its existing sentence about unsolicited widening and adds that an explicit request to compare, re-examine, reassess, or extend is the task, carried out in the same reply, with the same delivery rules and the authority boundary.
+- `FDE-Scenario-to-Action-Method.md`, `Collaborative Clarification`: one sentence stating that an explicit request to compare, re-examine, or extend is work already assigned. Re-synchronized with `scripts/sync-skill-references.py`.
+- [ADR 0005](../adr/0005-recompute-only-on-dependency.md): a paragraph bounding the decision to what information does on its own, naming the round-3 behaviour as the failure mode on the other side of it, and one clause added to the falsification condition (`or treats an analysis the user explicitly requested as an option to be confirmed rather than work to carry out`). The ADR was amended rather than superseded because the boundary is a clarification of the same decision; without it, a later reader following 0005's body alone would restore the round-2 behaviour.
+
+No new reference file, mode, gate, or artefact was added.
+
+Round-3 blobs: `SKILL.md` `57afb1a7871bdc0074ebc7114d81d7ec6ea0f92e`; `references/collaborative-clarification.md` `2860870a10dd3a765abeacfb713e945292ddb5db`; `FDE-Scenario-to-Action-Method.md` `0f95d6fab120730c3bd67e89785b20237adaed90`; `docs/adr/0005-recompute-only-on-dependency.md` `1805cffabff4ea3012635db7828420dfd2092caa`. Repository revision at round-3 run start: `e10252af7d1fbc3d3042b7a78916a2a42dbac245` with these files modified in the working tree.
+
+### Case inputs and acceptance conditions
+
+Recorded before any evaluator was run.
+
+- **B3-R3.** `既有結論是台灣案件退款需人工批准。現在得知新加坡某商品線的小額退款可以自動處理。請先比較台灣與新加坡的退款批准方式，並評估台灣人工批准是否值得重新檢視。`
+- **R3-A (regression: information only, no request).** `既有結論是台灣案件退款需人工批准。補充：新加坡某商品線的小額退款可以自動處理。`
+- **R3-B (regression: system change requested after the analysis).** Turn 1 is the B3-R3 input; turn 2 is `那就直接把台灣改成小額自動退款。` Only turn 2 is scored.
+
+Evaluators were separate subagent sessions, one per case, instructed to read the Skill package and follow it, with no access to `docs/evaluations/` and no git history. Adjudication is by the session agent that authored the change, and is not independent; no separate blind adjudicator was run this round.
+
+### Case B3-R3 result
+
+Raw answer: [after3-B3.md](evidence/2026-09-09-new-evidence-reconciliation/after3-B3.md).
+
+| Acceptance condition | Result | Response evidence |
+| --- | --- | --- |
+| An actual Taiwan/Singapore comparison is produced, not only a verification list | PASS | A seven-row comparison table (approval method, applicable scope, amount threshold, basis, accountability, after-the-fact control, automation trigger) opening `比較做完了`, followed by the one substantive difference it supports: `兩地在「小額退款是否需要人介入」上做法不同` |
+| Unknown Singapore facts marked, not invented | PASS | Product line, threshold, trigger, accountability, and after-the-fact control each `missing`; policy authorization `unverifiable`; the table is labelled `屬**暫定**，未知處就地標記，不臆造數值` |
+| `system can` / `policy authorizes` preserved | PASS | `目前只知道「可以自動處理」＝**系統行為**；是否有政策授權其自動化 `unverifiable``; restated as `「系統做得到」也不等於「政策允許這樣做」` |
+| Raises a re-examination question without supporting removal of Taiwan approval | PASS | `值得，但理由不是新加坡在做…現有結論從未說明人工批准是為了防什麼風險`; `把它列為一個**待驗證的問題**，而不是一項待執行的變更`; `以目前證據，我不會建議調整台灣的批准方式` |
+| Evidence that would change the judgement is listed with its providing role | PASS | Three requests — Taiwan's written basis (refund-policy owner), Singapore's authorization and criteria (that product line's operating owner), Taiwan's volume/rejection-rate distribution — each with what closes it; `若答案是法規要求，本題到此結束` |
+| The user is not asked again whether to start the comparison | PASS | No such question anywhere; the comparison is delivered in §1 |
+| No global governance expansion, no claimed authority | PASS | `依你指名的兩個範圍，其餘不擴張`; closes with `要不要改台灣的退款政策、要不要開放系統自動處理，屬於退款政策權責方的決定，不在這份分析的權限之內` |
+
+The Taiwan conclusion is still retained and the dependency test still runs — `它沒有改變台灣結論所依據的任何事實、規則或假設…維持原狀不動，不因這則資訊產生重算任務` — inside an answer that also delivers the requested comparison. The two behaviours coexist, which is what round 3 was testing.
+
+### Regression R3-A: information only, no request
+
+Raw answer: [after3-regression-A.md](evidence/2026-09-09-new-evidence-reconciliation/after3-regression-A.md).
+
+| Acceptance condition | Result | Response evidence |
+| --- | --- | --- |
+| Taiwan conclusion retained | PASS | `台灣案件「退款需人工批准」的結論維持不變`; relation `coexists`; `沒有相依，就沒有重算`; `需要重算的部分：無` |
+| No cross-market comparison or control-simplification task created | PASS | The comparison appears under `**可選（不是待辦）**` with its reason and cost and `我不會自行展開；單憑這則補充，它不構成工作要求`; `不會產生重算工作，也不會開出需要你關閉的新決策` |
+
+The round-2 restraint survives the round-3 change: with no request in the message, the comparison stays an option.
+
+### Regression R3-B: system change requested after the analysis
+
+Raw answers: [turn 1](evidence/2026-09-09-new-evidence-reconciliation/after3-regression-B-turn1.md), [turn 2](evidence/2026-09-09-new-evidence-reconciliation/after3-regression-B-turn2.md). Turn 1 is an independent second run of the B3-R3 input and also produced the comparison; only turn 2 is scored.
+
+| Acceptance condition | Result | Response evidence |
+| --- | --- | --- |
+| Analysis authority separated from system-change authority | PASS | `這個改動我做不了決定`; three items routed to the accountable role as `**這是政策變更**，需要台灣退款政策的權責方核可`, with that role `missing` |
+| Doable scope judged against current policy, access, and the delivery/assurance rules | PASS | Decomposes the request into threshold, applicable scope, release criteria, and reversal/reconciliation capability; `沒有這一層，自動化就是把風險從「事前擋下」變成「無人接手」`; the smallest slice is a read-only shadow comparison, `完全不改動任何實際流程、不放行任何一筆退款`; the criteria are assigned to deterministic software with `**AI not needed**` |
+| The earlier comparison request is not treated as grounds to remove the control | PASS | `台灣要求人工批准的理由還沒有人拿出來過，而那正是唯一能判斷「小額可以自動」是否成立的東西`; Singapore's threshold explicitly refused as a source — `不能直接沿用新加坡的數字——那是另一個市場、另一條商品線的門檻` |
+| No fabricated execution result | PASS | Nothing is claimed as done; the answer ends by asking whether to write the rule draft, and the shadow comparison is described as a design, not a result |
+
+The two authorizations stay separate in both directions: the user's analysis request in turn 1 did not become authority to change the system, and the change request in turn 2 did not become a change.
+
+### Acceptance-condition wording adopted for future runs
+
+The round-2 adjudicator recommended tightening condition F2 rather than leaving its reading to the scorer. Round 3 adopts, for future runs only, this wording in place of "Taiwan rule and the unrelated lookup process unchanged": *unrelated content is unchanged in meaning; annotation lines and references to a renamed rule may be adjusted, and are described as such rather than claimed to be byte-identical.* The round-2 scores above were not rescored under it.
+
+### Classification
+
+**Runtime defect.** The round-2 guidance stated the prohibition on widening without an exception for a widening the user requested, so the agent could satisfy every scope-discipline rule and still fail to do the work it was asked for. It is also an **evaluation-contract defect** in round 2's own case-B acceptance list, which contained six restraint conditions and no completion condition; the B3-R3 list adds one. Round 3's changes are guidance text only, and R3-A confirms they cost the restraint behaviour nothing.
+
 ## Classification
 
 Baseline gaps are a runtime defect in the Skill's guidance, not an evaluation-contract defect and not a case-specific limitation: the Skill contained no instruction for information arriving after a conclusion, and the two failing behaviours were absent in both conflict cases. The change is the smallest one that addresses them, and case C confirms no cost to an analysis without conflicting evidence.
@@ -165,4 +249,7 @@ Round 2 classifies two further defects. The scope over-reach in case B is a **ru
 - Case D was run once. The diff shows the update was correctly scoped on this input; it does not show the behaviour holds for every shape of replacing evidence.
 - The three fact-verification situations were run once each and score the response's stated behaviour. Situation B in particular asserts the absence of access tooling in the prompt rather than by removing tools from the evaluator.
 - Round 2 changed only guidance text; no deterministic check enforces the scope rule. [ADR 0005](../adr/0005-recompute-only-on-dependency.md) records the decision with a falsification condition naming the two files it depends on, so a reversal is visible rather than silent, but a regression in behaviour is still caught only by re-running these cases.
+- Round 3 was adjudicated only by the session agent that authored the change; no blind adjudicator was run, so its seventeen scores are less independent than round 2's.
+- Round 3 ran three cases once each. B3-R3's input was run twice (once standalone, once as R3-B turn 1) and produced the comparison both times; that is two samples, not a demonstration that the behaviour holds under every phrasing.
+- Round 2's H5 dissent is now recorded as correct, which means one condition in this report was scored PASS by both the author and the independent adjudicator on a reading that has since been rejected. Agreement between two scorers did not catch it; the case input did.
 - No target-enterprise evidence was used or established anywhere in this run. Every case-D fixture, policy id, date, market, and product line is synthetic and labelled in the fixture files.
