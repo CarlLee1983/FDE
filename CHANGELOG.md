@@ -4,6 +4,12 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ## [Unreleased]
 
+### Changed
+
+- Collaborative clarification now covers reconciling information that arrives after a conclusion exists — preserving the prior conclusion, bounding the new information's source, time, version, and scope, separating what must be recomputed from what still holds, and naming the work that can continue while a decision waits.
+- Decision-changing unknowns now return with the decision they affect, a verification method, an accountable role, a closure condition, and the analysis to recompute, ordered by decision impact, dependency, then verification cost.
+- `SKILL.md` triggers that reconciliation without adding an artefact or gate to an analysis that has no conflicting evidence.
+
 ## [0.2.2] - 2026-09-05
 
 ### Changed
