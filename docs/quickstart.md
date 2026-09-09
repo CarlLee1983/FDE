@@ -43,6 +43,8 @@ The installer does not edit the target's `AGENTS.md`, `CLAUDE.md`, README, or ot
 
 Each installed copy includes the required FDE method snapshots, scenario schema, and validator. It never resolves FDE guidance through similarly named files in the target repository. Large synthetic examples, translations, and method rationale remain optional fixed-version online references in the installed `references/source-map.md`; the installed Skill does not need them to work.
 
+For the modes, package layout, and maintainer workflow, see the [Skill operating guide](fde-project-work-skill.md).
+
 ## 4. Call the Skill
 
 Start Codex or Claude Code from the target repository. In Codex, paste the full prompt below. In Claude Code, invoke `/fde-project-work`, then paste the same operating problem; the full text below also states the intended Skill explicitly.

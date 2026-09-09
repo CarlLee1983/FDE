@@ -48,7 +48,7 @@ scripts/install-skill.sh --target /path/to/project --agent both
 make install-skill TARGET=/path/to/project AGENT=both
 ```
 
-Installer 只會寫入 `.agents/skills/fde-project-work/` 與／或 `.claude/skills/fde-project-work/`。每份副本都包含必要的方法參考、schema 與 validator，且不會把目標專案的同名檔案當成 FDE 指引。若 Skill 已存在，指令會拒絕覆寫本地變更。安裝、第一次使用、驗證、更新與移除流程見[五分鐘 Quick Start](docs/zh-TW/quickstart.md)。
+Installer 只會寫入 `.agents/skills/fde-project-work/` 與／或 `.claude/skills/fde-project-work/`。每份副本都包含必要的方法參考、schema 與 validator，且不會把目標專案的同名檔案當成 FDE 指引。若 Skill 已存在，指令會拒絕覆寫本地變更。安裝、第一次使用、驗證、更新與移除流程見[五分鐘 Quick Start](docs/zh-TW/quickstart.md)；工作模式與封裝維護見 [Skill 操作指南](docs/zh-TW/fde-project-work-skill.md)。
 
 ## 來源階層
 

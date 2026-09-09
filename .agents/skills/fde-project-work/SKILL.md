@@ -27,6 +27,8 @@ When the user asks for a **proposal**, read [operating solution](references/solu
 
 When unresolved choices materially change the diagnosis or recommendation, read [collaborative clarification](references/collaborative-clarification.md), investigate available facts, and ask accountable participants only for decisions.
 
+When new information arrives that may change the bounded problem, target workflow, intervention, authority, acceptance, or value of a conclusion you already gave, read the same reference before revising. Keep the prior conclusion and its basis, bound the new information's source, time, version, and scope, say which conclusions must be recomputed and which still hold, and name the work that can continue while an open decision waits. This reconciliation adds no artefact and no gate to an analysis that has no such conflict.
+
 ## Depth and evidence
 
 Use **sufficient depth**. Add models, schemas, formal decision logic, controls, research, or executable validation only when material uncertainty, risk, authority, persistence, or an explicit request justifies them.
