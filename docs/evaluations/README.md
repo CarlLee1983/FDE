@@ -34,10 +34,32 @@ A run is complete when every criterion has a decision and response citation, eve
 - [Operating-analysis forward evaluation](2026-08-28-p0-forward-evaluation.md) — varied, failure-seeking, and evaluator-contract repeat cases.
 - [Scenario-preparation mode](2026-08-28-scenario-preparation-mode.md) — proposed schema-valid record with visible evidence gaps and an owner decision frontier.
 - [Conditional delivery and assurance](2026-08-28-p2-conditional-modes.md) — tested local read-only build and persistent-write gate review.
-- [New-evidence reconciliation](2026-09-09-new-evidence-reconciliation.md) — baseline and post-change runs on information arriving after a conclusion, scope-separated coexistence, and an ordinary analysis control case. Round 2 re-adjudicates case B for scope over-reach, tests fact verification against a knowing role, verifies an in-place partial update of a case document by file diff, and adds an independent adjudicator over all its answers. Round 3 re-adjudicates case B3 for task completion — an analysis the user explicitly asked for that was returned as an option — and re-runs it with two regressions covering information without a request and a system change requested after the analysis. A blind adjudicator over round 3 disagreed on one of thirteen conditions, recorded there as a FAIL and classified as run variance.
+- [New-evidence reconciliation](2026-09-09-new-evidence-reconciliation.md) — baseline and post-change runs on information arriving after a conclusion, scope-separated coexistence, and an ordinary analysis control case. Round 2 re-adjudicates case B for scope over-reach, tests fact verification against a knowing role, verifies an in-place partial update of a case document by file diff, and adds an independent adjudicator over all its answers. Round 3 re-adjudicates case B3 for task completion — an analysis the user explicitly asked for that was returned as an option — and re-runs it with two regressions covering information without a request and a system change requested after the analysis. A blind adjudicator over round 3 disagreed on one of thirteen conditions, recorded there as a FAIL. The report closes with the batch status across engineering verification, behaviour evaluation, and real-world application, and with two limitations carried forward: evidence fields left untagged in one answer, and a completion level overstated in another.
 
 ## Continue or stop
 
 Run another evaluation only when there is a new independent operating case, an observed response or scoring failure, an explicit task-mode request that lacks coverage, or repeated cross-case evidence that may justify a core candidate. State the hypothesis and observable failure before adding the case.
 
 When none applies, evaluation is complete for the current evidence. Use the skill on a real operating problem or stop; do not add synthetic cases to increase file or case counts.
+
+## Real-case trial
+
+**Status: not started.** No real enterprise case has been run. Until one is, do not fabricate enterprise facts and do not add further synthetic cases in place of a trial.
+
+Run a trial as ordinary use, not as a new process. It needs no new tooling and no fixed document bundle.
+
+1. The user brings one real operating problem with a stated scope.
+2. The skill returns the five-part minimum operating solution.
+3. The user adds a new fact, a contradicting one, or an explicit request to extend the analysis.
+4. Check that the response did what was asked, revised only what depends on the new information, and kept its evidence and authority limits.
+5. Keep what is needed to re-read the run — input, response, skill revision, user feedback — under the access and retention rules that apply to the case material. Real case content does not enter this repository unless those rules allow it.
+
+What to watch for, all of them observed from the response itself:
+
+- an important piece of evidence used without its time, version, or scope;
+- an evidence-incomplete proposal described as executable, approved, or ready for release;
+- asking again about work the user already assigned;
+- the case scope widened by the response rather than by the user;
+- a next step too vague for the accountable owner to act on.
+
+A trial that reproduces one of these is the evidence a further change needs. A trial that does not is the first real-world support this skill has.
