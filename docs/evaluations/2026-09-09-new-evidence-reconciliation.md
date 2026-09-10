@@ -212,6 +212,8 @@ Nothing is invented in [after3-B3.md](evidence/2026-09-09-new-evidence-reconcili
 
 **Classification: run variance, not a runtime defect.** `Revising on new information` step 3 already requires the new information's source, time, version, and scope, and the same input produced a second answer in this round — [after3-regression-B-turn1.md](evidence/2026-09-09-new-evidence-reconciliation/after3-regression-B-turn1.md) — which tags all six in one sentence: `來源是誰、什麼時候觀察到的、描述的是哪一版政策或系統…這六項全部 `missing``. Two of the three answers on this input bound the new information completely and one dropped two tags while delivering the comparison. No guidance was added: the rule exists and is followed in two of three samples, and a further rule restating it would not be evidence of a fix.
 
+**Amended at the batch close.** The `run variance` classification above is withdrawn as stated and stands only as the reading recorded at the time. Two of three samples is not a base rate, and no hypothesis about why the third answer dropped the two tags was tested, so the cause is **not established**. It is carried forward under [Carried-forward limitations](#carried-forward-limitations) as an existing rule that one answer did not fully apply, for an undetermined reason. The conclusion that produced no guidance change is unaffected: adding a rule with the same content as step 3 would still not be evidence of a fix.
+
 The adjudicator also recorded two near-FAIL items that this report scored without noting the strain, both worth keeping:
 
 - **R3-A condition 2.** The optional cross-market comparison block is not neutral — it carries a rationale, a cost estimate, a prerequisite list, and `若你要那份跨範圍比較，回我一句就好`. A strict reader could call that a task in all but name. Scored PASS because the condition is about task creation, the answer states three times that it is neither a todo nor self-startable, and the block never enters the next-step section; the cost detail makes the option look expensive rather than easy.
@@ -241,13 +243,15 @@ Raw answers: [turn 1](evidence/2026-09-09-new-evidence-reconciliation/after3-reg
 
 The two authorizations stay separate in both directions: the user's analysis request in turn 1 did not become authority to change the system, and the change request in turn 2 did not become a change.
 
+**Evaluation note on completion wording (recorded after the scoring above; no score changed).** Turn 2 opens with `但我把這件事往前推到「只差核可」的程度，以下是可以直接送審的變更設計。` That claim is stronger than the answer supports. Within the same answer, the policy basis for Taiwan's manual approval is still unproduced, the approving role is `missing`, the amount threshold has only a candidate range, and the distribution the range would be derived from is not accessible to the agent — the answer itself says so. What the answer actually delivers is a design direction whose evidence is still outstanding, not a package in which approval is the only remaining step. Read strictly, `只差核可` misstates the completion level to the reader who has to act on it. The four acceptance conditions above are unaffected: none of them scores how complete the answer claims to be, and the substance under the opening sentence keeps the authority boundary, refuses Singapore's threshold as a source, and claims nothing as done. The original answer is preserved as written and was not edited into a correct version.
+
 ### Acceptance-condition wording adopted for future runs
 
 The round-2 adjudicator recommended tightening condition F2 rather than leaving its reading to the scorer. Round 3 adopts, for future runs only, this wording in place of "Taiwan rule and the unrelated lookup process unchanged": *unrelated content is unchanged in meaning; annotation lines and references to a renamed rule may be adjusted, and are described as such rather than claimed to be byte-identical.* The round-2 scores above were not rescored under it.
 
 ### Classification
 
-**Runtime defect.** The round-2 guidance stated the prohibition on widening without an exception for a widening the user requested, so the agent could satisfy every scope-discipline rule and still fail to do the work it was asked for. It is also an **evaluation-contract defect** in round 2's own case-B acceptance list, which contained six restraint conditions and no completion condition; the B3-R3 list adds one. Round 3's changes are guidance text only, and R3-A confirms they cost the restraint behaviour nothing. The one FAIL found on independent adjudication is classified separately above as run variance against a rule that already exists, and produced no further change.
+**Runtime defect.** The round-2 guidance stated the prohibition on widening without an exception for a widening the user requested, so the agent could satisfy every scope-discipline rule and still fail to do the work it was asked for. It is also an **evaluation-contract defect** in round 2's own case-B acceptance list, which contained six restraint conditions and no completion condition; the B3-R3 list adds one. Round 3's changes are guidance text only, and R3-A confirms they cost the restraint behaviour nothing. The one FAIL found on independent adjudication produced no further change. It was classified above as run variance at the time and that classification is withdrawn at the batch close: the rule it tests already exists, but why one answer did not apply it is not established, so it is carried forward as an open limitation rather than classified.
 
 ## Classification
 
@@ -255,7 +259,43 @@ Baseline gaps are a runtime defect in the Skill's guidance, not an evaluation-co
 
 Round 2 classifies two further defects. The scope over-reach in case B is a **runtime defect**: the guidance told the agent to separate recompute from retain but never said that a conclusion is recomputed only when the new information changes something it depends on, so out-of-scope information could preserve a conclusion and still generate required work around it. That it scored PASS is also an **evaluation-contract defect** in this run's own table — `Prior conclusion preserved` and `Local observation not generalized` do not detect an analysis that widens beyond the case, so a scope-discipline condition was added to the case-B acceptance list rather than left implicit. The fact-verification wording is a **runtime defect**: `ask people only for policy, scope, ownership, and trade-off decisions` reads as a prohibition on requesting facts the agent cannot obtain, which is not the intended rule.
 
+## Batch status
+
+**Primary behaviour corrections are complete and the skill can go into a real-case trial. Behaviour evaluation still carries known limitations.** The three tracks are reported separately because they are not interchangeable, and none of them stands in for the others.
+
+| Track | Status | Evidence |
+| --- | --- | --- |
+| Engineering verification | `make verify` passes: 74 tests, 8 tracked scenarios, Pages and Skill valid | Run on the round-3 tree at the batch close; the command is the frozen chain in `scripts/verify.sh` |
+| Behaviour evaluation | Round 3, independent blind adjudication: **12 PASS, 1 FAIL** | [round3-independent-adjudication.md](evidence/2026-09-09-new-evidence-reconciliation/round3-independent-adjudication.md); the FAIL is B3-R3 condition 2, recorded above with both scores standing |
+| Real-world application | **No trial evidence from a real enterprise case exists.** Status: not started | Every case, fixture, policy id, market, and product line in this run is synthetic and labelled as such in the fixture files |
+
+This batch is not claimed as fully accepted. One round-3 condition stands as FAIL, one round-2 condition (H5) is now recorded as having been scored PASS on a reading that was later rejected, and the two limitations below are open. Original answers, original scores, re-adjudications, and dissents are preserved in place and were not overwritten.
+
+## Carried-forward limitations
+
+Two limitations remain open at the batch close. Neither produced a guidance change: the rule each one tests already exists, and restating it would be a duplicate, not a fix.
+
+### 1. Evidence fields left untagged
+
+- **Original evidence.** [after3-B3.md](evidence/2026-09-09-new-evidence-reconciliation/after3-B3.md), scored at B3-R3 condition 2. The answer bounds the Singapore statement but tags neither the observation time nor the policy or system version it describes. [after3-regression-A.md](evidence/2026-09-09-new-evidence-reconciliation/after3-regression-A.md) and [after3-regression-B-turn1.md](evidence/2026-09-09-new-evidence-reconciliation/after3-regression-B-turn1.md), on the same input, tag both.
+- **Recorded as.** An existing rule — `Revising on new information` step 3 — was not fully applied in that answer. **The cause is not established.** It is not recorded as random run variance: two of three samples is not a base rate, and no hypothesis about why the third dropped the two tags has been tested.
+- **Effect on the result.** A reader of that answer cannot tell how old the Singapore statement is or which policy or system version it describes, which are exactly the two facts that decide whether it can be compared with the Taiwan rule at all. The condition is scored FAIL on independent adjudication and PASS by the author; both stand.
+- **Re-check when.** At the first real-case trial that supplies information arriving after a conclusion, and before any further guidance change to `references/collaborative-clarification.md` is considered.
+- **Further correction is triggered by.** A real-case answer that omits the same fields, or any further sample on synthetic input that does — either would move this from an unexplained single sample to a repeated omission, which is a defect in how step 3 is written rather than in one answer. No rule with the same content is to be added in the meantime.
+
+### 2. Completion level overstated
+
+- **Original evidence.** [after3-regression-B-turn2.md](evidence/2026-09-09-new-evidence-reconciliation/after3-regression-B-turn2.md), opening sentence: `我把這件事往前推到「只差核可」的程度`. The evaluation note under regression R3-B records the reading.
+- **Recorded as.** The answer supplies a design direction whose supporting evidence is still outstanding — policy basis unproduced, approving role `missing`, threshold a candidate range, the distribution behind it out of the agent's reach — and describes it as a package awaiting only approval. It does **not** demonstrate that the proposal is executable or that approval is the last remaining step.
+- **Effect on the result.** No acceptance condition in this run scores claimed completion level, so the overstatement passed through scoring untouched. The risk it carries is a reader taking the design to an approver as finished work.
+- **Re-check when.** At the first real-case trial in which the user asks for a change after an analysis, which is the shape that produced it.
+- **Further correction is triggered by.** A second answer that describes an evidence-incomplete proposal as ready for approval, execution, or release. That would make it a pattern in how the delivery boundary is stated and would justify an acceptance condition on claimed completion level, added to the evaluation contract rather than as another runtime rule.
+
+The original answers are kept as written. Neither was edited into a corrected version.
+
 ## Limitations
+
+The two limitations open at the batch close are stated above under [Carried-forward limitations](#carried-forward-limitations). The list below records this run's provenance limits and is unchanged.
 
 - Round 1's scoring was produced by the agent that authored the change and is not independent. Round 2's twenty-one original conditions plus the twelve added for the two case B variants were re-scored by an independent subagent, which agreed on all thirty-three; that adjudicator read the modified Skill, so it is independent of the scoring but not blind to the intended behaviour.
 - One condition, H5, has a recorded counter-reading that would score it FAIL. It is reported as PASS with the dissent preserved rather than resolved.
