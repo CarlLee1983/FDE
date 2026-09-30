@@ -1119,18 +1119,18 @@
           </div>
           <h3>為什麼會一直發生？</h3>
           <p>
-            順著正常流程和例外情況一步步倒推。常常會發現：根本不是員工偷懶，而是<strong>「規則沒寫清楚」、「三個人重複查同一份表」、或是「遇到突發狀況沒人知道找誰拍板」</strong>。
+            順著正常流程和例外情況一步步倒推。常常會發現：根本不是員工偷懶，而是<strong>「規則沒寫清楚」、「三個人重複查同一份表」、或是「遇到突發狀況沒人知道找誰拍板」</strong>。後續若有新證據進場，<strong>只重算真正具依賴關係的環節</strong>，不擅自擴大重整範圍。
           </p>
           <div class="step-eli5-box">
             <strong>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               白話舉例（老修車師傅）
             </strong>
-            車子開起來會震動，老師傅聽引擎聲音發現只是火星塞積碳，而不是輪胎壞掉。抓出真病根，才不會白花幾萬塊換掉四個好輪胎。
+            車子震動，老師傅聽出是火星塞積碳就只換火星塞，不會因為一個火星塞問題把整台車底盤懸吊全部拆掉重裝。精準重算，才不浪費成本。
           </div>
           <div class="step-output">
             <span class="out-label">答案要能說明</span>
-            <span>正常、例外、升級與重工路徑，以及真正造成負擔的原因</span>
+            <span>正常、例外、升級與重工路徑，受影響之依賴關係，以及真正造成負擔的原因</span>
           </div>
         </li>
         
@@ -1163,7 +1163,7 @@
           </div>
           <h3>誰要做下一步？</h3>
           <p>
-            分析完不能只留下一份「大家都覺得有道理但沒人知道要幹嘛」的投影片。我們會寫明：<strong>明天誰負責執行？做到什麼標準算驗收通過？如果系統異常誰來手動接手？</strong>
+            分析完不能只留下一份「大家都覺得有道理但沒人知道要幹嘛」的投影片。我們會寫明：<strong>明天誰負責執行？做到什麼標準算驗收通過？如果系統異常誰來手動接手？</strong>同時嚴格分離<strong>向知情角色查證客觀事實</strong>與<strong>向當責角色提請決策授權</strong>；使用者交辦的分析工作直接交付成果，絕不把工作包成選項推回給提問者。
           </p>
           <div class="step-eli5-box">
             <strong>
@@ -1174,7 +1174,7 @@
           </div>
           <div class="step-output">
             <span class="out-label">答案要能說明</span>
-            <span>一個有責任歸屬、可被下一位 owner 接手的具體行動</span>
+            <span>一個有責任歸屬、權限清楚、可被下一位 owner 接手的具體行動</span>
           </div>
         </li>
       </ol>
@@ -1320,7 +1320,7 @@
           <span class="section-eyebrow" style="color:var(--color-alert);">誠信與邊界承諾 · 白話菜單</span>
           <h2>說清楚「知道什麼」與「還不知道什麼」</h2>
           <p>
-            就像去海鮮餐廳點菜，菜單上老實標明「哪些是現撈鮮魚、哪些是今日推薦、哪些今天缺貨」，才是負責任的態度。我們絕不把「想像中的美好」當成「已經做好的成果」。
+            就像去海鮮餐廳點菜，菜單上老實標明「哪些是現撈鮮魚、哪些是今日推薦、哪些今天缺貨」，才是負責任的態度。我們絕不把「想像中的美好」當成「已經做好的成果」；若中途有了新資訊，<strong>也僅重算具依賴之結論</strong>，不擅自擴大無關範疇。
           </p>
         </div>
         
@@ -1411,6 +1411,15 @@
                   <p class="resource-link-desc">案例需要企業架構深度時才查閱的 supporting reference</p>
                 </a>
               </li>
+              <li>
+                <a class="resource-link-item" href="docs/adr/0005-recompute-only-on-dependency.md">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">依賴重算與邊界決策 (ADR 0005) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">ADR</span>
+                  </div>
+                  <p class="resource-link-desc">新資訊僅重算具依賴之結論，明確切分事實查證與授權決策</p>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -1496,6 +1505,15 @@
                     <span class="resource-format-tag">AGENTS</span>
                   </div>
                   <p class="resource-link-desc">Repository 的 canonical sources 與驗證入口</p>
+                </a>
+              </li>
+              <li>
+                <a class="resource-link-item" href="docs/evaluations/README.md">
+                  <div class="resource-link-top">
+                    <span class="resource-link-title">評估契約與試行準則 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+                    <span class="resource-format-tag">EVAL</span>
+                  </div>
+                  <p class="resource-link-desc">行為評估契約、盲審紀錄、批次關閉狀態與真實案例試行指南</p>
                 </a>
               </li>
             </ul>
