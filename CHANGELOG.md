@@ -7,6 +7,7 @@ All notable changes to this project are recorded here. The format follows [Keep 
 ### Added
 
 - ADR 0005 records that new information recomputes only the conclusions it has a dependency on, that widening the analysis stays an option rather than a task, and that facts out of the agent's reach are requested from a knowing role while decisions go to the accountable one. Its falsification condition names the two files the decision depends on.
+- A borrowed-case evaluation run tests two hypotheses left open by cases A–G, using scenarios adapted from an external synthetic case library: a user who prescribes an all-purpose agent, and an input that supplies the evidence an AI-fit decision normally asks for. Both answers passed all six criteria; neither hypothesis reproduced and no runtime change followed.
 
 ### Changed
 
